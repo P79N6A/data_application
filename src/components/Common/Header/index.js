@@ -63,7 +63,7 @@ export default class VideoHeader extends PureComponent {
 
         <div className={styles.userInfoPanel}>
           <Icon type="user"/><span className={styles.userName}>{username}</span>
-          <Popover placement="bottomLeft" arrowPointAtCenter trigger="click">
+          <Popover placement="bottomLeft" content={content} arrowPointAtCenter trigger="click">
             <Icon type="down"/>
           </Popover>
         </div>

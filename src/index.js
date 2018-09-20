@@ -1,9 +1,9 @@
 import dva from 'dva';
 import './index.css';
 import createLoading from 'dva-loading'
-import "../config"
 import "./styles/base.less"
 
+window.Sysconfig = require("../config.json");
 // 1. Initialize
 const app = dva();
 
