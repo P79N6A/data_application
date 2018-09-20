@@ -14,6 +14,8 @@ const codeMessage = {
   404: '发出的请求针对的是不存在的记录，服务器没有进行操作。',
   406: '请求的格式不可得。',
   410: '请求的资源被永久删除，且不会再得到的。',
+  //单点登录
+  418: "登录授权已过期，请重新登录",
   422: '当创建一个对象时，发生一个验证错误。',
   500: '服务器发生错误，请检查服务器。',
   502: '网关错误。',
@@ -82,6 +84,7 @@ function setCookie(defReq) {
   const userCode = getCookie('usercode'), userName = getCookie('username')
   let user = `usercode:${userCode}&username:${userName}`;
 
+  defReq.headers.append("x-client-ajax", "data");
   defReq.headers.append("Authorization", escape(escape(user)));
   defReq.headers.append('us-app', escape(escape(window.Sysconfig.sysName || process.env.sysName || "app")));
   return defReq;

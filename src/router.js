@@ -11,6 +11,8 @@ function RouterConfig({history, app}) {
   const DefaultLayout = routerData['/'].component;//基础布局
   return (
     <LocaleProvider locale={zhCN}>
+
+
       <ConnectedRouter history={history}>
         <Switch>
           <Route render={props => <DefaultLayout {...props} />} path="/"/>
