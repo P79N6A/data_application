@@ -23,8 +23,10 @@ const modelNotExisted = (app, model) =>
     return namespace === model.substring(model.lastIndexOf('/') + 1);
   });
 
+let i = 0;
 // wrapper of dynamic
 const dynamicWrapper = (app, models, component) => {
+  i++;
   models.forEach(model => {
     if (modelNotExisted(app, model)) {
       app.model(require(`../models/${model}`).default);

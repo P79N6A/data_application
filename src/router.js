@@ -3,6 +3,7 @@ import {routerRedux, Route, Switch} from 'dva/router';
 import {LocaleProvider} from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import {getRouterData} from './common/router';
+import Login from './components/Login'
 
 const {ConnectedRouter} = routerRedux;
 
@@ -15,6 +16,7 @@ function RouterConfig({history, app}) {
 
       <ConnectedRouter history={history}>
         <Switch>
+          <Route render={props => <Login {...props} />} path="/login"/>
           <Route render={props => <DefaultLayout {...props} />} path="/"/>
         </Switch>
       </ConnectedRouter>

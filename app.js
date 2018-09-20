@@ -28,9 +28,9 @@ var casClient = new ConnectCas({
   debug: true,
   //忽略权限认证地址
   ignore: [
-    "home"
+    "/dev"
   ],
-  match: ["/cas"],
+  match: ["/cas-"],
   //NODE服务地址
   servicePrefix: config.production.appUrl,
   //CAS服务端地址
@@ -68,14 +68,15 @@ app.get('/logout', casClient.logout());
 app.use('*', function (req, res, next) {
   let config = require(path.join(__dirname, './config.json'));
   const usercode = req.session.usercode, username = req.session.username
-  console.log('config``````````````````````````````', config, usercode, username)
+  console.log('user`````````````````````````````', usercode, username)
 
   if (!usercode || !username) {
     res.cookie('usercode', usercode);
     const url = `${config.production.apiOrigin}/users/${usercode}`
-    console.log('requestrequestrequest---------------------------', url)
+    console.log('request---------------------------', url)
 
     request(url, function (error, response, body) {
+      console.log("+++++++++", response.statusCode)
       if (!error && response.statusCode == 200) {
         var data = body
         res.cookie('username', escape(JSON.parse(data).user_name));
@@ -83,10 +84,11 @@ app.use('*', function (req, res, next) {
         res.render('index', {
           config: config
         });
+      } else {
+        res.send("登录失败")
       }
     })
   } else {
-    console.log('renderrenderrenderrender-----------------')
     res.render('index', {
       config: config
     });
