@@ -1,14 +1,50 @@
 import React, {PureComponent} from 'react';
-import {Icon, Popover} from 'antd';
+import {Layout, Icon, Menu, Popover, Button} from 'antd';
 import styles from './index.less'
+import {Link} from 'dva/router';
 import logo from '../../../assets/logo/logo.png';
+import pathToRegexp from 'path-to-regexp';
+import {getMenuData} from '../../../common/menu';
 import {getCookie} from "../../../utils/utils";
 
+const SubMenu = Menu.SubMenu;
+const MenuItemGroup = Menu.ItemGroup;
+
+export const getFlatMenuKeys = menu =>
+  menu.reduce((keys, item) => {
+    keys.push(item.path);
+    return keys;
+  }, []);
+
+export const getMenuMatchKeys = (flatMenuKeys, paths) =>
+  paths.reduce(
+    (matchKeys, path) =>
+      matchKeys.concat(flatMenuKeys.filter(item => pathToRegexp(item).test(path))),
+    []
+  );
 
 export default class VideoHeader extends PureComponent {
+  urlToList = (url) => {
+    const urllist = url.split('/').filter(i => i);
+    return urllist.map((urlItem, index) => {
+      return `/${urllist.slice(0, index + 1).join('/')}`;
+    });
+  }
+  getSelectedMenuKeys = () => {
+    const {
+      location: {pathname},
+    } = this.props;
+    return getMenuMatchKeys(this.flatMenuKeys, this.urlToList(pathname));
+  }
+
+  constructor() {
+    super();
+    this.flatMenuKeys = getFlatMenuKeys(getMenuData());
+  }
 
   render() {
-    console.log()
+    let path = this.props.location.pathname;
+    let selectedKeys = this.getSelectedMenuKeys();
     let username = getCookie('username')
     const content = (
       <div style={{height: '60px'}}>
@@ -18,35 +54,34 @@ export default class VideoHeader extends PureComponent {
         </p>
       </div>
     );
-    const contentAlarm = (
-      <div style={{height: '30px'}}>
-        <Icon type="bell" theme="filled" style={{color: '#f44336'}}/>12
-        <Icon type="bell" theme="filled" style={{color: '#e91e63'}}/>12
-        <Icon type="bell" theme="filled" style={{color: '#ff9800'}}/>12
-        <Icon type="bell" theme="filled" style={{color: '#8bc34a'}}/>12
-      </div>
-    );
     return (
       <div className={styles.headerWrap}>
         <div className={styles.logoWrap}>
           <img className={styles.logo} src={logo} alt="logo"/>
           <span>紫光华智安防项目</span>
         </div>
-        <div>
 
-        </div>
-        <div className={styles.info}>
-          <Popover content={contentAlarm} trigger="click">
-            <Icon type="info-circle" theme={"filled"}/>
-            <span className={styles.pops1}><span>{56}</span></span>
-          </Popover>
-        </div>
         <div className={styles.userInfoPanel}>
           <Icon type="user"/><span className={styles.userName}>{username}</span>
-          <Popover placement="bottomLeft" arrowPointAtCenter content={content} trigger="click">
+          <Popover placement="bottomLeft" arrowPointAtCenter trigger="click">
             <Icon type="down"/>
           </Popover>
         </div>
+        <Menu
+          selectedKeys={selectedKeys}
+          mode="horizontal"
+          className={styles["menu-list"]}
+        >
+          {getMenuData().map(item => (
+            <Menu.Item key={item.path}>
+              <Link to={item.path}>
+                <span>{item.name}</span>
+              </Link>
+            </Menu.Item>
+          ))
+          }
+        </Menu>
+
       </div>
     );
   }
