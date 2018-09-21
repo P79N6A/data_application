@@ -10,6 +10,8 @@
 
 /components 用于存放 React 组件，一般是该项目公用的无状态组件；
 
+/layouts 用于存放布局组件，一般用作路由入口
+
 /models 用于存放模型文件
 
 /routes 用于存放需要 connect model 的路由组件；

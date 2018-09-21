@@ -21,10 +21,10 @@ class DefaultLayout extends React.PureComponent {
       <div>
         <Header {...this.props} />
         <Switch>
+          <Redirect exact from="/resource" to='/resource/list'/>
           {getRoutes(match.path, routerData).map(item => (
             <Route path={item.path} component={item.component} key={item.key}/>
           ))}
-          {/*<Redirect exact from="*" to='/home'/>*/}
         </Switch>
       </div>
     );

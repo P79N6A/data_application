@@ -11,7 +11,7 @@ const menuData = [
   },
   {
     name: '数据资源',
-    path: 'resources',
+    path: 'resource',
   },
   {
     name: '数据应用',
