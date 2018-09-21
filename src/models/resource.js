@@ -1,4 +1,4 @@
-import {TableList} from "../services/resource";
+import {TableList} from '../services/resource';
 
 export default {
 
@@ -6,7 +6,7 @@ export default {
 
   state: {
     name: [555],
-    resourceTableList: [],
+    resourceTableList: []
   },
 
   subscriptions: {
@@ -17,15 +17,30 @@ export default {
   effects: {
     * getTableList({payload, callback}, {call, put}) {
       let res = yield call(TableList, payload.url);
-      yield put({type: 'save', resourceTableList: res});
+      yield put({
+        type: 'save',
+        data: {resourceTableList: res.data.datalist}
+      });
       callback(res);
     },
+
+    * deleteCol({payload, callback}, {call, put}) {
+      // let res=yield call(deleteCol);
+      let newData = payload.data.filter((v) => {
+        return v.id !== payload.id;
+      });
+      yield put({
+        type: 'save',
+        data: {resourceTableList: newData}
+      });
+      callback(newData);
+    }
   },
 
   reducers: {
-    save(state, data) {
-      return {...state, ...data};
-    },
-  },
+    save(state, {data}) {
+      return {...data};
+    }
+  }
 
 };
