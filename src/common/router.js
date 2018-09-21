@@ -82,7 +82,8 @@ export const getRouterData = app => {
       component: dynamicWrapper(app, [], () => import('../routes/dataResource/resourceList')),
     },
     '/resource/manage': {
-      component: dynamicWrapper(app, [], () => import('../routes/dataResource/resourceManage')),
+      component: dynamicWrapper(app, ["resource"], () => import('../routes/dataResource/resourceManage')),
+      name: "manage",
     },
     '/': {
       component: dynamicWrapper(app, [], () => import('../layouts/DefaultLayout')),

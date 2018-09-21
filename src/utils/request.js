@@ -1,6 +1,7 @@
 import fetch from 'dva/fetch';
 import fetchjsonp from 'fetch-jsonp'
 import {getCookie} from "./utils";
+import axios from 'axios'
 
 //自定义返回信息
 const codeMessage = {
@@ -125,9 +126,10 @@ export default function request(url, options = {}) {
   };
 
   //mock数据处理
-  if (url.includes("mock-sax")) {
+  if (url.includes("mock-sax") || url.includes("dsn.apizza")) {
     delete options.headers;
     delete defReq.headers;
+    return axios.get(url);
   } else {
     url = window.apiOrigin ? window.apiOrigin + url : url;
     defReq = setCookie(defReq);
@@ -148,13 +150,6 @@ export default function request(url, options = {}) {
     delete options.body;
   }
 
-  // 跨域jsonp
-  /*return fetchjsonp(url)
-    .then(parseResponse).then(function(json) {
-      console.log('parsed json', json); // 在此处进行接收数据之后的操作
-    }).catch(function(ex) {
-      console.log('parsing failed', ex) // 此处是数据请求失败后的处理
-    })*/
 
   return fetch(url, initOptions(defReq, options))
     .then(checkStatus)
