@@ -1,6 +1,7 @@
+/* eslint-disable */
 import React, {createElement} from 'react';
 import {Spin} from 'antd';
-import pathToRegexp from 'path-to-regexp';
+// import pathToRegexp from 'path-to-regexp';
 import Loadable from 'react-loadable';
 
 let routerDataCache;
@@ -11,7 +12,7 @@ function Loading(props) {
   } else if (props.timedOut) {
     return <div>Taking a long time... <button onClick={props.retry}>Retry</button></div>;
   } else if (props.pastDelay) {
-    return <Spin size="large" className="global-spin"/>;
+    return <Spin className="global-spin" size="large"/>;
   } else {
     return null;
   }
@@ -23,10 +24,8 @@ const modelNotExisted = (app, model) =>
     return namespace === model.substring(model.lastIndexOf('/') + 1);
   });
 
-let i = 0;
 // wrapper of dynamic
 const dynamicWrapper = (app, models, component) => {
-  i++;
   models.forEach(model => {
     if (modelNotExisted(app, model)) {
       app.model(require(`../models/${model}`).default);
@@ -41,7 +40,7 @@ const dynamicWrapper = (app, models, component) => {
       }
       return createElement(component().default, {
         ...props,
-        routerData: routerDataCache,
+        routerData: routerDataCache
       });
     };
   }
@@ -56,7 +55,7 @@ const dynamicWrapper = (app, models, component) => {
         return props =>
           createElement(Component, {
             ...props,
-            routerData: routerDataCache,
+            routerData: routerDataCache
           });
       });
     },
@@ -66,35 +65,47 @@ const dynamicWrapper = (app, models, component) => {
     },
     loading: Loading,
     delay: 400,
-    timeout: 4000,
+    timeout: 4000
   });
 };
 
 export const getRouterData = app => {
   const routerConfig = {
     '/home': {
-      component: dynamicWrapper(app, [], () => import('../routes/home')),
+      component: dynamicWrapper(app, [], () => import('../routes/home'))
+    },
+    '/collect': {
+      component: dynamicWrapper(app, [], () => import('../routes/dataCollect')),
+      name: '数据采集'
+    },
+    '/collect/list': {
+      name: '数据采集列表',
+      component: dynamicWrapper(app, [] , () => import('../components/DataCollect/CollectList'))
+    },
+    '/collect/resources': {
+      name: '数据采集源',
+      component: dynamicWrapper(app, [], () => import('../components/DataCollect/CollectResource'))
     },
     '/resource': {
-      component: dynamicWrapper(app, [], () => import('../routes/dataResource')),
+      component: dynamicWrapper(app, [], () => import('../routes/dataResource'))
     },
     '/resource/list': {
-      component: dynamicWrapper(app, [], () => import('../routes/dataResource/resourceList')),
+      component: dynamicWrapper(app, [], () => import('../routes/dataResource/resourceList'))
     },
     '/resource/manage': {
       component: dynamicWrapper(app, ["resource"], () => import('../routes/dataResource/resourceManage')),
       name: "manage",
     },
     '/': {
-      component: dynamicWrapper(app, [], () => import('../layouts/DefaultLayout')),
-    },
+      component: dynamicWrapper(app, [], () => import('../layouts/DefaultLayout'))
+    }
   };
   const routerData = {};
   Object.keys(routerConfig).forEach(path => {
     let router = routerConfig[path];
     router = {
       ...router,
-      name: router.component.name
+      name: router.name
     };
     routerData[path] = router;
   });
