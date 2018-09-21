@@ -78,13 +78,25 @@ export const getRouterData = app => {
     '/home': {
       component: dynamicWrapper(app, [], () => import('../routes/home')),
     },
+    '/collect': {
+      component: dynamicWrapper(app, [], () => import('../routes/dataCollect')),
+      name: '数据采集'
+    },
+    '/collect/list': {
+      name: '数据采集列表',
+      component: dynamicWrapper(app, [] , () => import('../components/DataCollect/CollectList'))
+    },
+    '/collect/resources': {
+      name: '数据采集源',
+      component: dynamicWrapper(app, [], () => import('../components/DataCollect/CollectResource'))
+    }   
   };
   const routerData = {};
   Object.keys(routerConfig).forEach(path => {
     let router = routerConfig[path];
     router = {
       ...router,
-      name: router.component.name
+      name: router.name
     };
     routerData[path] = router;
   });
