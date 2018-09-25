@@ -4,14 +4,14 @@ import React from 'react'
 
 
 class ManageTable extends React.Component {
-  componentDidMount() {
 
-    console.log(this.props)
-  }
   render() {
     return (
       <div>
-        <Table columns={this.props.state.columns} dataSource={this.props.state.tableList}/>
+        <Table
+          columns={this.props.columns}
+          dataSource={this.props.tableList}
+        />
       </div>
     );
   }

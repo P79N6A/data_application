@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Icon, Menu, Layout,} from 'antd';
+import {Icon, Menu, Layout} from 'antd';
 import {Link, Switch, Route} from 'dva/router';
 import ResourceList from './resourceList';
 import ResourceManage from './resourceManage';
@@ -13,7 +13,7 @@ class DataResource extends Component {
     super(props);
     this.handleMenuClick = this.handleMenuClick.bind(this);
     this.state = {
-      currentMenu: "list"
+      currentMenu: 'list'
     };
   }
 
@@ -33,16 +33,22 @@ class DataResource extends Component {
             selectedKeys={[this.state.currentMenu]}
           >
             <Menu.Item key="list">
-              <Link to={"/resource/list"}><FaClipboardList/> 数据资源目录</Link>
+              <Link to={'/resource/list'}><FaClipboardList/> 数据资源目录</Link>
             </Menu.Item>
             <Menu.Item key="manage">
-              <Link to={"/resource/manage"}><FaFolder/> 数据资源管理</Link>
+              <Link to={'/resource/manage'}><FaFolder/> 数据资源管理</Link>
             </Menu.Item>
           </Menu>
         </div>
         <Switch>
-          <Route exact path={"/resource/list"} component={ResourceList}/>
-          <Route exact path={"/resource/manage"} component={ResourceManage}/>
+          <Route component={ResourceList}
+                 exact
+                 path={'/resource/list'}
+          />
+          <Route component={ResourceManage}
+                 exact
+                 path={'/resource/manage'}
+          />
         </Switch>
       </div>
     );
