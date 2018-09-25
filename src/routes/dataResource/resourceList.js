@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Layout, Menu, Breadcrumb, Icon, Button} from 'antd';
 import styles from "./resourceList.less"
-import ListSider from "../../components/DataResource/ListSider"
-import ListContent from "../../components/DataResource/ListContent"
+import ListSider from "components/DataResource/ListSider"
+import ListContent from "components/DataResource/ListContent"
 
 const {Header, Content, Footer, Sider} = Layout;
 const SubMenu = Menu.SubMenu;

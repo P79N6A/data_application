@@ -16,8 +16,8 @@ function RouterConfig({history, app}) {
 
       <ConnectedRouter history={history}>
         <Switch>
-          <Route render={props => <Login {...props} />} path="/login"/>
-          <Route render={props => <DefaultLayout {...props} />} path="/"/>
+          <Route path="/login" render={props => <Login {...props} />}/>
+          <Route path="/" render={props => <DefaultLayout {...props} />}/>
         </Switch>
       </ConnectedRouter>
     </LocaleProvider>

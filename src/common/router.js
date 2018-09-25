@@ -78,13 +78,13 @@ export const getRouterData = app => {
       component: dynamicWrapper(app, [], () => import('../routes/dataCollect')),
       name: '数据采集'
     },
+    '/collect/resources': {
+      name: '数据采集总览',
+      component: dynamicWrapper(app, [], () => import('../components/DataCollect/CollectResource'))
+    },
     '/collect/list': {
       name: '数据采集列表',
       component: dynamicWrapper(app, [] , () => import('../components/DataCollect/CollectList'))
-    },
-    '/collect/resources': {
-      name: '数据采集源',
-      component: dynamicWrapper(app, [], () => import('../components/DataCollect/CollectResource'))
     },
     '/resource': {
       component: dynamicWrapper(app, [], () => import('../routes/dataResource'))
