@@ -4,7 +4,7 @@ export default {
   'navbar.lang': 'English',
   'menu.home': '首页',
   'menu.resource': '接口服务',
-  'menu.resource.list': '资源列表',
+  'menu.resource.monitor': '资源总览',
   'menu.resource.manage': '资源管理',
   'menu.resource.publish': '接口服务发布',
   'menu.resource.apply': '接口访问申请',

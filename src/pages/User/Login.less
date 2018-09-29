@@ -19,14 +19,21 @@
       color: @primary-color;
     }
   }
+  div[role='tab'] {
+    color: #888;
+  }
+  div[aria-selected='true'] {
+    color: #2eabff;
+  }
+  .text-w {
+    color: #888;
+  }
+  .text-auto {
+    color: #2eabff;
+  }
 
-  .other {
-    text-align: left;
-    margin-top: 24px;
-    line-height: 22px;
-
-    .register {
-      float: right;
-    }
+  .register {
+    position: relative;
+    left: 70px;
   }
 }
