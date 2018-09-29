@@ -29,7 +29,9 @@ export default class GlobalHeaderRight extends PureComponent {
           doing: 'gold',
         }[newNotice.status];
         newNotice.extra = (
-          <Tag color={color} style={{ marginRight: 0 }}>
+          <Tag color={color}
+               style={{ marginRight: 0 }}
+          >
             {newNotice.extra}
           </Tag>
         );
@@ -58,23 +60,34 @@ export default class GlobalHeaderRight extends PureComponent {
       theme,
     } = this.props;
     const menu = (
-      <Menu className={styles.menu} selectedKeys={[]} onClick={onMenuClick}>
+      <Menu className={styles.menu}
+            onClick={onMenuClick}
+            selectedKeys={[]}
+      >
         <Menu.Item key="userCenter">
           <Icon type="user" />
-          <FormattedMessage id="menu.account.center" defaultMessage="account center" />
+          <FormattedMessage defaultMessage="account center"
+                            id="menu.account.center"
+          />
         </Menu.Item>
         <Menu.Item key="userinfo">
           <Icon type="setting" />
-          <FormattedMessage id="menu.account.settings" defaultMessage="account settings" />
+          <FormattedMessage defaultMessage="account settings"
+                            id="menu.account.settings"
+          />
         </Menu.Item>
         <Menu.Item key="triggerError">
           <Icon type="close-circle" />
-          <FormattedMessage id="menu.account.trigger" defaultMessage="Trigger Error" />
+          <FormattedMessage defaultMessage="Trigger Error"
+                            id="menu.account.trigger"
+          />
         </Menu.Item>
         <Menu.Divider />
         <Menu.Item key="logout">
           <Icon type="logout" />
-          <FormattedMessage id="menu.account.logout" defaultMessage="logout" />
+          <FormattedMessage defaultMessage="logout"
+                            id="menu.account.logout"
+          />
         </Menu.Item>
       </Menu>
     );
@@ -87,21 +100,21 @@ export default class GlobalHeaderRight extends PureComponent {
       <div className={className}>
         <HeaderSearch
           className={`${styles.action} ${styles.search}`}
-          placeholder="站内搜索"
           dataSource={['搜索提示一', '搜索提示二', '搜索提示三']}
-          onSearch={value => {
-            console.log('input', value); // eslint-disable-line
-          }}
           onPressEnter={value => {
             console.log('enter', value); // eslint-disable-line
           }}
+          onSearch={value => {
+            console.log('input', value); // eslint-disable-line
+          }}
+          placeholder="站内搜索"
         />
         <Tooltip title="使用文档">
           <a
-            target="_blank"
+            className={styles.action}
             href="https://pro.ant.design/docs/getting-started"
             rel="noopener noreferrer"
-            className={styles.action}
+            target="_blank"
             title="使用文档"
           >
             <Icon type="question-circle-o" />
@@ -110,56 +123,58 @@ export default class GlobalHeaderRight extends PureComponent {
         <NoticeIcon
           className={styles.action}
           count={currentUser.notifyCount}
+          loading={fetchingNotices}
+          onClear={onNoticeClear}
           onItemClick={(item, tabProps) => {
             console.log(item, tabProps); // eslint-disable-line
           }}
-          onClear={onNoticeClear}
           onPopupVisibleChange={onNoticeVisibleChange}
-          loading={fetchingNotices}
           popupAlign={{ offset: [20, -16] }}
         >
           <NoticeIcon.Tab
+            emptyImage="https://gw.alipayobjects.com/zos/rmsportal/wAhyIChODzsoKIOBHcBk.svg"
+            emptyText="你已查看所有通知"
             list={noticeData['通知']}
             title="通知"
-            emptyText="你已查看所有通知"
-            emptyImage="https://gw.alipayobjects.com/zos/rmsportal/wAhyIChODzsoKIOBHcBk.svg"
           />
           <NoticeIcon.Tab
+            emptyImage="https://gw.alipayobjects.com/zos/rmsportal/sAuJeJzSKbUmHfBQRzmZ.svg"
+            emptyText="您已读完所有消息"
             list={noticeData['消息']}
             title="消息"
-            emptyText="您已读完所有消息"
-            emptyImage="https://gw.alipayobjects.com/zos/rmsportal/sAuJeJzSKbUmHfBQRzmZ.svg"
           />
           <NoticeIcon.Tab
+            emptyImage="https://gw.alipayobjects.com/zos/rmsportal/HsIsxMZiWKrNUavQUXqx.svg"
+            emptyText="你已完成所有待办"
             list={noticeData['待办']}
             title="待办"
-            emptyText="你已完成所有待办"
-            emptyImage="https://gw.alipayobjects.com/zos/rmsportal/HsIsxMZiWKrNUavQUXqx.svg"
           />
         </NoticeIcon>
         {currentUser.name ? (
           <Dropdown overlay={menu}>
             <span className={`${styles.action} ${styles.account}`}>
               <Avatar
-                size="small"
-                className={styles.avatar}
-                src={currentUser.avatar}
                 alt="avatar"
+                className={styles.avatar}
+                size="small"
+                src={currentUser.avatar}
               />
               <span className={styles.name}>{currentUser.name}</span>
             </span>
           </Dropdown>
         ) : (
-          <Spin size="small" style={{ marginLeft: 8, marginRight: 8 }} />
+          <Spin size="small"
+                style={{ marginLeft: 8, marginRight: 8 }}
+          />
         )}
         <Button
-          size="small"
           ghost={theme === 'dark'}
-          style={{
-            margin: '0 8px',
-          }}
           onClick={() => {
             this.changLang();
+          }}
+          size="small"
+          style={{
+            margin: '0 8px',
           }}
         >
           <FormattedMessage id="navbar.lang" />

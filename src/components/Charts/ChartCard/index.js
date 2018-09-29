@@ -42,7 +42,9 @@ class ChartCard extends React.PureComponent {
           </div>
         </div>
         {children && (
-          <div className={styles.content} style={{ height: contentHeight || 'auto' }}>
+          <div className={styles.content}
+               style={{ height: contentHeight || 'auto' }}
+          >
             <div className={contentHeight && styles.contentFixed}>{children}</div>
           </div>
         )}
@@ -72,7 +74,10 @@ class ChartCard extends React.PureComponent {
       ...rest
     } = this.props;
     return (
-      <Card loading={loading} bodyStyle={{ padding: '20px 24px 8px 24px' }} {...rest}>
+      <Card bodyStyle={{ padding: '20px 24px 8px 24px' }}
+            loading={loading}
+            {...rest}
+      >
         {this.renderConnet()}
       </Card>
     );

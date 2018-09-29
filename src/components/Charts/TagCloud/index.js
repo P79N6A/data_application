@@ -75,9 +75,9 @@ class TagCloud extends Component {
           attrs: Object.assign(attrs, {
             x: cfg.x,
             y: cfg.y,
-          }),
+          })
         });
-      },
+      }
     });
   };
 
@@ -112,7 +112,7 @@ class TagCloud extends Component {
         fontSize(d) {
           // eslint-disable-next-line
           return Math.pow((d.value - min) / (max - min), 2) * (70 - 20) + 20;
-        },
+        }
       });
 
       if (this.isUnmount) {
@@ -144,22 +144,26 @@ class TagCloud extends Component {
     return (
       <div
         className={classNames(styles.tagCloud, className)}
-        style={{ width: '100%', height }}
         ref={this.saveRootRef}
+        style={{ width: '100%', height }}
       >
         {dv && (
           <Chart
-            width={w}
-            height={h}
             data={dv}
+            height={h}
             padding={0}
             scale={{
               x: { nice: false },
               y: { nice: false },
             }}
+            width={w}
           >
             <Coord reflect="y" />
-            <Geom type="point" position="x*y" color="text" shape="cloud" />
+            <Geom color="text"
+                  position="x*y"
+                  shape="cloud"
+                  type="point"
+            />
           </Chart>
         )}
       </div>

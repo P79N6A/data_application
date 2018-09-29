@@ -20,7 +20,7 @@ class TriggerException extends PureComponent {
       type: 'error/query',
       payload: {
         code,
-      },
+      }
     });
   };
 
@@ -28,17 +28,27 @@ class TriggerException extends PureComponent {
     const { isloading } = this.state;
     return (
       <Card>
-        <Spin spinning={isloading} wrapperClassName={styles.trigger}>
-          <Button type="danger" onClick={() => this.triggerError(401)}>
+        <Spin spinning={isloading}
+              wrapperClassName={styles.trigger}
+        >
+          <Button onClick={() => this.triggerError(401)}
+                  type="danger"
+          >
             触发401
           </Button>
-          <Button type="danger" onClick={() => this.triggerError(403)}>
+          <Button onClick={() => this.triggerError(403)}
+                  type="danger"
+          >
             触发403
           </Button>
-          <Button type="danger" onClick={() => this.triggerError(500)}>
+          <Button onClick={() => this.triggerError(500)}
+                  type="danger"
+          >
             触发500
           </Button>
-          <Button type="danger" onClick={() => this.triggerError(404)}>
+          <Button onClick={() => this.triggerError(404)}
+                  type="danger"
+          >
             触发404
           </Button>
         </Spin>

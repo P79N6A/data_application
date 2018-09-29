@@ -7,8 +7,8 @@ const menu = [
     children: [
       {
         path: '/dashboard/name',
-      },
-    ],
+      }
+    ]
   },
   {
     path: '/userinfo',
@@ -18,11 +18,11 @@ const menu = [
         children: [
           {
             path: '/userinfo/:id/info',
-          },
-        ],
-      },
-    ],
-  },
+          }
+        ]
+      }
+    ]
+  }
 ];
 
 const flatMenuKeys = getFlatMenuKeys(menu);

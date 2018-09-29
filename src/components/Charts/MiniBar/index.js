@@ -14,7 +14,7 @@ class MiniBar extends React.Component {
       },
       y: {
         min: 0,
-      },
+      }
     };
 
     const padding = [36, 5, 30, 5];
@@ -24,24 +24,32 @@ class MiniBar extends React.Component {
       (x, y) => ({
         name: x,
         value: y,
-      }),
+      })
     ];
 
     // for tooltip not to be hide
     const chartHeight = height + 54;
 
     return (
-      <div className={styles.miniChart} style={{ height }}>
+      <div className={styles.miniChart}
+           style={{ height }}
+      >
         <div className={styles.chartContent}>
           <Chart
-            scale={scale}
-            height={chartHeight}
-            forceFit={forceFit}
             data={data}
+            forceFit={forceFit}
+            height={chartHeight}
             padding={padding}
+            scale={scale}
           >
-            <Tooltip showTitle={false} crosshairs={false} />
-            <Geom type="interval" position="x*y" color={color} tooltip={tooltip} />
+            <Tooltip crosshairs={false}
+                     showTitle={false}
+            />
+            <Geom color={color}
+                  position="x*y"
+                  tooltip={tooltip}
+                  type="interval"
+            />
           </Chart>
         </div>
       </div>

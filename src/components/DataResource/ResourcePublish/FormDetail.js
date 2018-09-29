@@ -21,11 +21,17 @@ class FormDetail extends Component {
     ];
     return (
       <div>
-        <Table columns={columnsApi} dataSource={[values]} pagination={false}/>
+        <Table columns={columnsApi}
+               dataSource={[values]}
+               pagination={false}
+        />
         <br/>
         <h2>参数列表</h2>
         <br/>
-        <Table columns={columnsParam} dataSource={values.params} pagination={false}/>
+        <Table columns={columnsParam}
+               dataSource={values.params}
+               pagination={false}
+        />
       </div>
     );
   }

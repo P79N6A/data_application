@@ -53,17 +53,20 @@ export default class ActiveChart extends Component {
 
     return (
       <div className={styles.activeChart}>
-        <NumberInfo subTitle="流量评估" total="24小时内无压力"/>
+        <NumberInfo subTitle="流量评估"
+                    total="24小时内无压力"
+        />
         <div style={{ marginTop: 32 }}>
           <MiniArea
             animate={false}
-            line
             borderWidth={2}
+            data={activeData}
             height={84}
+            line
             scale={{
               y: {
                 tickCount: 3,
-              },
+              }
             }}
             yAxis={{
               tickLine: false,
@@ -71,7 +74,6 @@ export default class ActiveChart extends Component {
               title: false,
               line: false,
             }}
-            data={activeData}
           />
         </div>
         {activeData && (

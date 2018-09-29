@@ -31,7 +31,7 @@ class MiniArea extends React.PureComponent {
       y: {
         min: 0,
         ...scale.y,
-      },
+      }
     };
 
     const tooltip = [
@@ -39,60 +39,64 @@ class MiniArea extends React.PureComponent {
       (x, y) => ({
         name: x,
         value: y,
-      }),
+      })
     ];
 
     const chartHeight = height + 54;
 
     return (
-      <div className={styles.miniChart} style={{ height }}>
+      <div className={styles.miniChart}
+           style={{ height }}
+      >
         <div className={styles.chartContent}>
           {height > 0 && (
             <Chart
               animate={animate}
-              scale={scaleProps}
-              height={chartHeight}
-              forceFit={forceFit}
               data={data}
+              forceFit={forceFit}
+              height={chartHeight}
               padding={padding}
+              scale={scaleProps}
             >
               <Axis
+                grid={false}
                 key="axis-x"
-                name="x"
                 label={false}
                 line={false}
+                name="x"
                 tickLine={false}
-                grid={false}
                 {...xAxis}
               />
               <Axis
+                grid={false}
                 key="axis-y"
-                name="y"
                 label={false}
                 line={false}
+                name="y"
                 tickLine={false}
-                grid={false}
                 {...yAxis}
               />
-              <Tooltip showTitle={false} crosshairs={false} />
+              <Tooltip crosshairs={false}
+                       showTitle={false}
+              />
               <Geom
-                type="area"
-                position="x*y"
                 color={color}
-                tooltip={tooltip}
+                position="x*y"
                 shape="smooth"
                 style={{
                   fillOpacity: 1,
                 }}
+                tooltip={tooltip}
+                type="area"
               />
               {line ? (
                 <Geom
-                  type="line"
+                  color={borderColor}
                   position="x*y"
                   shape="smooth"
-                  color={borderColor}
                   size={borderWidth}
                   tooltip={false}
+                  type="line"
                 />
               ) : (
                 <span style={{ display: 'none' }} />

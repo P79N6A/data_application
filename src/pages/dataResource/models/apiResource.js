@@ -1,17 +1,17 @@
 import { queryRule, removeRule, addRule, updateRule } from '@/services/api';
 
 export default {
-  namespace: 'rule',
+  namespace: 'apiResource',
 
   state: {
     data: {
       list: [],
       pagination: {},
-    },
+    }
   },
 
   effects: {
-    * fetch({ payload }, { call, put }) {
+    * fetch({ payload }, { call, put, select }) {
       const response = yield call(queryRule, payload);
       yield put({
         type: 'save',
@@ -34,14 +34,36 @@ export default {
       });
       if (callback) callback();
     },
-    * update({ payload, callback }, { call, put }) {
-      const response = yield call(updateRule, payload);
-      yield put({
-        type: 'save',
-        payload: response,
+
+    * update({ payload, callback }, { call, put, select }) {
+
+      let oldData = yield select((state) => {
+        console.log(state);
       });
+
+      switch (payload.option) {
+        //state=0
+        case 'use':
+          break;
+        //state=2
+        case 'stop':
+          break;
+        //state=1
+        case 'pass':
+          break;
+        //state=1
+        case 'reject':
+          break;
+        default:
+          break;
+      }
+
+      /*yield put({
+        type: 'save',
+        payload: response
+      });*/
       if (callback) callback();
-    },
+    }
   },
 
   reducers: {
@@ -50,6 +72,6 @@ export default {
         ...state,
         data: action.payload,
       };
-    },
-  },
+    }
+  }
 };

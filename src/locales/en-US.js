@@ -127,7 +127,7 @@ export default {
   'app.settings.open': 'Open',
   'app.settings.close': 'Close',
   'app.exception.back': 'Back to home',
-  'app.exception.description.403': "Sorry, you don't have access to this page",
+  'app.exception.description.403': 'Sorry, you don\'t have access to this page',
   'app.exception.description.404': 'Sorry, the page you visited does not exist',
   'app.exception.description.500': 'Sorry, the server is reporting an error',
   'app.result.error.title': 'Submission Failed',
@@ -184,5 +184,5 @@ export default {
   'app.setting.copy': 'Copy Setting',
   'app.setting.copyinfo': 'copy success，please replace defaultSettings in src/models/setting.js',
   'app.setting.production.hint':
-    'Setting panel show in development enviorment only, please mannually modify',
+    'Setting panel show in development enviorment only, please mannually modify'
 };

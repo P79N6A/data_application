@@ -105,61 +105,67 @@ class Radar extends Component {
       value: {
         min: 0,
         tickCount,
-      },
+      }
     };
 
     const chartHeight = height - (hasLegend ? 80 : 22);
 
     return (
-      <div className={styles.radar} style={{ height }}>
+      <div className={styles.radar}
+           style={{ height }}
+      >
         {title && <h4>{title}</h4>}
         <Chart
-          scale={scale}
-          height={chartHeight}
-          forceFit={forceFit}
-          data={data}
-          padding={padding}
           animate={animate}
+          data={data}
+          forceFit={forceFit}
+          height={chartHeight}
           onGetG2Instance={this.getG2Instance}
+          padding={padding}
+          scale={scale}
         >
           <Tooltip />
           <Coord type="polar" />
           <Axis
-            name="label"
-            line={null}
-            tickLine={null}
             grid={{
               lineStyle: {
                 lineDash: null,
               },
               hideFirstLine: false,
             }}
+            line={null}
+            name="label"
+            tickLine={null}
           />
           <Axis
-            name="value"
             grid={{
               type: 'polygon',
               lineStyle: {
                 lineDash: null,
-              },
+              }
             }}
+            name="value"
           />
-          <Geom type="line" position="label*value" color={['name', colors]} size={1} />
+          <Geom color={['name', colors]}
+                position="label*value"
+                size={1}
+                type="line"
+          />
           <Geom
-            type="point"
-            position="label*value"
             color={['name', colors]}
+            position="label*value"
             shape="circle"
             size={3}
+            type="point"
           />
         </Chart>
         {hasLegend && (
           <Row className={styles.legend}>
             {legendData.map((item, i) => (
               <Col
-                span={24 / legendData.length}
                 key={item.name}
                 onClick={() => this.handleLegendClick(item, i)}
+                span={24 / legendData.length}
               >
                 <div className={styles.legendItem}>
                   <p>

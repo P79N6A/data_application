@@ -51,7 +51,7 @@ export default {
         payload: {
           status: false,
           currentAuthority: 'guest',
-        },
+        }
       });
       reloadAuthorized();
       yield put(
@@ -59,10 +59,10 @@ export default {
           pathname: '/user/login',
           search: stringify({
             redirect: window.location.href,
-          }),
+          })
         })
       );
-    },
+    }
   },
 
   reducers: {
@@ -73,6 +73,6 @@ export default {
         status: payload.status,
         type: payload.type,
       };
-    },
-  },
+    }
+  }
 };

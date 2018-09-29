@@ -31,9 +31,9 @@ export default {
         type: 'save',
         payload: {
           salesData: response.salesData,
-        },
+        }
       });
-    },
+    }
   },
 
   reducers: {
@@ -56,6 +56,6 @@ export default {
         salesTypeDataOffline: [],
         radarData: [],
       };
-    },
-  },
+    }
+  }
 };

@@ -30,7 +30,7 @@ const basicGoods = [
     price: '8.50',
     num: '3',
     amount: '25.50',
-  },
+  }
 ];
 
 const basicProgress = [
@@ -73,7 +73,7 @@ const basicProgress = [
     status: 'success',
     operator: '用户',
     cost: '5mins',
-  },
+  }
 ];
 
 const advancedOperation1 = [
@@ -116,7 +116,7 @@ const advancedOperation1 = [
     status: 'agree',
     updatedAt: '2017-10-03  19:23:12',
     memo: '-',
-  },
+  }
 ];
 
 const advancedOperation2 = [
@@ -127,7 +127,7 @@ const advancedOperation2 = [
     status: 'agree',
     updatedAt: '2017-10-03  19:23:12',
     memo: '-',
-  },
+  }
 ];
 
 const advancedOperation3 = [
@@ -138,7 +138,7 @@ const advancedOperation3 = [
     status: 'agree',
     updatedAt: '2017-10-03  19:23:12',
     memo: '-',
-  },
+  }
 ];
 
 const getProfileBasicData = {

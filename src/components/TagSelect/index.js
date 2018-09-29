@@ -7,7 +7,10 @@ import styles from './index.less';
 const { CheckableTag } = Tag;
 
 const TagSelectOption = ({ children, checked, onChange, value }) => (
-  <CheckableTag checked={checked} key={value} onChange={state => onChange(value, state)}>
+  <CheckableTag checked={checked}
+                key={value}
+                onChange={state => onChange(value, state)}
+  >
     {children}
   </CheckableTag>
 );
@@ -97,9 +100,14 @@ class TagSelect extends Component {
       [styles.expanded]: expand,
     });
     return (
-      <div className={cls} style={style}>
+      <div className={cls}
+           style={style}
+      >
         {hideCheckAll ? null : (
-          <CheckableTag checked={checkedAll} key="tag-select-__all__" onChange={this.onSelectAll}>
+          <CheckableTag checked={checkedAll}
+                        key="tag-select-__all__"
+                        onChange={this.onSelectAll}
+          >
             全部
           </CheckableTag>
         )}
@@ -116,7 +124,9 @@ class TagSelect extends Component {
             return child;
           })}
         {expandable && (
-          <a className={styles.trigger} onClick={this.handleExpand}>
+          <a className={styles.trigger}
+             onClick={this.handleExpand}
+          >
             {expand ? '收起' : '展开'} <Icon type={expand ? 'up' : 'down'} />
           </a>
         )}

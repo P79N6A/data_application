@@ -15,7 +15,9 @@ class ResourceList extends Component {
           <ListSider/>
           {/* 内容部分 */}
           <Layout style={{ padding: '0 0 0 16px' }}>
-            <Header className={styles['content-bar']} style={{ background: '#fff', padding: 0 }}>
+            <Header className={styles['content-bar']}
+                    style={{ background: '#fff', padding: 0 }}
+            >
               <span>资源目录列表</span>
             </Header>
 

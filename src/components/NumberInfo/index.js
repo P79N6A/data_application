@@ -11,7 +11,9 @@ const NumberInfo = ({ theme, title, subTitle, total, subTotal, status, suffix, g
     {...rest}
   >
     {title && (
-      <div className={styles.numberInfoTitle} title={typeof title === 'string' ? title : ''}>
+      <div className={styles.numberInfoTitle}
+           title={typeof title === 'string' ? title : ''}
+      >
         {title}
       </div>
     )}
@@ -23,7 +25,9 @@ const NumberInfo = ({ theme, title, subTitle, total, subTotal, status, suffix, g
         {subTitle}
       </div>
     )}
-    <div className={styles.numberInfoValue} style={gap ? { marginTop: gap } : null}>
+    <div className={styles.numberInfoValue}
+         style={gap ? { marginTop: gap } : null}
+    >
       <span>
         {total}
         {suffix && <em className={styles.suffix}>{suffix}</em>}

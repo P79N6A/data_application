@@ -9,7 +9,9 @@ class HomePagePure extends Component {
         <div className={styles['latest-news']}>
           <span>最新动态</span>
 
-          <Carousel autoplay className={styles.news}>
+          <Carousel autoplay
+                    className={styles.news}
+          >
             <span>已对接业务域九个</span>
             <span>已对接商城5个</span>
             <span>连接小区999个</span>

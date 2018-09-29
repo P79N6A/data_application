@@ -25,15 +25,20 @@ export default class TopNavHeader extends PureComponent {
     return (
       <div className={`${styles.head} ${theme === 'light' ? styles.light : ''}`}>
         <div
+          className={`${styles.main} ${contentWidth === 'Fixed' ? styles.wide : ''}`}
           ref={ref => {
             this.maim = ref;
           }}
-          className={`${styles.main} ${contentWidth === 'Fixed' ? styles.wide : ''}`}
         >
           <div className={styles.left}>
-            <div className={styles.logo} key="logo" id="logo">
+            <div className={styles.logo}
+                 id="logo"
+                 key="logo"
+            >
               <Link to="/">
-                <img src={logo} alt="logo" />
+                <img alt="logo"
+                     src={logo}
+                />
                 <h1>Ant Design Pro</h1>
               </Link>
             </div>
@@ -42,7 +47,9 @@ export default class TopNavHeader extends PureComponent {
                 maxWidth,
               }}
             >
-              <BaseMenu {...this.props} style={{ border: 'none', height: 64 }} />
+              <BaseMenu {...this.props}
+                        style={{ border: 'none', height: 64 }}
+              />
             </div>
           </div>
           <RightContent {...this.props} />

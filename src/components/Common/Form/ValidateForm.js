@@ -91,9 +91,13 @@ function getValidateForm(props) {
                     ],
                     initialValue: props.formValue[v.name],
                   })(
-                    <Select allowClear placeholder="请选择">
+                    <Select allowClear
+                            placeholder="请选择"
+                    >
                       {v.optionData.map(item => (
-                        <Select.Option key={item} value={item}>
+                        <Select.Option key={item}
+                                       value={item}
+                        >
                           {item}
                         </Select.Option>
                       ))}

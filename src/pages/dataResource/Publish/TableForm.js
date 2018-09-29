@@ -148,16 +148,16 @@ class TableForm extends PureComponent {
           if (record.editable) {
             return (
               <Input
-                value={text}
                 autoFocus
                 onChange={e => this.handleFieldChange(e, 'paramName', record.key)}
                 onKeyPress={e => this.handleKeyPress(e, record.key)}
                 placeholder="参数名"
+                value={text}
               />
             );
           }
           return text;
-        },
+        }
       },
       {
         title: '参数类型',
@@ -169,10 +169,10 @@ class TableForm extends PureComponent {
             return (
               <Select
                 allowClear
-                value={text}
                 onChange={e => this.handleFieldChange(e, 'paramType', record.key)}
                 onKeyPress={e => this.handleKeyPress(e, record.key)}
                 placeholder="参数类型"
+                value={text}
               >
                 <Select.Option value="string">string</Select.Option>
                 <Select.Option value="number">number</Select.Option>
@@ -182,7 +182,7 @@ class TableForm extends PureComponent {
             );
           }
           return text;
-        },
+        }
       },
       {
         title: '能否为空',
@@ -193,9 +193,9 @@ class TableForm extends PureComponent {
           if (record.editable) {
             return (
               <Select
-                value={text}
                 onChange={e => this.handleFieldChange(e, 'paramIsNull', record.key)}
                 onKeyPress={e => this.handleKeyPress(e, record.key)}
+                value={text}
               >
                 <Select.Option value="是">是</Select.Option>
                 <Select.Option value="否">否</Select.Option>
@@ -203,7 +203,7 @@ class TableForm extends PureComponent {
             );
           }
           return text;
-        },
+        }
       },
       {
         title: '备注',
@@ -214,15 +214,15 @@ class TableForm extends PureComponent {
           if (record.editable) {
             return (
               <Input
-                value={text}
                 onChange={e => this.handleFieldChange(e, 'paramNotice', record.key)}
                 onKeyPress={e => this.handleKeyPress(e, record.key)}
                 placeholder="备注"
+                value={text}
               />
             );
           }
           return text;
-        },
+        }
       },
       {
         title: '操作',
@@ -238,7 +238,9 @@ class TableForm extends PureComponent {
                 <span>
                   <a onClick={e => this.saveRow(e, record.key)}>添加</a>
                   <Divider type="vertical"/>
-                  <Popconfirm title="是否要删除此行？" onConfirm={() => this.remove(record.key)}>
+                  <Popconfirm onConfirm={() => this.remove(record.key)}
+                              title="是否要删除此行？"
+                  >
                     <a>删除</a>
                   </Popconfirm>
                 </span>
@@ -256,13 +258,15 @@ class TableForm extends PureComponent {
             <span>
               <a onClick={e => this.toggleEditable(e, record.key)}>编辑</a>
               <Divider type="vertical"/>
-              <Popconfirm title="是否要删除此行？" onConfirm={() => this.remove(record.key)}>
+              <Popconfirm onConfirm={() => this.remove(record.key)}
+                          title="是否要删除此行？"
+              >
                 <a>删除</a>
               </Popconfirm>
             </span>
           );
-        },
-      },
+        }
+      }
     ];
 
     const { loading, data } = this.state;
@@ -270,17 +274,17 @@ class TableForm extends PureComponent {
     return (
       <Fragment>
         <Table
-          loading={loading}
           columns={columns}
           dataSource={data}
+          loading={loading}
           pagination={false}
           rowClassName={record => (record.editable ? styles.editable : '')}
         />
         <Button
+          icon="plus"
+          onClick={this.newMember}
           style={{ width: '100%', marginTop: 16, marginBottom: 8 }}
           type="dashed"
-          onClick={this.newMember}
-          icon="plus"
         >
           新增参数
         </Button>

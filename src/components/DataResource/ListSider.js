@@ -21,7 +21,9 @@ class ListSider extends Component {
   render() {
     return (
       <div>
-        <Sider className={styles['side-bar']} theme="light">
+        <Sider className={styles['side-bar']}
+               theme="light"
+        >
           <Menu
             defaultOpenKeys={['sub1']}
             defaultSelectedKeys={this.state.selected}

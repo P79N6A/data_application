@@ -20,7 +20,7 @@ const links = [
     key: 'terms',
     title: '条款',
     href: '',
-  },
+  }
 ];
 
 const copyright = (
@@ -50,7 +50,10 @@ class UserLayout extends React.PureComponent {
           <div className={styles.top}>
             <div className={styles.header}>
               <Link to="/">
-                <img alt="logo" className={styles.logo} src={logo} />
+                <img alt="logo"
+                     className={styles.logo}
+                     src={logo}
+                />
                 <span className={styles.title}>智慧社区</span>
               </Link>
             </div>
@@ -58,7 +61,10 @@ class UserLayout extends React.PureComponent {
           </div>
           {children}
         </div>
-        <GlobalFooter className={styles.footer} links={links} copyright={copyright}/>
+        <GlobalFooter className={styles.footer}
+                      copyright={copyright}
+                      links={links}
+        />
       </div>
     );
   }

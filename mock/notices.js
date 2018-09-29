@@ -91,7 +91,7 @@ const getNotices = (req, res) =>
       extra: '进行中',
       status: 'processing',
       type: '待办',
-    },
+    }
   ]);
 
 export default {

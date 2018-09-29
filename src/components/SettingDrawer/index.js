@@ -37,10 +37,10 @@ class SettingDrawer extends PureComponent {
         title: formatMessage({ id: 'app.setting.content-width' }),
         action: (
           <Select
-            value={contentWidth}
-            size="small"
             onSelect={value => this.changeSetting('contentWidth', value)}
+            size="small"
             style={{ width: 80 }}
+            value={contentWidth}
           >
             {layout === 'sidemenu' ? null : (
               <Option value="Fixed">
@@ -51,17 +51,17 @@ class SettingDrawer extends PureComponent {
               {formatMessage({ id: 'app.setting.content-width.fluid' })}
             </Option>
           </Select>
-        ),
+        )
       },
       {
         title: formatMessage({ id: 'app.setting.fixedheader' }),
         action: (
           <Switch
-            size="small"
             checked={!!fixedHeader}
             onChange={checked => this.changeSetting('fixedHeader', checked)}
+            size="small"
           />
-        ),
+        )
       },
       {
         title: formatMessage({ id: 'app.setting.hideheader' }),
@@ -69,11 +69,11 @@ class SettingDrawer extends PureComponent {
         disabledReason: formatMessage({ id: 'app.setting.hideheader.hint' }),
         action: (
           <Switch
-            size="small"
             checked={!!autoHideHeader}
             onChange={checked => this.changeSetting('autoHideHeader', checked)}
+            size="small"
           />
-        ),
+        )
       },
       {
         title: formatMessage({ id: 'app.setting.fixedsidebar' }),
@@ -81,12 +81,12 @@ class SettingDrawer extends PureComponent {
         disabledReason: formatMessage({ id: 'app.setting.fixedsidebar.hint' }),
         action: (
           <Switch
-            size="small"
             checked={!!fixSiderbar}
             onChange={checked => this.changeSetting('fixSiderbar', checked)}
+            size="small"
           />
-        ),
-      },
+        )
+      }
     ];
   };
 
@@ -118,7 +118,9 @@ class SettingDrawer extends PureComponent {
       disabled: item.disabled,
     });
     return (
-      <Tooltip title={item.disabled ? item.disabledReason : ''} placement="left">
+      <Tooltip placement="left"
+               title={item.disabled ? item.disabledReason : ''}
+      >
         <List.Item actions={[action]}>
           <span style={{ opacity: item.disabled ? '0.5' : '' }}>{item.title}</span>
         </List.Item>
@@ -132,25 +134,25 @@ class SettingDrawer extends PureComponent {
     const { collapse } = this.state;
     return (
       <Drawer
-        visible={collapse}
-        width={300}
-        onClose={this.togglerContent}
-        placement="right"
         handler={
           <div className={styles.handle}>
             <Icon
-              type={collapse ? 'close' : 'setting'}
               style={{
                 color: '#fff',
                 fontSize: 20,
               }}
+              type={collapse ? 'close' : 'setting'}
             />
           </div>
         }
+        onClose={this.togglerContent}
         onHandleClick={this.togglerContent}
+        placement="right"
         style={{
           zIndex: 999,
         }}
+        visible={collapse}
+        width={300}
       >
         <div className={styles.content}>
           <Body title={formatMessage({ id: 'app.setting.pagestyle' })}>
@@ -165,17 +167,17 @@ class SettingDrawer extends PureComponent {
                   key: 'light',
                   url: 'https://gw.alipayobjects.com/zos/rmsportal/jpRkZQMyYRryryPNtyIC.svg',
                   title: formatMessage({ id: 'app.setting.pagestyle.light' }),
-                },
+                }
               ]}
-              value={navTheme}
               onChange={value => this.changeSetting('navTheme', value)}
+              value={navTheme}
             />
           </Body>
 
           <ThemeColor
+            onChange={color => this.changeSetting('primaryColor', color)}
             title={formatMessage({ id: 'app.setting.themecolor' })}
             value={primaryColor}
-            onChange={color => this.changeSetting('primaryColor', color)}
           />
 
           <Divider />
@@ -192,17 +194,17 @@ class SettingDrawer extends PureComponent {
                   key: 'topmenu',
                   url: 'https://gw.alipayobjects.com/zos/rmsportal/KDNDBbriJhLwuqMoxcAr.svg',
                   title: formatMessage({ id: 'app.setting.topmenu' }),
-                },
+                }
               ]}
-              value={layout}
               onChange={value => this.changeSetting('layout', value)}
+              value={layout}
             />
           </Body>
 
           <List
-            split={false}
             dataSource={this.getLayoutSetting()}
             renderItem={this.renderLayoutSettingItem}
+            split={false}
           />
 
           <Divider />
@@ -211,10 +213,10 @@ class SettingDrawer extends PureComponent {
             <List.Item
               actions={[
                 <Switch
-                  size="small"
                   checked={!!colorWeak}
                   onChange={checked => this.changeSetting('colorWeak', checked)}
-                />,
+                  size="small"
+                />
               ]}
             >
               {formatMessage({ id: 'app.setting.weakmode' })}
@@ -222,28 +224,30 @@ class SettingDrawer extends PureComponent {
           </Body>
           <Divider />
           <CopyToClipboard
-            text={JSON.stringify(omit(setting, ['colorWeak']), null, 2)}
             onCopy={() => message.success(formatMessage({ id: 'app.setting.copyinfo' }))}
+            text={JSON.stringify(omit(setting, ['colorWeak']), null, 2)}
           >
-            <Button block icon="copy">
+            <Button block
+                    icon="copy"
+            >
               {formatMessage({ id: 'app.setting.copy' })}
             </Button>
           </CopyToClipboard>
           <Alert
-            type="warning"
             className={styles.productionHint}
             message={
               <div>
                 {formatMessage({ id: 'app.setting.production.hint' })}{' '}
                 <a
                   href="https://u.ant.design/pro-v2-default-settings"
-                  target="_blank"
                   rel="noopener noreferrer"
+                  target="_blank"
                 >
                   src/defaultSettings.js
                 </a>
               </div>
             }
+            type="warning"
           />
         </div>
       </Drawer>

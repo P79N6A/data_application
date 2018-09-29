@@ -24,7 +24,9 @@ class HzMenu extends Component {
   render() {
     const { routerData, match } = this.props;
     return (
-      <Menu defaultSelectedKeys={[this.state.current]} mode="horizontal">
+      <Menu defaultSelectedKeys={[this.state.current]}
+            mode="horizontal"
+      >
         {getRoutes(match.path, routerData).map(item => (
           <Menu.Item key={item.path}>
             <Link to={item.path}>

@@ -196,12 +196,14 @@ class WaterWave extends PureComponent {
         <div style={{ width: height, height, overflow: 'hidden' }}>
           <canvas
             className={styles.waterWaveCanvasWrapper}
+            height={height * 2}
             ref={n => (this.node = n)}
             width={height * 2}
-            height={height * 2}
           />
         </div>
-        <div className={styles.text} style={{ width: height }}>
+        <div className={styles.text}
+             style={{ width: height }}
+        >
           {title && <span>{title}</span>}
           <h4>{percent}%</h4>
         </div>

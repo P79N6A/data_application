@@ -8,7 +8,10 @@ class Home extends Component {
     return (
       <div>
         <div>
-          <img alt="homebar" src={bar} style={{ height: '100px', width: '100%' }}/>
+          <img alt="homebar"
+               src={bar}
+               style={{ height: '100px', width: '100%' }}
+          />
         </div>
         <HomePagePure/>
       </div>

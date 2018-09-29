@@ -57,10 +57,22 @@ class DataResource extends Component {
         </div>
 
         <Switch>
-          <Route component={ResourceList} exact path="/resource/list"/>
-          <Route component={ResourceManage} exact path="/resource/manage"/>
-          <Route component={ResourceApply} exact path="/resource/apply"/>
-          <Route component={ResourcePublish} exact path="/resource/publish"/>
+          <Route component={ResourceList}
+                 exact
+                 path="/resource/list"
+          />
+          <Route component={ResourceManage}
+                 exact
+                 path="/resource/manage"
+          />
+          <Route component={ResourceApply}
+                 exact
+                 path="/resource/apply"
+          />
+          <Route component={ResourcePublish}
+                 exact
+                 path="/resource/publish"
+          />
         </Switch>
       </div>
     );

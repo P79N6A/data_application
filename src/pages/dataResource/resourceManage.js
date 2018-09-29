@@ -51,11 +51,14 @@ function getColumn(data, action) {
             }}
             title="确定删除此数据表?"
           >
-            <Icon style={{ cursor: 'pointer', fontSize: '18px' }} theme="outlined" type="delete"/>
+            <Icon style={{ cursor: 'pointer', fontSize: '18px' }}
+                  theme="outlined"
+                  type="delete"
+            />
           </Popconfirm>
         </span>
-      ),
-    },
+      )
+    }
   ];
   return columns;
 }
@@ -83,7 +86,7 @@ class ResourceManage extends Component {
       payload: {},
       callback: () => {
         this.doUpdate('tableList');
-      },
+      }
     });
   }
 
@@ -93,7 +96,7 @@ class ResourceManage extends Component {
       payload: { id: record.id, data: this.props.resourceTableList },
       callback: newData => {
         this.doUpdate('tableList', newData);
-      },
+      }
     });
   }
 
@@ -158,12 +161,18 @@ class ResourceManage extends Component {
           <span>当前查看: 资源目录列表</span>
         </div>
         <div className={classNames('apply', styles['clear-fix'])}>
-          <Button onClick={() => this.handleShowModal('addFormVisible')} type="primary">
-            <Icon theme="outlined" type="folder-add"/>
+          <Button onClick={() => this.handleShowModal('addFormVisible')}
+                  type="primary"
+          >
+            <Icon theme="outlined"
+                  type="folder-add"
+            />
             新数据资源库添加申请
           </Button>
         </div>
-        <ManageTable {...this.props} {...this.state} />
+        <ManageTable {...this.props}
+                     {...this.state}
+        />
         <InfoModal/>
         <AddFormModal/>
       </div>

@@ -69,7 +69,7 @@ const query = {
   },
   'screen-xxl': {
     minWidth: 1600,
-  },
+  }
 };
 
 class BasicLayout extends React.PureComponent {
@@ -232,12 +232,12 @@ class BasicLayout extends React.PureComponent {
       <Layout>
         {isTop && !isMobile ? null : (
           <SiderMenu
-            logo={logo}
             Authorized={Authorized}
-            theme={navTheme}
-            onCollapse={this.handleMenuCollapse}
-            menuData={menuData}
             isMobile={isMobile}
+            logo={logo}
+            menuData={menuData}
+            onCollapse={this.handleMenuCollapse}
+            theme={navTheme}
             {...this.props}
           />
         )}
@@ -248,14 +248,16 @@ class BasicLayout extends React.PureComponent {
           }}
         >
           <Header
-            menuData={menuData}
             handleMenuCollapse={this.handleMenuCollapse}
-            logo={logo}
             isMobile={isMobile}
+            logo={logo}
+            menuData={menuData}
             {...this.props}
           />
           <Content style={this.getContentStyle()}>
-            <Authorized authority={routerConfig.authority} noMatch={<Exception403 />}>
+            <Authorized authority={routerConfig.authority}
+                        noMatch={<Exception403/>}
+            >
               {children}
             </Authorized>
           </Content>

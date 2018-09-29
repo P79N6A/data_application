@@ -19,7 +19,7 @@ export async function removeRule(params) {
     body: {
       ...params,
       method: 'delete',
-    },
+    }
   });
 }
 
@@ -29,7 +29,7 @@ export async function addRule(params) {
     body: {
       ...params,
       method: 'post',
-    },
+    }
   });
 }
 
@@ -39,7 +39,7 @@ export async function updateRule(params) {
     body: {
       ...params,
       method: 'update',
-    },
+    }
   });
 }
 
@@ -77,7 +77,7 @@ export async function removeFakeList(params) {
     body: {
       ...restParams,
       method: 'delete',
-    },
+    }
   });
 }
 
@@ -88,7 +88,7 @@ export async function addFakeList(params) {
     body: {
       ...restParams,
       method: 'post',
-    },
+    }
   });
 }
 
@@ -99,7 +99,7 @@ export async function updateFakeList(params) {
     body: {
       ...restParams,
       method: 'update',
-    },
+    }
   });
 }
 

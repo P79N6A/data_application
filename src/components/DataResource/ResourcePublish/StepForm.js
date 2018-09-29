@@ -155,7 +155,7 @@ class ResourceApplyPure extends React.Component {
         { label: '接口名称', name: 'apiName' },
         { label: '接口目录', name: 'apiMenu' },
         { label: '接口描述', name: 'apiDesc' },
-      ],
+      ]
     });
     const FormS2 = getValidateForm({
       state: this.state,
@@ -172,8 +172,8 @@ class ResourceApplyPure extends React.Component {
           name: 'requestType',
           type: 'option',
           optionData: ['get', 'post', 'delete'],
-        },
-      ],
+        }
+      ]
     });
 
     const FormS3 = getRowForm({
@@ -198,32 +198,41 @@ class ResourceApplyPure extends React.Component {
         title: '输入接口参数',
         content: (
           <div>
-            <Button onClick={this.addParam} type="primary">
+            <Button onClick={this.addParam}
+                    type="primary"
+            >
               新增参数
             </Button>
             <FormS3/>
           </div>
-        ),
+        )
       },
       {
         title: '确认提交',
         content: <FormDetail formValue={this.state.formValue}/>,
-      },
+      }
     ];
     this.state.steps = steps;
     const { current } = this.state;
 
     return (
       <div>
-        <Steps className={styles['steps-header']} current={current} onClick={this.handleStepClick}>
+        <Steps className={styles['steps-header']}
+               current={current}
+               onClick={this.handleStepClick}
+        >
           {steps.map(item => (
-            <Step key={item.title} title={item.title}/>
+            <Step key={item.title}
+                  title={item.title}
+            />
           ))}
         </Steps>
         <div className={styles['steps-content']}>{steps[current].content}</div>
         <div className={styles['steps-action']}>
           {current < steps.length - 1 && (
-            <Button onClick={() => this.goNext()} type="primary">
+            <Button onClick={() => this.goNext()}
+                    type="primary"
+            >
               下一步
             </Button>
           )}
@@ -239,7 +248,9 @@ class ResourceApplyPure extends React.Component {
             </Button>
           )}
           {current > 0 && (
-            <Button onClick={() => this.prev()} style={{ marginLeft: 8 }}>
+            <Button onClick={() => this.prev()}
+                    style={{ marginLeft: 8 }}
+            >
               上一步
             </Button>
           )}

@@ -8,7 +8,7 @@ export default [
       { path: '/user/login', component: './User/Login' },
       { path: '/user/register', component: './User/Register' },
       { path: '/user/register-result', component: './User/RegisterResult' },
-    ],
+    ]
   },
   // app
   {
@@ -50,8 +50,8 @@ export default [
             path: '/resource/approval',
             name: 'approval',
             component: './dataResource/approval',
-          },
-        ],
+          }
+        ]
       },
       {
         name: 'result',
@@ -65,7 +65,7 @@ export default [
             component: './Result/Success',
           },
           { path: '/result/fail', name: 'fail', component: './Result/Error' },
-        ],
+        ]
       },
       {
         name: 'exception',
@@ -93,12 +93,12 @@ export default [
             name: 'trigger',
             hideInMenu: true,
             component: './Exception/TriggerException',
-          },
-        ],
+          }
+        ]
       },
       {
         component: '404',
-      },
-    ],
-  },
+      }
+    ]
+  }
 ];

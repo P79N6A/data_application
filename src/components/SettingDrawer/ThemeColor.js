@@ -49,7 +49,7 @@ const ThemeColor = ({ colors, title, value, onChange }) => {
       {
         key: 'purple',
         color: '#722ED1',
-      },
+      }
     ];
   }
   return (
@@ -57,11 +57,13 @@ const ThemeColor = ({ colors, title, value, onChange }) => {
       <h3 className={styles.title}>{title}</h3>
       <div className={styles.content}>
         {colorList.map(({ key, color }) => (
-          <Tooltip key={color} title={formatMessage({ id: `app.setting.themecolor.${key}` })}>
+          <Tooltip key={color}
+                   title={formatMessage({ id: `app.setting.themecolor.${key}` })}
+          >
             <Tag
+              check={value === color}
               className={styles.colorBlock}
               color={color}
-              check={value === color}
               onClick={() => onChange && onChange(color)}
             />
           </Tooltip>

@@ -62,7 +62,7 @@ const salesTypeData = [
   {
     x: '其他',
     y: 1231,
-  },
+  }
 ];
 
 const salesTypeDataOnline = [
@@ -89,7 +89,7 @@ const salesTypeDataOnline = [
   {
     x: '其他',
     y: 111,
-  },
+  }
 ];
 
 const salesTypeDataOffline = [
@@ -112,7 +112,7 @@ const salesTypeDataOffline = [
   {
     x: '其他',
     y: 65,
-  },
+  }
 ];
 
 const offlineData = [];
@@ -155,7 +155,7 @@ const radarOriginData = [
     output: 6,
     contribute: 5,
     hot: 7,
-  },
+  }
 ];
 
 //

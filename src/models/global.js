@@ -30,7 +30,7 @@ export default {
         type: 'user/changeNotifyCount',
         payload: count,
       });
-    },
+    }
   },
 
   reducers: {
@@ -51,7 +51,7 @@ export default {
         ...state,
         notices: state.notices.filter(item => item.type !== payload),
       };
-    },
+    }
   },
 
   subscriptions: {
@@ -62,6 +62,6 @@ export default {
           window.ga('send', 'pageview', pathname + search);
         }
       });
-    },
-  },
+    }
+  }
 };

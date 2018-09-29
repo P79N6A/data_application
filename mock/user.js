@@ -33,7 +33,7 @@ export default {
       {
         key: '5',
         label: '海纳百川',
-      },
+      }
     ],
     notifyCount: 12,
     country: 'China',
@@ -45,7 +45,7 @@ export default {
       city: {
         label: '杭州市',
         key: '330100',
-      },
+      }
     },
     address: '西湖区工专路 77 号',
     phone: '0752-268888888',
@@ -69,7 +69,7 @@ export default {
       name: 'Joe Black',
       age: 32,
       address: 'Sidney No. 1 Lake Park',
-    },
+    }
   ],
   'POST /api/login/account': (req, res) => {
     const { password, userName, type } = req.body;
@@ -133,5 +133,5 @@ export default {
       message: 'Unauthorized',
       path: '/base/category/list',
     });
-  },
+  }
 };

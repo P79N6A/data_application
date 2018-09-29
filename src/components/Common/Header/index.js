@@ -56,18 +56,28 @@ export default class VideoHeader extends PureComponent {
     return (
       <div className={styles.headerWrap}>
         <div className={styles.logoWrap}>
-          <img alt="logo" className={styles.logo} src={logo}/>
+          <img alt="logo"
+               className={styles.logo}
+               src={logo}
+          />
           <span>紫光华智安防项目</span>
         </div>
 
         <div className={styles.userInfoPanel}>
           <Icon type="user"/>
           <span className={styles.userName}>{username}</span>
-          <Popover arrowPointAtCenter content={content} placement="bottomLeft" trigger="click">
+          <Popover arrowPointAtCenter
+                   content={content}
+                   placement="bottomLeft"
+                   trigger="click"
+          >
             <Icon type="down"/>
           </Popover>
         </div>
-        <Menu className={styles['menu-list']} mode="horizontal" selectedKeys={selectedKeys}>
+        <Menu className={styles['menu-list']}
+              mode="horizontal"
+              selectedKeys={selectedKeys}
+        >
           {getMenuData().map(item => (
             <Menu.Item key={item.path}>
               <Link to={item.path}>

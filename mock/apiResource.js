@@ -1,16 +1,28 @@
 import { parse } from 'url';
 import Mock from 'mockjs';
 
-let apiState = Mock.mock({ 'apiState|0-2': 1 });
-let tableListDataSource = [];
+let datas = Mock.mock({
+  'tableListDataSource|1-25': [{
+    'apiDesc|1': ['用于学校监控', '用于社区门禁', '用于高速路收费站'],
+    'apiName|1': ['管制刀具识别', '危险人物识别', '非法持枪识别'],
+    'serviceName|1': ['危险物品识别', '监控识别'],
+    'apiPath|1': ['/api/identify', '/api/watch'],
+    'apiType|1': ['安全管制', '威胁预警'],
+    'apiState|0-2': 1,
+    'id|+1': 1,
+  }],
+});
+
+/*let tableListDataSource = [];
 for (let i = 0; i < 46; i += 1) {
+  let apiState = Mock.mock({ 'apiState|0-2': 1 });
   tableListDataSource.push({
     key: i,
     disabled: i % 6 === 0,
     href: 'https://ant.design',
     avatar: [
       'https://gw.alipayobjects.com/zos/rmsportal/eeHMaZBwmTvLdIwMfBpg.png',
-      'https://gw.alipayobjects.com/zos/rmsportal/udxAbMEhpwthVVcjLXik.png',
+      'https://gw.alipayobjects.com/zos/rmsportal/udxAbMEhpwthVVcjLXik.png'
     ][i % 2],
     name: `TradeCode ${i}`,
     title: `一个任务名称 ${i}`,
@@ -27,8 +39,9 @@ for (let i = 0; i < 46; i += 1) {
     apiPath: '/api/identify',
     apiType: '安全管制',
     ...apiState,
+    id:i
   });
-}
+}*/
 
 function getRule(req, res, u) {
   let url = u;
@@ -38,7 +51,7 @@ function getRule(req, res, u) {
 
   const params = parse(url, true).query;
 
-  let dataSource = tableListDataSource;
+  let dataSource = datas['tableListDataSource'];
 
   if (params.sorter) {
     const s = params.sorter.split('_');
@@ -76,13 +89,13 @@ function getRule(req, res, u) {
       total: dataSource.length,
       pageSize,
       current: parseInt(params.currentPage, 10) || 1,
-    },
+    }
   };
 
   return res.json(result);
 }
 
-function postRule(req, res, u, b) {
+/*function postRule(req, res, u, b) {
   let url = u;
   if (!url || Object.prototype.toString.call(url) !== '[object String]') {
     url = req.url; // eslint-disable-line
@@ -92,7 +105,7 @@ function postRule(req, res, u, b) {
   const { method, name, desc, key } = body;
 
   switch (method) {
-    /* eslint no-case-declarations:0 */
+    /!* eslint no-case-declarations:0 *!/
     case 'delete':
       tableListDataSource = tableListDataSource.filter(item => key.indexOf(item.key) === -1);
       break;
@@ -103,7 +116,7 @@ function postRule(req, res, u, b) {
         href: 'https://ant.design',
         avatar: [
           'https://gw.alipayobjects.com/zos/rmsportal/eeHMaZBwmTvLdIwMfBpg.png',
-          'https://gw.alipayobjects.com/zos/rmsportal/udxAbMEhpwthVVcjLXik.png',
+          'https://gw.alipayobjects.com/zos/rmsportal/udxAbMEhpwthVVcjLXik.png'
         ][i % 2],
         name: `TradeCode ${i}`,
         title: `一个任务名称 ${i}`,
@@ -113,7 +126,7 @@ function postRule(req, res, u, b) {
         status: Math.floor(Math.random() * 10) % 2,
         updatedAt: new Date(),
         createdAt: new Date(),
-        progress: Math.ceil(Math.random() * 100),
+        progress: Math.ceil(Math.random() * 100)
       });
       break;
     case 'update':
@@ -132,14 +145,14 @@ function postRule(req, res, u, b) {
   const result = {
     list: tableListDataSource,
     pagination: {
-      total: tableListDataSource.length,
-    },
+      total: tableListDataSource.length
+    }
   };
 
   return res.json(result);
-}
+}*/
 
 export default {
   'GET /api/rule': getRule,
-  'POST /api/rule': postRule,
+  // 'POST /api/rule': postRule
 };

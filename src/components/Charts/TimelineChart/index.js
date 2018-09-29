@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-sort-props */
 import React from 'react';
 import { Chart, Tooltip, Geom, Legend, Axis } from 'bizcharts';
 import DataSet from '@antv/data-set';
@@ -22,8 +23,8 @@ class TimelineChart extends React.Component {
           x: 0,
           y1: 0,
           y2: 0,
-        },
-      ],
+        }
+      ]
     } = this.props;
 
     data.sort((a, b) => a.x - b.x);
@@ -40,7 +41,7 @@ class TimelineChart extends React.Component {
       state: {
         start: data[0].x,
         end: data[data.length - 1].x,
-      },
+      }
     });
 
     const dv = ds.createView();
@@ -50,7 +51,7 @@ class TimelineChart extends React.Component {
         callback: obj => {
           const date = obj.x;
           return date <= ds.state.end && date >= ds.state.start;
-        },
+        }
       })
       .transform({
         type: 'map',
@@ -59,7 +60,7 @@ class TimelineChart extends React.Component {
           newRow[titleMap.y1] = row.y1;
           newRow[titleMap.y2] = row.y2;
           return newRow;
-        },
+        }
       })
       .transform({
         type: 'fold',
@@ -80,7 +81,7 @@ class TimelineChart extends React.Component {
       value: {
         max,
         min: 0,
-      },
+      }
     };
 
     const SliderGen = () => (
@@ -103,14 +104,25 @@ class TimelineChart extends React.Component {
     );
 
     return (
-      <div className={styles.timelineChart} style={{ height: height + 30 }}>
+      <div className={styles.timelineChart}
+           style={{ height: height + 30 }}
+      >
         <div>
           {title && <h4>{title}</h4>}
-          <Chart height={height} padding={padding} data={dv} scale={cols} forceFit>
+          <Chart data={dv}
+                 forceFit
+                 height={height}
+                 padding={padding}
+                 scale={cols}>
             <Axis name="x" />
             <Tooltip />
-            <Legend name="key" position="top" />
-            <Geom type="line" position="x*value" size={borderWidth} color="key" />
+            <Legend name="key"
+                    position="top"
+            />
+            <Geom color="key"
+                  position="x*value"
+                  size={borderWidth}
+                  type="line"/>
           </Chart>
           <div style={{ marginRight: -20 }}>
             <SliderGen />

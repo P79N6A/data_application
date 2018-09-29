@@ -10,7 +10,9 @@ const StandardFormRow = ({ title, children, last, block, grid, ...rest }) => {
   });
 
   return (
-    <div className={cls} {...rest}>
+    <div className={cls}
+         {...rest}
+    >
       {title && (
         <div className={styles.label}>
           <span>{title}</span>

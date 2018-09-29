@@ -16,7 +16,7 @@ export default {
         type: 'registerHandle',
         payload: response,
       });
-    },
+    }
   },
 
   reducers: {
@@ -27,6 +27,6 @@ export default {
         ...state,
         status: payload.status,
       };
-    },
-  },
+    }
+  }
 };

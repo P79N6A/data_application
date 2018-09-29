@@ -71,7 +71,7 @@ class StandardTable extends PureComponent {
     } = this.props;
 
     const paginationProps = {
-      showSizeChanger: true,
+      showSizeChanger: this.props.showSizeChanger,
       showQuickJumper: true,
       ...pagination,
     };
@@ -81,7 +81,7 @@ class StandardTable extends PureComponent {
       onChange: this.handleRowSelectChange,
       getCheckboxProps: record => ({
         disabled: record.disabled,
-      }),
+      })
     };
 
     return (
@@ -92,7 +92,9 @@ class StandardTable extends PureComponent {
               <Fragment>
                 已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项&nbsp;&nbsp;
                 {needTotalList.map(item => (
-                  <span style={{ marginLeft: 8 }} key={item.dataIndex}>
+                  <span key={item.dataIndex}
+                        style={{ marginLeft: 8 }}
+                  >
                     {item.title}
                     总计&nbsp;
                     <span style={{ fontWeight: 600 }}>
@@ -100,23 +102,25 @@ class StandardTable extends PureComponent {
                     </span>
                   </span>
                 ))}
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
+                <a onClick={this.cleanSelectedKeys}
+                   style={{ marginLeft: 24 }}
+                >
                   清空
                 </a>
               </Fragment>
             }
-            type="info"
             showIcon
+            type="info"
           />
         </div>
         <Table
+          columns={columns}
+          dataSource={list}
           loading={loading}
+          onChange={this.handleTableChange}
+          pagination={paginationProps}
           rowKey={rowKey || 'key'}
           rowSelection={rowSelection}
-          dataSource={list}
-          columns={columns}
-          pagination={paginationProps}
-          onChange={this.handleTableChange}
         />
       </div>
     );

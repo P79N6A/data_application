@@ -164,7 +164,7 @@ class Pie extends Component {
       },
       y: {
         min: 0,
-      },
+      }
     };
 
     if (percent || percent === 0) {
@@ -185,7 +185,7 @@ class Pie extends Component {
         {
           x: '反比',
           y: 100 - parseFloat(percent),
-        },
+        }
       ];
     }
 
@@ -194,7 +194,7 @@ class Pie extends Component {
       (x, p) => ({
         name: x,
         value: `${(p * 100).toFixed(2)}%`,
-      }),
+      })
     ];
 
     const padding = [12, 0, 12, 0];
@@ -208,27 +208,32 @@ class Pie extends Component {
     });
 
     return (
-      <div ref={this.handleRoot} className={pieClassName} style={style}>
+      <div className={pieClassName}
+           ref={this.handleRoot}
+           style={style}
+      >
         <ReactFitText maxFontSize={25}>
           <div className={styles.chart}>
             <Chart
-              scale={scale}
-              height={height}
-              forceFit={forceFit}
-              data={dv}
-              padding={padding}
               animate={animate}
+              data={dv}
+              forceFit={forceFit}
+              height={height}
               onGetG2Instance={this.getG2Instance}
+              padding={padding}
+              scale={scale}
             >
               {!!tooltip && <Tooltip showTitle={false} />}
-              <Coord type="theta" innerRadius={inner} />
+              <Coord innerRadius={inner}
+                     type="theta"
+              />
               <Geom
+                color={['x', percent || percent === 0 ? formatColor : defaultColors]}
+                position="percent"
+                selected={selected}
                 style={{ lineWidth, stroke: '#fff' }}
                 tooltip={tooltip && tooltipFormat}
                 type="intervalStack"
-                position="percent"
-                color={['x', percent || percent === 0 ? formatColor : defaultColors]}
-                selected={selected}
               />
             </Chart>
 
@@ -247,7 +252,9 @@ class Pie extends Component {
         {hasLegend && (
           <ul className={styles.legend}>
             {legendData.map((item, i) => (
-              <li key={item.x} onClick={() => this.handleLegendClick(item, i)}>
+              <li key={item.x}
+                  onClick={() => this.handleLegendClick(item, i)}
+              >
                 <span
                   className={styles.dot}
                   style={{

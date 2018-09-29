@@ -13,7 +13,7 @@ export default config => {
     {
       stylesDir,
       outFile,
-    },
+    }
   ]);
 
   config.plugin('ant-design-theme').use(AntDesignThemePlugin, [
@@ -23,6 +23,6 @@ export default config => {
       varFile: path.join(__dirname, '../node_modules/antd/lib/style/themes/default.less'),
       mainLessFile: outFile, //     themeVariables: ['@primary-color'],
       indexFileName: 'index.html',
-    },
+    }
   ]);
 };
