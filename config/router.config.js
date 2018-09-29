@@ -34,7 +34,7 @@ export default [
           {
             path: '/resource/manage',
             name: 'manage',
-            component: './dataResource/resourceManage',
+            component: './dataResource/TableList',
           },
           {
             path: '/resource/publish',
