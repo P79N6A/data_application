@@ -20,7 +20,12 @@ for (let i = 0; i < 46; i += 1) {
     updatedAt: new Date(`2017-07-${Math.floor(i / 2) + 1}`),
     createdAt: new Date(`2017-07-${Math.floor(i / 2) + 1}`),
     progress: Math.ceil(Math.random() * 100),
-    apiDesc: 'desc',
+    apiDesc: '用于学校监控',
+    apiName: '管制刀具识别',
+    serviceName: '危险物品识别',
+    apiPath: '/api/identify',
+    apiType: '安全管制',
+    apiState: '1',
   });
 }
 

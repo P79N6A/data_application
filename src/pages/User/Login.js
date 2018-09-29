@@ -97,8 +97,11 @@ class LoginPage extends Component {
             <Captcha name="captcha" countDown={120} onGetCaptcha={this.onGetCaptcha} />
           </Tab>
           <div>
-            <Checkbox className={this.state.autoLogin ? styles['text-auto'] : styles['text-w']} checked={autoLogin}
-                      onChange={this.changeAutoLogin}>
+            <Checkbox
+              className={this.state.autoLogin ? styles['text-auto'] : styles['text-w']}
+              checked={autoLogin}
+              onChange={this.changeAutoLogin}
+            >
               自动登录
             </Checkbox>
             <a style={{ float: 'right' }} href="#">

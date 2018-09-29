@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { Layout, Icon } from 'antd';
 import GlobalFooter from '@/components/GlobalFooter';
 import logo from '../assets/logo.png';
+
 const { Footer } = Layout;
 const FooterView = () => (
   <Footer style={{ padding: 0 }}>
@@ -15,7 +16,7 @@ const FooterView = () => (
         },
         {
           key: 'github',
-          title: <img src={logo} alt={'logo'}/>,
+          title: <img src={logo} alt="logo"/>,
           href: 'http://www.cqga.gov.cn/',
           blankTarget: true,
         },

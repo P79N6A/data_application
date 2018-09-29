@@ -39,33 +39,7 @@ const getValue = obj =>
     .map(key => obj[key])
     .join(',');
 const statusMap = ['default', 'processing', 'success', 'error'];
-const status = ['关闭', '运行中', '已上线', '异常'];
-
-const CreateForm = Form.create()(props => {
-  const { modalVisible, form, handleAdd, handleModalVisible } = props;
-  const okHandle = () => {
-    form.validateFields((err, fieldsValue) => {
-      if (err) return;
-      form.resetFields();
-      handleAdd(fieldsValue);
-    });
-  };
-  return (
-    <Modal
-      destroyOnClose
-      title="发布"
-      visible={modalVisible}
-      onOk={okHandle}
-      onCancel={() => handleModalVisible()}
-    >
-      <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="描述">
-        {form.getFieldDecorator('desc', {
-          rules: [{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }],
-        })(<Input placeholder="请输入"/>)}
-      </FormItem>
-    </Modal>
-  );
-});
+const status = ['无效', '已发布', '审批中', '异常'];
 
 
 /* eslint react/no-multi-comp:0 */
@@ -86,25 +60,20 @@ class TableList extends PureComponent {
 
   columns = [
     {
-      title: '规则名称',
-      dataIndex: 'name',
+      title: '接口名称',
+      dataIndex: 'apiName',
     },
     {
       title: '描述',
-      dataIndex: 'desc',
+      dataIndex: 'apiDesc',
     },
     {
-      title: '服务调用次数',
-      dataIndex: 'callNo',
-      sorter: true,
-      align: 'right',
-      render: val => `${val} 万`,
-      // mark to display a total number
-      needTotal: true,
+      title: '服务名称',
+      dataIndex: 'serviceName',
     },
     {
       title: '状态',
-      dataIndex: 'status',
+      dataIndex: 'apiState',
       filters: [
         {
           text: status[0],
@@ -128,18 +97,12 @@ class TableList extends PureComponent {
       },
     },
     {
-      title: '上次调度时间',
-      dataIndex: 'updatedAt',
-      sorter: true,
-      render: val => <span>{moment(val).format('YYYY-MM-DD HH:mm:ss')}</span>,
-    },
-    {
       title: '操作',
       render: (text, record) => (
         <Fragment>
-          <a onClick={() => this.handleUpdateModalVisible(true, record)}>配置</a>
+          <a onClick={() => (0)}>同意</a>
           <Divider type="vertical"/>
-          <a href="">订阅警报</a>
+          <a href="">禁用</a>
         </Fragment>
       ),
     },
@@ -422,6 +385,7 @@ class TableList extends PureComponent {
   }
 
   render() {
+    console.log(this.props);
     const {
       rule: { data },
       loading,
@@ -471,7 +435,6 @@ class TableList extends PureComponent {
             />
           </div>
         </Card>
-        <CreateForm {...parentMethods} modalVisible={modalVisible}/>
         {stepFormValues && Object.keys(stepFormValues).length ? (
           <UpdateForm
             {...updateMethods}
