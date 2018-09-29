@@ -8,6 +8,7 @@ export default {
   'menu.resource.manage': '资源管理',
   'menu.resource.publish': '接口服务发布',
   'menu.resource.apply': '接口访问申请',
+  'menu.resource.approval': '接口审批',
   'menu.dashboard': 'Dashboard',
   'menu.dashboard.analysis': '分析页',
   'menu.dashboard.EditableCell': '可编辑行',
