@@ -46,6 +46,11 @@ export default [
             name: 'apply',
             component: './dataResource/resourceApply',
           },
+          {
+            path: '/resource/approval',
+            name: 'approval',
+            component: './dataResource/approval',
+          },
         ],
       },
       {
