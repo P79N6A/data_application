@@ -1,6 +1,7 @@
 import { parse } from 'url';
+import Mock from 'mockjs';
 
-// mock tableListDataSource
+let apiState = Mock.mock({ 'apiState|0-2': 1 });
 let tableListDataSource = [];
 for (let i = 0; i < 46; i += 1) {
   tableListDataSource.push({
@@ -25,7 +26,7 @@ for (let i = 0; i < 46; i += 1) {
     serviceName: '危险物品识别',
     apiPath: '/api/identify',
     apiType: '安全管制',
-    apiState: '1',
+    ...apiState,
   });
 }
 

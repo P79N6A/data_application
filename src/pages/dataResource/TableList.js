@@ -416,7 +416,7 @@ class TableList extends PureComponent {
 
               {selectedRows.length > 0 && (
                 <span>
-                  <Button>批量操作</Button>
+                  <Button>批量通过</Button>
                   <Dropdown overlay={menu}>
                     <Button>
                       更多操作 <Icon type="down"/>
@@ -435,13 +435,6 @@ class TableList extends PureComponent {
             />
           </div>
         </Card>
-        {stepFormValues && Object.keys(stepFormValues).length ? (
-          <UpdateForm
-            {...updateMethods}
-            updateModalVisible={updateModalVisible}
-            values={stepFormValues}
-          />
-        ) : null}
       </PageHeaderWrapper>
     );
   }
