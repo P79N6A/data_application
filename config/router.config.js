@@ -19,8 +19,8 @@ export default [
 
     routes: [
       // dashboard
-      { path: '/', redirect: '/resource/monitor' },
-      { path: '/resource', redirect: '/resource/monitor' },
+      { path: '/', redirect: '/resource/manage' },
+      { path: '/resource', redirect: '/resource/manage' },
       {
         path: '/resource',
         name: 'resource',
