@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Table } from 'antd';
-
 class ApprovalTable extends Component {
   constructor(props) {
     super(props);
@@ -45,10 +44,8 @@ class ApprovalTable extends Component {
       dataSource: [],
     };
   }
-
   render() {
-    return <Table columns={this.state.columns} dataSource={this.state.dataSource}/>;
+    return <Table columns={this.state.columns} dataSource={this.state.dataSource} />;
   }
 }
-
 export default ApprovalTable;

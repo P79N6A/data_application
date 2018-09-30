@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import { Form, Input, Row, Col, Button, Select } from 'antd';
 import styles from './index.less';
-
 const Option = Select.Option;
 const FormItem = Form.Item;
-
 class ApprovalSearch extends Component {
   constructor(props) {
     super(props);
     this.handleSearch = this.handleSearch.bind(this);
   }
-
   handleSearch(e) {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -19,7 +16,6 @@ class ApprovalSearch extends Component {
       }
     });
   }
-
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
@@ -27,12 +23,12 @@ class ApprovalSearch extends Component {
         <Row gutter={24}>
           <Col span={6}>
             <FormItem className={styles['ant-form-items']} label="用户名">
-              <Input placeholder="请输入用户名"/>
+              <Input placeholder="请输入用户名" />
             </FormItem>
           </Col>
           <Col span={6}>
             <FormItem className={styles['ant-form-items']} label="接口名">
-              <Input placeholder="请输入接口名"/>
+              <Input placeholder="请输入接口名" />
             </FormItem>
           </Col>
           <Col span={6}>
@@ -54,5 +50,4 @@ class ApprovalSearch extends Component {
     );
   }
 }
-
 export default Form.create()(ApprovalSearch);

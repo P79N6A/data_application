@@ -8,8 +8,8 @@ class Approval extends Component {
   render() {
     return (
       <div>
-        <ApprovalSearch/>
-        <ApprovalTable/>
+        <ApprovalSearch />
+        <ApprovalTable />
       </div>
     );
   }
