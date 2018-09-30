@@ -1,13 +1,15 @@
 import { parse } from 'url';
 import Mock from 'mockjs';
 
+let aa = 1;
+
 let datas = Mock.mock({
-  'tableListDataSource|1-25': [{
+  'tableListDataSource|5-8': [{
     'apiDesc|1': ['用于学校监控', '用于社区门禁', '用于高速路收费站'],
     'apiName|1': ['管制刀具识别', '危险人物识别', '非法持枪识别'],
     'serviceName|1': ['危险物品识别', '监控识别'],
     'apiPath|1': ['/api/identify', '/api/watch'],
-    'apiType|1': ['安全管制', '威胁预警'],
+    'serviceGroup|1': ['安全管制', '威胁预警'],
     'apiState|0-2': 1,
     'id|+1': 1,
     'key|+1': 1,
@@ -51,7 +53,6 @@ function getRule(req, res, u) {
   }
 
   const params = parse(url, true).query;
-  console.log(datas);
   let dataSource = datas['tableListDataSource'];
 
   if (params.sorter) {
@@ -104,6 +105,7 @@ function postRule(req, res, u, b) {
 
   const body = (b && b.body) || req.body;
   const { method, name, desc, key } = body;
+  console.log(body);
 
   switch (method) {
     /* eslint no-case-declarations:0 */
@@ -153,7 +155,30 @@ function postRule(req, res, u, b) {
   return res.json(result);
 }
 
+function postRuleAdd(req, res, u, b) {
+  let url = u;
+  if (!url || Object.prototype.toString.call(url) !== '[object String]') {
+    url = req.url; // eslint-disable-line
+  }
+
+  const body = (b && b.body) || req.body;
+  // const { method, name, desc, key } = body;
+  body.apiState = 2;
+  body.id = datas.tableListDataSource.length + 1;
+  body.key = datas.tableListDataSource.length + 1;
+  datas.tableListDataSource.push(body);
+
+  const result = {
+    list: datas.tableListDataSource,
+    pagination: {
+      total: datas.tableListDataSource.length,
+    },
+  };
+
+  return res.json(result);
+}
+
 export default {
   'GET /api/rule': getRule,
-  'POST /api/rule': postRule,
+  'POST /api/rule/addApi': postRuleAdd,
 };

@@ -1,5 +1,4 @@
-import { queryRule, removeRule, addRule, updateRule } from '@/services/api';
-
+import { queryRule, removeRule, addApi, updateRule, fakeSubmitForm } from '@/services/api';
 export default {
   namespace: 'apiResource',
 
@@ -35,10 +34,17 @@ export default {
       if (callback) callback();
     },
 
-    * update({ payload, callback }, { call, put, select }) {
-
+    * saveApi({ payload, callback }, { call, put, select }) {
       let oldData = yield select(({ apiResource }) => {
-        console.log(apiResource.data);
+        return apiResource.data;
+      });
+      payload.apiState = 2;
+      yield call(addApi, payload);
+      console.log(payload, oldData);
+    },
+
+    * update({ payload, callback }, { call, put, select }) {
+      let oldData = yield select(({ apiResource }) => {
         return apiResource.data;
       });
 
@@ -77,7 +83,15 @@ export default {
         payload: response
       });*/
       if (callback) callback();
-    }
+    },
+    * submitAdvancedForm({ payload }, { call }) {
+      yield call(fakeSubmitForm, payload);
+      message.success('提交成功');
+    },
+    * submitRegularForm({ payload }, { call }) {
+      yield call(fakeSubmitForm, payload);
+      message.success('提交成功');
+    },
   },
 
   reducers: {
