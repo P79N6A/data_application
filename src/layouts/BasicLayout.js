@@ -43,6 +43,7 @@ function formatter(data, parentPath = '', parentAuthority, parentName) {
       result.children = children;
     }
     delete result.routes;
+    console.log(result);
     return result;
   });
 }

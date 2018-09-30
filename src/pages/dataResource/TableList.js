@@ -41,13 +41,14 @@ function GetOption(props) {
     case 0:
       return (<Button type="primary"><a onClick={() => (props.handleOption('use', props.id))}>启用</a></Button>);
     case 1:
+    case 3:
       return (<Button type="primary"><a onClick={() => (props.handleOption('stop', props.id))}>停用</a></Button>);
     case 2:
       return (
-        <span><Button type="primary"><a onClick={() => (props.handleOption('pass', props.id))}>通过</a></Button> <Button
-          type="primary"><a onClick={() => (props.handleOption('reject', props.id))}>拒绝</a></Button></span>);
-    case 3:
-      return (<Button type="primary"><a onClick={() => (props.handleOption('edit', props.id))}>修改</a></Button>);
+        <span><Button type="primary"><a onClick={() => (props.handleOption('stop', props.id))}>停用</a></Button> <Button
+          type="primary"><Link to={'/resource/approval'}>去审批</Link></Button></span>);
+    /*case 3:
+      return (<Button type="primary"><a onClick={() => (props.handleOption('edit', props.id))}>修改</a></Button>);*/
     default:
       return (<React.Fragment>未知状态</React.Fragment>);
   }
@@ -125,6 +126,7 @@ class TableList extends PureComponent {
     {
       title: '操作',
       key: 'option',
+      width: 250,
       render: (text, record) => (
         <GetOption {...record}
                    handleOption={this.handleOption}
@@ -441,7 +443,8 @@ class TableList extends PureComponent {
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>{this.renderForm()}</div>
             <div className={styles.tableListOperator}>
-              <Button type="primary"><Link to="/resource/publish">发布接口</Link></Button>
+              <Button type="primary"><Link to="/resource/publish">发布接口</Link>
+              </Button><Button type="primary"><Link to="/resource/approval">查看接口使用申请</Link></Button>
 
               {selectedRows.length > 0 && (
                 <span>
