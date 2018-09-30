@@ -23,12 +23,12 @@ class ApprovalSearch extends Component {
         <Row gutter={24}>
           <Col span={6}>
             <FormItem className={styles['ant-form-items']} label="用户名">
-              <Input placeholder="请输入用户名" />
+              <Input placeholder="请输入用户名"/>
             </FormItem>
           </Col>
           <Col span={6}>
             <FormItem className={styles['ant-form-items']} label="接口名">
-              <Input placeholder="请输入接口名" />
+              <Input placeholder="请输入接口名"/>
             </FormItem>
           </Col>
           <Col span={6}>

@@ -34,7 +34,7 @@ class HorizontalLoginForm extends React.Component {
             rules: [{ required: true, message: 'Please input your username!' }],
           })(
             <Input
-              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }}/>}
               placeholder="Username"
             />
           )}
@@ -44,7 +44,7 @@ class HorizontalLoginForm extends React.Component {
             rules: [{ required: true, message: 'Please input your Password!' }],
           })(
             <Input
-              prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }}/>}
               type="password"
               placeholder="Password"
             />

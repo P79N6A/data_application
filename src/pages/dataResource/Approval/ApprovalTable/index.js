@@ -45,7 +45,7 @@ class ApprovalTable extends Component {
     };
   }
   render() {
-    return <Table columns={this.state.columns} dataSource={this.state.dataSource} />;
+    return <Table columns={this.state.columns} dataSource={this.state.dataSource}/>;
   }
 }
 export default ApprovalTable;

@@ -114,7 +114,7 @@ export default class SiderMenu extends PureComponent {
             <img alt="logo"
                  src={logo}
             />
-            <h1>数据接口管理平台</h1>
+            <h1>社区大数据平台</h1>
           </Link>
         </div>
         <BaseMenu
