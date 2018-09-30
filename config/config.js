@@ -29,11 +29,11 @@ export default {
                 include: ['dva', 'dva/router', 'dva/saga', 'dva/fetch'],
                 exclude: ['@babel/runtime'],
               },
-              hardSource: true,
+            hardSource: true,
             }
-          : {}),
-      },
-    ],
+          : {})
+      }
+    ]
   ],
   define: {
     APP_TYPE: process.env.APP_TYPE || '',
@@ -72,7 +72,7 @@ export default {
         return `antd-pro${arr.join('-')}-${localName}`.replace(/--/g, '-');
       }
       return localName;
-    },
+    }
   },
   manifest: {
     name: 'ant-design-pro',
@@ -85,12 +85,12 @@ export default {
         src: '/favicon.png',
         sizes: '48x48',
         type: 'image/png',
-      },
-    ],
+      }
+    ]
   },
 
   chainWebpack: webpackplugin,
   cssnano: {
     mergeRules: false,
-  },
+  }
 };

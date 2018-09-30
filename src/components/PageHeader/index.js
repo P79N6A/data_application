@@ -66,7 +66,9 @@ export default class PageHeader extends PureComponent {
   conversionFromProps = () => {
     const { breadcrumbList, breadcrumbSeparator, itemRender, linkElement = 'a' } = this.props;
     return (
-      <Breadcrumb className={styles.breadcrumb} separator={breadcrumbSeparator}>
+      <Breadcrumb className={styles.breadcrumb}
+                  separator={breadcrumbSeparator}
+      >
         {breadcrumbList.map(item => {
           const title = itemRender ? itemRender(item) : item.title;
           return (
@@ -122,7 +124,9 @@ export default class PageHeader extends PureComponent {
       </Breadcrumb.Item>
     );
     return (
-      <Breadcrumb className={styles.breadcrumb} separator={breadcrumbSeparator}>
+      <Breadcrumb className={styles.breadcrumb}
+                  separator={breadcrumbSeparator}
+      >
         {extraBreadcrumbItems}
       </Breadcrumb>
     );
@@ -144,9 +148,9 @@ export default class PageHeader extends PureComponent {
       return (
         <Breadcrumb
           className={styles.breadcrumb}
-          routes={routes.filter(route => route.breadcrumbName)}
-          params={params}
           itemRender={this.itemRender}
+          params={params}
+          routes={routes.filter(route => route.breadcrumbName)}
           separator={breadcrumbSeparator}
         />
       );
@@ -207,11 +211,11 @@ export default class PageHeader extends PureComponent {
       <div className={clsString}>
         <div className={wide ? styles.wide : ''}>
           <Skeleton
-            loading={loading}
-            title={false}
             active
-            paragraph={{ rows: 3 }}
             avatar={{ size: 'large', shape: 'circle' }}
+            loading={loading}
+            paragraph={{ rows: 3 }}
+            title={false}
           >
             {breadcrumb}
             <div className={styles.detail}>
@@ -235,7 +239,9 @@ export default class PageHeader extends PureComponent {
                 tabBarExtraContent={tabBarExtraContent}
               >
                 {tabList.map(item => (
-                  <TabPane tab={item.tab} key={item.key} />
+                  <TabPane key={item.key}
+                           tab={item.tab}
+                  />
                 ))}
               </Tabs>
             ) : null}

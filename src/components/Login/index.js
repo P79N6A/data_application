@@ -20,7 +20,8 @@ class Login extends Component {
     className: '',
     defaultActiveKey: '',
     onTabChange: () => {},
-    onSubmit: () => {},
+    onSubmit: () => {
+    },
   };
 
   constructor(props) {
@@ -54,7 +55,7 @@ class Login extends Component {
           this.setState({
             tabs: tabs.filter(currentId => currentId !== id),
           });
-        },
+        }
       },
       form,
       updateActive: activeItem => {
@@ -67,7 +68,7 @@ class Login extends Component {
         this.setState({
           active,
         });
-      },
+      }
     };
   };
 
@@ -104,9 +105,9 @@ class Login extends Component {
             {tabs.length ? (
               <React.Fragment>
                 <Tabs
+                  activeKey={type}
                   animated={false}
                   className={styles.tabs}
-                  activeKey={type}
                   onChange={this.onSwitch}
                 >
                   {TabChildren}

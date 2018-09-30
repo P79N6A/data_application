@@ -98,25 +98,29 @@ export default class SiderMenu extends PureComponent {
 
     return (
       <Sider
-        trigger={null}
-        collapsible
-        collapsed={collapsed}
         breakpoint="lg"
-        onCollapse={onCollapse}
-        width={256}
-        theme={theme}
         className={siderClassName}
+        collapsed={collapsed}
+        collapsible
+        onCollapse={onCollapse}
+        theme={theme}
+        trigger={null}
+        width={256}
       >
-        <div className={styles.logo} id="logo">
+        <div className={styles.logo}
+             id="logo"
+        >
           <Link to="/">
-            <img src={logo} alt="logo" />
+            <img alt="logo"
+                 src={logo}
+            />
             <h1>数据接口管理平台</h1>
           </Link>
         </div>
         <BaseMenu
           {...this.props}
-          mode="inline"
           handleOpenChange={this.handleOpenChange}
+          mode="inline"
           onOpenChange={this.handleOpenChange}
           style={{ padding: '16px 0', width: '100%' }}
           {...defaultProps}

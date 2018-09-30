@@ -31,12 +31,12 @@ export default {
         data: { resourceTableList: newData },
       });
       callback(newData);
-    },
+    }
   },
 
   reducers: {
     save(state, { data }) {
       return { ...data };
-    },
-  },
+    }
+  }
 };

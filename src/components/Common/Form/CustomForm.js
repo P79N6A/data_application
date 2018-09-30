@@ -17,7 +17,9 @@ class CustomForm extends Component {
           <div className={styles['param-type']}>
             <span style={{ display: '' }}>参数类型 : </span>
             <span>
-              <Select addonBefore="参数类型" key="type">
+              <Select addonBefore="参数类型"
+                      key="type"
+              >
                 <Option value="string">string</Option>
               </Select>
             </span>

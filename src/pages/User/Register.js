@@ -43,7 +43,7 @@ class Register extends Component {
         pathname: '/user/register-result',
         state: {
           account,
-        },
+        }
       });
     }
   }
@@ -87,7 +87,7 @@ class Register extends Component {
           payload: {
             ...values,
             prefix,
-          },
+          }
         });
       }
     });
@@ -150,11 +150,11 @@ class Register extends Component {
     return value && value.length ? (
       <div className={styles[`progress-${passwordStatus}`]}>
         <Progress
-          status={passwordProgressMap[passwordStatus]}
           className={styles.progress}
-          strokeWidth={6}
           percent={value.length * 10 > 100 ? 100 : value.length * 10}
           showInfo={false}
+          status={passwordProgressMap[passwordStatus]}
+          strokeWidth={6}
         />
       </div>
     ) : null;
@@ -178,9 +178,11 @@ class Register extends Component {
                 {
                   type: 'email',
                   message: '邮箱地址格式错误！',
-                },
-              ],
-            })(<Input size="large" placeholder="邮箱" />)}
+                }
+              ]
+            })(<Input placeholder="邮箱"
+                      size="large"
+            />)}
           </FormItem>
           <FormItem help={help}>
             <Popover
@@ -201,9 +203,12 @@ class Register extends Component {
                 rules: [
                   {
                     validator: this.checkPassword,
-                  },
-                ],
-              })(<Input size="large" type="password" placeholder="至少6位密码，区分大小写" />)}
+                  }
+                ]
+              })(<Input placeholder="至少6位密码，区分大小写"
+                        size="large"
+                        type="password"
+              />)}
             </Popover>
           </FormItem>
           <FormItem>
@@ -215,17 +220,20 @@ class Register extends Component {
                 },
                 {
                   validator: this.checkConfirm,
-                },
-              ],
-            })(<Input size="large" type="password" placeholder="确认密码" />)}
+                }
+              ]
+            })(<Input placeholder="确认密码"
+                      size="large"
+                      type="password"
+            />)}
           </FormItem>
           <FormItem>
             <InputGroup compact>
               <Select
-                size="large"
-                value={prefix}
                 onChange={this.changePrefix}
+                size="large"
                 style={{ width: '20%' }}
+                value={prefix}
               >
                 <Option value="86">+86</Option>
                 <Option value="87">+87</Option>
@@ -239,9 +247,12 @@ class Register extends Component {
                   {
                     pattern: /^1\d{10}$/,
                     message: '手机号格式错误！',
-                  },
-                ],
-              })(<Input size="large" style={{ width: '80%' }} placeholder="11位手机号" />)}
+                  }
+                ]
+              })(<Input placeholder="11位手机号"
+                        size="large"
+                        style={{ width: '80%' }}
+              />)}
             </InputGroup>
           </FormItem>
           <FormItem>
@@ -252,16 +263,18 @@ class Register extends Component {
                     {
                       required: true,
                       message: '请输入验证码！',
-                    },
-                  ],
-                })(<Input size="large" placeholder="验证码" />)}
+                    }
+                  ]
+                })(<Input placeholder="验证码"
+                          size="large"
+                />)}
               </Col>
               <Col span={8}>
                 <Button
-                  size="large"
-                  disabled={count}
                   className={styles.getCaptcha}
+                  disabled={count}
                   onClick={this.onGetCaptcha}
+                  size="large"
                 >
                   {count ? `${count} s` : '获取验证码'}
                 </Button>
@@ -270,15 +283,17 @@ class Register extends Component {
           </FormItem>
           <FormItem>
             <Button
-              size="large"
-              loading={submitting}
               className={styles.submit}
-              type="primary"
               htmlType="submit"
+              loading={submitting}
+              size="large"
+              type="primary"
             >
               注册
             </Button>
-            <Link className={styles.login} to="/User/Login">
+            <Link className={styles.login}
+                  to="/User/Login"
+            >
               使用已有账户登录
             </Link>
           </FormItem>

@@ -22,22 +22,24 @@ const SiderMenuWrapper = props => {
   const { isMobile, menuData, collapsed, onCollapse } = props;
   return isMobile ? (
     <Drawer
-      visible={!collapsed}
-      placement="left"
       onClose={() => onCollapse(true)}
+      placement="left"
       style={{
         padding: 0,
         height: '100vh',
       }}
+      visible={!collapsed}
     >
       <SiderMenu
         {...props}
-        flatMenuKeys={getFlatMenuKeys(menuData)}
         collapsed={isMobile ? false : collapsed}
+        flatMenuKeys={getFlatMenuKeys(menuData)}
       />
     </Drawer>
   ) : (
-    <SiderMenu {...props} flatMenuKeys={getFlatMenuKeys(menuData)} />
+    <SiderMenu {...props}
+               flatMenuKeys={getFlatMenuKeys(menuData)}
+    />
   );
 };
 

@@ -67,45 +67,63 @@ function BSFormModal(props) {
       const levelList = [];
       return (
         <Modal {...props}>
-          <Form layout={formLayout} onSubmit={this.handleSubmit}>
-            <FormItem {...formItemLayout} label="目标资源库">
+          <Form layout={formLayout}
+                onSubmit={this.handleSubmit}
+          >
+            <FormItem {...formItemLayout}
+                      label="目标资源库"
+            >
               {getFieldDecorator('level', {
                 rules: [{ required: true, message: '请选择级别' }],
               })(
-                <Select allowClear placeholder="请选择">
+                <Select allowClear
+                        placeholder="请选择"
+                >
                   {levelList.map(item => (
-                    <Option key={item.position_id} value={item.position_id}>
+                    <Option key={item.position_id}
+                            value={item.position_id}
+                    >
                       {item.position_name}
                     </Option>
                   ))}
                 </Select>,
               )}
             </FormItem>
-            <FormItem {...formItemLayout} label="表添加模式">
+            <FormItem {...formItemLayout}
+                      label="表添加模式"
+            >
               {getFieldDecorator('status', {
                 rules: [{ required: true, message: '请选择状态' }],
               })(
-                <Select allowClear placeholder="请选择">
+                <Select allowClear
+                        placeholder="请选择"
+                >
                   <Option key="1">成功</Option>
                   <Option key="2">失败</Option>
                 </Select>,
               )}
             </FormItem>
-            <FormItem {...formItemLayout} label="数据表选择">
+            <FormItem {...formItemLayout}
+                      label="数据表选择"
+            >
               {getFieldDecorator('recevier', {
                 rules: [
                   { required: true, message: '请填写接收者' },
                   { validator: this.handleInputValidate_w },
-                ],
+                ]
               })(<Input/>)}
             </FormItem>
-            <FormItem {...formItemLayout} label="已选择的表">
+            <FormItem {...formItemLayout}
+                      label="已选择的表"
+            >
               {getFieldDecorator('selected', {
                 rules: [
                   { required: true, message: '请填写接收者' },
                   { validator: this.handleInputValidate_w },
-                ],
-              })(<TextArea autosize={{ minRows: 2, maxRows: 6 }} placeholder="..."/>)}
+                ]
+              })(<TextArea autosize={{ minRows: 2, maxRows: 6 }}
+                           placeholder="..."
+              />)}
             </FormItem>
           </Form>
         </Modal>

@@ -17,8 +17,12 @@ const desc1 = (
     }}
   >
     <div style={{ margin: '8px 0 4px' }}>
-      <FormattedMessage id="app.result.success.step1-operator" defaultMessage="Qu Lili" />
-      <Icon style={{ marginLeft: 8 }} type="dingding-o" />
+      <FormattedMessage defaultMessage="Qu Lili"
+                        id="app.result.success.step1-operator"
+      />
+      <Icon style={{ marginLeft: 8 }}
+            type="dingding-o"
+      />
     </div>
     <div>2016-12-12 12:32</div>
   </div>
@@ -27,12 +31,18 @@ const desc1 = (
 const desc2 = (
   <div style={{ fontSize: 12, position: 'relative', left: 42 }}>
     <div style={{ margin: '8px 0 4px' }}>
-      <FormattedMessage id="app.result.success.step2-operator" defaultMessage="Zhou Maomao" />
-      <Icon type="dingding-o" style={{ color: '#00A0E9', marginLeft: 8 }} />
+      <FormattedMessage defaultMessage="Zhou Maomao"
+                        id="app.result.success.step2-operator"
+      />
+      <Icon style={{ color: '#00A0E9', marginLeft: 8 }}
+            type="dingding-o"
+      />
     </div>
     <div>
       <a href="">
-        <FormattedMessage id="app.result.success.step2-extra" defaultMessage="Urge" />
+        <FormattedMessage defaultMessage="Urge"
+                          id="app.result.success.step2-extra"
+        />
       </a>
     </div>
   </div>
@@ -48,57 +58,75 @@ const extra = (
         marginBottom: 20,
       }}
     >
-      <FormattedMessage id="app.result.success.operate-title" defaultMessage="Project Name" />
+      <FormattedMessage defaultMessage="Project Name"
+                        id="app.result.success.operate-title"
+      />
     </div>
     <Row style={{ marginBottom: 16 }}>
-      <Col xs={24} sm={12} md={12} lg={12} xl={6}>
+      <Col lg={12}
+           md={12}
+           sm={12}
+           xl={6}
+           xs={24}
+      >
         <span style={{ color: 'rgba(0, 0, 0, 0.85)' }}>
-          <FormattedMessage id="app.result.success.operate-id" defaultMessage="Project ID：" />
+          <FormattedMessage defaultMessage="Project ID："
+                            id="app.result.success.operate-id"
+          />
         </span>
         23421
       </Col>
-      <Col xs={24} sm={12} md={12} lg={12} xl={6}>
+      <Col lg={12}
+           md={12}
+           sm={12}
+           xl={6}
+           xs={24}
+      >
         <span style={{ color: 'rgba(0, 0, 0, 0.85)' }}>
-          <FormattedMessage id="app.result.success.principal" defaultMessage="Principal：" />
+          <FormattedMessage defaultMessage="Principal："
+                            id="app.result.success.principal"
+          />
         </span>
-        <FormattedMessage id="app.result.success.step1-operator" defaultMessage="Qu Lili" />
+        <FormattedMessage defaultMessage="Qu Lili"
+                          id="app.result.success.step1-operator"
+        />
       </Col>
-      <Col xs={24} sm={24} md={24} lg={24} xl={12}>
+      <Col lg={24}
+           md={24}
+           sm={24}
+           xl={12}
+           xs={24}
+      >
         <span style={{ color: 'rgba(0, 0, 0, 0.85)' }}>
           <FormattedMessage
-            id="app.result.success.operate-time"
             defaultMessage="Effective time："
+            id="app.result.success.operate-time"
           />
         </span>
         2016-12-12 ~ 2017-12-12
       </Col>
     </Row>
-    <Steps style={{ marginLeft: -42, width: 'calc(100% + 84px)' }} progressDot current={1}>
+    <Steps current={1}
+           progressDot
+           style={{ marginLeft: -42, width: 'calc(100% + 84px)' }}
+    >
       <Step
-        title={
-          <span style={{ fontSize: 14 }}>
-            <FormattedMessage id="app.result.success.step1-title" defaultMessage="Create project" />
-          </span>
-        }
         description={desc1}
-      />
-      <Step
         title={
           <span style={{ fontSize: 14 }}>
-            <FormattedMessage
-              id="app.result.success.step2-title"
-              defaultMessage="Departmental preliminary review"
+            <FormattedMessage defaultMessage="Create project"
+                              id="app.result.success.step1-title"
             />
           </span>
         }
+      />
+      <Step
         description={desc2}
-      />
-      <Step
         title={
           <span style={{ fontSize: 14 }}>
             <FormattedMessage
-              id="app.result.success.step3-title"
-              defaultMessage="Financial review"
+              defaultMessage="Departmental preliminary review"
+              id="app.result.success.step2-title"
             />
           </span>
         }
@@ -106,7 +134,19 @@ const extra = (
       <Step
         title={
           <span style={{ fontSize: 14 }}>
-            <FormattedMessage id="app.result.success.step4-title" defaultMessage="Finish" />
+            <FormattedMessage
+              defaultMessage="Financial review"
+              id="app.result.success.step3-title"
+            />
+          </span>
+        }
+      />
+      <Step
+        title={
+          <span style={{ fontSize: 14 }}>
+            <FormattedMessage defaultMessage="Finish"
+                              id="app.result.success.step4-title"
+            />
           </span>
         }
       />
@@ -117,13 +157,19 @@ const extra = (
 const actions = (
   <Fragment>
     <Button type="primary">
-      <FormattedMessage id="app.result.success.btn-return" defaultMessage="Back to list" />
+      <FormattedMessage defaultMessage="Back to list"
+                        id="app.result.success.btn-return"
+      />
     </Button>
     <Button>
-      <FormattedMessage id="app.result.success.btn-project" defaultMessage="View project" />
+      <FormattedMessage defaultMessage="View project"
+                        id="app.result.success.btn-project"
+      />
     </Button>
     <Button>
-      <FormattedMessage id="app.result.success.btn-print" defaultMessage="Print" />
+      <FormattedMessage defaultMessage="Print"
+                        id="app.result.success.btn-print"
+      />
     </Button>
   </Fragment>
 );
@@ -132,12 +178,12 @@ export default () => (
   <PageHeaderWrapper>
     <Card bordered={false}>
       <Result
-        type="success"
-        title={formatMessage({ id: 'app.result.success.title' })}
+        actions={actions}
         description={formatMessage({ id: 'app.result.success.description' })}
         extra={extra}
-        actions={actions}
         style={{ marginTop: 48, marginBottom: 16 }}
+        title={formatMessage({ id: 'app.result.success.title' })}
+        type="success"
       />
     </Card>
   </PageHeaderWrapper>

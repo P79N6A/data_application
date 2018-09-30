@@ -13,12 +13,20 @@ export default function Result({
   ...restProps
 }) {
   const iconMap = {
-    error: <Icon className={styles.error} type="close-circle" theme="filled" />,
-    success: <Icon className={styles.success} type="check-circle" theme="filled" />,
+    error: <Icon className={styles.error}
+                 theme="filled"
+                 type="close-circle"
+    />,
+    success: <Icon className={styles.success}
+                   theme="filled"
+                   type="check-circle"
+    />,
   };
   const clsString = classNames(styles.result, className);
   return (
-    <div className={clsString} {...restProps}>
+    <div className={clsString}
+         {...restProps}
+    >
       <div className={styles.icon}>{iconMap[type]}</div>
       <div className={styles.title}>{title}</div>
       {description && <div className={styles.description}>{description}</div>}

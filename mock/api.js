@@ -101,8 +101,8 @@ function fakeList(count) {
           avatar: 'https://gw.alipayobjects.com/zos/rmsportal/sBxjgqiuHMGRkIjqlQCd.png',
           name: '董娜娜',
           id: 'member3',
-        },
-      ],
+        }
+      ]
     });
   }
 
@@ -213,7 +213,7 @@ const getNotice = [
     member: '骗你来学计算机',
     href: '',
     memberLink: '',
-  },
+  }
 ];
 
 const getActivities = [
@@ -314,7 +314,7 @@ const getActivities = [
       link: 'http://github.com/',
     },
     template: '在 @{group} 新建项目 @{project}',
-  },
+  }
 ];
 
 function getFakeCaptcha(req, res) {

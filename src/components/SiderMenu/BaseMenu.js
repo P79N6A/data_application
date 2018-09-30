@@ -14,7 +14,10 @@ const { SubMenu } = Menu;
 //   icon: <Icon type="setting" />,
 const getIcon = icon => {
   if (typeof icon === 'string' && icon.indexOf('http') === 0) {
-    return <img src={icon} alt="icon" className={styles.icon} />;
+    return <img alt="icon"
+                className={styles.icon}
+                src={icon}
+    />;
   }
   if (typeof icon === 'string') {
     return <Icon type={icon} />;
@@ -82,6 +85,7 @@ export default class BaseMenu extends PureComponent {
       const name = formatMessage({ id: item.locale });
       return (
         <SubMenu
+          key={item.path}
           title={
             item.icon ? (
               <span>
@@ -92,7 +96,6 @@ export default class BaseMenu extends PureComponent {
               name
             )
           }
-          key={item.path}
         >
           {this.getNavMenuItems(item.children)}
         </SubMenu>
@@ -114,7 +117,9 @@ export default class BaseMenu extends PureComponent {
     // Is it a http link
     if (/^https?:\/\//.test(itemPath)) {
       return (
-        <a href={itemPath} target={target}>
+        <a href={itemPath}
+           target={target}
+        >
           {icon}
           <span>{name}</span>
         </a>
@@ -123,9 +128,6 @@ export default class BaseMenu extends PureComponent {
     const { location, isMobile, onCollapse } = this.props;
     return (
       <Link
-        to={itemPath}
-        target={target}
-        replace={itemPath === location.pathname}
         onClick={
           isMobile
             ? () => {
@@ -133,6 +135,9 @@ export default class BaseMenu extends PureComponent {
               }
             : undefined
         }
+        replace={itemPath === location.pathname}
+        target={target}
+        to={itemPath}
       >
         {icon}
         <span>{name}</span>
@@ -173,13 +178,13 @@ export default class BaseMenu extends PureComponent {
     const { handleOpenChange, style, menuData } = this.props;
     return (
       <Menu
+        className={mode === 'horizontal' ? 'top-nav-menu' : ''}
         key="Menu"
         mode={mode}
-        theme={theme}
         onOpenChange={handleOpenChange}
         selectedKeys={selectedKeys}
         style={style}
-        className={mode === 'horizontal' ? 'top-nav-menu' : ''}
+        theme={theme}
         {...props}
       >
         {this.getNavMenuItems(menuData)}

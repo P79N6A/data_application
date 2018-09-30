@@ -31,7 +31,9 @@ class LoginTab extends Component {
 
 const wrapContext = props => (
   <LoginContext.Consumer>
-    {value => <LoginTab tabUtil={value.tabUtil} {...props} />}
+    {value => <LoginTab tabUtil={value.tabUtil}
+                        {...props}
+    />}
   </LoginContext.Consumer>
 );
 

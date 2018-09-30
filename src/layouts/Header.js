@@ -120,23 +120,25 @@ class HeaderView extends PureComponent {
     const isTop = layout === 'topmenu';
     const width = this.getHeadWidth();
     const HeaderDom = visible ? (
-      <Header style={{ padding: 0, width }} className={fixedHeader ? styles.fixedHeader : ''}>
+      <Header className={fixedHeader ? styles.fixedHeader : ''}
+              style={{ padding: 0, width }}
+      >
         {isTop && !isMobile ? (
           <TopNavHeader
-            theme={navTheme}
-            mode="horizontal"
             Authorized={Authorized}
+            mode="horizontal"
             onCollapse={handleMenuCollapse}
-            onNoticeClear={this.handleNoticeClear}
             onMenuClick={this.handleMenuClick}
+            onNoticeClear={this.handleNoticeClear}
             onNoticeVisibleChange={this.handleNoticeVisibleChange}
+            theme={navTheme}
             {...this.props}
           />
         ) : (
           <GlobalHeader
             onCollapse={handleMenuCollapse}
-            onNoticeClear={this.handleNoticeClear}
             onMenuClick={this.handleMenuClick}
+            onNoticeClear={this.handleNoticeClear}
             onNoticeVisibleChange={this.handleNoticeVisibleChange}
             {...this.props}
           />
@@ -144,7 +146,9 @@ class HeaderView extends PureComponent {
       </Header>
     ) : null;
     return (
-      <Animate component="" transitionName="fade">
+      <Animate component=""
+               transitionName="fade"
+      >
         {HeaderDom}
       </Animate>
     );

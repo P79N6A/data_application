@@ -9,7 +9,12 @@ const LoginSubmit = ({ className, ...rest }) => {
   const clsString = classNames(styles.submit, className);
   return (
     <FormItem>
-      <Button size="large" className={clsString} type="primary" htmlType="submit" {...rest} />
+      <Button className={clsString}
+              htmlType="submit"
+              size="large"
+              type="primary"
+              {...rest}
+      />
     </FormItem>
   );
 };

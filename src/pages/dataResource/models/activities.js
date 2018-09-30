@@ -14,7 +14,7 @@ export default {
         type: 'saveList',
         payload: Array.isArray(response) ? response : [],
       });
-    },
+    }
   },
 
   reducers: {
@@ -23,6 +23,6 @@ export default {
         ...state,
         list: action.payload,
       };
-    },
-  },
+    }
+  }
 };

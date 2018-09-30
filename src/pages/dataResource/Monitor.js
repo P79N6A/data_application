@@ -40,27 +40,49 @@ class Monitor extends PureComponent {
     return (
       <GridContent>
         <Row gutter={24}>
-          <Col xl={18} lg={24} md={24} sm={24} xs={24} style={{ marginBottom: 24 }}>
-            <Card title="接口资源地图" bordered={false}>
+          <Col lg={24}
+               md={24}
+               sm={24}
+               style={{ marginBottom: 24 }}
+               xl={18}
+               xs={24}
+          >
+            <Card bordered={false}
+                  title="接口资源地图"
+            >
               <Row>
-                <Col md={6} sm={12} xs={24}>
+                <Col md={6}
+                     sm={12}
+                     xs={24}
+                >
                   <NumberInfo
                     subTitle="今日访问总量"
                     suffix="次"
                     total={numeral(124543233).format('0,0')}
                   />
                 </Col>
-                <Col md={6} sm={12} xs={24}>
-                  <NumberInfo subTitle="市区服务覆盖率" total="2%"/>
+                <Col md={6}
+                     sm={12}
+                     xs={24}
+                >
+                  <NumberInfo subTitle="市区服务覆盖率"
+                              total="2%"
+                  />
                 </Col>
-                <Col md={6} sm={12} xs={24}>
+                <Col md={6}
+                     sm={12}
+                     xs={24}
+                >
                   <NumberInfo
                     subTitle="已入驻的社区数量"
                     suffix="个"
                     total={numeral(25).format('0,0')}
                   />
                 </Col>
-                <Col md={6} sm={12} xs={24}>
+                <Col md={6}
+                     sm={12}
+                     xs={24}
+                >
                   <NumberInfo
                     subTitle="每秒访问量"
                     suffix="次"
@@ -71,83 +93,114 @@ class Monitor extends PureComponent {
               <div className={styles.mapChart}>
                 <Tooltip title="等待后期实现">
                   <img
-                    src="https://gw.alipayobjects.com/zos/rmsportal/HBWnDEUXCnGnGrRfrpKa.png"
                     alt="map"
+                    src="https://gw.alipayobjects.com/zos/rmsportal/HBWnDEUXCnGnGrRfrpKa.png"
                   />
                 </Tooltip>
               </div>
             </Card>
           </Col>
-          <Col xl={6} lg={24} md={24} sm={24} xs={24}>
-            <Card title="访问量预测" style={{ marginBottom: 24 }} bordered={false}>
+          <Col lg={24}
+               md={24}
+               sm={24}
+               xl={6}
+               xs={24}
+          >
+            <Card bordered={false}
+                  style={{ marginBottom: 24 }}
+                  title="访问量预测"
+            >
               <ActiveChart/>
             </Card>
             <Card
-              title="服务稳定性"
-              style={{ marginBottom: 24 }}
               bodyStyle={{ textAlign: 'center' }}
               bordered={false}
+              style={{ marginBottom: 24 }}
+              title="服务稳定性"
             >
-              <Gauge title="成功访问" height={180} percent={87}/>
+              <Gauge height={180}
+                     percent={87}
+                     title="成功访问"
+              />
             </Card>
           </Col>
         </Row>
         <Row gutter={24}>
-          <Col xl={12} lg={24} sm={24} xs={24}>
-            <Card title="各机构占比" bordered={false} className={styles.pieCard}>
+          <Col lg={24}
+               sm={24}
+               xl={12}
+               xs={24}
+          >
+            <Card bordered={false}
+                  className={styles.pieCard}
+                  title="各机构占比"
+            >
               <Row style={{ padding: '16px 0' }}>
                 <Col span={8}>
                   <Pie
                     animate={false}
+                    height={128}
+                    lineWidth={2}
                     percent={28}
                     subTitle="学校"
                     total="28%"
-                    height={128}
-                    lineWidth={2}
                   />
                 </Col>
                 <Col span={8}>
                   <Pie
                     animate={false}
                     color="#5DDECF"
+                    height={128}
+                    lineWidth={2}
                     percent={22}
                     subTitle="政府机构"
                     total="50%"
-                    height={128}
-                    lineWidth={2}
                   />
                 </Col>
                 <Col span={8}>
                   <Pie
                     animate={false}
                     color="#2FC25B"
+                    height={128}
+                    lineWidth={2}
                     percent={32}
                     subTitle="企业"
                     total="22%"
-                    height={128}
-                    lineWidth={2}
                   />
                 </Col>
               </Row>
             </Card>
           </Col>
-          <Col xl={6} lg={12} sm={24} xs={24}>
+          <Col lg={12}
+               sm={24}
+               xl={6}
+               xs={24}
+          >
             <Card
-              title="热门访问"
-              loading={loading}
-              bordered={false}
               bodyStyle={{ overflow: 'hidden' }}
+              bordered={false}
+              loading={loading}
+              title="热门访问"
             >
-              <TagCloud data={tags} height={161}/>
+              <TagCloud data={tags}
+                        height={161}
+              />
             </Card>
           </Col>
-          <Col xl={6} lg={12} sm={24} xs={24}>
+          <Col lg={12}
+               sm={24}
+               xl={6}
+               xs={24}
+          >
             <Card
-              title="资源剩余"
               bodyStyle={{ textAlign: 'center', fontSize: 0 }}
               bordered={false}
+              title="资源剩余"
             >
-              <WaterWave height={161} title="资源利用率" percent={34}/>
+              <WaterWave height={161}
+                         percent={34}
+                         title="资源利用率"
+              />
             </Card>
           </Col>
         </Row>

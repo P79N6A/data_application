@@ -14,7 +14,7 @@ export default {
         type: 'saveTags',
         payload: response.list,
       });
-    },
+    }
   },
 
   reducers: {
@@ -23,6 +23,6 @@ export default {
         ...state,
         tags: action.payload,
       };
-    },
-  },
+    }
+  }
 };

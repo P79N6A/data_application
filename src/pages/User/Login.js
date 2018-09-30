@@ -48,7 +48,7 @@ class LoginPage extends Component {
         payload: {
           ...values,
           type,
-        },
+        }
       });
     }
   };
@@ -60,51 +60,74 @@ class LoginPage extends Component {
   };
 
   renderMessage = content => (
-    <Alert style={{ marginBottom: 24 }} message={content} type="error" showIcon />
+    <Alert message={content}
+           showIcon
+           style={{ marginBottom: 24 }}
+           type="error"
+    />
   );
 
   render() {
     const { login, submitting } = this.props;
     const { type, autoLogin } = this.state;
     return (
-      <div style={{ backgroundImage: bg }} className={styles.main}>
+      <div className={styles.main}
+           style={{ backgroundImage: bg }}
+      >
         <Login
           defaultActiveKey={type}
-          onTabChange={this.onTabChange}
           onSubmit={this.handleSubmit}
+          onTabChange={this.onTabChange}
           ref={form => {
             this.loginForm = form;
           }}
         >
-          <Tab key="account" tab="账户密码登录">
+          <Tab key="account"
+               tab="账户密码登录"
+          >
             {login.status === 'error' &&
               login.type === 'account' &&
               !submitting &&
               this.renderMessage('账户或密码错误（admin/888888）')}
-            <UserName name="userName" placeholder="admin/user" />
+            <UserName name="userName"
+                      placeholder="admin/user"
+            />
             <Password
               name="password"
-              placeholder="888888/123456"
               onPressEnter={() => this.loginForm.validateFields(this.handleSubmit)}
+              placeholder="888888/123456"
             />
           </Tab>
-          <Tab className={styles['text-w']} key="mobile" tab="手机号登录">
+          <Tab className={styles['text-w']}
+               key="mobile"
+               tab="手机号登录"
+          >
             {login.status === 'error' &&
               login.type === 'mobile' &&
               !submitting &&
               this.renderMessage('验证码错误')}
             <Mobile name="mobile" />
-            <Captcha name="captcha" countDown={120} onGetCaptcha={this.onGetCaptcha} />
+            <Captcha countDown={120}
+                     name="captcha"
+                     onGetCaptcha={this.onGetCaptcha}
+            />
           </Tab>
           <div>
-            <Checkbox className={this.state.autoLogin ? styles['text-auto'] : styles['text-w']} checked={autoLogin}
-                      onChange={this.changeAutoLogin}>
+            <Checkbox
+              checked={autoLogin}
+              className={this.state.autoLogin ? styles['text-auto'] : styles['text-w']}
+              onChange={this.changeAutoLogin}
+            >
               自动登录
             </Checkbox>
-            <a style={{ float: 'right' }} href="#">
+            <a href="#"
+               style={{ float: 'right' }}
+            >
               忘记密码
             </a>
-            <Link className={styles.register} to="/User/Register">
+            <Link className={styles.register}
+                  to="/User/Register"
+            >
               注册账户
             </Link>
           </div>

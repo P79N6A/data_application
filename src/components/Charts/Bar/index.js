@@ -72,7 +72,7 @@ class Bar extends Component {
       },
       y: {
         min: 0,
-      },
+      }
     };
 
     const tooltip = [
@@ -80,29 +80,40 @@ class Bar extends Component {
       (x, y) => ({
         name: x,
         value: y,
-      }),
+      })
     ];
 
     return (
-      <div className={styles.chart} style={{ height }} ref={this.handleRoot}>
+      <div className={styles.chart}
+           ref={this.handleRoot}
+           style={{ height }}
+      >
         <div ref={this.handleRef}>
           {title && <h4 style={{ marginBottom: 20 }}>{title}</h4>}
           <Chart
-            scale={scale}
-            height={title ? height - 41 : height}
-            forceFit={forceFit}
             data={data}
+            forceFit={forceFit}
+            height={title ? height - 41 : height}
             padding={padding || 'auto'}
+            scale={scale}
           >
             <Axis
-              name="x"
-              title={false}
               label={autoHideXLabels ? false : {}}
+              name="x"
               tickLine={autoHideXLabels ? false : {}}
+              title={false}
             />
-            <Axis name="y" min={0} />
-            <Tooltip showTitle={false} crosshairs={false} />
-            <Geom type="interval" position="x*y" color={color} tooltip={tooltip} />
+            <Axis min={0}
+                  name="y"
+            />
+            <Tooltip crosshairs={false}
+                     showTitle={false}
+            />
+            <Geom color={color}
+                  position="x*y"
+                  tooltip={tooltip}
+                  type="interval"
+            />
           </Chart>
         </div>
       </div>

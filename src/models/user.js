@@ -22,7 +22,7 @@ export default {
         type: 'saveCurrentUser',
         payload: response,
       });
-    },
+    }
   },
 
   reducers: {
@@ -44,8 +44,8 @@ export default {
         currentUser: {
           ...state.currentUser,
           notifyCount: action.payload,
-        },
+        }
       };
-    },
-  },
+    }
+  }
 };

@@ -8,7 +8,7 @@ export default [
       { path: '/user/login', component: './User/Login' },
       { path: '/user/register', component: './User/Register' },
       { path: '/user/register-result', component: './User/RegisterResult' },
-    ],
+    ]
   },
   // app
   {
@@ -24,7 +24,7 @@ export default [
       {
         path: '/resource',
         name: 'resource',
-        icon: 'dashboard',
+        icon: 'cluster',
         routes: [
           {
             path: '/resource/monitor',
@@ -42,14 +42,53 @@ export default [
             component: './dataResource/Publish/AdvancedForm.js',
           },
           {
-            path: '/resource/apply',
-            name: 'apply',
-            component: './dataResource/resourceApply',
-          },
-          {
             path: '/resource/approval',
             name: 'approval',
             component: './dataResource/approval',
+          }
+        ]
+      },
+      {
+        path: '/collect',
+        name: 'collect',
+        icon: 'hdd',
+        routes: [
+          {
+            path: '/collect/main',
+            name: 'main',
+            component: './dataCollect/CollectMain',
+          },
+          {
+            path: '/collect/list',
+            name: 'list',
+            component: './dataCollect/CollectList',
+          },
+          {
+            path: '/collect/mission',
+            name: 'mission',
+            component: './dataCollect/CollectMission',
+          },
+        ],
+      },
+      {
+        path: '/application',
+        name: 'application',
+        icon: 'appstore',
+        routes: [
+          {
+            path: '/application/main',
+            name: 'main',
+            component: './dataApplication/PyMain',
+          },
+          {
+            path: '/application/result',
+            name: 'result',
+            component: './dataApplication/PyResult',
+          },
+          {
+            path: '/application/analyze',
+            name: 'analyze',
+            component: './dataApplication/PyAnalyze',
           },
         ],
       },
@@ -65,7 +104,7 @@ export default [
             component: './Result/Success',
           },
           { path: '/result/fail', name: 'fail', component: './Result/Error' },
-        ],
+        ]
       },
       {
         name: 'exception',
@@ -93,12 +132,12 @@ export default [
             name: 'trigger',
             hideInMenu: true,
             component: './Exception/TriggerException',
-          },
-        ],
+          }
+        ]
       },
       {
         component: '404',
-      },
-    ],
-  },
+      }
+    ]
+  }
 ];

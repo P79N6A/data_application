@@ -5,10 +5,10 @@ import Exception from '@/components/Exception';
 
 const Exception403 = () => (
   <Exception
-    type="403"
+    backText={formatMessage({ id: 'app.exception.back' })}
     desc={formatMessage({ id: 'app.exception.description.403' })}
     linkElement={Link}
-    backText={formatMessage({ id: 'app.exception.back' })}
+    type="403"
   />
 );
 

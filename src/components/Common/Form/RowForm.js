@@ -81,19 +81,27 @@ function getRowForm(props) {
             }}
             type="danger"
           >
-            <Icon style={{ color: 'red' }} theme="outlined" type="close"/>
+            <Icon style={{ color: 'red' }}
+                  theme="outlined"
+                  type="close"
+            />
           </Button>
         </Col>,
       );
       children.push(
-        <Col key={`${i++}-${j}`} span={6} style={{ display: 'block' }}>
-          <FormItem {...formItemLayout} label="参数名称">
+        <Col key={`${i++}-${j}`}
+             span={6}
+             style={{ display: 'block' }}
+        >
+          <FormItem {...formItemLayout}
+                    label="参数名称"
+          >
             {getFieldDecorator(`paramName-${j}`, {
               rules: [
                 {
                   required: true,
                   message: 'Input something!',
-                },
+                }
               ],
               initialValue: params[j] && params[j].paramName,
             })(<Input placeholder="placeholder"/>)}
@@ -101,18 +109,25 @@ function getRowForm(props) {
         </Col>,
       );
       children.push(
-        <Col key={`${i++}-${j}`} span={6} style={{ display: 'block' }}>
-          <FormItem {...formItemLayout} label="参数类型">
+        <Col key={`${i++}-${j}`}
+             span={6}
+             style={{ display: 'block' }}
+        >
+          <FormItem {...formItemLayout}
+                    label="参数类型"
+          >
             {getFieldDecorator(`paramType-${j}`, {
               rules: [
                 {
                   required: true,
                   message: 'Input something!',
-                },
+                }
               ],
               initialValue: params[j] && params[j].paramType,
             })(
-              <Select allowClear placeholder="请选择">
+              <Select allowClear
+                      placeholder="请选择"
+              >
                 <Select.Option value="string">string</Select.Option>
                 <Select.Option value="int">string</Select.Option>
                 <Select.Option value="boolean">string</Select.Option>
@@ -123,8 +138,13 @@ function getRowForm(props) {
         </Col>,
       );
       children.push(
-        <Col key={`${i++}-${j}`} span={5} style={{ display: 'block' }}>
-          <FormItem {...formItemLayout} label="能否为空">
+        <Col key={`${i++}-${j}`}
+             span={5}
+             style={{ display: 'block' }}
+        >
+          <FormItem {...formItemLayout}
+                    label="能否为空"
+          >
             {getFieldDecorator(`paramIsNull-${j}`, {
               rules: [],
               initialValue: params[j] && params[j].paramIsNull,
@@ -138,14 +158,19 @@ function getRowForm(props) {
         </Col>,
       );
       children.push(
-        <Col key={`${i++}-${j}`} span={6} style={{ display: 'block' }}>
-          <FormItem {...formItemLayout} label="参数备注">
+        <Col key={`${i++}-${j}`}
+             span={6}
+             style={{ display: 'block' }}
+        >
+          <FormItem {...formItemLayout}
+                    label="参数备注"
+          >
             {getFieldDecorator(`paramNotice-${j}`, {
               rules: [
                 {
                   required: true,
                   message: 'Input something!',
-                },
+                }
               ],
               initialValue: params[j] && params[j].paramNotice,
             })(<Input placeholder="placeholder"/>)}
@@ -178,7 +203,9 @@ function getRowForm(props) {
       }
 
       return (
-        <Form className={styles['ant-advanced-search-form']} onSubmit={this.handleSearch}>
+        <Form className={styles['ant-advanced-search-form']}
+              onSubmit={this.handleSearch}
+        >
           {rows}
         </Form>
       );

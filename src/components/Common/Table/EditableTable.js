@@ -43,7 +43,7 @@ class EditableCell extends React.Component {
                       {
                         required: true,
                         message: `Please Input ${title}!`,
-                      },
+                      }
                     ],
                     initialValue: record[dataIndex],
                   })(this.getInput())}
@@ -102,7 +102,9 @@ class EditableTable extends React.Component {
                       </a>
                     )}
                   </EditableContext.Consumer>
-                  <Popconfirm onConfirm={() => this.cancel(record.key)} title="Sure to cancel?">
+                  <Popconfirm onConfirm={() => this.cancel(record.key)}
+                              title="Sure to cancel?"
+                  >
                     <a>Cancel</a>
                   </Popconfirm>
                 </span>
@@ -111,8 +113,8 @@ class EditableTable extends React.Component {
               )}
             </div>
           );
-        },
-      },
+        }
+      }
     ];
   }
 
@@ -152,7 +154,7 @@ class EditableTable extends React.Component {
       body: {
         row: EditableFormRow,
         cell: EditableCell,
-      },
+      }
     };
 
     const columns = this.columns.map(col => {
@@ -167,7 +169,7 @@ class EditableTable extends React.Component {
           dataIndex: col.dataIndex,
           title: col.title,
           editing: this.isEditing(record),
-        }),
+        })
       };
     });
 

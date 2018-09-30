@@ -8,8 +8,8 @@ const config = {
   shape: {
     interval: {
       fillOpacity: 1,
-    },
-  },
+    }
+  }
 };
 
 setTheme(config);

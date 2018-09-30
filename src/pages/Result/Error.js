@@ -15,29 +15,37 @@ const extra = (
       }}
     >
       <FormattedMessage
-        id="app.result.error.hint-title"
         defaultMessage="The content you submitted has the following error:"
+        id="app.result.error.hint-title"
       />
     </div>
     <div style={{ marginBottom: 16 }}>
-      <Icon style={{ color: '#f5222d', marginRight: 8 }} type="close-circle-o" />
+      <Icon style={{ color: '#f5222d', marginRight: 8 }}
+            type="close-circle-o"
+      />
       <FormattedMessage
-        id="app.result.error.hint-text1"
         defaultMessage="Your account has been frozen"
+        id="app.result.error.hint-text1"
       />
       <a style={{ marginLeft: 16 }}>
-        <FormattedMessage id="app.result.error.hint-btn1" defaultMessage="Thaw immediately" />
+        <FormattedMessage defaultMessage="Thaw immediately"
+                          id="app.result.error.hint-btn1"
+        />
         <Icon type="right" />
       </a>
     </div>
     <div>
-      <Icon style={{ color: '#f5222d', marginRight: 8 }} type="close-circle-o" />
+      <Icon style={{ color: '#f5222d', marginRight: 8 }}
+            type="close-circle-o"
+      />
       <FormattedMessage
-        id="app.result.error.hint-text2"
         defaultMessage="Your account is not yet eligible to apply"
+        id="app.result.error.hint-text2"
       />
       <a style={{ marginLeft: 16 }}>
-        <FormattedMessage id="app.result.error.hint-btn2" defaultMessage="Upgrade immediately" />
+        <FormattedMessage defaultMessage="Upgrade immediately"
+                          id="app.result.error.hint-btn2"
+        />
         <Icon type="right" />
       </a>
     </div>
@@ -46,7 +54,9 @@ const extra = (
 
 const actions = (
   <Button type="primary">
-    <FormattedMessage id="app.result.error.btn-text" defaultMessage="Return to modify" />
+    <FormattedMessage defaultMessage="Return to modify"
+                      id="app.result.error.btn-text"
+    />
   </Button>
 );
 
@@ -54,12 +64,12 @@ export default () => (
   <PageHeaderWrapper>
     <Card bordered={false}>
       <Result
-        type="error"
-        title={formatMessage({ id: 'app.result.error.title' })}
+        actions={actions}
         description={formatMessage({ id: 'app.result.error.description' })}
         extra={extra}
-        actions={actions}
         style={{ marginTop: 48, marginBottom: 16 }}
+        title={formatMessage({ id: 'app.result.error.title' })}
+        type="error"
       />
     </Card>
   </PageHeaderWrapper>

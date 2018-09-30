@@ -99,14 +99,16 @@ class WarpFormItem extends Component {
         <FormItem>
           <Row gutter={8}>
             <Col span={16}>
-              {getFieldDecorator(name, options)(<Input {...customprops} {...inputProps} />)}
+              {getFieldDecorator(name, options)(<Input {...customprops}
+                                                       {...inputProps}
+              />)}
             </Col>
             <Col span={8}>
               <Button
-                disabled={count}
                 className={styles.getCaptcha}
-                size="large"
+                disabled={count}
                 onClick={this.onGetCaptcha}
+                size="large"
               >
                 {count ? `${count} s` : buttonText}
               </Button>
@@ -117,7 +119,9 @@ class WarpFormItem extends Component {
     }
     return (
       <FormItem>
-        {getFieldDecorator(name, options)(<Input {...customprops} {...otherProps} />)}
+        {getFieldDecorator(name, options)(<Input {...customprops}
+                                                 {...otherProps}
+        />)}
       </FormItem>
     );
   }
@@ -132,10 +136,10 @@ Object.keys(ItemMap).forEach(key => {
         <WarpFormItem
           customprops={item.props}
           {...props}
+          form={context.form}
           rules={item.rules}
           type={key}
           updateActive={context.updateActive}
-          form={context.form}
         />
       )}
     </LoginContext.Consumer>

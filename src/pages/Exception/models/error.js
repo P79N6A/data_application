@@ -15,7 +15,7 @@ export default {
         type: 'trigger',
         payload: payload.code,
       });
-    },
+    }
   },
 
   reducers: {
@@ -23,6 +23,6 @@ export default {
       return {
         error: action.payload,
       };
-    },
-  },
+    }
+  }
 };
