@@ -37,22 +37,36 @@ export default {
 
     * update({ payload, callback }, { call, put, select }) {
 
-      let oldData = yield select((state) => {
-        console.log(state);
+      let oldData = yield select(({ apiResource }) => {
+        console.log(apiResource.data);
+        return apiResource.data;
       });
 
+      function setState(state) {
+        oldData.list = oldData.list.map((v, i) => {
+          console.log(v.id, payload.id);
+          if (v.id === payload.id) {
+            v.apiState = state;
+          }
+          return v;
+        });
+      }
       switch (payload.option) {
         //state=0
         case 'use':
+          setState(1);
           break;
         //state=2
         case 'stop':
+          setState(0);
           break;
         //state=1
         case 'pass':
+          setState(1);
           break;
         //state=1
         case 'reject':
+          setState(3);
           break;
         default:
           break;

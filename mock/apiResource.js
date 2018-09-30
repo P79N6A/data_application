@@ -10,13 +10,14 @@ let datas = Mock.mock({
     'apiType|1': ['安全管制', '威胁预警'],
     'apiState|0-2': 1,
     'id|+1': 1,
-  }],
+    'key|+1': 1,
+  }]
 });
 
-/*let tableListDataSource = [];
+/*datas.tableListDataSource = [];
 for (let i = 0; i < 46; i += 1) {
   let apiState = Mock.mock({ 'apiState|0-2': 1 });
-  tableListDataSource.push({
+  datas.tableListDataSource.push({
     key: i,
     disabled: i % 6 === 0,
     href: 'https://ant.design',
@@ -50,7 +51,7 @@ function getRule(req, res, u) {
   }
 
   const params = parse(url, true).query;
-
+  console.log(datas);
   let dataSource = datas['tableListDataSource'];
 
   if (params.sorter) {
@@ -95,7 +96,7 @@ function getRule(req, res, u) {
   return res.json(result);
 }
 
-/*function postRule(req, res, u, b) {
+function postRule(req, res, u, b) {
   let url = u;
   if (!url || Object.prototype.toString.call(url) !== '[object String]') {
     url = req.url; // eslint-disable-line
@@ -105,13 +106,13 @@ function getRule(req, res, u) {
   const { method, name, desc, key } = body;
 
   switch (method) {
-    /!* eslint no-case-declarations:0 *!/
+    /* eslint no-case-declarations:0 */
     case 'delete':
-      tableListDataSource = tableListDataSource.filter(item => key.indexOf(item.key) === -1);
+      datas.tableListDataSource = datas.tableListDataSource.filter(item => key.indexOf(item.key) === -1);
       break;
     case 'post':
       const i = Math.ceil(Math.random() * 10000);
-      tableListDataSource.unshift({
+      datas.tableListDataSource.unshift({
         key: i,
         href: 'https://ant.design',
         avatar: [
@@ -130,7 +131,7 @@ function getRule(req, res, u) {
       });
       break;
     case 'update':
-      tableListDataSource = tableListDataSource.map(item => {
+      datas.tableListDataSource = datas.tableListDataSource.map(item => {
         if (item.key === key) {
           Object.assign(item, { desc, name });
           return item;
@@ -143,16 +144,16 @@ function getRule(req, res, u) {
   }
 
   const result = {
-    list: tableListDataSource,
+    list: datas.tableListDataSource,
     pagination: {
-      total: tableListDataSource.length
+      total: datas.tableListDataSource.length,
     }
   };
 
   return res.json(result);
-}*/
+}
 
 export default {
   'GET /api/rule': getRule,
-  // 'POST /api/rule': postRule
+  'POST /api/rule': postRule,
 };

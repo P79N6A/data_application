@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class DataApplication extends Component {
+class CollectMain extends Component {
   render() {
     return (
       <div>
@@ -10,4 +10,4 @@ class DataApplication extends Component {
   }
 }
 
-export default DataApplication;
+export default CollectMain;

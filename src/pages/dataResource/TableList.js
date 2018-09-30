@@ -33,7 +33,7 @@ const getValue = obj =>
     .map(key => obj[key])
     .join(',');
 const statusMap = ['default', 'processing', 'success', 'error'];
-const status = ['无效', '已发布', '审批中', '异常'];
+const status = ['无效', '已发布', '审批中', '已驳回'];
 
 // 根据状态码和权限显示操作
 function GetOption(props) {
@@ -46,6 +46,8 @@ function GetOption(props) {
       return (
         <span><Button type="primary"><a onClick={() => (props.handleOption('pass', props.id))}>通过</a></Button> <Button
           type="primary"><a onClick={() => (props.handleOption('reject', props.id))}>拒绝</a></Button></span>);
+    case 3:
+      return (<Button type="primary"><a onClick={() => (props.handleOption('edit', props.id))}>修改</a></Button>);
     default:
       return (<React.Fragment>未知状态</React.Fragment>);
   }

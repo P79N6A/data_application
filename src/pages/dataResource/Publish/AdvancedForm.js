@@ -200,8 +200,8 @@ class AdvancedForm extends PureComponent {
 
     return (
       <PageHeaderWrapper
-        content="请输入接口详细信息。"
-        title="发布接口"
+        /*content="请输入接口详细信息。"
+        title="发布接口"*/
         wrapperClassName={styles.advancedForm}
       >
         <Card bordered={false}

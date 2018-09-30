@@ -81,13 +81,17 @@ class TableForm extends PureComponent {
   }
 
   handleFieldChange(e, fieldName, key) {
-    console.log(e, fieldName, key);
     const { data } = this.state;
     const newData = data.map(item => ({ ...item }));
     const target = this.getRowByKey(key, newData);
     if (target) {
-      target[fieldName] = e.target.value;
-      this.setState({ data: newData });
+      if (typeof e === 'object') {
+        target[fieldName] = e.target.value;
+        this.setState({ data: newData });
+      } else if (typeof e === 'string') {
+        target[fieldName] = e;
+        this.setState({ data: newData });
+      }
     }
   }
 
@@ -102,14 +106,15 @@ class TableForm extends PureComponent {
         return;
       }
       const target = this.getRowByKey(key) || {};
-      if (!target.workId || !target.name || !target.department) {
+      // 表单校验
+      /*if (!target.workId || !target.name || !target.department) {
         message.error('请填写完整成员信息。');
         e.target.focus();
         this.setState({
           loading: false,
         });
         return;
-      }
+      }*/
       delete target.isNew;
       this.toggleEditable(e, key);
       const { data } = this.state;
@@ -192,14 +197,14 @@ class TableForm extends PureComponent {
         render: (text, record) => {
           if (record.editable) {
             return (
-              <Select
+              <RadioGroup
                 onChange={e => this.handleFieldChange(e, 'paramIsNull', record.key)}
                 onKeyPress={e => this.handleKeyPress(e, record.key)}
                 value={text}
               >
-                <Select.Option value="是">是</Select.Option>
-                <Select.Option value="否">否</Select.Option>
-              </Select>
+                <Radio value="是">是</Radio>
+                <Radio value="否">否</Radio>
+              </RadioGroup>
             );
           }
           return text;

@@ -24,7 +24,7 @@ export default [
       {
         path: '/resource',
         name: 'resource',
-        icon: 'dashboard',
+        icon: 'cluster',
         routes: [
           {
             path: '/resource/monitor',
@@ -52,6 +52,50 @@ export default [
             component: './dataResource/approval',
           }
         ]
+      },
+      {
+        path: '/collect',
+        name: 'collect',
+        icon: 'hdd',
+        routes: [
+          {
+            path: '/collect/main',
+            name: 'main',
+            component: './dataCollect/CollectMain',
+          },
+          {
+            path: '/collect/list',
+            name: 'list',
+            component: './dataCollect/CollectList',
+          },
+          {
+            path: '/collect/mission',
+            name: 'mission',
+            component: './dataCollect/CollectMission',
+          },
+        ],
+      },
+      {
+        path: '/application',
+        name: 'application',
+        icon: 'appstore',
+        routes: [
+          {
+            path: '/application/main',
+            name: 'main',
+            component: './dataApplication/PyMain',
+          },
+          {
+            path: '/application/result',
+            name: 'result',
+            component: './dataApplication/PyResult',
+          },
+          {
+            path: '/application/analyze',
+            name: 'analyze',
+            component: './dataApplication/PyAnalyze',
+          },
+        ],
       },
       {
         name: 'result',
