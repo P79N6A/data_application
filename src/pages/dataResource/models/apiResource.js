@@ -1,5 +1,4 @@
-import { queryRule, removeRule, addApi, updateRule } from '@/services/api';
-
+import { queryRule, removeRule, addApi, updateRule, fakeSubmitForm } from '@/services/api';
 export default {
   namespace: 'apiResource',
 
@@ -84,7 +83,15 @@ export default {
         payload: response
       });*/
       if (callback) callback();
-    }
+    },
+    * submitAdvancedForm({ payload }, { call }) {
+      yield call(fakeSubmitForm, payload);
+      message.success('提交成功');
+    },
+    * submitRegularForm({ payload }, { call }) {
+      yield call(fakeSubmitForm, payload);
+      message.success('提交成功');
+    },
   },
 
   reducers: {

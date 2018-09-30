@@ -99,7 +99,7 @@ const tableData = [
 ];
 
 @connect(({ loading }) => ({
-  submitting: loading.effects['form/submitAdvancedForm'],
+  submitting: loading.effects['apiResource/submitAdvancedForm'],
 }))
 @Form.create()
 class AdvancedForm extends PureComponent {

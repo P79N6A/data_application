@@ -65,6 +65,11 @@ class TableList extends PureComponent {
   constructor(props) {
     super(props);
     this.handleOption = this.handleOption.bind(this);
+    this.handleSelectRows = this.handleSelectRows.bind(this);
+    this.handleRowFilter = this.handleRowFilter.bind(this);
+    this.handleReset_w = this.handleReset_w.bind(this);
+    this.handleSearch_w = this.handleSearch_w.bind(this);
+    this.handleFilter = this.handleFilter.bind(this);
   }
 
   state = {
@@ -72,6 +77,7 @@ class TableList extends PureComponent {
     selectedRows: [],
     formValues: {},
     stepFormValues: {},
+    searchText: '',
   };
 
   componentDidMount() {
@@ -85,6 +91,47 @@ class TableList extends PureComponent {
       title: '接口名称',
       dataIndex: 'apiName',
       key: 'apiName',
+
+      filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => {
+        debugger;
+        return (
+          <div className={styles['custom-filter-dropdown']}>
+            <Input
+              onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+              onPressEnter={this.handleSearch_w(selectedKeys, confirm)}
+              placeholder="Search name"
+              ref={ele => this.searchInput = ele}
+              value={this.state.searchText}
+            />
+            <Button onClick={(selectedKeys, confirm) => (this.handleSearch_w(selectedKeys, confirm))}
+                    type="primary"
+            >搜索</Button>
+            <Button onClick={this.handleReset_w(clearFilters)}>重置</Button>
+          </div>
+        );
+      },
+      filterIcon: filtered => <Icon style={{ color: filtered ? '#108ee9' : '#aaa' }}
+                                    type="search"
+      />,
+      onFilter: (value, record) => (this.handleFilter(value, record)),
+      onFilterDropdownVisibleChange: (visible) => {
+        if (visible) {
+          setTimeout(() => {
+            this.searchInput.focus();
+          });
+        }
+      },
+      render: (text) => {
+        const { searchText } = this.state;
+        return searchText ? (
+          <span>
+            {text.split(new RegExp(`(?<=${searchText})|(?=${searchText})`, 'i')).map((fragment, i) => (
+              fragment.toLowerCase() === searchText.toLowerCase()
+                ? <span key={i} className={styles.highlight}>{fragment}</span> : fragment // eslint-disable-line
+            ))}
+          </span>
+        ) : text;
+      },
     },
     {
       title: '描述',
@@ -118,6 +165,8 @@ class TableList extends PureComponent {
           value: 3,
         }
       ],
+      onFilter: (value, record) => (this.handleRowFilter(value, record)),
+
       render(val) {
         return <Badge status={statusMap[val]}
                       text={status[val]}
@@ -135,6 +184,10 @@ class TableList extends PureComponent {
       )
     }
   ];
+
+  handleRowFilter(value, record) {
+    return Number(record.apiState) === Number(value);
+  }
 
   handleStandardTableChange = (pagination, filtersArg, sorter) => {
     const { dispatch } = this.props;
@@ -161,6 +214,22 @@ class TableList extends PureComponent {
       payload: params,
     });
   };
+
+  // 表格字段搜索
+  handleSearch_w(selectedKeys, confirm) {
+    // confirm();
+    this.setState({ searchText: selectedKeys[0] });
+  }
+
+  // 表格字段过滤
+  handleFilter(value, record) {
+    return record.apiName.toLowerCase().includes(value.toLowerCase());
+  }
+
+  handleReset_w(clearFilters) {
+    // clearFilters();
+    // this.setState({ searchText: '' });
+  }
 
   handleFormReset = () => {
     const { form, dispatch } = this.props;
@@ -218,13 +287,13 @@ class TableList extends PureComponent {
     }
   };
 
-  handleSelectRows = rows => {
+  handleSelectRows(rows) {
     this.setState({
       selectedRows: rows,
     });
-  };
+  }
 
-  handleSearch = e => {
+  handleSearch(e) {
     e.preventDefault();
 
     const { dispatch, form } = this.props;
@@ -246,7 +315,7 @@ class TableList extends PureComponent {
         payload: values,
       });
     });
-  };
+  }
 
   renderSimpleForm() {
     const {

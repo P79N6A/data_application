@@ -29,12 +29,12 @@ export default [
           {
             path: '/resource/monitor',
             name: 'monitor',
-            component: './dataResource/Monitor',
+            component: './dataResource/Monitor/Monitor',
           },
           {
             path: '/resource/manage',
             name: 'manage',
-            component: './dataResource/TableList',
+            component: './dataResource/ListManage/TableList',
           },
           {
             path: '/resource/publish',

@@ -16,6 +16,7 @@ import SettingDrawer from '@/components/SettingDrawer';
 import logo from '../assets/logo.png';
 import Footer from './Footer';
 import Header from './Header';
+import Redirect from 'umi/redirect';
 import Context from './MenuContext';
 import Exception403 from '../pages/Exception/403';
 
@@ -88,6 +89,8 @@ class BasicLayout extends React.PureComponent {
   state = {
     rendering: true,
     isMobile: false,
+    err: false,
+    errState: {},
   };
 
   componentDidMount() {
@@ -127,6 +130,11 @@ class BasicLayout extends React.PureComponent {
   componentWillUnmount() {
     cancelAnimationFrame(this.renderRef);
     unenquireScreen(this.enquireHandler);
+  }
+
+  componentDidCatch(err, info) {
+    console.log('+++++++++++++++++++++++++++++++++++++++++++++');
+    this.setState({ err: true, errState: { err: err, info: info } });
   }
 
   getContext() {
@@ -269,6 +277,10 @@ class BasicLayout extends React.PureComponent {
         </Layout>
       </Layout>
     );
+
+    if (this.state.err) {
+      return <Redirect to={'/exception/404'}/>;
+    }
     return (
       <React.Fragment>
         <DocumentTitle title={this.getPageTitle(pathname)}>
