@@ -27,7 +27,6 @@ class Demo extends React.Component {
   };
 
   onChange = (value) => {
-    console.log(value);
     this.setState({ value });
   };
 
@@ -75,6 +74,7 @@ class Demo extends React.Component {
   }
 }
 
+const { TextArea } = Input.TextArea;
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 
@@ -82,8 +82,9 @@ const fieldLabels = {
   apiMenu: '接口目录',
   apiName: '接口名称',
   apiDesc: '接口描述',
+  serviceGroup: '服务分组',
   serviceName: '服务名称',
-  apiType: '接口类型',
+  apiPath: '接口路径',
   requestType: '请求类型',
 };
 
@@ -183,6 +184,7 @@ class AdvancedForm extends PureComponent {
     validateFieldsAndScroll((error, values) => {
       if (!error) {
         // submit the values
+        console.log(values);
         dispatch({
           type: 'form/submitAdvancedForm',
           payload: values,
@@ -242,28 +244,28 @@ class AdvancedForm extends PureComponent {
                       value={this.state.value}
                     >
                       <TreeNode key="0-1"
-                                title="parent 1"
+                                title="重庆市"
                                 value="parent 1"
                       >
                         <TreeNode key="0-1-1"
-                                  title="parent 1-0"
+                                  title="学校"
                                   value="parent 1-0"
                         >
                           <TreeNode key="random"
-                                    title="my leaf"
+                                    title="重庆大学"
                                     value="leaf1"
                           />
                           <TreeNode key="random1"
-                                    title="your leaf"
+                                    title="重庆邮电大学"
                                     value="leaf2"
                           />
                         </TreeNode>
                         <TreeNode key="random2"
-                                  title="parent 1-1"
+                                  title="政府机构"
                                   value="parent 1-1"
                         >
                           <TreeNode key="random3"
-                                    title={<b style={{ color: '#08c' }}>sss</b>}
+                                    title={<b style={{ color: '#08c' }}>两江公安局</b>}
                                     value="sss"
                           />
                         </TreeNode>
@@ -277,10 +279,58 @@ class AdvancedForm extends PureComponent {
                    sm={24}
                    xl={{ span: 8, offset: 2 }}
               >
-                <Form.Item label={fieldLabels.apiDesc}>
-                  {getFieldDecorator('apiDesc', {
-                    rules: [{ required: true, message: '请输入接口描述' }],
-                  })(<Input placeholder="请输入接口描述"/>)}
+                <Form.Item label={fieldLabels.serviceGroup}>
+                  {getFieldDecorator('serviceGroup', {
+                    rules: [{ required: true, message: '请输入服务分组' }],
+                  })(
+                    <TreeSelect
+                      allowClear
+                      dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
+                      onChange={this.onChange}
+                      placeholder="Please select"
+                      showSearch
+                      style={{ width: 300 }}
+                      treeDefaultExpandAll
+                      value={this.state.value}
+                    >
+                      <TreeNode key="0-1"
+                                title="两江大数据组"
+                                value="parent 1"
+                      >
+                        <TreeNode key="0-1-1"
+                                  title="视频监控服务"
+                                  value="parent 1-0"
+                        >
+                          <TreeNode key="random"
+                                    title="车牌识别"
+                                    value="leaf1"
+                          />
+                          <TreeNode key="random1"
+                                    title="人脸识别"
+                                    value="leaf2"
+                          />
+                        </TreeNode>
+                        <TreeNode key="random2"
+                                  title="图片服务"
+                                  value="parent 1-1"
+                        >
+                          <TreeNode key="random3"
+                                    title={<b style={{ color: '#08c' }}>人像身份识别</b>}
+                                    value="sss"
+                          />
+                        </TreeNode>
+                      </TreeNode>
+                      <TreeNode key="random3"
+                                title="语音服务"
+                                value="parent 1-1"
+                      >
+                        <TreeNode key="random3"
+                                  title={<b style={{ color: '#08c' }}>录音分析</b>}
+                                  value="sss"
+                        />
+                      </TreeNode>
+                    </TreeSelect>,
+                  )}
                 </Form.Item>
               </Col>
             </Row>
@@ -300,11 +350,11 @@ class AdvancedForm extends PureComponent {
                    sm={24}
                    xl={{ span: 6, offset: 2 }}
               >
-                <Form.Item label={fieldLabels.apiType}>
-                  {getFieldDecorator('apiType', {
-                    rules: [{ required: true, message: '请输入接口类型' }],
+                <Form.Item label={fieldLabels.apiPath}>
+                  {getFieldDecorator('apiPath', {
+                    rules: [{ required: true, message: '请输入接口路径' }],
                   })(
-                    <Input placeholder="请输入接口类型"/>,
+                    <Input placeholder="请输入接口路径"/>,
                   )}
                 </Form.Item>
               </Col>
@@ -322,6 +372,18 @@ class AdvancedForm extends PureComponent {
                       <Option value="POST">POST</Option>
                     </Select>,
                   )}
+                </Form.Item>
+              </Col>
+            </Row>
+            <Row gutter={16}>
+              <Col lg={6}
+                   md={12}
+                   sm={24}
+              >
+                <Form.Item label={fieldLabels.apiDesc}>
+                  {getFieldDecorator('apiDesc', {
+                    rules: [{ required: true, message: '请输入描述' }],
+                  })(<Input.TextArea placeholder="请输入描述"/>)}
                 </Form.Item>
               </Col>
             </Row>

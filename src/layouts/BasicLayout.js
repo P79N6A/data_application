@@ -23,7 +23,7 @@ const { Content } = Layout;
 
 // 将路由转换为侧边菜单
 function formatter(data, parentPath = '', parentAuthority, parentName) {
-  return data.map(item => {
+  let res = data.map(item => {
     let locale = 'menu';
     if (parentName && item.name) {
       locale = `${parentName}.${item.name}`;
@@ -43,9 +43,12 @@ function formatter(data, parentPath = '', parentAuthority, parentName) {
       result.children = children;
     }
     delete result.routes;
-    console.log(result);
+    if (result.path && (result.path.includes('result') || result.path.includes('exception'))) {
+      return;
+    }
     return result;
   });
+  return res.filter((v) => (v));
 }
 
 const query = {

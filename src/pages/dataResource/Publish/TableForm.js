@@ -149,7 +149,6 @@ class TableForm extends PureComponent {
         key: 'paramName',
         width: '20%',
         render: (text, record) => {
-          console.log(record);
           if (record.editable) {
             return (
               <Input
@@ -177,6 +176,7 @@ class TableForm extends PureComponent {
                 onChange={e => this.handleFieldChange(e, 'paramType', record.key)}
                 onKeyPress={e => this.handleKeyPress(e, record.key)}
                 placeholder="参数类型"
+                style={{ width: '100%' }}
                 value={text}
               >
                 <Select.Option value="string">string</Select.Option>

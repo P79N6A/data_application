@@ -42,11 +42,6 @@ export default [
             component: './dataResource/Publish/AdvancedForm.js',
           },
           {
-            path: '/resource/apply',
-            name: 'apply',
-            component: './dataResource/resourceApply',
-          },
-          {
             path: '/resource/approval',
             name: 'approval',
             component: './dataResource/approval',
