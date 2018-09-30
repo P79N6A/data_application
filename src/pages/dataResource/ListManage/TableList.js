@@ -67,8 +67,8 @@ class TableList extends PureComponent {
     this.handleOption = this.handleOption.bind(this);
     this.handleSelectRows = this.handleSelectRows.bind(this);
     this.handleRowFilter = this.handleRowFilter.bind(this);
-    this.handleReset_w = this.handleReset_w.bind(this);
-    this.handleSearch_w = this.handleSearch_w.bind(this);
+    // this.handleReset_w = this.handleReset_w.bind(this);
+    // this.handleSearch_w = this.handleSearch_w.bind(this);
     this.handleFilter = this.handleFilter.bind(this);
   }
 
@@ -93,7 +93,6 @@ class TableList extends PureComponent {
       key: 'apiName',
 
       filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => {
-        debugger;
         return (
           <div className={styles['custom-filter-dropdown']}>
             <Input
@@ -101,14 +100,14 @@ class TableList extends PureComponent {
               onPressEnter={this.handleSearch_w(selectedKeys, confirm)}
               placeholder="Search name"
               ref={ele => this.searchInput = ele}
-              value={this.state.searchText}
+              value={selectedKeys[0]}
             />
             <Button onClick={(selectedKeys, confirm) => (this.handleSearch_w(selectedKeys, confirm))}
                     type="primary"
             >搜索</Button>
             <Button onClick={this.handleReset_w(clearFilters)}>重置</Button>
           </div>
-        );
+        )
       },
       filterIcon: filtered => <Icon style={{ color: filtered ? '#108ee9' : '#aaa' }}
                                     type="search"
@@ -131,7 +130,7 @@ class TableList extends PureComponent {
             ))}
           </span>
         ) : text;
-      },
+      }
     },
     {
       title: '描述',
@@ -461,28 +460,27 @@ class TableList extends PureComponent {
           <Col md={8}
                sm={24}
           >
-            <Button type="primary">显示待审批</Button>
+            <div style={{ overflow: 'hidden' }}>
+              <div style={{ float: 'left', marginBottom: 24 }}>
+                <Button htmlType="submit"
+                        type="primary"
+                >
+                  查询
+                </Button>
+                <Button onClick={this.handleFormReset}
+                        style={{ marginLeft: 8 }}
+                >
+                  重置
+                </Button>
+                <a onClick={this.toggleForm}
+                   style={{ marginLeft: 8 }}
+                >
+                  收起 <Icon type="up"/>
+                </a>
+              </div>
+            </div>
           </Col>
         </Row>
-        <div style={{ overflow: 'hidden' }}>
-          <div style={{ float: 'right', marginBottom: 24 }}>
-            <Button htmlType="submit"
-                    type="primary"
-            >
-              查询
-            </Button>
-            <Button onClick={this.handleFormReset}
-                    style={{ marginLeft: 8 }}
-            >
-              重置
-            </Button>
-            <a onClick={this.toggleForm}
-               style={{ marginLeft: 8 }}
-            >
-              收起 <Icon type="up"/>
-            </a>
-          </div>
-        </div>
       </Form>
     );
   }
@@ -493,6 +491,7 @@ class TableList extends PureComponent {
   }
 
   render() {
+    console.log(this.state);
     const {
       apiResource: { data },
       loading,
