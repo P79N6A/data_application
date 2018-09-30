@@ -18,7 +18,7 @@ import {
   Radio,
   TreeSelect,
 } from 'antd';
-import StandardTable from '@/components/StandardTable';
+import StandardTable from '@/components//DataResource/StandardTable';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 import { Link } from 'dva/router';
 
@@ -46,7 +46,8 @@ function GetOption(props) {
     case 2:
       return (
         <span><Button type="primary"><a onClick={() => (props.handleOption('stop', props.id))}>停用</a></Button> <Button
-          type="primary"><Link to={'/resource/approval'}>去审批</Link></Button></span>);
+          type="primary"
+        ><Link to={'/resource/approval'}>去审批</Link></Button></span>);
     /*case 3:
       return (<Button type="primary"><a onClick={() => (props.handleOption('edit', props.id))}>修改</a></Button>);*/
     default:
@@ -115,13 +116,13 @@ class TableList extends PureComponent {
         {
           text: status[3],
           value: 3,
-        },
+        }
       ],
       render(val) {
         return <Badge status={statusMap[val]}
                       text={status[val]}
         />;
-      },
+      }
     },
     {
       title: '操作',
@@ -131,8 +132,8 @@ class TableList extends PureComponent {
         <GetOption {...record}
                    handleOption={this.handleOption}
         />
-      ),
-    },
+      )
+    }
   ];
 
   handleStandardTableChange = (pagination, filtersArg, sorter) => {
@@ -187,7 +188,7 @@ class TableList extends PureComponent {
       payload: { option: option, id: id },
       callback: (res) => {
         console.log(res);
-      },
+      }
     });
 
 

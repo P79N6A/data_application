@@ -1,4 +1,4 @@
-import { queryRule, removeRule, addRule, updateRule } from '@/services/api';
+import { queryRule, removeRule, addApi, updateRule } from '@/services/api';
 
 export default {
   namespace: 'apiResource',
@@ -35,10 +35,17 @@ export default {
       if (callback) callback();
     },
 
-    * update({ payload, callback }, { call, put, select }) {
-
+    * saveApi({ payload, callback }, { call, put, select }) {
       let oldData = yield select(({ apiResource }) => {
-        console.log(apiResource.data);
+        return apiResource.data;
+      });
+      payload.apiState = 2;
+      yield call(addApi, payload);
+      console.log(payload, oldData);
+    },
+
+    * update({ payload, callback }, { call, put, select }) {
+      let oldData = yield select(({ apiResource }) => {
         return apiResource.data;
       });
 

@@ -184,9 +184,8 @@ class AdvancedForm extends PureComponent {
     validateFieldsAndScroll((error, values) => {
       if (!error) {
         // submit the values
-        console.log(values);
         dispatch({
-          type: 'form/submitAdvancedForm',
+          type: 'apiResource/saveApi',
           payload: values,
         });
       }
@@ -241,7 +240,7 @@ class AdvancedForm extends PureComponent {
                       showSearch
                       style={{ width: 300 }}
                       treeDefaultExpandAll
-                      value={this.state.value}
+                      // value={this.state.value}
                     >
                       <TreeNode key="0-1"
                                 title="重庆市"
@@ -291,7 +290,7 @@ class AdvancedForm extends PureComponent {
                       showSearch
                       style={{ width: 300 }}
                       treeDefaultExpandAll
-                      value={this.state.value}
+                      // value={this.state.value}
                     >
                       <TreeNode key="0-1"
                                 title="两江大数据组"
