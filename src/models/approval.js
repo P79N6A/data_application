@@ -1,21 +1,21 @@
-import {approvalList} from '../services/approval'
+import { approvalList } from '../services/approval';
 export default {
-   namespace: 'approval',
-   state: [],
-   effects: {
-    *fetchApproval({ payload }, { call, put }) {
-      const data = yield call(approvalList, payload)
+  namespace: 'approval',
+  state: [],
+  effects: {
+    * fetchApproval({ payload }, { call, put }) {
+      const data = yield call(approvalList, payload);
       yield put({
         type: 'getApprovalLists',
-        payload: data
+        payload: data,
       })
     }
-   },
-   reducers: {
-     getApprovalLists(state, { payload }) {
-       return [
-         ...payload.data.data
-       ]
-     }
-   }
+  },
+  reducers: {
+    getApprovalLists(state, { payload }) {
+      return [
+        ...payload.data.data,
+      ];
+    },
+  },
 }

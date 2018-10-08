@@ -1,4 +1,5 @@
 import { queryNotices } from '@/services/api';
+import { routerRedux } from 'dva/router';
 
 export default {
   namespace: 'global',
@@ -30,7 +31,11 @@ export default {
         type: 'user/changeNotifyCount',
         payload: count,
       });
-    }
+    },
+
+    * toLocation({ payload }, { put }) {
+      yield put(routerRedux.push(payload));
+    },
   },
 
   reducers: {
