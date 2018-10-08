@@ -54,7 +54,7 @@ export default class ActiveChart extends Component {
     return (
       <div className={styles.activeChart}>
         <NumberInfo subTitle="流量评估"
-                    total="24小时内无压力"
+                    total="流量正常"
         />
         <div style={{ marginTop: 32 }}>
           <MiniArea
@@ -78,7 +78,7 @@ export default class ActiveChart extends Component {
         </div>
         {activeData && (
           <div className={styles.activeChartGrid}>
-            <p>预测峰值 : {[...activeData].sort()[activeData.length - 1].y + 200}万次</p>
+            <p>峰值 : {[...activeData].sort()[activeData.length - 1].y + 200}万次</p>
             <p>平均 : {[...activeData].sort()[Math.floor(activeData.length / 2)].y} 万次</p>
           </div>
         )}

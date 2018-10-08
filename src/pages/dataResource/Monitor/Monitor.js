@@ -108,7 +108,7 @@ class Monitor extends PureComponent {
           >
             <Card bordered={false}
                   style={{ marginBottom: 24 }}
-                  title="访问量预测"
+                  title="最近一天访问量"
             >
               <ActiveChart/>
             </Card>

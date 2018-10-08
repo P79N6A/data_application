@@ -6,7 +6,7 @@ import Login from '@/components/Login';
 import styles from './Login.less';
 import bg from '../../assets/bg.png';
 
-const { Tab, UserName, Password, Mobile, Captcha, Submit } = Login;
+const { Tab, UserName, Password, Submit } = Login;
 
 @connect(({ login, loading }) => ({
   login,
@@ -96,20 +96,6 @@ class LoginPage extends Component {
               name="password"
               onPressEnter={() => this.loginForm.validateFields(this.handleSubmit)}
               placeholder="888888/123456"
-            />
-          </Tab>
-          <Tab className={styles['text-w']}
-               key="mobile"
-               tab="手机号登录"
-          >
-            {login.status === 'error' &&
-              login.type === 'mobile' &&
-              !submitting &&
-              this.renderMessage('验证码错误')}
-            <Mobile name="mobile" />
-            <Captcha countDown={120}
-                     name="captcha"
-                     onGetCaptcha={this.onGetCaptcha}
             />
           </Tab>
           <div>
