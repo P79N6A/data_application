@@ -58,15 +58,16 @@ class ApprovalTable extends Component {
                     title="确定是否同意"
                 >
                   <Button
+                      style={{marginRight: '5px'}}
                       type="primary"
-                  >同意</Button>
+                  ><a>同意</a></Button>
                 </Popconfirm>
                 <Popconfirm onConfirm={this.reject.bind(this, record)}
                     title="确定是否拒绝"
                 >
                   <Button
-                      type="danger"
-                  >拒绝</Button>
+                      type="primary"
+                  ><a>拒绝</a></Button>
                 </Popconfirm>
               </div>
           )
@@ -76,6 +77,7 @@ class ApprovalTable extends Component {
         total: 50,
         defaultCurrent: 1,
         pageSize: 10,
+        showQuickJumper: true,
         onChange: (page) => {
           console.log(page)
         }
