@@ -109,17 +109,17 @@ export default class GlobalHeaderRight extends PureComponent {
           }}
           placeholder="站内搜索"
         />
-        <Tooltip title="使用文档">
+        {/* <Tooltip title="使用文档">
           <a
-            className={styles.action}
-            href="https://pro.ant.design/docs/getting-started"
-            rel="noopener noreferrer"
-            target="_blank"
-            title="使用文档"
+              className={styles.action}
+              href="#"
+              rel="noopener noreferrer"
+              // target="_blank"
+              title="使用文档"
           >
             <Icon type="question-circle-o" />
           </a>
-        </Tooltip>
+        </Tooltip>*/}
         <NoticeIcon
           className={styles.action}
           count={currentUser.notifyCount}

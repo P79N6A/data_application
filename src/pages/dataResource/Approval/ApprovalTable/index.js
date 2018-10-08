@@ -38,14 +38,15 @@ class ApprovalTable extends Component {
               <a href="#">同意</a>
               <a href="#">拒绝</a>
             </span>
-          ),
-        },
+          )
+        }
       ],
       dataSource: [],
     };
   }
   render() {
-    return <Table columns={this.state.columns} dataSource={this.state.dataSource}/>;
+    return <Table columns={this.state.columns}
+                  dataSource={this.props.approval}/>;
   }
 }
 export default ApprovalTable;

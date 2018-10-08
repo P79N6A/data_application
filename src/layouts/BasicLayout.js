@@ -126,15 +126,14 @@ class BasicLayout extends React.PureComponent {
       this.handleMenuCollapse(false);
     }
   }
+  componentDidCatch(err, info) {
+    console.log('+++++++++++++++++++++++++++++++++++++++++++++');
+    this.setState({ err: true, errState: { err: err, info: info } });
+  }
 
   componentWillUnmount() {
     cancelAnimationFrame(this.renderRef);
     unenquireScreen(this.enquireHandler);
-  }
-
-  componentDidCatch(err, info) {
-    console.log('+++++++++++++++++++++++++++++++++++++++++++++');
-    this.setState({ err: true, errState: { err: err, info: info } });
   }
 
   getContext() {
