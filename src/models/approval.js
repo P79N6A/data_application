@@ -1,21 +1,40 @@
 import {approvalList} from '../services/approval'
 export default {
    namespace: 'approval',
-   state: [],
+   state: {
+     useList: [],
+     reseaseList: []
+   },
    effects: {
-    *fetchApproval({ payload }, { call, put }) {
+     // 获取接口发布审批模块
+    *fetchRelease({ payload }, { call, put }) {
       const data = yield call(approvalList, payload)
       yield put({
-        type: 'getApprovalLists',
+        type: 'releaseLists',
+        payload: data
+      })
+    },
+     // 获取接口使用审批
+    *fetchUse({ payload }, { call, put }) {
+      const data = yield call(approvalList, payload)
+      yield put({
+        type: 'useLists',
         payload: data
       })
     }
    },
    reducers: {
-     getApprovalLists(state, { payload }) {
-       return [
-         ...payload.data.data
-       ]
+    releaseLists(state, { payload }) {
+       return {
+         ...state,
+         reseaseList: payload.data.data
+       }
+     },
+     useLists(state, { payload }) {
+       return {
+         ...state,
+         useList: payload.data.data
+       }
      }
    }
 }
