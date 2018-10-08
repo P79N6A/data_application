@@ -15,7 +15,6 @@ import {
 } from 'antd';
 import { connect } from 'dva';
 import FooterToolbar from '@/components/FooterToolbar';
-import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 import TableForm from './TableForm';
 import styles from './style.less';
 
@@ -204,7 +203,7 @@ class AdvancedForm extends PureComponent {
     const { width } = this.state;
 
     return (
-      <PageHeaderWrapper
+      <div
         /*content="请输入接口详细信息。"
         title="发布接口"*/
         wrapperClassName={styles.advancedForm}
@@ -408,7 +407,7 @@ class AdvancedForm extends PureComponent {
             提交
           </Button>
         </FooterToolbar>
-      </PageHeaderWrapper>
+      </div>
     );
   }
 }

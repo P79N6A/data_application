@@ -4,6 +4,7 @@ import Link from 'umi/link';
 import Debounce from 'lodash-decorators/debounce';
 import styles from './index.less';
 import RightContent from './RightContent';
+import Breadcrumb from '../DataResource/Breadcrumb';
 
 export default class GlobalHeader extends PureComponent {
   componentWillUnmount() {
@@ -36,6 +37,7 @@ export default class GlobalHeader extends PureComponent {
           type={collapsed ? 'menu-unfold' : 'menu-fold'}
           onClick={this.toggle}
         />
+        <span className={styles.breadcrumb}><Breadcrumb/></span>
 
         <RightContent {...this.props} />
       </div>

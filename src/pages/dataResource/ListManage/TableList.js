@@ -19,7 +19,6 @@ import {
   TreeSelect,
 } from 'antd';
 import StandardTable from '@/components//DataResource/StandardTable';
-import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 import { Link } from 'dva/router';
 
 import styles from './TableList.less';
@@ -42,11 +41,12 @@ function GetOption(props) {
       return (<Button type="primary"><a onClick={() => (props.handleOption('use', props.id))}>启用</a></Button>);
     case 1:
     case 3:
-      return (<Button type="primary"><a onClick={() => (props.handleOption('stop', props.id))}>停用</a></Button>);
+      return (<Button type="primary"><a onClick={() => (props.handleOption('stop', props.id))}> 停用</a></Button>);
     case 2:
       return (
         <span>
           <Button type="primary"><a onClick={() => (props.handleOption('stop', props.id))}>停用</a></Button>
+          &nbsp;&nbsp;
           <Button type="primary"><Link to={'/resource/approval'}>去审批</Link></Button></span>);
     /*case 3:
       return (<Button type="primary"><a onClick={() => (props.handleOption('edit', props.id))}>修改</a></Button>);*/
@@ -511,7 +511,7 @@ class TableList extends PureComponent {
     );
 
     return (
-      <PageHeaderWrapper>
+      <div>
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>{this.renderForm()}</div>
@@ -541,7 +541,7 @@ class TableList extends PureComponent {
             />
           </div>
         </Card>
-      </PageHeaderWrapper>
+      </div>
     );
   }
 }

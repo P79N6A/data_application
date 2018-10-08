@@ -210,6 +210,7 @@ class BasicLayout extends React.PureComponent {
     };
   };
 
+  // 收起菜单
   handleMenuCollapse = collapsed => {
     const { dispatch } = this.props;
     dispatch({

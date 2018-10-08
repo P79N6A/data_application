@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import styles from './index.less';
 import { urlToList } from '../_utils/pathTools';
 
-const { TabPane } = Tabs;
+
 export const getBreadcrumb = (breadcrumbNameMap, url) => {
   let breadcrumb = breadcrumbNameMap[url];
   if (!breadcrumb) {
@@ -75,12 +75,12 @@ export default class PageHeader extends PureComponent {
             <Breadcrumb.Item key={item.title}>
               {item.href
                 ? createElement(
-                    linkElement,
-                    {
-                      [linkElement === 'a' ? 'href' : 'to']: item.href,
-                    },
-                    title
-                  )
+                  linkElement,
+                  {
+                    [linkElement === 'a' ? 'href' : 'to']: item.href,
+                  },
+                  title,
+                )
                 : title}
             </Breadcrumb.Item>
           );
@@ -106,7 +106,7 @@ export default class PageHeader extends PureComponent {
           {createElement(
             isLinkable ? linkElement : 'span',
             { [linkElement === 'a' ? 'href' : 'to']: url },
-            name
+            name,
           )}
         </Breadcrumb.Item>
       ) : null;
@@ -119,9 +119,9 @@ export default class PageHeader extends PureComponent {
           {
             [linkElement === 'a' ? 'href' : 'to']: '/',
           },
-          home || 'Home'
+          home || 'Home',
         )}
-      </Breadcrumb.Item>
+      </Breadcrumb.Item>,
     );
     return (
       <Breadcrumb className={styles.breadcrumb}
@@ -139,6 +139,7 @@ export default class PageHeader extends PureComponent {
   conversionBreadcrumbList = () => {
     const { breadcrumbList, breadcrumbSeparator } = this.props;
     const { routes, params, routerLocation, breadcrumbNameMap } = this.getBreadcrumbProps();
+    debugger;
     if (breadcrumbList && breadcrumbList.length) {
       return this.conversionFromProps();
     }
@@ -177,7 +178,7 @@ export default class PageHeader extends PureComponent {
           href: paths.join('/') || '/',
           to: paths.join('/') || '/',
         },
-        route.breadcrumbName
+        route.breadcrumbName,
       )
     );
   };
