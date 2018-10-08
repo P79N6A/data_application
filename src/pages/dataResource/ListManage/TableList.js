@@ -45,9 +45,9 @@ function GetOption(props) {
       return (<Button type="primary"><a onClick={() => (props.handleOption('stop', props.id))}>停用</a></Button>);
     case 2:
       return (
-        <span><Button type="primary"><a onClick={() => (props.handleOption('stop', props.id))}>停用</a></Button> <Button
-          type="primary"
-        ><Link to={'/resource/approval'}>去审批</Link></Button></span>);
+        <span>
+          <Button type="primary"><a onClick={() => (props.handleOption('stop', props.id))}>停用</a></Button>
+          <Button type="primary"><Link to={'/resource/approval'}>去审批</Link></Button></span>);
     /*case 3:
       return (<Button type="primary"><a onClick={() => (props.handleOption('edit', props.id))}>修改</a></Button>);*/
     default:
@@ -58,6 +58,7 @@ function GetOption(props) {
 function map({ apiResource, loading }) {
   return { apiResource, loading };
 }
+
 /* eslint react/no-multi-comp:0 */
 @connect(map)
 @Form.create()
@@ -67,9 +68,10 @@ class TableList extends PureComponent {
     this.handleOption = this.handleOption.bind(this);
     this.handleSelectRows = this.handleSelectRows.bind(this);
     this.handleRowFilter = this.handleRowFilter.bind(this);
-    // this.handleReset_w = this.handleReset_w.bind(this);
-    // this.handleSearch_w = this.handleSearch_w.bind(this);
+    this.handleReset_w = this.handleReset_w.bind(this);
+    this.handleSearch_w = this.handleSearch_w.bind(this);
     this.handleFilter = this.handleFilter.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   state = {
@@ -107,7 +109,7 @@ class TableList extends PureComponent {
             >搜索</Button>
             <Button onClick={this.handleReset_w(clearFilters)}>重置</Button>
           </div>
-        )
+        );
       },
       filterIcon: filtered => <Icon style={{ color: filtered ? '#108ee9' : '#aaa' }}
                                     type="search"
@@ -292,6 +294,7 @@ class TableList extends PureComponent {
     });
   }
 
+// 顶部搜索栏提交
   handleSearch(e) {
     e.preventDefault();
 
@@ -316,6 +319,7 @@ class TableList extends PureComponent {
     });
   }
 
+  // 默认显示搜索框
   renderSimpleForm() {
     const {
       form: { getFieldDecorator },
@@ -380,6 +384,7 @@ class TableList extends PureComponent {
     );
   }
 
+  // 展开高级搜索框
   renderAdvancedForm() {
     const {
       form: { getFieldDecorator },
@@ -491,7 +496,6 @@ class TableList extends PureComponent {
   }
 
   render() {
-    console.log(this.state);
     const {
       apiResource: { data },
       loading,
@@ -512,7 +516,7 @@ class TableList extends PureComponent {
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>{this.renderForm()}</div>
             <div className={styles.tableListOperator}>
-              <Button type="primary"><Link to="/resource/publish">发布接口</Link>
+              <Button type="primary"><Link to="/resource/manage/publish">发布接口</Link>
               </Button><Button type="primary"><Link to="/resource/approval">查看接口使用申请</Link></Button>
 
               {selectedRows.length > 0 && (

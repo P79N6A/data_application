@@ -32,14 +32,15 @@ export default [
             component: './dataResource/Monitor/Monitor',
           },
           {
+            path: '/resource/manage/publish',
+            name: 'publish',
+            hideInMenu: true,
+            component: './dataResource/Publish/AdvancedForm.js',
+          },
+          {
             path: '/resource/manage',
             name: 'manage',
             component: './dataResource/ListManage/TableList',
-          },
-          {
-            path: '/resource/publish',
-            name: 'publish',
-            component: './dataResource/Publish/AdvancedForm.js',
           },
           {
             path: '/resource/approval',

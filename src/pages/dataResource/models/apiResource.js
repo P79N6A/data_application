@@ -17,6 +17,7 @@ export default {
         payload: response,
       });
     },
+
     * add({ payload, callback }, { call, put }) {
       const response = yield call(addRule, payload);
       yield put({
@@ -25,6 +26,7 @@ export default {
       });
       if (callback) callback();
     },
+
     * remove({ payload, callback }, { call, put }) {
       const response = yield call(removeRule, payload);
       yield put({
@@ -78,16 +80,14 @@ export default {
           break;
       }
 
-      /*yield put({
-        type: 'save',
-        payload: response
-      });*/
       if (callback) callback();
     },
+
     * submitAdvancedForm({ payload }, { call }) {
       yield call(fakeSubmitForm, payload);
       message.success('提交成功');
     },
+
     * submitRegularForm({ payload }, { call }) {
       yield call(fakeSubmitForm, payload);
       message.success('提交成功');

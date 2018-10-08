@@ -119,11 +119,14 @@ class HeaderView extends PureComponent {
     const { visible } = this.state;
     const isTop = layout === 'topmenu';
     const width = this.getHeadWidth();
+
     const HeaderDom = visible ? (
+      // 菜单可见
       <Header className={fixedHeader ? styles.fixedHeader : ''}
               style={{ padding: 0, width }}
       >
         {isTop && !isMobile ? (
+          //顶部菜单模式或者移动设备
           <TopNavHeader
             Authorized={Authorized}
             mode="horizontal"
@@ -135,6 +138,7 @@ class HeaderView extends PureComponent {
             {...this.props}
           />
         ) : (
+          //普通模式菜单
           <GlobalHeader
             onCollapse={handleMenuCollapse}
             onMenuClick={this.handleMenuClick}
