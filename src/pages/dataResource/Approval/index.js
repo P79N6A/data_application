@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Tabs } from 'antd';
 import ApprovalSearch from './ApprovalSearch';
 import ApprovalTable from './ApprovalTable';
-import { connect } from 'dva'
+import { connect } from 'dva';
 class Approval extends Component {
   constructor(props) {
     super(props);
@@ -30,12 +30,18 @@ class Approval extends Component {
   render() {
     return (
       <div>
-        <Tabs defaultActiveKey={this.state.activeKey} onChange={this.onChoose}>
-          <Tabs.TabPane key="1" tab="接口使用">
+        <Tabs defaultActiveKey={this.state.activeKey}
+            onChange={this.onChoose}
+        >
+          <Tabs.TabPane key="1"
+              tab="接口使用"
+          >
             <ApprovalSearch Search={this.Search}/>
             <ApprovalTable approval={this.props.approval.useList}/>
           </Tabs.TabPane>
-          <Tabs.TabPane key="2" tab="接口发布">
+          <Tabs.TabPane key="2"
+              tab="接口发布"
+          >
             <ApprovalSearch Search={this.Search}/>
             <ApprovalTable approval={this.props.approval.reseaseList}/>
           </Tabs.TabPane>
@@ -44,6 +50,7 @@ class Approval extends Component {
     );
   }
 }
-export default connect(({approval}) => ({
+
+export default connect(({ approval }) => ({
   approval
 }))(Approval);

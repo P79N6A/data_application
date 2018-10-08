@@ -74,9 +74,7 @@ class Demo extends React.Component {
   }
 }
 
-const { TextArea } = Input.TextArea;
 const { Option } = Select;
-const { RangePicker } = DatePicker;
 
 const fieldLabels = {
   apiMenu: '接口目录',
@@ -88,13 +86,15 @@ const fieldLabels = {
   requestType: '请求类型',
 };
 
+
+// 可编辑表单默认数据
 const tableData = [
   {
     key: '1',
-    paramName: 'userName',
+    paramName: 'name',
     paramType: 'string',
     paramIsNull: '是',
-    paramNotice: 'New York No. 1 Lake Park',
+    paramNotice: '备注',
   }
 ];
 
@@ -187,6 +187,10 @@ class AdvancedForm extends PureComponent {
         dispatch({
           type: 'apiResource/saveApi',
           payload: values,
+        });
+        dispatch({
+          type: 'global/toLocation',
+          payload: '/resource',
         });
       }
     });

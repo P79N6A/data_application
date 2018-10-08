@@ -16,7 +16,9 @@ class ApprovalTable extends Component {
           key: 'name',
           render: (text, record) => (
             <Tooltip title="双击显示详情">
-              <a href="#" onDoubleClick={this.infoInterface.bind(this, record)}>{text}</a>
+              <a href="#"
+                  onDoubleClick={this.infoInterface.bind(this, record)}
+              >{text}</a>
             </Tooltip >
           )
         },
@@ -36,7 +38,9 @@ class ApprovalTable extends Component {
           key: 'username',
           render: (text, record) => (
             <Tooltip title="双击显示详情">
-              <a href="#" onDoubleClick={this.infoApproval.bind(this, record)}>{text}</a>
+              <a href="#"
+                  onDoubleClick={this.infoApproval.bind(this, record)}
+              >{text}</a>
             </Tooltip>
           )
         },
@@ -50,8 +54,12 @@ class ApprovalTable extends Component {
           key: 'action',
           render: (text, record) => (
               <div>
-                <Button onClick={this.agree.bind(this, record)} type="primary">同意</Button>
-                <Button onClick={this.reject.bind(this, record)} type="danger">拒绝</Button>
+                <Button onClick={this.agree.bind(this, record)}
+                    type="primary"
+                >同意</Button>
+                <Button onClick={this.reject.bind(this, record)}
+                    type="danger"
+                >拒绝</Button>
               </div>
           )
         }

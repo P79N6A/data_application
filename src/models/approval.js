@@ -1,4 +1,4 @@
-import {approvalList} from '../services/approval'
+import { approvalList } from '../services/approval';
 export default {
    namespace: 'approval',
    state: {
