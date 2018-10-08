@@ -8,27 +8,27 @@ class ApprovalTable extends Component {
         {
           title: '接口名',
           dataIndex: 'name',
-          key: 'name',
+          key: 'name'
         },
         {
           title: '资源目录',
           dataIndex: 'catalog',
-          key: 'catalog',
+          key: 'catalog'
         },
         {
           title: '所属服务',
           dataIndex: 'services',
-          key: 'services',
+          key: 'services'
         },
         {
           title: '申请人',
           dataIndex: 'username',
-          key: 'username',
+          key: 'username'
         },
         {
           title: '申请时间',
           dataIndex: 'time',
-          key: 'time',
+          key: 'time'
         },
         {
           title: '操作',
@@ -41,12 +41,12 @@ class ApprovalTable extends Component {
           )
         }
       ],
-      dataSource: [],
+      dataSource: []
     };
   }
   render() {
     return <Table columns={this.state.columns}
-                  dataSource={this.props.approval}/>;
+        dataSource={this.props.approval} />;
   }
 }
 export default ApprovalTable;
