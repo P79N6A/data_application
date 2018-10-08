@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Modal, Tooltip, Button} from 'antd';
+import { Table, Modal, Tooltip, Button, Popconfirm} from 'antd';
 class ApprovalTable extends Component {
   constructor(props) {
     super(props)
@@ -54,12 +54,20 @@ class ApprovalTable extends Component {
           key: 'action',
           render: (text, record) => (
               <div>
-                <Button onClick={this.agree.bind(this, record)}
-                    type="primary"
-                >同意</Button>
-                <Button onClick={this.reject.bind(this, record)}
-                    type="danger"
-                >拒绝</Button>
+                <Popconfirm onConfirm={this.agree.bind(this, record)}
+                    title="确定是否同意"
+                >
+                  <Button
+                      type="primary"
+                  >同意</Button>
+                </Popconfirm>
+                <Popconfirm onConfirm={this.reject.bind(this, record)}
+                    title="确定是否拒绝"
+                >
+                  <Button
+                      type="danger"
+                  >拒绝</Button>
+                </Popconfirm>
               </div>
           )
         }
