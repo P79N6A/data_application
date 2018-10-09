@@ -37,7 +37,11 @@ export default class GlobalHeader extends PureComponent {
           type={collapsed ? 'menu-unfold' : 'menu-fold'}
           onClick={this.toggle}
         />
-        <span className={styles.breadcrumb}><Breadcrumb/></span>
+
+        {/*面包屑导航*/}
+        <span className={styles.breadcrumb}>
+          <Breadcrumb {...this.props} />
+        </span>
 
         <RightContent {...this.props} />
       </div>

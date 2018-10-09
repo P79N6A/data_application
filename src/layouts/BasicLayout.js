@@ -205,7 +205,7 @@ class BasicLayout extends React.PureComponent {
   getContentStyle = () => {
     const { fixedHeader } = this.props;
     return {
-      margin: '24px 24px 0',
+      margin: '10px 10px 0',
       paddingTop: fixedHeader ? 64 : 0,
     };
   };
@@ -220,8 +220,6 @@ class BasicLayout extends React.PureComponent {
   };
 
   renderSettingDrawer() {
-    // Do show SettingDrawer in production
-    // unless deployed in preview.pro.ant.design as demo
     const { rendering } = this.state;
     if ((rendering || process.env.NODE_ENV === 'production') && APP_TYPE !== 'site') {
       return null;
@@ -273,7 +271,7 @@ class BasicLayout extends React.PureComponent {
               {children}
             </Authorized>
           </Content>
-          <Footer />
+          {/*<Footer />*/}
         </Layout>
       </Layout>
     );

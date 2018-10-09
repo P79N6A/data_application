@@ -1,7 +1,6 @@
 /* eslint-disable no-alert */
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'dva';
-import moment from 'moment';
 import {
   Row,
   Col,
@@ -260,8 +259,6 @@ class TableList extends PureComponent {
         console.log(res);
       }
     });
-
-
   }
 
   handleMenuClick = e => {
@@ -325,7 +322,8 @@ class TableList extends PureComponent {
       form: { getFieldDecorator },
     } = this.props;
     return (
-      <Form layout="inline"
+      <Form className={styles['search-form']}
+            layout="inline"
             onSubmit={this.handleSearch}
       >
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
@@ -390,7 +388,8 @@ class TableList extends PureComponent {
       form: { getFieldDecorator },
     } = this.props;
     return (
-      <Form layout="inline"
+      <Form className={styles['search-form']}
+            layout="inline"
             onSubmit={this.handleSearch}
       >
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>

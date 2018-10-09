@@ -144,7 +144,6 @@ export default class PageHeader extends PureComponent {
       return this.conversionFromProps();
     }
     // 如果传入 routes 和 params 属性
-    // If pass routes and params attributes
     if (routes && params) {
       return (
         <Breadcrumb
@@ -157,7 +156,6 @@ export default class PageHeader extends PureComponent {
       );
     }
     // 根据 location 生成 面包屑
-    // Generate breadcrumbs based on location
     if (routerLocation && routerLocation.pathname) {
       return this.conversionFromLocation(routerLocation, breadcrumbNameMap);
     }
@@ -165,7 +163,6 @@ export default class PageHeader extends PureComponent {
   };
 
   // 渲染Breadcrumb 子节点
-  // Render the Breadcrumb child node
   itemRender = (route, params, routes, paths) => {
     const { linkElement = 'a' } = this.props;
     const last = routes.indexOf(route) === routes.length - 1;
