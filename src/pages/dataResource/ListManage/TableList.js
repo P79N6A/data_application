@@ -14,14 +14,18 @@ import {
   Menu,
   DatePicker,
   Badge,
+  Radio,
+  TreeSelect,
 } from 'antd';
 import StandardTable from '@/components//DataResource/StandardTable';
 import { Link } from 'dva/router';
 
 import styles from './TableList.less';
 
+const TreeNode = TreeSelect.TreeNode;
 const FormItem = Form.Item;
 const { Option } = Select;
+const RadioGroup = Radio.Group;
 const getValue = obj =>
   Object.keys(obj)
     .map(key => obj[key])
@@ -43,6 +47,8 @@ function GetOption(props) {
           <Button type="primary"><a onClick={() => (props.handleOption('stop', props.id))}>停用</a></Button>
           &nbsp;&nbsp;
           <Button type="primary"><Link to={'/resource/approval'}>去审批</Link></Button></span>);
+    /*case 3:
+      return (<Button type="primary"><a onClick={() => (props.handleOption('edit', props.id))}>修改</a></Button>);*/
     default:
       return (<React.Fragment>未知状态</React.Fragment>);
   }
@@ -253,8 +259,6 @@ class TableList extends PureComponent {
         console.log(res);
       }
     });
-
-
   }
 
   handleMenuClick = e => {
@@ -446,7 +450,7 @@ class TableList extends PureComponent {
           <Col md={8}
                sm={24}
           >
-            <FormItem label="发布时间">
+            <FormItem label="按发布时间">
               {getFieldDecorator('publishTime')(
                 <DatePicker
                   format="YYYY-MM-DD HH:mm:ss"
