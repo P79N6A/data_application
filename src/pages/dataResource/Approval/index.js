@@ -3,6 +3,7 @@ import { Tabs } from 'antd';
 import ApprovalSearch from './ApprovalSearch';
 import ApprovalTable from './ApprovalTable';
 import { connect } from 'dva';
+import './index.less';
 class Approval extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +23,6 @@ class Approval extends Component {
   }
   // 切换标签
   onChoose(key) {
-    console.log(this.props.approval)
     this.setState({
       activeKey: key
     })
@@ -30,7 +30,8 @@ class Approval extends Component {
   render() {
     return (
       <div>
-        <Tabs defaultActiveKey={this.state.activeKey}
+        <Tabs className="hz-tabs"
+            defaultActiveKey={this.state.activeKey}
             onChange={this.onChoose}
         >
           <Tabs.TabPane key="1"

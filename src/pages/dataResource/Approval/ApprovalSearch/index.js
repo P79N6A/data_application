@@ -23,37 +23,50 @@ class ApprovalSearch extends Component {
       <Form onSubmit={this.handleSearch}>
         <Row gutter={24}>
           <Col span={6}>
-            <FormItem className={styles['ant-form-items']} label="用户名">
-              {getFieldDecorator('username')(
-                <Input placeholder="请输入用户名"/>,
-              )}
-            </FormItem>
-          </Col>
-          <Col span={6}>
-            <FormItem className={styles['ant-form-items']} label="接口名">
-              {
-                getFieldDecorator('interface')(
-                  <Input placeholder="请输入接口名"/>,
-                )
-              }
-            </FormItem>
-          </Col>
-          <Col span={6}>
-            <FormItem className={styles['ant-form-items']} label="服务类型">
+            <FormItem className={styles['ant-form-items']}
+                label="服务类型"
+            >
               {
                 getFieldDecorator('services')(
-                  <Select placeholder="请输入服务类型" style={{ width: 140 }}>
-                    <Option value="test2">test2</Option>
-                    <Option value="test3">test3</Option>
-                    <Option value="test1">test1</Option>
+                  <Select placeholder="请输入服务类型"
+                      style={{ width: 140 }}
+                  >
+                    <Option value="0">视频监控</Option>
+                    <Option value="1">人脸识别</Option>
                   </Select>,
                 )
               }
             </FormItem>
           </Col>
           <Col span={6}>
-            <Button htmlType="submit" type="primary">
-              Search
+            <FormItem className={styles['ant-form-items']}
+                label="申请人"
+            >
+              {getFieldDecorator('username')(
+                <Input autoComplete="off"
+                    placeholder="请输入用户名"
+                />,
+              )}
+            </FormItem>
+          </Col>
+          <Col span={6}>
+            <FormItem className={styles['ant-form-items']}
+                label="接口名"
+            >
+              {
+                getFieldDecorator('interface')(
+                  <Input autoComplete="off"
+                      placeholder="请输入接口名"
+                  />,
+                )
+              }
+            </FormItem>
+          </Col>
+          <Col span={6}>
+            <Button htmlType="submit"
+                type="primary"
+            >
+              搜索
             </Button>
           </Col>
         </Row>
@@ -62,6 +75,6 @@ class ApprovalSearch extends Component {
   }
 }
 ApprovalSearch.propTypes = {
-  Search: PropTypes.func.isRequired,
+  Search: PropTypes.func.isRequired
 }
 export default Form.create()(ApprovalSearch);
