@@ -68,7 +68,7 @@ export default class BaseMenu extends PureComponent {
       .filter(item => item);
   };
 
-  // Get the currently selected menu
+  // 选中菜单
   getSelectedMenuKeys = () => {
     const {
       location: { pathname },

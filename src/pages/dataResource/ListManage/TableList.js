@@ -408,7 +408,7 @@ class TableList extends PureComponent {
           <Col md={8}
                sm={24}
           >
-            <FormItem key="apiState"
+            <FormItem key="apiState2"
                       label="接口状态"
             >
               {getFieldDecorator('apiState', {
@@ -418,8 +418,8 @@ class TableList extends PureComponent {
                         style={{ width: '100%' }}
                 >
                   <Option value="published">已发布</Option>
-                  <Option value="published">审批中</Option>
-                  <Option value="published">无效</Option>
+                  <Option value="onProve">审批中</Option>
+                  <Option value="stop">无效</Option>
                 </Select>,
               )}
             </FormItem>,
@@ -450,7 +450,7 @@ class TableList extends PureComponent {
           <Col md={8}
                sm={24}
           >
-            <FormItem label="按发布时间">
+            <FormItem label="发布时间">
               {getFieldDecorator('publishTime')(
                 <DatePicker
                   format="YYYY-MM-DD HH:mm:ss"
