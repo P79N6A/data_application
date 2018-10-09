@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import styles from './index.less';
 import { urlToList } from '../_utils/pathTools';
 
-const { TabPane } = Tabs;
 export const getBreadcrumb = (breadcrumbNameMap, url) => {
   let breadcrumb = breadcrumbNameMap[url];
   if (!breadcrumb) {
@@ -89,11 +88,10 @@ export default class PageHeader extends PureComponent {
     );
   };
 
+  // 通过地址和路由生成面包屑导航
   conversionFromLocation = (routerLocation, breadcrumbNameMap) => {
     const { breadcrumbSeparator, home, itemRender, linkElement = 'a' } = this.props;
-    // Convert the url to an array
     const pathSnippets = urlToList(routerLocation.pathname);
-    // Loop data mosaic routing
     const extraBreadcrumbItems = pathSnippets.map((url, index) => {
       const currentBreadcrumb = getBreadcrumb(breadcrumbNameMap, url);
       if (currentBreadcrumb.inherited) {
@@ -143,7 +141,6 @@ export default class PageHeader extends PureComponent {
       return this.conversionFromProps();
     }
     // 如果传入 routes 和 params 属性
-    // If pass routes and params attributes
     if (routes && params) {
       return (
         <Breadcrumb
@@ -156,7 +153,6 @@ export default class PageHeader extends PureComponent {
       );
     }
     // 根据 location 生成 面包屑
-    // Generate breadcrumbs based on location
     if (routerLocation && routerLocation.pathname) {
       return this.conversionFromLocation(routerLocation, breadcrumbNameMap);
     }
