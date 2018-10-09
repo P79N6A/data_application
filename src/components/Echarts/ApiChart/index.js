@@ -93,11 +93,10 @@ class ApiChart extends Component {
     };
     apiChart.setOption(option);
   }
-
   render() {
     return (
       <div id={'apiChart'}
-           style={{ width: '1000px', height: '600px' }}
+           style={{ width: '100%', height: '500px' }}
       >
       </div>
     );
