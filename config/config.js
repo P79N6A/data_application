@@ -20,7 +20,7 @@ export default {
           baseNavigator: true, // default true, when it is true, will use `navigator.language` overwrite default
         },
         dynamicImport: {
-          loadingComponent: './components/PageLoading/index',
+          loadingComponent: './components/Global/PageLoading/index',
         },
         polyfills: ['ie11'],
         ...(!process.env.TEST && os.platform() === 'darwin'
