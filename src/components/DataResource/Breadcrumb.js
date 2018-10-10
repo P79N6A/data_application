@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { formatMessage } from 'umi/locale';
+import pathToRegexp from 'path-to-regexp';
+import { urlToList } from '../_utils/pathTools';
+
 
 class Breadcrumb extends Component {
   /**
@@ -35,7 +39,6 @@ class Breadcrumb extends Component {
     return (
       <span>
         <a href="#">主页 </a> / <a href="#"> 服务管理</a>
-
       </span>
     );
   }

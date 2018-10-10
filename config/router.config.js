@@ -32,6 +32,12 @@ export default [
             component: './dataResource/Monitor/Monitor',
           },
           {
+            path: '/resource/monitorApi',
+            name: 'monitorApi',
+            hideInMenu: true,
+            component: './dataResource/Monitor/MonitorApi',
+          },
+          {
             path: '/resource/manage/publish',
             name: 'publish',
             hideInMenu: true,

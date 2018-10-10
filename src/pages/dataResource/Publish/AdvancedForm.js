@@ -14,7 +14,7 @@ import {
   TreeSelect,
 } from 'antd';
 import { connect } from 'dva';
-import FooterToolbar from '@/components/FooterToolbar';
+import FooterToolbar from '@/components/Global/FooterToolbar';
 import TableForm from './TableForm';
 import styles from './style.less';
 

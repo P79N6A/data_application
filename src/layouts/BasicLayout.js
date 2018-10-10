@@ -10,9 +10,9 @@ import classNames from 'classnames';
 import pathToRegexp from 'path-to-regexp';
 import { enquireScreen, unenquireScreen } from 'enquire-js';
 import { formatMessage } from 'umi/locale';
-import SiderMenu from '@/components/SiderMenu';
+import SiderMenu from '@/components/Global/SiderMenu';
 import Authorized from '@/utils/Authorized';
-import SettingDrawer from '@/components/SettingDrawer';
+import SettingDrawer from '@/components/Global/SettingDrawer';
 import logo from '../assets/logo.png';
 import Footer from './Footer';
 import Header from './Header';
@@ -271,7 +271,7 @@ class BasicLayout extends React.PureComponent {
               {children}
             </Authorized>
           </Content>
-          {/*<Footer />*/}
+          <Footer/>
         </Layout>
       </Layout>
     );

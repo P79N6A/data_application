@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Layout, Icon } from 'antd';
-import GlobalFooter from '@/components/GlobalFooter';
+import GlobalFooter from '@/components/Global/GlobalFooter';
 import logo from '../assets/logo.png';
 
 const { Footer } = Layout;

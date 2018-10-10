@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import Link from 'umi/link';
 import { Icon } from 'antd';
-import GlobalFooter from '@/components/GlobalFooter';
+import GlobalFooter from '@/components/Global/GlobalFooter';
 import styles from './UserLayout.less';
 import logo from '../assets/logo.png';
 
