@@ -5,6 +5,8 @@ import { Pie, WaterWave, Gauge, TagCloud } from '@/components/Charts';
 import ActiveChart from '@/components/Global/ActiveChart';
 import GridContent from '@/components/Global/PageHeaderWrapper/GridContent';
 import styles from './Monitor.less';
+import LineHZ from './LineHZ';
+import BarHZ from './BarHZ';
 
 class MonitorApi extends React.Component {
   render() {
@@ -19,10 +21,10 @@ class MonitorApi extends React.Component {
         >
           <Card bordered={false}
                 className={styles['antd-card-color']}
-                title="接口访问详情"
-                style={{ height: '100%' }}
+                title="接口访问情况"
+            // style={{ height: '100%' }}
           >
-            <ApiChart/>
+            <LineHZ style={{ height: '500px' }}/>
           </Card>
         </Col>
         <Col span={8}
@@ -30,16 +32,17 @@ class MonitorApi extends React.Component {
         >
           <Card bordered={false}
                 className={styles['antd-card-color']}
-            // style={{ marginBottom: 24 }}
-                title="最近一天访问量"
+                style={{ marginBottom: 10, height: 300 }}
+                title="接口服务类型"
           >
-            <ActiveChart/>
+            {/*<ActiveChart/>*/}
+            <BarHZ/>
           </Card>
           <Card
             bodyStyle={{ textAlign: 'center' }}
             bordered={false}
             className={styles['antd-card-color']}
-            // style={{ marginBottom: 24 }}
+            style={{ height: 290 }}
             title="服务稳定性"
           >
             <Gauge height={180}

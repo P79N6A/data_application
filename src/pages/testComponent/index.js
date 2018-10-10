@@ -6,10 +6,11 @@ class TestComponent extends Component{
     return(
       <div>
         <div style={{width: '500px', height: '500px', float: 'left'}}>
-          <BarHZ />
+          <LineHZ/>
+
         </div>
         <div  style={{width: '500px', height: '500px', float: 'left'}}>
-          <LineHZ />
+          <BarHZ/>
         </div>
       </div>
     )

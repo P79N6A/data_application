@@ -52,8 +52,10 @@ export default [
             path: '/resource/approval',
             name: 'approval',
             component: './dataResource/approval'
-          }, {
+          },
+          {
             path: '/resource/echart',
+            hideInMenu: true,
             name: 'echart',
             component: './testComponent'
           }
