@@ -45,7 +45,11 @@ export default [
           {
             path: '/resource/approval',
             name: 'approval',
-            component: './dataResource/approval',
+            component: './dataResource/approval'
+          }, {
+            path: '/resource/echart',
+            name: 'echart',
+            component: './testComponent'
           }
         ]
       },
