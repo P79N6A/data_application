@@ -9,6 +9,7 @@ export default {
   'menu.resource.publish': '接口服务生成',
   'menu.resource.apply': '接口使用申请',
   'menu.resource.approval': '我的审批',
+  'menu.resource.echart': '图表',
   'menu.collect': '数据采集',
   'menu.collect.main': '数据采集总览',
   'menu.collect.list': '数据采集列表',
