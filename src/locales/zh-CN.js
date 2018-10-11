@@ -7,7 +7,7 @@ export default {
   'menu.resource.monitor': '资源总览',
   'menu.resource.manage': '服务列表',
   'menu.resource.publish': '接口服务生成',
-  'menu.resource.apply': '接口使用申请',
+  'menu.resource.apply': '我的申请',
   'menu.resource.approval': '我的审批',
   'menu.resource.echart': '图表',
   'menu.collect': '数据采集',

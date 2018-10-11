@@ -22,11 +22,11 @@ class ApprovalTable extends Component {
           dataIndex: 'services',
           key: 'services',
         },
-        {
+        /*{
           title: '申请人',
           dataIndex: 'username',
           key: 'username',
-        },
+        },*/
         {
           title: '申请时间',
           dataIndex: 'time',
@@ -37,20 +37,16 @@ class ApprovalTable extends Component {
           key: 'action',
           render: (text, record) => (
             <div>
-              <Popconfirm onConfirm={this.agree.bind(this, record)}
-                          title="确定是否同意"
-              >
                 <Button
                   style={{ marginRight: '5px' }}
                   type="primary"
-                ><a>同意</a></Button>
-              </Popconfirm>
+                ><a>修改</a></Button>
               <Popconfirm onConfirm={this.reject.bind(this, record)}
-                          title="确定是否拒绝"
+                          title="确定撤回？"
               >
                 <Button
                   type="primary"
-                ><a>拒绝</a></Button>
+                ><a>撤回</a></Button>
               </Popconfirm>
             </div>
           ),

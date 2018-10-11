@@ -6,7 +6,7 @@ import styles from './index.less';
 const Option = Select.Option;
 const FormItem = Form.Item;
 
-class ApprovalSearch extends Component {
+class ApplySearch extends Component {
   constructor(props) {
     super(props);
     this.handleSearch = this.handleSearch.bind(this);
@@ -79,7 +79,7 @@ class ApprovalSearch extends Component {
   }
 }
 
-ApprovalSearch.propTypes = {
+ApplySearch.propTypes = {
   Search: PropTypes.func.isRequired,
 };
-export default Form.create()(ApprovalSearch);
+export default Form.create()(ApplySearch);

@@ -61,6 +61,11 @@ export default [
             component: './dataResource/approval'
           },
           {
+            path: '/resource/apply',
+            name: 'apply',
+            component: './dataResource/Apply',
+          },
+          {
             path: '/resource/echart',
             hideInMenu: true,
             name: 'echart',
