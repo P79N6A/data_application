@@ -1,7 +1,7 @@
 // 代码中会兼容本地 service mock 以及部署站点的静态数据
 export default {
   // 支持值为 Object 和 Array
-  'GET /api/currentUser': {
+  'GET /mock/user/currentUser': {
     name: 'Serati Ma',
     avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
     userid: '00000001',
@@ -50,44 +50,65 @@ export default {
     address: '西湖区工专路 77 号',
     phone: '0752-268888888',
   },
+
   // GET POST 可省略
-  'GET /api/users': [
-    {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park',
-    }
-  ],
-  'POST /api/login/account': (req, res) => {
-    const { password, userName, type } = req.body;
-    if (password === '888888' && userName === 'admin') {
+
+  /*  'POST /mock/user/register/user/login': (req, res) => {
+      const users={
+        admin:'888888',
+        user:'123456',
+        wan:'qingying',
+        skr:'sker',
+      };
+      let names=Object.keys(users);
+      const { passWord, userName, type } = req.body;
+      console.log(userName)
+      if (names.includes(userName) && users[userName]===passWord){
+          res.send({
+            status: 'ok',
+            type,
+            currentAuthority: userName,
+          });
+          return;
+      } else{
+        res.send({
+          status: 'error',
+          type,
+          currentAuthority: 'guest',
+        });
+      }
+      res.send({
+        status: 'error',
+        type,
+        currentAuthority: 'guest',
+      });
+    },*/
+
+  'GET /mock/user/register/user/login': (req, res) => {
+    const users = {
+      admin: '888888',
+      user: '123456',
+      wan: 'qingying',
+      skr: 'sker',
+    };
+    let names = Object.keys(users);
+    console.log('===========================', req.url);
+    console.log('=========================');
+    const { passWord, userName, type } = req.body;
+    console.log(userName);
+    if (names.includes(userName) && users[userName] === passWord) {
       res.send({
         status: 'ok',
         type,
-        currentAuthority: 'admin',
+        currentAuthority: userName,
       });
       return;
-    }
-    if (password === '123456' && userName === 'user') {
+    } else {
       res.send({
-        status: 'ok',
+        status: 'error',
         type,
-        currentAuthority: 'user',
+        currentAuthority: 'guest',
       });
-      return;
     }
     res.send({
       status: 'error',
@@ -95,10 +116,11 @@ export default {
       currentAuthority: 'guest',
     });
   },
-  'POST /api/register': (req, res) => {
+
+  'POST /mock/user/register': (req, res) => {
     res.send({ status: 'ok', currentAuthority: 'user' });
   },
-  'GET /api/500': (req, res) => {
+  'GET /mock/user/500': (req, res) => {
     res.status(500).send({
       timestamp: 1513932555104,
       status: 500,
@@ -107,7 +129,7 @@ export default {
       path: '/base/category/list',
     });
   },
-  'GET /api/404': (req, res) => {
+  'GET /mock/user/404': (req, res) => {
     res.status(404).send({
       timestamp: 1513932643431,
       status: 404,
@@ -116,7 +138,7 @@ export default {
       path: '/base/category/list/2121212',
     });
   },
-  'GET /api/403': (req, res) => {
+  'GET /mock/user/403': (req, res) => {
     res.status(403).send({
       timestamp: 1513932555104,
       status: 403,
@@ -125,7 +147,7 @@ export default {
       path: '/base/category/list',
     });
   },
-  'GET /api/401': (req, res) => {
+  'GET /mock/user/401': (req, res) => {
     res.status(401).send({
       timestamp: 1513932555104,
       status: 401,

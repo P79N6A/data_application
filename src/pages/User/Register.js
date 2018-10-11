@@ -66,7 +66,7 @@ class Register extends Component {
 
   getPasswordStatus = () => {
     const { form } = this.props;
-    const value = form.getFieldValue('password');
+    const value = form.getFieldValue('passWord');
     if (value && value.length > 9) {
       return 'ok';
     }
@@ -101,7 +101,7 @@ class Register extends Component {
 
   checkConfirm = (rule, value, callback) => {
     const { form } = this.props;
-    if (value && value !== form.getFieldValue('password')) {
+    if (value && value !== form.getFieldValue('passWord')) {
       callback('两次输入的密码不匹配!');
     } else {
       callback();
@@ -145,7 +145,7 @@ class Register extends Component {
 
   renderPasswordProgress = () => {
     const { form } = this.props;
-    const value = form.getFieldValue('password');
+    const value = form.getFieldValue('passWord');
     const passwordStatus = this.getPasswordStatus();
     return value && value.length ? (
       <div className={styles[`progress-${passwordStatus}`]}>
@@ -199,7 +199,7 @@ class Register extends Component {
               placement="right"
               visible={visible}
             >
-              {getFieldDecorator('password', {
+              {getFieldDecorator('passWord', {
                 rules: [
                   {
                     validator: this.checkPassword,
@@ -207,7 +207,7 @@ class Register extends Component {
                 ]
               })(<Input placeholder="至少6位密码，区分大小写"
                         size="large"
-                        type="password"
+                        type="passWord"
               />)}
             </Popover>
           </FormItem>
@@ -224,7 +224,7 @@ class Register extends Component {
               ]
             })(<Input placeholder="确认密码"
                       size="large"
-                      type="password"
+                      type="passWord"
             />)}
           </FormItem>
           <FormItem>

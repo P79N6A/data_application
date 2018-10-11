@@ -1,5 +1,8 @@
 import { message } from 'antd';
 import defaultSettings from '../defaultSettings';
+import config from '../../config';
+
+window.SysConfig = config;
 
 let lessNodesAppended;
 const updateTheme = primaryColor => {

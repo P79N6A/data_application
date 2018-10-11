@@ -1,3 +1,4 @@
+//获取权限路由
 import Authorized from './Authorized';
 import AuthorizedRoute from './AuthorizedRoute';
 import Secured from './Secured';

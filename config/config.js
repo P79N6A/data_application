@@ -5,6 +5,7 @@ import webpackplugin from './plugin.config';
 import defaultSettings from '../src/defaultSettings';
 
 export default {
+  //插件配置
   // add for transfer to umi
   plugins: [
     [
@@ -22,7 +23,7 @@ export default {
         dynamicImport: {
           loadingComponent: './components/Global/PageLoading/index',
         },
-        polyfills: ['ie11'],
+        // polyfills: ['ie11'],
         ...(!process.env.TEST && os.platform() === 'darwin'
           ? {
               dll: {
@@ -35,6 +36,7 @@ export default {
       }
     ]
   ],
+  // 环境变量
   define: {
     APP_TYPE: process.env.APP_TYPE || '',
   },
@@ -74,6 +76,7 @@ export default {
       return localName;
     }
   },
+
   manifest: {
     name: 'ant-design-pro',
     background_color: '#FFF',
@@ -92,5 +95,27 @@ export default {
   chainWebpack: webpackplugin,
   cssnano: {
     mergeRules: false,
-  }
+  },
+
+  // 配置接口代理
+  'proxy': {
+    '/apizza': {
+      'target': 'https://dsn.apizza.net/mock/40a8b4a3ed5d6fd4c01e6e3743b65925/',
+      'changeOrigin': true,
+      'pathRewrite': { '^/api': '' },
+    },
+    '/ser': {
+      'target': 'http://192.168.110.28:8901/api/',
+      'changeOrigin': true,
+      'pathRewrite': { '^/api': '' },
+    },
+  },
+  //构建输出目录
+  outputPath: './dist',
+  // 浏览器兼容
+  targets: {
+    ie: 11,
+  },
 };
+
+

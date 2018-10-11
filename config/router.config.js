@@ -15,7 +15,8 @@ export default [
     path: '/',
     component: '../layouts/BasicLayout',
     Routes: ['src/pages/Authorized'],
-    authority: ['admin', 'user'],
+    // 配置路由权限
+    authority: ['admin', 'user', 'wan'],
 
     routes: [
       // dashboard
@@ -36,6 +37,12 @@ export default [
             name: 'monitorApi',
             hideInMenu: true,
             component: './dataResource/Monitor/MonitorApi',
+          },
+          {
+            path: '/resource/apply',
+            name: 'monitorApi',
+            hideInMenu: true,
+            component: './dataResource/Apply',
           },
           {
             path: '/resource/manage/publish',

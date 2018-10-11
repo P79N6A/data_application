@@ -2,6 +2,7 @@ import fetch from 'dva/fetch';
 /* import fetchjsonp from 'fetch-jsonp' */
 import axios from 'axios';
 import { getCookie } from './utils';
+import config from '../../config';
 
 // 自定义返回信息
 const codeMessage = {
@@ -34,13 +35,29 @@ function parseResponse(response) {
     return response.json();
   }
   if (resType.includes('text')) {
-    return response.text();
+    // return response.text();
+    try {
+      return response.json();
+    } catch (e) {
+      return response.text();
+    }
   }
   if (resType.includes('jpg' || resType.includes('mp3'))) {
     return response.blob();
   }
   return '请定义返回数据类型';
 }
+
+// 获取api接口地址
+function getApiUrl(url) {
+  if (window.SysConfig) {
+    return window.SysConfig.development.apiOrigin + url;
+  } else if (config.development) {
+    return config.development.apiOrigin + url;
+  }
+  return url;
+}
+
 
 // 处理错误码
 function checkStatus(response) {
@@ -90,7 +107,8 @@ function setCookie(defReq) {
   defReq.headers.append('Authorization', escape(escape(user)));
   defReq.headers.append(
     'us-app',
-    escape(escape(window.Sysconfig.sysName || process.env.sysName || 'app')),
+    // escape(escape(window.SysConfig.development.sysName || process.env.sysName || 'app')),
+    escape(escape('app ' || process.env.sysName || 'app')),
   );
   return defReq;
 }
@@ -131,12 +149,13 @@ export default function request(url, options = {}) {
   };
 
   // mock数据处理
-  if (url.includes('api') || url.includes('dsn.apizza')) {
+  if (url.includes('mock') || url.includes('apizza')) {
     delete options.headers;
     delete defReq.headers;
     return axios.get(url);
   }
-  url = window.apiOrigin ? window.apiOrigin + url : url;
+
+  url = getApiUrl(url);
   defReq = setCookie(defReq);
 
   if ((options.method === 'GET' || !options.method) && options.body) {
@@ -153,7 +172,6 @@ export default function request(url, options = {}) {
     }
     delete options.body;
   }
-
   return fetch(url, initOptions(defReq, options))
     .then(checkStatus)
     .then(parseResponse)

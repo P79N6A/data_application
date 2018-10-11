@@ -18,13 +18,13 @@ export default {
       }
     ]
   },
-  Password: {
+  PassWord: {
     props: {
       size: 'large',
       prefix: <Icon className={styles.prefixIcon}
                     type="lock"
       />,
-      type: 'password',
+      type: 'passWord',
       placeholder: '888888',
     },
     rules: [

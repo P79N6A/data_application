@@ -1,4 +1,4 @@
-import { queryRule, removeRule, addApi, updateRule, fakeSubmitForm } from '@/services/api';
+import { apiList, removeRule, addApi, updateRule, fakeSubmitForm } from '@/services/api';
 export default {
   namespace: 'apiResource',
 
@@ -10,8 +10,8 @@ export default {
   },
 
   effects: {
-    * fetch({ payload }, { call, put, select }) {
-      const response = yield call(queryRule, payload);
+    * getApiList({ payload }, { call, put, select }) {
+      const response = yield call(apiList, payload);
       yield put({
         type: 'save',
         payload: response,
@@ -82,16 +82,6 @@ export default {
 
       if (callback) callback();
     },
-
-    * submitAdvancedForm({ payload }, { call }) {
-      yield call(fakeSubmitForm, payload);
-      message.success('提交成功');
-    },
-
-    * submitRegularForm({ payload }, { call }) {
-      yield call(fakeSubmitForm, payload);
-      message.success('提交成功');
-    }
   },
 
   reducers: {

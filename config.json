@@ -1,0 +1,18 @@
+{
+  "development": {
+    "apiOrigin": "http://192.168.110.28:8901/api",
+    "development": true,
+    "appUrl": "http://localhost:8000",
+    "logApiOrigin": "http://192.168.105.235:8081/v0.1",
+    "sysName": "华智安防系统管理"
+  },
+  "production": {
+    "apiOrigin": "http://192.168.110.28:8901/api",
+    "development": false,
+    "appUrl": "http://192.168.108.234:8000",
+    "ssoUrl": "http://192.168.108.234:8083",
+    "logApiOrigin": "http://192.168.108.234:8081/v0.1",
+    "sysName": "华智安防系统管理"
+  },
+  "version": "1.0.0.6"
+}

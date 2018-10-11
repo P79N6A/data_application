@@ -1,4 +1,4 @@
-// use localStorage to store the authority info, which might be sent from server in actual project.
+//从本地存储获取用户信息
 export function getAuthority(str) {
   // return localStorage.getItem('antd-pro-authority') || ['admin', 'user'];
   const authorityString =
@@ -16,6 +16,7 @@ export function getAuthority(str) {
   return authority || ['admin'];
 }
 
+// 把服务端的用户信息存到本地
 export function setAuthority(authority) {
   const proAuthority = typeof authority === 'string' ? [authority] : authority;
   return localStorage.setItem('antd-pro-authority', JSON.stringify(proAuthority));

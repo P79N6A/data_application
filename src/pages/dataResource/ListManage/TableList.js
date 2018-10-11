@@ -22,10 +22,8 @@ import { Link } from 'dva/router';
 
 import styles from './TableList.less';
 
-const TreeNode = TreeSelect.TreeNode;
 const FormItem = Form.Item;
 const { Option } = Select;
-const RadioGroup = Radio.Group;
 const getValue = obj =>
   Object.keys(obj)
     .map(key => obj[key])
@@ -67,7 +65,6 @@ class TableList extends PureComponent {
     this.handleOption = this.handleOption.bind(this);
     this.handleSelectRows = this.handleSelectRows.bind(this);
     this.handleRowFilter = this.handleRowFilter.bind(this);
-    this.handleReset_w = this.handleReset_w.bind(this);
     this.handleSearch_w = this.handleSearch_w.bind(this);
     this.handleFilter = this.handleFilter.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -83,7 +80,7 @@ class TableList extends PureComponent {
 
   componentDidMount() {
     this.props.dispatch({
-      type: 'apiResource/fetch',
+      type: 'apiResource/getApiList',
     });
   }
 
@@ -92,46 +89,6 @@ class TableList extends PureComponent {
       title: '接口名称',
       dataIndex: 'apiName',
       key: 'apiName',
-
-      filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => {
-        return (
-          <div className={styles['custom-filter-dropdown']}>
-            <Input
-              onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-              onPressEnter={this.handleSearch_w(selectedKeys, confirm)}
-              placeholder="Search name"
-              ref={ele => this.searchInput = ele}
-              value={selectedKeys[0]}
-            />
-            <Button onClick={(selectedKeys, confirm) => (this.handleSearch_w(selectedKeys, confirm))}
-                    type="primary"
-            >搜索</Button>
-            <Button onClick={this.handleReset_w(clearFilters)}>重置</Button>
-          </div>
-        );
-      },
-      filterIcon: filtered => <Icon style={{ color: filtered ? '#108ee9' : '#aaa' }}
-                                    type="search"
-      />,
-      onFilter: (value, record) => (this.handleFilter(value, record)),
-      onFilterDropdownVisibleChange: (visible) => {
-        if (visible) {
-          setTimeout(() => {
-            this.searchInput.focus();
-          });
-        }
-      },
-      render: (text) => {
-        const { searchText } = this.state;
-        return searchText ? (
-          <span>
-            {text.split(new RegExp(`(?<=${searchText})|(?=${searchText})`, 'i')).map((fragment, i) => (
-              fragment.toLowerCase() === searchText.toLowerCase()
-                ? <span key={i} className={styles.highlight}>{fragment}</span> : fragment // eslint-disable-line
-            ))}
-          </span>
-        ) : text;
-      }
     },
     {
       title: '描述',
@@ -185,10 +142,12 @@ class TableList extends PureComponent {
     }
   ];
 
+  // 表格内筛选
   handleRowFilter(value, record) {
     return Number(record.apiState) === Number(value);
   }
 
+  // 分页操作
   handleStandardTableChange = (pagination, filtersArg, sorter) => {
     const { dispatch } = this.props;
     const { formValues } = this.state;
@@ -226,11 +185,7 @@ class TableList extends PureComponent {
     return record.apiName.toLowerCase().includes(value.toLowerCase());
   }
 
-  handleReset_w(clearFilters) {
-    // clearFilters();
-    // this.setState({ searchText: '' });
-  }
-
+  // 重置搜索
   handleFormReset = () => {
     const { form, dispatch } = this.props;
     form.resetFields();
@@ -243,6 +198,7 @@ class TableList extends PureComponent {
     });
   };
 
+  // 收起展开搜索表单
   toggleForm = () => {
     const { expandForm } = this.state;
     this.setState({
@@ -261,6 +217,7 @@ class TableList extends PureComponent {
     });
   }
 
+  // 更多操作，批量操作
   handleMenuClick = e => {
     const { dispatch } = this.props;
     const { selectedRows } = this.state;
@@ -505,7 +462,7 @@ class TableList extends PureComponent {
             selectedKeys={[]}
       >
         <Menu.Item key="remove">删除</Menu.Item>
-        <Menu.Item key="approval">批量审批</Menu.Item>
+        <Menu.Item key="approval">批量停用</Menu.Item>
       </Menu>
     );
 
