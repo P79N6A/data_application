@@ -1,5 +1,5 @@
 import { stringify } from 'qs';
-import request from '@/utils/request_b';
+import request from '@/utils/request_w';
 
 export async function apiList(params) {
   return request(`/mock/api/apiList?${stringify(params)}`);
