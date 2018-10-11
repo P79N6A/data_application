@@ -1,3 +1,8 @@
+src/pages/.umi/下的文件为自动生成的配置文件，修改无效，请到config文件夹下修改
+插件配置/路由配置/其他配置在config文件夹
+配置参考https://umijs.org/zh/config/#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE
+app.js为打包上线运行的node入口
+models可以配置为全局/页面级，推荐配置为页面级，方便迁移
 
 ## 特性
 

@@ -14,7 +14,7 @@ export default {
       const response = yield call(apiList, payload);
       yield put({
         type: 'save',
-        payload: response,
+        payload: response.list ? response : response.data,
       });
     },
 

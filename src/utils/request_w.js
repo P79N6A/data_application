@@ -2,7 +2,7 @@ import fetch from 'dva/fetch';
 /* import fetchjsonp from 'fetch-jsonp' */
 import axios from 'axios';
 import { getCookie } from './utils';
-import config from '../../config';
+import config from '../../config/config.json';
 
 // 自定义返回信息
 const codeMessage = {

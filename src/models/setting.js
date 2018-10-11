@@ -1,6 +1,6 @@
 import { message } from 'antd';
 import defaultSettings from '../defaultSettings';
-import config from '../../config';
+import config from '../../config/config.json';
 
 window.SysConfig = config;
 
