@@ -21,7 +21,7 @@ class Login extends Component {
     defaultActiveKey: '',
     onTabChange: () => {},
     onSubmit: () => {
-    },
+    }
   };
 
   constructor(props) {

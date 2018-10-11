@@ -13,7 +13,7 @@ const routerData = {
   },
   '/userinfo/:id/addr': {
     name: '收货订单',
-  },
+  }
 };
 describe('test getBreadcrumb', () => {
   it('Simple url', () => {

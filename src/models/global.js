@@ -10,6 +10,8 @@ export default {
   },
 
   effects: {
+
+    // 获取消息提示
     *fetchNotices(_, { call, put }) {
       const data = yield call(queryNotices);
       yield put({
@@ -21,6 +23,8 @@ export default {
         payload: data.length,
       });
     },
+
+    // 清空消息
     *clearNotices({ payload }, { put, select }) {
       yield put({
         type: 'saveClearedNotices',
@@ -33,6 +37,7 @@ export default {
       });
     },
 
+    // 函数式地址跳转
     * toLocation({ payload }, { put }) {
       yield put(routerRedux.push(payload));
     },

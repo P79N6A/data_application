@@ -6,8 +6,6 @@ import {
   Icon,
   Col,
   Row,
-  DatePicker,
-  TimePicker,
   Input,
   Select,
   Popover,
@@ -17,6 +15,9 @@ import { connect } from 'dva';
 import FooterToolbar from '@/components/Global/FooterToolbar';
 import TableForm from './TableForm';
 import styles from './style.less';
+import DefaultTreeSelect from '@/components/DataResource/DefaultTreeSelect';
+import AutoInput from '@/components/DataResource/AutoInput';
+
 
 const TreeNode = TreeSelect.TreeNode;
 
@@ -222,8 +223,8 @@ class AdvancedForm extends PureComponent {
               >
                 <Form.Item label={fieldLabels.apiName}>
                   {getFieldDecorator('apiName', {
-                    rules: [{ required: true, message: '请输入接口名称' }],
-                  })(<Input placeholder="请输入接口名称"/>)}
+                    // rules: [{ required: true, message: '请输入接口名称' }]
+                  })(<Input/>)}
                 </Form.Item>
               </Col>
               <Col lg={{ span: 8 }}
@@ -235,44 +236,7 @@ class AdvancedForm extends PureComponent {
                   {getFieldDecorator('apiMenu', {
                     rules: [{ required: true, message: '请选择目录' }],
                   })(
-                    <TreeSelect
-                      allowClear
-                      dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
-                      onChange={this.onChange}
-                      placeholder="Please select"
-                      showSearch
-                      style={{ width: 300 }}
-                      treeDefaultExpandAll
-                      // value={this.state.value}
-                    >
-                      <TreeNode key="0-1"
-                                title="重庆市"
-                                value="parent 1"
-                      >
-                        <TreeNode key="0-1-1"
-                                  title="学校"
-                                  value="parent 1-0"
-                        >
-                          <TreeNode key="random"
-                                    title="重庆大学"
-                                    value="leaf1"
-                          />
-                          <TreeNode key="random1"
-                                    title="重庆邮电大学"
-                                    value="leaf2"
-                          />
-                        </TreeNode>
-                        <TreeNode key="random2"
-                                  title="政府机构"
-                                  value="parent 1-1"
-                        >
-                          <TreeNode key="random3"
-                                    title={<b style={{ color: '#08c' }}>两江公安局</b>}
-                                    value="sss"
-                          />
-                        </TreeNode>
-                      </TreeNode>
-                    </TreeSelect>,
+                    <DefaultTreeSelect/>,
                   )}
                 </Form.Item>
               </Col>
@@ -360,10 +324,10 @@ class AdvancedForm extends PureComponent {
                   )}
                 </Form.Item>
               </Col>
-              <Col lg={{ span: 10 }}
-                   md={{ span: 24 }}
+              <Col lg={{ span: 8 }}
+                   md={{ span: 12 }}
                    sm={24}
-                   xl={{ span: 8, offset: 2 }}
+                   xl={{ span: 6, offset: 2 }}
               >
                 <Form.Item label={fieldLabels.requestType}>
                   {getFieldDecorator('requestType', {

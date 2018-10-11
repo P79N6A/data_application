@@ -113,7 +113,8 @@ class TimelineChart extends React.Component {
                  forceFit
                  height={height}
                  padding={padding}
-                 scale={cols}>
+                 scale={cols}
+          >
             <Axis name="x" />
             <Tooltip />
             <Legend name="key"
@@ -122,7 +123,8 @@ class TimelineChart extends React.Component {
             <Geom color="key"
                   position="x*value"
                   size={borderWidth}
-                  type="line"/>
+                  type="line"
+            />
           </Chart>
           <div style={{ marginRight: -20 }}>
             <SliderGen />

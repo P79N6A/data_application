@@ -27,7 +27,7 @@ export default class HeaderSearch extends PureComponent {
     dataSource: [],
     defaultOpen: false,
     onVisibleChange: () => {
-    },
+    }
   };
 
   static getDerivedStateFromProps(props) {
@@ -117,22 +117,24 @@ export default class HeaderSearch extends PureComponent {
           }
         }}
       >
-        <Icon type="search" key="Icon"/>
+        <Icon key="Icon"
+              type="search"
+        />
         <AutoComplete
           key="AutoComplete"
           {...restProps}
           className={inputClass}
-          value={value}
           onChange={this.onChange}
+          value={value}
         >
           <Input
+            aria-label={placeholder}
+            onBlur={this.leaveSearchMode}
+            onKeyDown={this.onKeyDown}
+            placeholder={placeholder}
             ref={node => {
               this.input = node;
             }}
-            aria-label={placeholder}
-            placeholder={placeholder}
-            onKeyDown={this.onKeyDown}
-            onBlur={this.leaveSearchMode}
           />
         </AutoComplete>
       </span>

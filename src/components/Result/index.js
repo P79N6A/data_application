@@ -20,7 +20,7 @@ export default function Result({
     success: <Icon className={styles.success}
                    theme="filled"
                    type="check-circle"
-    />,
+    />
   };
   const clsString = classNames(styles.result, className);
   return (

@@ -147,7 +147,6 @@ export default function request(url, options = {}) {
     // no-referrer, client, 或一个 URL
     referrer: 'client',
   };
-
   // mock数据处理
   if (url.includes('mock') || url.includes('apizza')) {
     delete options.headers;

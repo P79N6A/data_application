@@ -30,18 +30,18 @@ class ApiChart extends Component {
           label: {
             normal: {
               position: 'inner',
-            },
+            }
           },
           labelLine: {
             normal: {
               show: false,
-            },
+            }
           },
           data: [
             { value: 8, name: '未启用', selected: true },
             { value: 20, name: '已启用' },
             { value: 5, name: '发布中' },
-          ],
+          ]
         },
 
         {
@@ -77,9 +77,9 @@ class ApiChart extends Component {
                   backgroundColor: '#334455',
                   padding: [2, 4],
                   borderRadius: 2,
-                },
-              },
-            },
+                }
+              }
+            }
           },
           data: [
             { value: 3, name: '危险物识别' },
@@ -87,9 +87,9 @@ class ApiChart extends Component {
             { value: 8, name: '图像识别' },
             { value: 7, name: '快递检测' },
             { value: 5, name: '顺风车安全' },
-          ],
-        },
-      ],
+          ]
+        }
+      ]
     };
     apiChart.setOption(option);
   }

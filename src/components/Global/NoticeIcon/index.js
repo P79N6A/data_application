@@ -43,21 +43,27 @@ export default class NoticeIcon extends PureComponent {
           ? `${child.props.title} (${child.props.list.length})`
           : child.props.title;
       return (
-        <TabPane tab={title} key={child.props.title}>
+        <TabPane key={child.props.title}
+                 tab={title}
+        >
           <List
             {...child.props}
             data={child.props.list}
-            onClick={item => this.onItemClick(item, child.props)}
-            onClear={() => onClear(child.props.title)}
-            title={child.props.title}
             locale={locale}
+            onClear={() => onClear(child.props.title)}
+            onClick={item => this.onItemClick(item, child.props)}
+            title={child.props.title}
           />
         </TabPane>
       );
     });
     return (
-      <Spin spinning={loading} delay={0}>
-        <Tabs className={styles.tabs} onChange={this.onTabChange}>
+      <Spin delay={0}
+            spinning={loading}
+      >
+        <Tabs className={styles.tabs}
+              onChange={this.onTabChange}
+        >
           {panes}
         </Tabs>
       </Spin>
@@ -68,10 +74,15 @@ export default class NoticeIcon extends PureComponent {
     const { className, count, popupAlign, popupVisible, onPopupVisibleChange, bell } = this.props;
     const noticeButtonClass = classNames(className, styles.noticeButton);
     const notificationBox = this.getNotificationBox();
-    const NoticeBellIcon = bell || <Icon type="bell" className={styles.icon}/>;
+    const NoticeBellIcon = bell || <Icon className={styles.icon}
+                                         type="bell"
+    />;
     const trigger = (
       <span className={noticeButtonClass}>
-        <Badge count={count} style={{ boxShadow: 'none' }} className={styles.badge}>
+        <Badge className={styles.badge}
+               count={count}
+               style={{ boxShadow: 'none' }}
+        >
           {NoticeBellIcon}
         </Badge>
       </span>
@@ -85,13 +96,13 @@ export default class NoticeIcon extends PureComponent {
     }
     return (
       <Popover
-        placement="bottomRight"
+        arrowPointAtCenter
         content={notificationBox}
+        onVisibleChange={onPopupVisibleChange}
+        placement="bottomRight"
+        popupAlign={popupAlign}
         popupClassName={styles.popover}
         trigger="click"
-        arrowPointAtCenter
-        popupAlign={popupAlign}
-        onVisibleChange={onPopupVisibleChange}
         {...popoverProps}
       >
         {trigger}
