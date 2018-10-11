@@ -1,6 +1,7 @@
 import React, { PureComponent, Fragment } from 'react';
 import { Table, Alert } from 'antd';
 import styles from './index.less';
+import PropTypes from 'prop-types';
 
 function initTotalList(columns) {
   const totalList = [];
@@ -73,20 +74,20 @@ class StandardTable extends PureComponent {
       loading,
       columns,
       rowKey,
+      showSizeChanger,
     } = this.props;
 
     const paginationProps = {
-      showSizeChanger: this.props.showSizeChanger,
+      showSizeChanger: showSizeChanger,
       showQuickJumper: true,
       ...pagination,
     };
-
     const rowSelection = {
       selectedRowKeys,
       onChange: this.handleRowSelectChange,
       getCheckboxProps: record => ({
         disabled: record.disabled,
-      }),
+      })
     };
 
     return (
@@ -122,15 +123,23 @@ class StandardTable extends PureComponent {
           columns={columns}
           dataSource={list}
           // loading={loading}
+          expandedRowRender={this.showTableInfo}
           onChange={this.handleTableChange}
           pagination={paginationProps}
           rowKey={rowKey || 'key'}
-          expandedRowRender={this.showTableInfo}
           rowSelection={rowSelection}
         />
       </div>
     );
   }
 }
+
+StandardTable.propTypes = {
+  showSizeChanger: PropTypes.bool,
+  list: PropTypes.array,
+  pagination: PropTypes.object,
+  columns: PropTypes.array,
+  loading: PropTypes.object,
+};
 
 export default StandardTable;

@@ -1,9 +1,7 @@
 import ApiChart from '../../../components/Echarts/ApiChart';
 import React, { PureComponent } from 'react';
 import { Row, Col, Card, Tooltip } from 'antd';
-import { Pie, WaterWave, Gauge, TagCloud } from '@/components/Charts';
-import ActiveChart from '@/components/Global/ActiveChart';
-import GridContent from '@/components/Global/PageHeaderWrapper/GridContent';
+import { Gauge } from '@/components/Charts';
 import styles from './Monitor.less';
 import LineHZ from './LineHZ';
 import BarHZ from './BarHZ';
@@ -52,8 +50,6 @@ class MonitorApi extends React.Component {
           </Card>
         </Col>
       </Row>
-
-
     );
   }
 }

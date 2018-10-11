@@ -14,12 +14,10 @@ import {
   Menu,
   DatePicker,
   Badge,
-  Radio,
-  TreeSelect,
 } from 'antd';
 import StandardTable from '@/components//DataResource/StandardTable';
 import { Link } from 'dva/router';
-
+import PropTypes from 'prop-types';
 import styles from './TableList.less';
 
 const FormItem = Form.Item;
@@ -78,6 +76,7 @@ class TableList extends PureComponent {
     searchText: '',
   };
 
+  // 初始化表格数据
   componentDidMount() {
     this.props.dispatch({
       type: 'apiResource/getApiList',
@@ -501,5 +500,10 @@ class TableList extends PureComponent {
     );
   }
 }
+
+TableList.propTypes = {
+  loading: PropTypes.object,
+  data: PropTypes.object,
+};
 
 export default TableList;
