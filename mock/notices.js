@@ -75,7 +75,7 @@ const getNotices = (req, res) =>
       extra: '待修改',
       status: 'urgent',
       type: '待办',
-    }, /*
+    } /*
     {
       id: '000000011',
       title: '信息安全考试',

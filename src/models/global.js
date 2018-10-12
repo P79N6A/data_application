@@ -40,7 +40,7 @@ export default {
     // 函数式地址跳转
     * toLocation({ payload }, { put }) {
       yield put(routerRedux.push(payload));
-    },
+    }
   },
 
   reducers: {

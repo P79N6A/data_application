@@ -21,59 +21,6 @@ import AutoInput from '@/components/DataResource/AutoInput';
 
 const TreeNode = TreeSelect.TreeNode;
 
-class Demo extends React.Component {
-  state = {
-    value: undefined,
-  };
-
-  onChange = (value) => {
-    this.setState({ value });
-  };
-
-  render() {
-    return (
-      <TreeSelect
-        allowClear
-        dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
-        onChange={this.onChange}
-        placeholder="Please select"
-        showSearch
-        style={{ width: 300 }}
-        treeDefaultExpandAll
-        value={this.state.value}
-      >
-        <TreeNode key="0-1"
-                  title="parent 1"
-                  value="parent 1"
-        >
-          <TreeNode key="0-1-1"
-                    title="parent 1-0"
-                    value="parent 1-0"
-          >
-            <TreeNode key="random"
-                      title="my leaf"
-                      value="leaf1"
-            />
-            <TreeNode key="random1"
-                      title="your leaf"
-                      value="leaf2"
-            />
-          </TreeNode>
-          <TreeNode key="random2"
-                    title="parent 1-1"
-                    value="parent 1-1"
-          >
-            <TreeNode key="random3"
-                      title={<b style={{ color: '#08c' }}>sss</b>}
-                      value="sss"
-            />
-          </TreeNode>
-        </TreeNode>
-      </TreeSelect>
-    );
-  }
-}
-
 const { Option } = Select;
 
 const fieldLabels = {
@@ -103,6 +50,12 @@ const tableData = [
 }))
 @Form.create()
 class AdvancedForm extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.getAutoInputValue = this.getAutoInputValue.bind(this);
+    this.getErrorInfo = this.getErrorInfo.bind(this);
+  }
+
   state = {
     width: '100%',
   };
@@ -162,6 +115,10 @@ class AdvancedForm extends PureComponent {
       </span>
     );
   };
+
+  getAutoInputValue(e) {
+    return '8888';
+  }
 
   resizeFooterToolbar = () => {
     requestAnimationFrame(() => {
@@ -223,7 +180,10 @@ class AdvancedForm extends PureComponent {
               >
                 <Form.Item label={fieldLabels.apiName}>
                   {getFieldDecorator('apiName', {
-                    // rules: [{ required: true, message: '请输入接口名称' }]
+                    rules: [{ required: true, message: '请输入接口名称' }],
+                    // 表单控件输入值
+                    // getValueFromEvent:this.getAutoInputValue,
+                    // trigger:'onSelect'
                   })(<Input/>)}
                 </Form.Item>
               </Col>

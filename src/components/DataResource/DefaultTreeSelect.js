@@ -34,16 +34,16 @@ class DefaultTreeSelect extends Component {
             title: '学校', value: 'sc', children: [
               { title: '学校1', value: 's1' },
               { title: '学校2', value: 's2' },
-            ],
+            ]
           },
           {
             title: '政府机构', value: 'cg', children: [
               { title: '机构1', value: 'c1' },
               { title: '机构2', value: 'c2' },
-            ],
-          },
-        ],
-      },
+            ]
+          }
+        ]
+      }
     ];
 
     let {

@@ -151,7 +151,12 @@ export default function request(url, options = {}) {
   if (url.includes('mock') || url.includes('apizza')) {
     delete options.headers;
     delete defReq.headers;
-    return axios.get(url);
+    // 支持自定义请求/简单请求
+    return axios({
+      method: options.method ? options.method : 'GET',
+      url: url,
+      data: options.body ? options.body : null,
+    });
   }
 
   url = getApiUrl(url);

@@ -19,7 +19,8 @@
     "generate-mock": "node ./scripts/generateMock.js",
     "test:component": "umi test ./src/components",
     "test:all": "node ./tests/run-tests.js",
-    "prettier": "prettier --write ./src/**/**/**/*"
+    "prettier": "prettier --write ./src/**/**/**/*",
+    "server": " umi build node app.js"
   },
   "dependencies": {
     "@antv/data-set": "^0.9.6",

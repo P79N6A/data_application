@@ -82,7 +82,7 @@ function postRuleAdd(req, res, u, b) {
     list: datas.tableListDataSource,
     pagination: {
       total: datas.tableListDataSource.length,
-    },
+    }
   };
 
   return res.json(result);

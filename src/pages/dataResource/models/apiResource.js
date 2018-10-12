@@ -81,7 +81,7 @@ export default {
       }
 
       if (callback) callback();
-    },
+    }
   },
 
   reducers: {

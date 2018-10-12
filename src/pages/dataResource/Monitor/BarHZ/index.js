@@ -19,13 +19,15 @@ class BarHZ extends Component {
         name: '总量',
         type: 'bar',
         data: yAxis,
-      }],
+      }]
     });
   }
 
   render() {
     return (
-      <div id="bar-hz" style={{ width: '100%', height: '250px' }}></div>
+      <div id="bar-hz"
+           style={{ width: '100%', height: '250px' }}
+      ></div>
     );
   }
 }

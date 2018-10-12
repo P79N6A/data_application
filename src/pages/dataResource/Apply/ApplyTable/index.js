@@ -49,8 +49,8 @@ class ApprovalTable extends Component {
                 ><a>撤回</a></Button>
               </Popconfirm>
             </div>
-          ),
-        },
+          )
+        }
       ],
       pagination: {
         total: 50,
@@ -59,8 +59,8 @@ class ApprovalTable extends Component {
         showQuickJumper: true,
         onChange: (page) => {
           console.log(page);
-        },
-      },
+        }
+      }
     };
   }
 

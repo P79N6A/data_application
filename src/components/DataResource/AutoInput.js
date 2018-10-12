@@ -1,4 +1,4 @@
-import { AutoComplete } from 'antd';
+import { AutoComplete, Input } from 'antd';
 import React from 'react';
 
 function onSelect(value) {
@@ -16,7 +16,7 @@ class AutoInput extends React.Component {
         value,
         value + value,
         value + value + value,
-      ],
+      ]
     });
   };
 
@@ -24,11 +24,12 @@ class AutoInput extends React.Component {
     const { dataSource } = this.state;
     return (
       <AutoComplete
+        children={Input}
         dataSource={dataSource}
         onSearch={this.handleSearch}
         onSelect={onSelect}
+        // style={{ width: 200 }}
         placeholder="input here"
-        style={{ width: 200 }}
       />
     );
   }
