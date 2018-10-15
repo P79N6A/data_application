@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Row, Col, Button, Select } from 'antd';
+import { Form, Row, Col, Button, Select, DatePicker } from 'antd';
 import PropTypes from 'prop-types';
 import styles from './index.less';
 const Option = Select.Option;
@@ -13,26 +13,56 @@ class ApprovalSearch extends Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        this.props.Search(values);
+        // 处理时间
+        let { beginDate, endDate } = values
+        let times = {
+          beginDate: beginDate ? beginDate.format('YYYY-MM-DD HH:mm:ss') : null,
+          endDate: endDate ? endDate.format('YYYY-MM-DD HH:mm:ss') : null 
+        }
+        this.props.Search({...values, ...times});
       }
     });
   }
   render() {
     const { getFieldDecorator } = this.props.form;
+    const config = {
+      rules: [{ type: 'object'}]
+    }
     return (
       <Form onSubmit={this.handleSearch}>
         <Row gutter={24}>
-          <Col span={6}>
+          <Col span={5}>
             <FormItem className={styles['ant-form-items']}
-                label="服务类型"
+                label="申请类型"
             >
               {
-                getFieldDecorator('services')(
-                  <Select placeholder="请输入服务类型"
+                getFieldDecorator('applyType', {
+                  initialValue: '0'
+                })(
+                  <Select
                       style={{ width: 140 }}
                   >
-                    <Option value="0">视频监控</Option>
-                    <Option value="1">人脸识别</Option>
+                    <Option value="0">接口发布</Option>
+                    <Option value="1">接口使用</Option>
+                  </Select>,
+                )
+              }
+            </FormItem>
+          </Col>
+          <Col span={5}>
+            <FormItem className={styles['ant-form-items']}
+                label="状态"
+            >
+              {
+                getFieldDecorator('status', {
+                  initialValue: '0'
+                })(
+                  <Select
+                      style={{ width: 140 }}
+                  >
+                    <Option value="0">审批中</Option>
+                    <Option value="1">已审批</Option>
+                    <Option value="2">驳回</Option>
                   </Select>,
                 )
               }
@@ -40,29 +70,25 @@ class ApprovalSearch extends Component {
           </Col>
           <Col span={6}>
             <FormItem className={styles['ant-form-items']}
-                label="申请人"
+                label="开始时间"
             >
-              {getFieldDecorator('username')(
-                <Input autoComplete="off"
-                    placeholder="请输入用户名"
-                />,
+              {getFieldDecorator('beginDate', config)(
+                <DatePicker format="YYYY-MM-DD HH:mm:ss" showTime />
               )}
             </FormItem>
           </Col>
           <Col span={6}>
             <FormItem className={styles['ant-form-items']}
-                label="接口名"
+                label="结束时间"
             >
               {
-                getFieldDecorator('interface')(
-                  <Input autoComplete="off"
-                      placeholder="请输入接口名"
-                  />,
+                getFieldDecorator('endDate', config)(
+                  <DatePicker format="YYYY-MM-DD HH:mm:ss" showTime />
                 )
               }
             </FormItem>
           </Col>
-          <Col span={6}>
+          <Col span={2}>
             <Button htmlType="submit"
                 type="primary"
             >

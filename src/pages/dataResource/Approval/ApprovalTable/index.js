@@ -60,8 +60,14 @@ class ApprovalTable extends Component {
         defaultCurrent: 1,
         pageSize: 10,
         showQuickJumper: true,
-        onChange: (page) => {
-          console.log(page)
+        onChange: (pageIndex, pageSize) => {
+          let pageParam = {
+            pageIndex,
+            pageSize,
+            orderFiled: '',
+            orderRule: ''
+          }
+          this.props.Search({pageParam})
         }
       }
     };
