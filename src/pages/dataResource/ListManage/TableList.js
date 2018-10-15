@@ -86,13 +86,13 @@ class TableList extends PureComponent {
   columns = [
     {
       title: '接口名称',
-      dataIndex: 'apiName',
-      key: 'apiName',
+      dataIndex: 'interfaceName',
+      key: 'interfaceName',
     },
     {
       title: '描述',
-      dataIndex: 'apiDesc',
-      key: 'apiDesc',
+      dataIndex: 'interfaceDesc',
+      key: 'interfaceDesc',
     },
     {
       title: '服务名称',
@@ -101,8 +101,8 @@ class TableList extends PureComponent {
     },
     {
       title: '状态',
-      dataIndex: 'apiState',
-      key: 'apiState',
+      dataIndex: 'status',
+      key: 'status',
       filters: [
         {
           text: status[0],
