@@ -50,14 +50,18 @@ function parseResponse(response) {
 
 // 获取api接口地址
 function getApiUrl(url) {
-  if (window.SysConfig) {
+  if (url.includes('http')) {
+    return url;
+
+  } else if (window.SysConfig) {
     return window.SysConfig.development.apiOrigin + url;
+
   } else if (config.development) {
     return config.development.apiOrigin + url;
+
   }
   return url;
 }
-
 
 // 处理错误码
 function checkStatus(response) {
@@ -75,8 +79,10 @@ function initOptions(defReq, options) {
   if (!options) return defReq;
 
   if (options.body && typeof options.body === 'string') {
-    options.body = JSON.parse(options.body);
     defReq.body = options.body;
+    delete options.body;
+  } else if (options.body && typeof options.body === 'object') {
+    defReq.body = JSON.stringify((options.body));
     delete options.body;
   }
 
@@ -91,9 +97,10 @@ function initOptions(defReq, options) {
     delete options.headers;
   }
 
+
   return {
     ...defReq,
-    options,
+    ...options,
   };
 }
 
@@ -103,7 +110,7 @@ function setCookie(defReq) {
   const userName = getCookie('username');
   const user = `usercode:${userCode}&username:${userName}`;
 
-  defReq.headers.append('x-client-ajax', 'data');
+  defReq.headers.append('x-client-ajax', 'data-test');
   defReq.headers.append('Authorization', escape(escape(user)));
   defReq.headers.append(
     'us-app',
@@ -112,7 +119,6 @@ function setCookie(defReq) {
   );
   return defReq;
 }
-
 /**
  * options{
  *     method:请求方式
@@ -131,8 +137,13 @@ export default function request(url, options = {}) {
       // 'Accept-Charset' : 'utf-8',
       Accept:
         'application/json,text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-      // 可选application/x-www-form-urlencoded  multipart/form-data text/plain application/json
-      'Content-Type': 'application/x-www-form-urlencoded', // ; charset=utf-8
+      /**
+       * 可选application/x-www-form-urlencoded  multipart/form-data text/plain application/json
+       必须和body的类型一致
+       'Content-Type': 'application/x-www-form-urlencoded' ; charset=utf-8; 默认表单类型
+       */
+      'Content-Type': 'application/json', //默认json类型
+      // 'Content-Type': 'application/x-www-form-urlencoded ; charset=utf-8', //表单类型
     }),
     // 请求体
     body: null,
@@ -147,6 +158,7 @@ export default function request(url, options = {}) {
     // no-referrer, client, 或一个 URL
     referrer: 'client',
   };
+
   // mock数据处理
   if (url.includes('mock') || url.includes('apizza')) {
     delete options.headers;
@@ -176,7 +188,9 @@ export default function request(url, options = {}) {
     }
     delete options.body;
   }
-  return fetch(url, initOptions(defReq, options))
+
+  let optio = initOptions(defReq, options);
+  return fetch(url, optio)
     .then(checkStatus)
     .then(parseResponse)
     .then(data => ({ data }))

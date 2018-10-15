@@ -1,17 +1,24 @@
-const pm2 = require('pm2');
+import request from '../src/utils/request_w';
 
-pm2.connect(function(err) {
-  if (err) {
-    console.error(err);
-    process.exit(2);
-  }
+let option = {
+  method: 'POST',
+  body: {
+    'catalogId': '1',
+    'serviceName': null,
+    'status': null,
+    'interfaceName': null,
+    'serviceMethodType': null,
+    'beginDate': null,
+    'endDate': null,
+    'pageParam': {
+      'total': 0,
+      'pageIndex': 1,
+      'pageSize': 10,
+      'orderFiled': 'last_update',
+      'orderRule': 'desc',
+    },
+  },
+};
 
-  pm2.start({
-    script: 'app.js',
-  }, (err, apps) => {
-    pm2.disconnect();
-    if (err) {
-      throw err;
-    }
-  });
-});
+let res = request('/api/register/interface/findPage', option);
+console.log(res);

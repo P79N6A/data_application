@@ -21,6 +21,7 @@ export default {
       let res = yield call(login, payload);
       res = res.data;
       let rs = {};
+      debugger;
       if (res['message'] && res.message === '操作成功') {
         rs = {
           currentAuthority: payload.userName,

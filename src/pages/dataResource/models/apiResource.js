@@ -1,20 +1,48 @@
-import { apiList, removeRule, addApi, updateRule, fakeSubmitForm } from '@/services/api';
+import { apiList, removeRule, addApi, apiListJava } from '@/services/api';
 export default {
   namespace: 'apiResource',
 
   state: {
     data: {
-      list: [],
-      pagination: {},
+      data: [],
+      pageParam: {},
     }
   },
 
   effects: {
     * getApiList({ payload }, { call, put, select }) {
       const response = yield call(apiList, payload);
+      // yield put({
+      //   type: 'save',
+      //   payload: response.list ? response : response.data
+      // });
+
+      let option = {
+        method: 'POST',
+        body: {
+          'catalogId': '1',
+          'serviceName': null,
+          'status': null,
+          'interfaceName': null,
+          'serviceMethodType': null,
+          'beginDate': null,
+          'endDate': null,
+          'pageParam': {
+            'total': 0,
+            'pageIndex': 1,
+            'pageSize': 10,
+            'orderFiled': 'last_update',
+            'orderRule': 'desc',
+          },
+        },
+      };
+      let res = yield call(apiListJava, option);
+      if (!res || !res.data) {
+        return;
+      }
       yield put({
         type: 'save',
-        payload: response.list ? response : response.data,
+        payload: res.data.data,
       });
     },
 
