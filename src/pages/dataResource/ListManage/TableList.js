@@ -13,7 +13,7 @@ import {
   Dropdown,
   Menu,
   DatePicker,
-  Badge,
+  Badge
 } from 'antd';
 import StandardTable from '@/components//DataResource/StandardTable';
 import { Link } from 'dva/router';
@@ -73,13 +73,13 @@ class TableList extends PureComponent {
     selectedRows: [],
     formValues: {},
     stepFormValues: {},
-    searchText: '',
+    searchText: ''
   };
 
   // 初始化表格数据
   componentDidMount() {
     this.props.dispatch({
-      type: 'apiResource/getApiList',
+      type: 'apiResource/getApiList'
     });
   }
 
@@ -87,17 +87,17 @@ class TableList extends PureComponent {
     {
       title: '接口名称',
       dataIndex: 'interfaceName',
-      key: 'interfaceName',
+      key: 'interfaceName'
     },
     {
       title: '描述',
       dataIndex: 'interfaceDesc',
-      key: 'interfaceDesc',
+      key: 'interfaceDesc'
     },
     {
       title: '服务名称',
       dataIndex: 'serviceName',
-      key: 'serviceName',
+      key: 'serviceName'
     },
     {
       title: '状态',
@@ -106,27 +106,27 @@ class TableList extends PureComponent {
       filters: [
         {
           text: status[0],
-          value: 0,
+          value: 0
         },
         {
           text: status[1],
-          value: 1,
+          value: 1
         },
         {
           text: status[2],
-          value: 2,
+          value: 2
         },
         {
           text: status[3],
-          value: 3,
+          value: 3
         }
       ],
       onFilter: (value, record) => (this.handleRowFilter(value, record)),
 
       render(val) {
         return <Badge status={statusMap[val]}
-                      text={status[val]}
-        />;
+            text={status[val]}
+               />;
       }
     },
     {
@@ -135,7 +135,7 @@ class TableList extends PureComponent {
       width: 250,
       render: (text, record) => (
         <GetOption {...record}
-                   handleOption={this.handleOption}
+            handleOption={this.handleOption}
         />
       )
     }
@@ -161,7 +161,7 @@ class TableList extends PureComponent {
       currentPage: pagination.current,
       pageSize: pagination.pageSize,
       ...formValues,
-      ...filters,
+      ...filters
     };
     if (sorter.field) {
       params.sorter = `${sorter.field}_${sorter.order}`;
@@ -169,7 +169,7 @@ class TableList extends PureComponent {
 
     dispatch({
       type: 'apiResource/fetch',
-      payload: params,
+      payload: params
     });
   };
 
@@ -189,11 +189,11 @@ class TableList extends PureComponent {
     const { form, dispatch } = this.props;
     form.resetFields();
     this.setState({
-      formValues: {},
+      formValues: {}
     });
     dispatch({
       type: 'apiResource/fetch',
-      payload: {},
+      payload: {}
     });
   };
 
@@ -201,7 +201,7 @@ class TableList extends PureComponent {
   toggleForm = () => {
     const { expandForm } = this.state;
     this.setState({
-      expandForm: !expandForm,
+      expandForm: !expandForm
     });
   };
 
@@ -227,11 +227,11 @@ class TableList extends PureComponent {
         dispatch({
           type: 'apiResource/remove',
           payload: {
-            key: selectedRows.map(row => row.key),
+            key: selectedRows.map(row => row.key)
           },
           callback: () => {
             this.setState({
-              selectedRows: [],
+              selectedRows: []
             });
           }
         });
@@ -243,7 +243,7 @@ class TableList extends PureComponent {
 
   handleSelectRows(rows) {
     this.setState({
-      selectedRows: rows,
+      selectedRows: rows
     });
   }
 
@@ -258,16 +258,16 @@ class TableList extends PureComponent {
 
       const values = {
         ...fieldsValue,
-        updatedAt: fieldsValue.updatedAt && fieldsValue.updatedAt.valueOf(),
+        updatedAt: fieldsValue.updatedAt && fieldsValue.updatedAt.valueOf()
       };
 
       this.setState({
-        formValues: values,
+        formValues: values
       });
 
       dispatch({
         type: 'apiResource/fetch',
-        payload: values,
+        payload: values
       });
     });
   }
@@ -275,34 +275,34 @@ class TableList extends PureComponent {
   // 默认显示搜索框
   renderSimpleForm() {
     const {
-      form: { getFieldDecorator },
+      form: { getFieldDecorator }
     } = this.props;
     return (
       <Form className={styles['search-form']}
-            layout="inline"
-            onSubmit={this.handleSearch}
+          layout="inline"
+          onSubmit={this.handleSearch}
       >
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
           <Col md={8}
-               sm={24}
+              sm={24}
           >
             <FormItem key="apiName"
-                      label="接口名称"
+                label="接口名称"
             >
               {getFieldDecorator('apiName', {
-                initialValue: '',
+                initialValue: ''
               })(<Input style={{ width: '100%' }}/>)}
             </FormItem>,
 
           </Col>
           <Col md={8}
-               sm={24}
+              sm={24}
           >
             <FormItem key="apiState"
-                      label="接口状态"
+                label="接口状态"
             >
               {getFieldDecorator('apiState', {
-                initialValue: '',
+                initialValue: ''
               })(
                 <Select style={{ width: '100%' }}>
                   <Option value="published">已发布</Option>
@@ -313,21 +313,21 @@ class TableList extends PureComponent {
             </FormItem>,
           </Col>
           <Col md={8}
-               sm={24}
+              sm={24}
           >
             <span className={styles.submitButtons}>
               <Button htmlType="submit"
-                      type="primary"
+                  type="primary"
               >
                 查询
               </Button>
               <Button onClick={this.handleFormReset}
-                      style={{ marginLeft: 8 }}
+                  style={{ marginLeft: 8 }}
               >
                 重置
               </Button>
               <a onClick={this.toggleForm}
-                 style={{ marginLeft: 8 }}
+                  style={{ marginLeft: 8 }}
               >
                 展开 <Icon type="down"/>
               </a>
@@ -341,37 +341,37 @@ class TableList extends PureComponent {
   // 展开高级搜索框
   renderAdvancedForm() {
     const {
-      form: { getFieldDecorator },
+      form: { getFieldDecorator }
     } = this.props;
     return (
       <Form className={styles['search-form']}
-            layout="inline"
-            onSubmit={this.handleSearch}
+          layout="inline"
+          onSubmit={this.handleSearch}
       >
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
           <Col md={8}
-               sm={24}
+              sm={24}
           >
             <FormItem key="apiName"
-                      label="接口名称"
+                label="接口名称"
             >
               {getFieldDecorator('apiName', {
-                initialValue: '',
+                initialValue: ''
               })(<Input style={{ width: '100%' }}/>)}
             </FormItem>,
 
           </Col>
           <Col md={8}
-               sm={24}
+              sm={24}
           >
             <FormItem key="apiState2"
-                      label="接口状态"
+                label="接口状态"
             >
               {getFieldDecorator('apiState', {
-                initialValue: '',
+                initialValue: ''
               })(
                 <Select placeholder="请选择"
-                        style={{ width: '100%' }}
+                    style={{ width: '100%' }}
                 >
                   <Option value="published">已发布</Option>
                   <Option value="onProve">审批中</Option>
@@ -381,7 +381,7 @@ class TableList extends PureComponent {
             </FormItem>,
           </Col>
           <Col md={8}
-               sm={24}
+              sm={24}
           >
             <FormItem label="服务名">
               {getFieldDecorator('serviceName')(<Input style={{ width: '100%' }}/>)}
@@ -390,12 +390,12 @@ class TableList extends PureComponent {
         </Row>
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
           <Col md={8}
-               sm={24}
+              sm={24}
           >
             <FormItem label="请求类型">
               {getFieldDecorator('requestType')(
                 <Select placeholder="请选择"
-                        style={{ width: '100%' }}
+                    style={{ width: '100%' }}
                 >
                   <Option value="GET">GET(参数以url发送，安全等级较低)</Option>
                   <Option value="POST">POST(安全等级较高)</Option>
@@ -404,36 +404,36 @@ class TableList extends PureComponent {
             </FormItem>
           </Col>
           <Col md={8}
-               sm={24}
+              sm={24}
           >
             <FormItem label="发布时间">
               {getFieldDecorator('publishTime')(
                 <DatePicker
-                  format="YYYY-MM-DD HH:mm:ss"
-                  placeholder="选择时间点"
-                  showTime
-                  style={{ width: '100%' }}
+                    format="YYYY-MM-DD HH:mm:ss"
+                    placeholder="选择时间点"
+                    showTime
+                    style={{ width: '100%' }}
                 />,
               )}
             </FormItem>
           </Col>
           <Col md={8}
-               sm={24}
+              sm={24}
           >
             <div style={{ overflow: 'hidden' }}>
               <div style={{ float: 'left', marginBottom: 24 }}>
                 <Button htmlType="submit"
-                        type="primary"
+                    type="primary"
                 >
                   查询
                 </Button>
                 <Button onClick={this.handleFormReset}
-                        style={{ marginLeft: 8 }}
+                    style={{ marginLeft: 8 }}
                 >
                   重置
                 </Button>
                 <a onClick={this.toggleForm}
-                   style={{ marginLeft: 8 }}
+                    style={{ marginLeft: 8 }}
                 >
                   收起 <Icon type="up"/>
                 </a>
@@ -453,12 +453,12 @@ class TableList extends PureComponent {
   render() {
     const {
       apiResource: { data },
-      loading,
+      loading
     } = this.props;
     const { selectedRows } = this.state;
     const menu = (
       <Menu onClick={this.handleMenuClick}
-            selectedKeys={[]}
+          selectedKeys={[]}
       >
         <Menu.Item key="remove">删除</Menu.Item>
         <Menu.Item key="approval">批量停用</Menu.Item>
@@ -486,13 +486,13 @@ class TableList extends PureComponent {
               )}
             </div>
             <StandardTable
-              columns={this.columns}
-              data={data}
-              loading={loading}
-              onChange={this.handleStandardTableChange}
-              onSelectRow={this.handleSelectRows}
-              selectedRows={selectedRows}
-              showSizeChanger={false}
+                columns={this.columns}
+                data={data}
+                loading={loading}
+                onChange={this.handleStandardTableChange}
+                onSelectRow={this.handleSelectRows}
+                selectedRows={selectedRows}
+                showSizeChanger={false}
             />
           </div>
         </Card>
@@ -502,8 +502,9 @@ class TableList extends PureComponent {
 }
 
 TableList.propTypes = {
-  loading: PropTypes.object,
-  data: PropTypes.object,
+  data: PropTypes.shape({
+    data: PropTypes.array,
+    pageParam: PropTypes.object
+})
 };
-
 export default TableList;

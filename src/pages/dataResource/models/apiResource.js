@@ -14,12 +14,7 @@ export default {
 
 
   effects: {
-    * getApiList({ payload, callback }, { call, put, select }) {
-      // const response = yield call(apiList, payload);
-      // yield put({
-      //   type: 'save',
-      //   payload: response.list ? response : response.data
-      // });
+    * getApiList({payload, callback }, { call, put, select }) {
 
       let option = {
         method: 'POST',
@@ -37,8 +32,8 @@ export default {
             'pageSize': 10,
             'orderFiled': 'last_update',
             'orderRule': 'desc',
-          },
-        },
+          }
+        }
       };
       message.success('获取数据');
       let res = yield call(apiListJava, option);
