@@ -31,7 +31,7 @@ export default {
             'pageIndex': 1,
             'pageSize': 10,
             'orderFiled': 'last_update',
-            'orderRule': 'desc',
+            'orderRule': 'desc'
           }
         }
       };
