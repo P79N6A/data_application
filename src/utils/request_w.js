@@ -27,20 +27,20 @@ const codeMessage = {
 
 // 解析返回数据
 function parseResponse(response) {
-  if (!response.ok) {
-    throw new Error('Network response was not ok.');
-  }
+  // if (!response.ok) {
+  //   throw new Error('Network response was not ok.');
+  // }
   const resType = response.headers.get('content-type');
   if (resType.includes('json')) {
     return response.json();
   }
   if (resType.includes('text')) {
-    // return response.text();
-    try {
-      return response.json();
-    } catch (e) {
-      return response.text();
-    }
+    return response.text();
+    // try {
+    //   return response.json();
+    // } catch (e) {
+    //   return response.text();
+    // }
   }
   if (resType.includes('jpg' || resType.includes('mp3'))) {
     return response.blob();
@@ -68,6 +68,11 @@ function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
+  const resType = response.headers.get('content-type');
+
+  // if (resType.includes('html')){
+  //    return response ;
+  // }
   const msg = codeMessage[response.status];
   const error = msg ? new Error(msg) : new Error('跨域/网络故障/未知错误...,请检查');
   error.response = response;
@@ -142,7 +147,7 @@ export default function request(url, options = {}) {
        必须和body的类型一致
        'Content-Type': 'application/x-www-form-urlencoded' ; charset=utf-8; 默认表单类型
        */
-      'Content-Type': 'application/json', //默认json类型
+      'Content-Type': 'application/json' //默认json类型
       // 'Content-Type': 'application/x-www-form-urlencoded ; charset=utf-8', //表单类型
     }),
     // 请求体
@@ -194,5 +199,7 @@ export default function request(url, options = {}) {
     .then(checkStatus)
     .then(parseResponse)
     .then(data => ({ data }))
-    .catch(err => err);
+    .catch(err => {
+      return err;
+    });
 }

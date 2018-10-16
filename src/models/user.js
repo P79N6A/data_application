@@ -5,6 +5,7 @@ import { login } from '../services/user';
 import { setAuthority } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
 import { reloadAuthorized } from '@/utils/Authorized';
+import { checkResponse } from '../utils/checkResponse';
 
 
 export default {
@@ -17,30 +18,23 @@ export default {
   },
 
   effects: {
-    * userLogin({ payload }, { call, put }) {
+    * userLogin({ payload, callback }, { call, put }) {
       let res = yield call(login, payload);
-      res = res.data;
-      let rs = {};
-      debugger;
-      if (res['message'] && res.message === '操作成功') {
-        rs = {
-          currentAuthority: payload.userName,
-          status: 'ok',
-          type: 'account',
-        };
-      } else {
-        rs = {
-          currentAuthority: payload.userName,
-          status: 'error',
-          type: 'guest',
-        };
+
+      //登录失败
+      if (!checkResponse(res, callback)) {
+        return;
       }
+      let rs = {
+        currentAuthority: payload.userName,
+        status: 'ok',
+        type: 'account',
+      };
       yield put({
         type: 'changeLoginStatus',
         payload: rs,
       });
       // 登录成功跳转
-      if (res.message === '操作成功') {
         reloadAuthorized();
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
@@ -58,7 +52,6 @@ export default {
           }
         }
         yield put(routerRedux.replace(redirect || '/'));
-      }
     },
 
     * logout(_, { put }) {

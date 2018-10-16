@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Table, Button, Popconfirm} from 'antd';
+import PropTypes from 'prop-types';
+
 class ApprovalTable extends Component {
   constructor(props) {
     super(props)
@@ -80,17 +82,23 @@ class ApprovalTable extends Component {
     console.log('拒绝', info)
   }
   render() {
+    let { approval } = this.props;
     return (
       <div>
         <Table columns={this.state.columns}
-            dataSource={this.props.approval}
-            expandedRowRender={() => (
+               dataSource={approval}
+               expandedRowRender={() => (
               <p>展开详情</p>
             )}
-            pagination={this.state.pagination}
+               pagination={this.state.pagination}
         />
       </div>
     )
   }
 }
+
+ApprovalTable.propTypes = {
+  approval: PropTypes.array,
+};
+
 export default ApprovalTable;

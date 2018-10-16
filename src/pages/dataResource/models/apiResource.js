@@ -1,4 +1,7 @@
 import { apiList, removeRule, addApi, apiListJava } from '@/services/api';
+import { message } from 'antd';
+import { checkResponse } from '../../../utils/checkResponse';
+
 export default {
   namespace: 'apiResource',
 
@@ -9,9 +12,10 @@ export default {
     }
   },
 
+
   effects: {
-    * getApiList({ payload }, { call, put, select }) {
-      const response = yield call(apiList, payload);
+    * getApiList({ payload, callback }, { call, put, select }) {
+      // const response = yield call(apiList, payload);
       // yield put({
       //   type: 'save',
       //   payload: response.list ? response : response.data
@@ -36,14 +40,16 @@ export default {
           },
         },
       };
+      message.success('获取数据');
       let res = yield call(apiListJava, option);
-      if (!res || !res.data) {
-        return;
+
+      if (checkResponse(res, callback)) {
+        yield put({
+          type: 'save',
+          payload: res.data.data,
+        });
       }
-      yield put({
-        type: 'save',
-        payload: res.data.data,
-      });
+
     },
 
     * add({ payload, callback }, { call, put }) {

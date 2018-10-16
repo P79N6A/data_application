@@ -15,8 +15,8 @@ class Approval extends Component {
       pageParam: {
         pageIndex: 1,
         pageSize: 10,
-        orderFiled: '',
-        orderRule: ''
+        orderFiled: 'apply_date',
+        orderRule: 'desc',
       }
     }
   }
