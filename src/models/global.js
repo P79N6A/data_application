@@ -13,10 +13,11 @@ export default {
 
     // 获取消息提示
     *fetchNotices(_, { call, put }) {
-      const data = yield call(queryNotices);
+      let data = yield call(queryNotices);
+      data=data.data;
       yield put({
         type: 'saveNotices',
-        payload: data
+        payload: data.data
       });
       yield put({
         type: 'user/changeNotifyCount',

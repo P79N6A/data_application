@@ -22,8 +22,8 @@ class ApprovalSearch extends Component {
         let pageParam = {
           pageIndex: 1,
           pageSize: 10,
-          orderFiled: '',
-          orderRule: ''
+          orderFiled: 'approve_date',
+          orderRule: 'desc'
         }
         this.props.search({...values, ...times, pageParam});
       }

@@ -18,6 +18,11 @@ export async function addApi(params) {
   });
 }
 
+export async function updateApiStatus(params) {
+  let url=`/api/register/interface/updateStatus?interfaceId=${params.interfaceId}&opType=${params.option}`;
+  return request(url);
+}
+
 export async function queryNotices() {
   return request('/mock/notices/list');
 }

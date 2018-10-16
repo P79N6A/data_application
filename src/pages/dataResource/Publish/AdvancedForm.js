@@ -37,7 +37,7 @@ const tableData = [
 ];
 
 @connect(({ loading }) => ({
-  submitting: loading.effects['apiResource/submitAdvancedForm']
+  submitting: loading.effects['ListManage/submitAdvancedForm']
 }))
 @Form.create()
 class AdvancedForm extends PureComponent {
@@ -133,7 +133,7 @@ class AdvancedForm extends PureComponent {
       if (!error) {
         // 提交数据
         dispatch({
-          type: 'apiResource/saveApi',
+          type: 'ListManage/saveApi',
           payload: values,
           callback:()=>{
             //跳转地址
