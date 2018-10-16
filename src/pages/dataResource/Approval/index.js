@@ -14,13 +14,13 @@ class Approval extends Component {
     this.state = {
       applyType: '0',
       status: '0',
-      beginDate: '',
-      endDate: '',
+      beginDate: null,
+      endDate: null,
       pageParam: {
         pageIndex: 1,
         pageSize: 10,
-        orderFiled: '',
-        orderRule: ''
+        orderFiled: 'approve_date',
+        orderRule: 'desc'
       }
     }
   }
@@ -65,7 +65,7 @@ class Approval extends Component {
             approval={this.props.approval.reseaseList}
             operation={this.operation}
             search={this.search}
-        ></ApprovalTable>>
+        ></ApprovalTable>
       </div>
     );
   }

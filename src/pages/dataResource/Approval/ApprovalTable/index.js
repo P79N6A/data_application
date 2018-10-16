@@ -77,8 +77,8 @@ class ApprovalTable extends Component {
           let pageParam = {
             pageIndex,
             pageSize,
-            orderFiled: '',
-            orderRule: ''
+            orderFiled: 'approve_date',
+            orderRule: 'desc'
           }
           this.props.search({pageParam})
         }
