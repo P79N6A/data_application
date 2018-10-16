@@ -10,10 +10,10 @@ const LoginSubmit = ({ className, ...rest }) => {
   return (
     <FormItem>
       <Button className={clsString}
-              htmlType="submit"
-              size="large"
-              type="primary"
-              {...rest}
+          htmlType="submit"
+          size="large"
+          type="primary"
+          {...rest}
       />
     </FormItem>
   );

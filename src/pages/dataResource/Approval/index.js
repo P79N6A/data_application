@@ -16,7 +16,7 @@ class Approval extends Component {
         pageIndex: 1,
         pageSize: 10,
         orderFiled: 'apply_date',
-        orderRule: 'desc',
+        orderRule: 'desc'
       }
     }
   }
@@ -43,7 +43,9 @@ class Approval extends Component {
     return (
       <div>
         <ApprovalSearch Search={this.Search}/>
-        <ApprovalTable Search={this.Search} approval={this.props.approval.reseaseList}/>
+        <ApprovalTable Search={this.Search}
+            approval={this.props.approval.reseaseList}
+        />
       </div>
     );
   }

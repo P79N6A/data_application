@@ -6,7 +6,7 @@ export default {
   namespace: 'register',
 
   state: {
-    status: undefined,
+    status: undefined
   },
 
   effects: {
@@ -14,7 +14,7 @@ export default {
       const response = yield call(fakeRegister, payload);
       yield put({
         type: 'registerHandle',
-        payload: response,
+        payload: response
       });
     }
   },
@@ -25,7 +25,7 @@ export default {
       reloadAuthorized();
       return {
         ...state,
-        status: payload.status,
+        status: payload.status
       };
     }
   }

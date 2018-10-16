@@ -4,7 +4,7 @@ export default {
   namespace: 'activities',
 
   state: {
-    list: [],
+    list: []
   },
 
   effects: {
@@ -12,7 +12,7 @@ export default {
       const response = yield call(queryActivities);
       yield put({
         type: 'saveList',
-        payload: Array.isArray(response) ? response : [],
+        payload: Array.isArray(response) ? response : []
       });
     }
   },
@@ -21,7 +21,7 @@ export default {
     saveList(state, action) {
       return {
         ...state,
-        list: action.payload,
+        list: action.payload
       };
     }
   }

@@ -86,11 +86,11 @@ class ApprovalTable extends Component {
     return (
       <div>
         <Table columns={this.state.columns}
-               dataSource={approval}
-               expandedRowRender={() => (
+            dataSource={approval}
+            expandedRowRender={() => (
               <p>展开详情</p>
             )}
-               pagination={this.state.pagination}
+            pagination={this.state.pagination}
         />
       </div>
     )
@@ -98,7 +98,7 @@ class ApprovalTable extends Component {
 }
 
 ApprovalTable.propTypes = {
-  approval: PropTypes.array,
+  approval: PropTypes.array
 };
 
 export default ApprovalTable;

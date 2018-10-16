@@ -12,13 +12,13 @@ const { Header } = Layout;
 
 class HeaderView extends PureComponent {
   state = {
-    visible: true,
+    visible: true
   };
 
   static getDerivedStateFromProps(props, state) {
     if (!props.autoHideHeader && !state.visible) {
       return {
-        visible: true,
+        visible: true
       };
     }
     return null;
@@ -46,7 +46,7 @@ class HeaderView extends PureComponent {
     const { dispatch } = this.props;
     dispatch({
       type: 'global/clearNotices',
-      payload: type,
+      payload: type
     });
   };
 
@@ -66,7 +66,7 @@ class HeaderView extends PureComponent {
     }
     if (key === 'logout') {
       dispatch({
-        type: 'user/logout',
+        type: 'user/logout'
       });
     }
   };
@@ -75,7 +75,7 @@ class HeaderView extends PureComponent {
     if (visible) {
       const { dispatch } = this.props;
       dispatch({
-        type: 'global/fetchNotices',
+        type: 'global/fetchNotices'
       });
     }
   };
@@ -91,19 +91,19 @@ class HeaderView extends PureComponent {
       requestAnimationFrame(() => {
         if (this.oldScrollTop > scrollTop) {
           this.setState({
-            visible: true,
+            visible: true
           });
           this.scrollTop = scrollTop;
           return;
         }
         if (scrollTop > 300 && visible) {
           this.setState({
-            visible: false,
+            visible: false
           });
         }
         if (scrollTop < 300 && !visible) {
           this.setState({
-            visible: true,
+            visible: true
           });
         }
         this.oldScrollTop = scrollTop;
@@ -123,35 +123,35 @@ class HeaderView extends PureComponent {
     const HeaderDom = visible ? (
       // 菜单可见
       <Header className={fixedHeader ? styles.fixedHeader : ''}
-              style={{ padding: 0, width }}
+          style={{ padding: 0, width }}
       >
         {isTop && !isMobile ? (
           //顶部菜单模式或者移动设备
           <TopNavHeader
-            Authorized={Authorized}
-            mode="horizontal"
-            onCollapse={handleMenuCollapse}
-            onMenuClick={this.handleMenuClick}
-            onNoticeClear={this.handleNoticeClear}
-            onNoticeVisibleChange={this.handleNoticeVisibleChange}
-            theme={navTheme}
-            {...this.props}
+              Authorized={Authorized}
+              mode="horizontal"
+              onCollapse={handleMenuCollapse}
+              onMenuClick={this.handleMenuClick}
+              onNoticeClear={this.handleNoticeClear}
+              onNoticeVisibleChange={this.handleNoticeVisibleChange}
+              theme={navTheme}
+              {...this.props}
           />
         ) : (
           //普通模式菜单
           <GlobalHeader
-            onCollapse={handleMenuCollapse}
-            onMenuClick={this.handleMenuClick}
-            onNoticeClear={this.handleNoticeClear}
-            onNoticeVisibleChange={this.handleNoticeVisibleChange}
-            {...this.props}
+              onCollapse={handleMenuCollapse}
+              onMenuClick={this.handleMenuClick}
+              onNoticeClear={this.handleNoticeClear}
+              onNoticeVisibleChange={this.handleNoticeVisibleChange}
+              {...this.props}
           />
         )}
       </Header>
     ) : null;
     return (
       <Animate component=""
-               transitionName="fade"
+          transitionName="fade"
       >
         {HeaderDom}
       </Animate>
@@ -164,5 +164,5 @@ export default connect(({ user, global, setting, loading }) => ({
   collapsed: global.collapsed,
   fetchingNotices: loading.effects['global/fetchNotices'],
   notices: global.notices,
-  setting,
+  setting
 }))(HeaderView);

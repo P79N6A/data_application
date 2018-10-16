@@ -15,7 +15,7 @@ export default class HeaderSearch extends PureComponent {
     defaultActiveFirstOption: PropTypes.bool,
     dataSource: PropTypes.array,
     defaultOpen: PropTypes.bool,
-    onVisibleChange: PropTypes.func,
+    onVisibleChange: PropTypes.func
   };
 
   static defaultProps = {
@@ -33,7 +33,7 @@ export default class HeaderSearch extends PureComponent {
   static getDerivedStateFromProps(props) {
     if ('open' in props) {
       return {
-        searchMode: props.open,
+        searchMode: props.open
       };
     }
     return null;
@@ -43,7 +43,7 @@ export default class HeaderSearch extends PureComponent {
     super(props);
     this.state = {
       searchMode: props.defaultOpen,
-      value: '',
+      value: ''
     };
   }
 
@@ -83,7 +83,7 @@ export default class HeaderSearch extends PureComponent {
   leaveSearchMode = () => {
     this.setState({
       searchMode: false,
-      value: '',
+      value: ''
     });
   };
 
@@ -91,7 +91,7 @@ export default class HeaderSearch extends PureComponent {
   @Bind()
   @Debounce(500, {
     leading: true,
-    trailing: false,
+    trailing: false
   })
   debouncePressEnter() {
     const { onPressEnter } = this.props;
@@ -104,13 +104,13 @@ export default class HeaderSearch extends PureComponent {
     const { searchMode, value } = this.state;
     delete restProps.defaultOpen; // for rc-select not affected
     const inputClass = classNames(styles.input, {
-      [styles.show]: searchMode,
+      [styles.show]: searchMode
     });
     return (
       <span
-        className={classNames(className, styles.headerSearch)}
-        onClick={this.enterSearchMode}
-        onTransitionEnd={({ propertyName }) => {
+          className={classNames(className, styles.headerSearch)}
+          onClick={this.enterSearchMode}
+          onTransitionEnd={({ propertyName }) => {
           if (propertyName === 'width' && !searchMode) {
             const { onVisibleChange } = this.props;
             onVisibleChange(searchMode);
@@ -118,21 +118,21 @@ export default class HeaderSearch extends PureComponent {
         }}
       >
         <Icon key="Icon"
-              type="search"
+            type="search"
         />
         <AutoComplete
-          key="AutoComplete"
-          {...restProps}
-          className={inputClass}
-          onChange={this.onChange}
-          value={value}
+            key="AutoComplete"
+            {...restProps}
+            className={inputClass}
+            onChange={this.onChange}
+            value={value}
         >
           <Input
-            aria-label={placeholder}
-            onBlur={this.leaveSearchMode}
-            onKeyDown={this.onKeyDown}
-            placeholder={placeholder}
-            ref={node => {
+              aria-label={placeholder}
+              onBlur={this.leaveSearchMode}
+              onKeyDown={this.onKeyDown}
+              placeholder={placeholder}
+              ref={node => {
               this.input = node;
             }}
           />

@@ -9,13 +9,13 @@ const FormItem = Form.Item;
 
 class WarpFormItem extends Component {
   static defaultProps = {
-    buttonText: '获取验证码',
+    buttonText: '获取验证码'
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      count: 0,
+      count: 0
     };
   }
 
@@ -45,7 +45,7 @@ class WarpFormItem extends Component {
 
   getFormItemOptions = ({ onChange, defaultValue, customprops, rules }) => {
     const options = {
-      rules: rules || customprops.rules,
+      rules: rules || customprops.rules
     };
     if (onChange) {
       options.onChange = onChange;
@@ -73,7 +73,7 @@ class WarpFormItem extends Component {
     const { count } = this.state;
 
     const {
-      form: { getFieldDecorator },
+      form: { getFieldDecorator }
     } = this.props;
 
     // 这么写是为了防止restProps中 带入 onChange, defaultValue, rules props
@@ -100,15 +100,15 @@ class WarpFormItem extends Component {
           <Row gutter={8}>
             <Col span={16}>
               {getFieldDecorator(name, options)(<Input {...customprops}
-                                                       {...inputProps}
-              />)}
+                  {...inputProps}
+                                                />)}
             </Col>
             <Col span={8}>
               <Button
-                className={styles.getCaptcha}
-                disabled={count}
-                onClick={this.onGetCaptcha}
-                size="large"
+                  className={styles.getCaptcha}
+                  disabled={count}
+                  onClick={this.onGetCaptcha}
+                  size="large"
               >
                 {count ? `${count} s` : buttonText}
               </Button>
@@ -120,8 +120,8 @@ class WarpFormItem extends Component {
     return (
       <FormItem>
         {getFieldDecorator(name, options)(<Input {...customprops}
-                                                 {...otherProps}
-        />)}
+            {...otherProps}
+                                          />)}
       </FormItem>
     );
   }
@@ -134,12 +134,12 @@ Object.keys(ItemMap).forEach(key => {
     <LoginContext.Consumer>
       {context => (
         <WarpFormItem
-          customprops={item.props}
-          {...props}
-          form={context.form}
-          rules={item.rules}
-          type={key}
-          updateActive={context.updateActive}
+            customprops={item.props}
+            {...props}
+            form={context.form}
+            rules={item.rules}
+            type={key}
+            updateActive={context.updateActive}
         />
       )}
     </LoginContext.Consumer>

@@ -19,7 +19,7 @@ const codeMessage = {
   500: '服务器发生错误，请检查服务器。',
   502: '网关错误。',
   503: '服务不可用，服务器暂时过载或维护。',
-  504: '网关超时。',
+  504: '网关超时。'
 };
 
 const checkStatus = response => {
@@ -29,7 +29,7 @@ const checkStatus = response => {
   const errortext = codeMessage[response.status] || response.statusText;
   notification.error({
     message: `请求错误 ${response.status}: ${response.url}`,
-    description: errortext,
+    description: errortext
   });
   const error = new Error(errortext);
   error.name = response.status;
@@ -66,7 +66,7 @@ const cachedSave = (response, hashcode) => {
 export default function request(
   url,
   options = {
-    expirys: isAntdPro(),
+    expirys: isAntdPro()
   }
 ) {
   /**
@@ -80,7 +80,7 @@ export default function request(
     .digest('hex');
 
   const defaultOptions = {
-    credentials: 'include',
+    credentials: 'include'
   };
   const newOptions = { ...defaultOptions, ...options };
   if (
@@ -92,14 +92,14 @@ export default function request(
       newOptions.headers = {
         Accept: 'application/json',
         'Content-Type': 'application/json; charset=utf-8',
-        ...newOptions.headers,
+        ...newOptions.headers
       };
       newOptions.body = JSON.stringify(newOptions.body);
     } else {
       // newOptions.body is FormData
       newOptions.headers = {
         Accept: 'application/json',
-        ...newOptions.headers,
+        ...newOptions.headers
       };
     }
   }
@@ -136,7 +136,7 @@ export default function request(
         // @HACK
         /* eslint-disable no-underscore-dangle */
         window.g_app._store.dispatch({
-          type: 'user/logout',
+          type: 'user/logout'
         });
         return;
       }

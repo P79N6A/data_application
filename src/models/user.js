@@ -14,7 +14,7 @@ export default {
   state: {
     status: undefined,
     list: [],
-    currentUser: {},
+    currentUser: {}
   },
 
   effects: {
@@ -28,11 +28,11 @@ export default {
       let rs = {
         currentAuthority: payload.userName,
         status: 'ok',
-        type: 'account',
+        type: 'account'
       };
       yield put({
         type: 'changeLoginStatus',
-        payload: rs,
+        payload: rs
       });
       // 登录成功跳转
         reloadAuthorized();
@@ -59,7 +59,7 @@ export default {
         type: 'changeLoginStatus',
         payload: {
           status: false,
-          currentAuthority: 'guest',
+          currentAuthority: 'guest'
         }
       });
       reloadAuthorized();
@@ -67,7 +67,7 @@ export default {
         routerRedux.push({
           pathname: '/user/login',
           search: stringify({
-            redirect: window.location.href,
+            redirect: window.location.href
           })
         }),
       );
@@ -76,14 +76,14 @@ export default {
       const response = yield call(queryUsers);
       yield put({
         type: 'save',
-        payload: response,
+        payload: response
       });
     },
     *fetchCurrent(_, { call, put }) {
       const response = yield call(queryCurrent);
       yield put({
         type: 'saveCurrentUser',
-        payload: response.name ? response : response.data,
+        payload: response.name ? response : response.data
       });
     }
   },
@@ -92,13 +92,13 @@ export default {
     save(state, action) {
       return {
         ...state,
-        list: action.payload,
+        list: action.payload
       };
     },
     saveCurrentUser(state, action) {
       return {
         ...state,
-        currentUser: action.payload || {},
+        currentUser: action.payload || {}
       };
     },
     changeNotifyCount(state, action) {
@@ -106,7 +106,7 @@ export default {
         ...state,
         currentUser: {
           ...state.currentUser,
-          notifyCount: action.payload,
+          notifyCount: action.payload
         }
       };
     },
@@ -116,7 +116,7 @@ export default {
       return {
         ...state,
         status: payload.status,
-        type: payload.type,
+        type: payload.type
       };
     }
   }

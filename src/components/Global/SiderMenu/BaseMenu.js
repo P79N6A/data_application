@@ -15,9 +15,9 @@ const { SubMenu } = Menu;
 const getIcon = icon => {
   if (typeof icon === 'string' && icon.indexOf('http') === 0) {
     return <img alt="icon"
-                className={styles.icon}
-                src={icon}
-    />;
+        className={styles.icon}
+        src={icon}
+           />;
   }
   if (typeof icon === 'string') {
     return <Icon type={icon} />;
@@ -71,7 +71,7 @@ export default class BaseMenu extends PureComponent {
   // 选中菜单
   getSelectedMenuKeys = () => {
     const {
-      location: { pathname },
+      location: { pathname }
     } = this.props;
     return urlToList(pathname).map(itemPath => getMenuMatches(this.flatMenuKeys, itemPath).pop());
   };
@@ -85,8 +85,8 @@ export default class BaseMenu extends PureComponent {
       const name = formatMessage({ id: item.locale });
       return (
         <SubMenu
-          key={item.path}
-          title={
+            key={item.path}
+            title={
             item.icon ? (
               <span>
                 {getIcon(item.icon)}
@@ -118,7 +118,7 @@ export default class BaseMenu extends PureComponent {
     if (/^https?:\/\//.test(itemPath)) {
       return (
         <a href={itemPath}
-           target={target}
+            target={target}
         >
           {icon}
           <span>{name}</span>
@@ -128,16 +128,16 @@ export default class BaseMenu extends PureComponent {
     const { location, isMobile, onCollapse } = this.props;
     return (
       <Link
-        onClick={
+          onClick={
           isMobile
             ? () => {
                 onCollapse(true);
               }
             : undefined
         }
-        replace={itemPath === location.pathname}
-        target={target}
-        to={itemPath}
+          replace={itemPath === location.pathname}
+          target={target}
+          to={itemPath}
       >
         {icon}
         <span>{name}</span>
@@ -172,20 +172,20 @@ export default class BaseMenu extends PureComponent {
     let props = {};
     if (openKeys) {
       props = {
-        openKeys,
+        openKeys
       };
     }
     const { handleOpenChange, style, menuData } = this.props;
     return (
       <Menu
-        className={mode === 'horizontal' ? 'top-nav-menu' : ''}
-        key="Menu"
-        mode={mode}
-        onOpenChange={handleOpenChange}
-        selectedKeys={selectedKeys}
-        style={style}
-        theme={theme}
-        {...props}
+          className={mode === 'horizontal' ? 'top-nav-menu' : ''}
+          key="Menu"
+          mode={mode}
+          onOpenChange={handleOpenChange}
+          selectedKeys={selectedKeys}
+          style={style}
+          theme={theme}
+          {...props}
       >
         {this.getNavMenuItems(menuData)}
       </Menu>

@@ -36,7 +36,7 @@ function formatter(data, parentPath = '', parentAuthority, parentName) {
     const result = {
       ...item,
       locale,
-      authority: item.authority || parentAuthority,
+      authority: item.authority || parentAuthority
     };
     if (item.routes) {
       const children = formatter(item.routes, `${parentPath}${item.path}/`, item.authority, locale);
@@ -54,26 +54,26 @@ function formatter(data, parentPath = '', parentAuthority, parentName) {
 
 const query = {
   'screen-xs': {
-    maxWidth: 575,
+    maxWidth: 575
   },
   'screen-sm': {
     minWidth: 576,
-    maxWidth: 767,
+    maxWidth: 767
   },
   'screen-md': {
     minWidth: 768,
-    maxWidth: 991,
+    maxWidth: 991
   },
   'screen-lg': {
     minWidth: 992,
-    maxWidth: 1199,
+    maxWidth: 1199
   },
   'screen-xl': {
     minWidth: 1200,
-    maxWidth: 1599,
+    maxWidth: 1599
   },
   'screen-xxl': {
-    minWidth: 1600,
+    minWidth: 1600
   }
 };
 
@@ -90,27 +90,27 @@ class BasicLayout extends React.PureComponent {
     rendering: true,
     isMobile: false,
     err: false,
-    errState: {},
+    errState: {}
   };
 
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
-      type: 'user/fetchCurrent',
+      type: 'user/fetchCurrent'
     });
     dispatch({
-      type: 'setting/getSetting',
+      type: 'setting/getSetting'
     });
     this.renderRef = requestAnimationFrame(() => {
       this.setState({
-        rendering: false,
+        rendering: false
       });
     });
     this.enquireHandler = enquireScreen(mobile => {
       const { isMobile } = this.state;
       if (isMobile !== mobile) {
         this.setState({
-          isMobile: mobile,
+          isMobile: mobile
         });
       }
     });
@@ -140,13 +140,13 @@ class BasicLayout extends React.PureComponent {
     const { location } = this.props;
     return {
       location,
-      breadcrumbNameMap: this.breadcrumbNameMap,
+      breadcrumbNameMap: this.breadcrumbNameMap
     };
   }
 
   getMenuData() {
     const {
-      route: { routes },
+      route: { routes }
     } = this.props;
 
     return formatter(routes);
@@ -186,7 +186,7 @@ class BasicLayout extends React.PureComponent {
     }
     const message = formatMessage({
       id: currRouterData.locale || currRouterData.name,
-      defaultMessage: currRouterData.name,
+      defaultMessage: currRouterData.name
     });
     return `${message} - 紫光华智`;
   };
@@ -196,7 +196,7 @@ class BasicLayout extends React.PureComponent {
     const { fixSiderbar, collapsed, layout } = this.props;
     if (fixSiderbar && layout !== 'topmenu' && !isMobile) {
       return {
-        paddingLeft: collapsed ? '80px' : '256px',
+        paddingLeft: collapsed ? '80px' : '256px'
       };
     }
     return null;
@@ -206,7 +206,7 @@ class BasicLayout extends React.PureComponent {
     const { fixedHeader } = this.props;
     return {
       margin: '10px 10px 0',
-      paddingTop: fixedHeader ? 64 : 0,
+      paddingTop: fixedHeader ? 64 : 0
     };
   };
 
@@ -215,7 +215,7 @@ class BasicLayout extends React.PureComponent {
     const { dispatch } = this.props;
     dispatch({
       type: 'global/changeLayoutCollapsed',
-      payload: collapsed,
+      payload: collapsed
     });
   };
 
@@ -232,7 +232,7 @@ class BasicLayout extends React.PureComponent {
       navTheme,
       layout: PropsLayout,
       children,
-      location: { pathname },
+      location: { pathname }
     } = this.props;
     const { isMobile } = this.state;
     const isTop = PropsLayout === 'topmenu';
@@ -242,31 +242,31 @@ class BasicLayout extends React.PureComponent {
       <Layout>
         {isTop && !isMobile ? null : (
           <SiderMenu
-            Authorized={Authorized}
-            isMobile={isMobile}
-            logo={logo}
-            menuData={menuData}
-            onCollapse={this.handleMenuCollapse}
-            theme={navTheme}
-            {...this.props}
+              Authorized={Authorized}
+              isMobile={isMobile}
+              logo={logo}
+              menuData={menuData}
+              onCollapse={this.handleMenuCollapse}
+              theme={navTheme}
+              {...this.props}
           />
         )}
         <Layout
-          style={{
+            style={{
             ...this.getLayoutStyle(),
-            minHeight: '100vh',
+            minHeight: '100vh'
           }}
         >
           <Header
-            handleMenuCollapse={this.handleMenuCollapse}
-            isMobile={isMobile}
-            logo={logo}
-            menuData={menuData}
-            {...this.props}
+              handleMenuCollapse={this.handleMenuCollapse}
+              isMobile={isMobile}
+              logo={logo}
+              menuData={menuData}
+              {...this.props}
           />
           <Content style={this.getContentStyle()}>
             <Authorized authority={routerConfig.authority}
-                        noMatch={<Exception403/>}
+                noMatch={<Exception403/>}
             >
               {children}
             </Authorized>
@@ -299,5 +299,5 @@ class BasicLayout extends React.PureComponent {
 export default connect(({ global, setting }) => ({
   collapsed: global.collapsed,
   layout: setting.layout,
-  ...setting,
+  ...setting
 }))(BasicLayout);

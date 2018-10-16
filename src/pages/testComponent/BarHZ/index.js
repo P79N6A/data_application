@@ -24,7 +24,7 @@ class BarHZ extends Component{
   render() {
     return (
       <div id="bar-hz"
-           style={{ width: '100%', height: '100%' }}
+          style={{ width: '100%', height: '100%' }}
       ></div>
     )
   }

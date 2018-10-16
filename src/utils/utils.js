@@ -44,7 +44,7 @@ export function getTimeDistance(type) {
 
     return [
       moment(`${year}-${fixedZero(month + 1)}-01 00:00:00`),
-      moment(moment(`${nextYear}-${fixedZero(nextMonth + 1)}-01 00:00:00`).valueOf() - 1000),
+      moment(moment(`${nextYear}-${fixedZero(nextMonth + 1)}-01 00:00:00`).valueOf() - 1000)
     ];
   }
 
@@ -125,7 +125,7 @@ export function getRoutes(path, routerData) {
       exact,
       ...routerData[`${path}${item}`],
       key: `${path}${item}`,
-      path: `${path}${item}`,
+      path: `${path}${item}`
     };
   });
   return renderRoutes;
@@ -161,13 +161,13 @@ export function formatWan(val) {
       <span>
         {result}
         <span
-          styles={{
+            styles={{
             position: 'relative',
             top: -2,
             fontSize: 14,
             fontStyle: 'normal',
             lineHeight: 20,
-            marginLeft: 2,
+            marginLeft: 2
           }}
         >
           万
@@ -238,7 +238,7 @@ export function dateFormat(timestamp, formats) {
         d: day,
         H: hour,
         i: minite,
-        s: second,
+        s: second
       }[matches]),
   );
 }

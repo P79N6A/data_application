@@ -10,11 +10,10 @@ export async function apiListJava(params) {
 }
 
 export async function addApi(params) {
-  return request('/mock/api/addApi', {
+  return request('/register/interface/add', {
     method: 'POST',
     body: {
-      ...params,
-      method: 'post',
+      ...params
     }
   });
 }

@@ -7,13 +7,13 @@ import styles from './index.less';
 const AvatarList = ({ children, size, ...other }) => {
   const childrenWithProps = React.Children.map(children, child =>
     React.cloneElement(child, {
-      size,
+      size
     })
   );
 
   return (
     <div {...other}
-         className={styles.avatarList}
+        className={styles.avatarList}
     >
       <ul> {childrenWithProps} </ul>
     </div>
@@ -24,7 +24,7 @@ const Item = ({ src, size, tips, onClick = () => {} }) => {
   const cls = classNames(styles.avatarItem, {
     [styles.avatarItemLarge]: size === 'large',
     [styles.avatarItemSmall]: size === 'small',
-    [styles.avatarItemMini]: size === 'mini',
+    [styles.avatarItemMini]: size === 'mini'
   });
 
   return (
@@ -34,13 +34,13 @@ const Item = ({ src, size, tips, onClick = () => {} }) => {
       {tips ? (
         <Tooltip title={tips}>
           <Avatar size={size}
-                  src={src}
-                  style={{ cursor: 'pointer' }}
+              src={src}
+              style={{ cursor: 'pointer' }}
           />
         </Tooltip>
       ) : (
         <Avatar size={size}
-                src={src}
+            src={src}
         />
       )}
     </li>

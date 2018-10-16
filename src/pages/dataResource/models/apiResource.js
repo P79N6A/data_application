@@ -2,27 +2,35 @@ import { apiList, removeRule, addApi, apiListJava } from '@/services/api';
 import { message } from 'antd';
 import { checkResponse } from '../../../utils/checkResponse';
 
+let objToMap=function(obj) {
+  let m=new Map();
+  for (let k in obj){
+    obj[k]?m.set(k,obj[k]):'';
+  }
+  return m;
+};
+
 export default {
   namespace: 'apiResource',
 
   state: {
     data: {
       data: [],
-      pageParam: {},
+      pageParam: {}
     }
   },
 
 
   effects: {
-    * getApiList({payload, callback }, { call, put, select }) {
+    * getApiList({payload={}, callback }, { call, put, select }) {
 
       let option = {
-        method: 'POST',
+        method:'POST',
         body: {
           'catalogId': '1',
           'serviceName': null,
           'status': null,
-          'interfaceName': null,
+          'interfaceName':null,
           'serviceMethodType': null,
           'beginDate': null,
           'endDate': null,
@@ -32,16 +40,17 @@ export default {
             'pageSize': 10,
             'orderFiled': 'last_update',
             'orderRule': 'desc'
-          }
+          },
+          ...payload
         }
       };
-      message.success('获取数据');
+      // message.success('获取数据');
       let res = yield call(apiListJava, option);
 
       if (checkResponse(res, callback)) {
         yield put({
           type: 'save',
-          payload: res.data.data,
+          payload: res.data.data
         });
       }
 
@@ -51,7 +60,7 @@ export default {
       const response = yield call(addRule, payload);
       yield put({
         type: 'save',
-        payload: response,
+        payload: response
       });
       if (callback) callback();
     },
@@ -60,7 +69,7 @@ export default {
       const response = yield call(removeRule, payload);
       yield put({
         type: 'save',
-        payload: response,
+        payload: response
       });
       if (callback) callback();
     },
@@ -69,7 +78,10 @@ export default {
       let oldData = yield select(({ apiResource }) => {
         return apiResource.data;
       });
-      payload.apiState = 2;
+      // payload.status = 2;
+      payload['paramInfoReqDTOS'].forEach((v,i,a)=>{
+        Reflect.deleteProperty(v,'key');
+      });
       yield call(addApi, payload);
       console.log(payload, oldData);
     },
@@ -117,7 +129,7 @@ export default {
     save(state, action) {
       return {
         ...state,
-        data: action.payload,
+        data: action.payload
       };
     }
   }

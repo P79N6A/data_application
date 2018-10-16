@@ -17,7 +17,7 @@ class ApprovalSearch extends Component {
         let { beginDate, endDate } = values
         let times = {
           beginDate: beginDate ? beginDate.format('YYYY-MM-DD HH:mm:ss') : null,
-          endDate: endDate ? endDate.format('YYYY-MM-DD HH:mm:ss') : null 
+          endDate: endDate ? endDate.format('YYYY-MM-DD HH:mm:ss') : null
         }
         this.props.Search({...values, ...times});
       }
@@ -73,7 +73,9 @@ class ApprovalSearch extends Component {
                 label="开始时间"
             >
               {getFieldDecorator('beginDate', config)(
-                <DatePicker format="YYYY-MM-DD HH:mm:ss" showTime />
+                <DatePicker format="YYYY-MM-DD HH:mm:ss"
+                    showTime
+                />
               )}
             </FormItem>
           </Col>
@@ -83,7 +85,9 @@ class ApprovalSearch extends Component {
             >
               {
                 getFieldDecorator('endDate', config)(
-                  <DatePicker format="YYYY-MM-DD HH:mm:ss" showTime />
+                  <DatePicker format="YYYY-MM-DD HH:mm:ss"
+                      showTime
+                  />
                 )
               }
             </FormItem>

@@ -11,7 +11,7 @@ class Approval extends Component {
     this.Search = this.Search.bind(this);
     this.onChoose = this.onChoose.bind(this);
     this.state = {
-      activeKey: '1',
+      activeKey: '1'
     };
   }
 
@@ -20,14 +20,14 @@ class Approval extends Component {
     // 获取值然后去调用接口
     this.props.dispatch({
       type: this.state.activeKey === '1' ? 'approval/fetchUse' : 'approval/fetchRelease',
-      payload: values,
+      payload: values
     });
   }
 
   // 切换标签
   onChoose(key) {
     this.setState({
-      activeKey: key,
+      activeKey: key
     });
   }
 
@@ -42,5 +42,5 @@ class Approval extends Component {
 }
 
 export default connect(({ approval }) => ({
-  approval,
+  approval
 }))(Approval);

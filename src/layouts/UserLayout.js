@@ -9,17 +9,17 @@ const links = [
   {
     key: 'help',
     title: '帮助',
-    href: '',
+    href: ''
   },
   {
     key: 'privacy',
     title: '隐私',
-    href: '',
+    href: ''
   },
   {
     key: 'terms',
     title: '条款',
-    href: '',
+    href: ''
   }
 ];
 
@@ -51,8 +51,8 @@ class UserLayout extends React.PureComponent {
             <div className={styles.header}>
               <Link to="/">
                 <img alt="logo"
-                     className={styles.logo}
-                     src={logo}
+                    className={styles.logo}
+                    src={logo}
                 />
                 <span className={styles.title}>智慧社区</span>
               </Link>
@@ -62,8 +62,8 @@ class UserLayout extends React.PureComponent {
           {children}
         </div>
         <GlobalFooter className={styles.footer}
-                      copyright={copyright}
-                      links={links}
+            copyright={copyright}
+            links={links}
         />
       </div>
     );

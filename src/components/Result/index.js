@@ -14,18 +14,18 @@ export default function Result({
 }) {
   const iconMap = {
     error: <Icon className={styles.error}
-                 theme="filled"
-                 type="close-circle"
-    />,
+        theme="filled"
+        type="close-circle"
+           />,
     success: <Icon className={styles.success}
-                   theme="filled"
-                   type="check-circle"
-    />
+        theme="filled"
+        type="check-circle"
+             />
   };
   const clsString = classNames(styles.result, className);
   return (
     <div className={clsString}
-         {...restProps}
+        {...restProps}
     >
       <div className={styles.icon}>{iconMap[type]}</div>
       <div className={styles.title}>{title}</div>

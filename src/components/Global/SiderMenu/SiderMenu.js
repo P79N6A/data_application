@@ -16,7 +16,7 @@ const { Sider } = Layout;
 const getDefaultCollapsedSubMenus = props => {
   const {
     location: { pathname },
-    flatMenuKeys,
+    flatMenuKeys
   } = props;
   return urlToList(pathname)
     .map(item => getMenuMatches(flatMenuKeys, item)[0])
@@ -54,7 +54,7 @@ export default class SiderMenu extends PureComponent {
     super();
     this.flatMenuKeys = getFlatMenuKeys(props.menuData);
     this.state = {
-      openKeys: getDefaultCollapsedSubMenus(props),
+      openKeys: getDefaultCollapsedSubMenus(props)
     };
   }
 
@@ -63,7 +63,7 @@ export default class SiderMenu extends PureComponent {
     if (props.location.pathname !== pathname) {
       return {
         pathname: props.location.pathname,
-        openKeys: getDefaultCollapsedSubMenus(props),
+        openKeys: getDefaultCollapsedSubMenus(props)
       };
     }
     return null;
@@ -82,7 +82,7 @@ export default class SiderMenu extends PureComponent {
   handleOpenChange = openKeys => {
     const moreThanOne = openKeys.filter(openKey => this.isMainMenu(openKey)).length > 1;
     this.setState({
-      openKeys: moreThanOne ? [openKeys.pop()] : [...openKeys],
+      openKeys: moreThanOne ? [openKeys.pop()] : [...openKeys]
     });
   };
 
@@ -93,37 +93,37 @@ export default class SiderMenu extends PureComponent {
 
     const siderClassName = classNames(styles.sider, {
       [styles.fixSiderbar]: fixSiderbar,
-      [styles.light]: theme === 'light',
+      [styles.light]: theme === 'light'
     });
 
     return (
       <Sider
-        breakpoint="lg"
-        className={siderClassName}
-        collapsed={collapsed}
-        collapsible
-        onCollapse={onCollapse}
-        theme={theme}
-        trigger={null}
-        width={256}
+          breakpoint="lg"
+          className={siderClassName}
+          collapsed={collapsed}
+          collapsible
+          onCollapse={onCollapse}
+          theme={theme}
+          trigger={null}
+          width={256}
       >
         <div className={styles.logo}
-             id="logo"
+            id="logo"
         >
           <Link to="/">
             <img alt="logo"
-                 src={logo}
+                src={logo}
             />
             <h1>精准社会服务平台</h1>
           </Link>
         </div>
         <BaseMenu
-          {...this.props}
-          handleOpenChange={this.handleOpenChange}
-          mode="inline"
-          onOpenChange={this.handleOpenChange}
-          style={{ padding: '16px 0', width: '100%' }}
-          {...defaultProps}
+            {...this.props}
+            handleOpenChange={this.handleOpenChange}
+            mode="inline"
+            onOpenChange={this.handleOpenChange}
+            style={{ padding: '16px 0', width: '100%' }}
+            {...defaultProps}
         />
       </Sider>
     );
