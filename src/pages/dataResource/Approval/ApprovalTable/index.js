@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
-import { Table, Button, Popconfirm} from 'antd';
-import PropTypes from 'prop-types';
-
+import React, { Component } from 'react'
+import { Table, Button, Popconfirm} from 'antd'
+import dateFormat from '@/utils/dateFormat';
+import PropTypes from 'prop-types'
+const APPLYTYPE = ['接口发布', '接口使用']
+const STATUS = ['审批中', '已审批', '驳回']
 class ApprovalTable extends Component {
   constructor(props) {
     super(props)
@@ -9,36 +11,45 @@ class ApprovalTable extends Component {
       // table列表参数
       columns: [
         {
-          title: '接口名',
-          dataIndex: 'name',
-          key: 'name'
+          title: '申请类型',
+          dataIndex: 'applyType',
+          key: 'applyType',
+          render: (text) => (
+            <span>{APPLYTYPE[text]}</span>
+          )
         },
         {
-          title: '资源目录',
-          dataIndex: 'catalog',
-          key: 'catalog'
-        },
-        {
-          title: '所属服务',
-          dataIndex: 'services',
-          key: 'services'
+          title: '接口状态',
+          dataIndex: 'status',
+          key: 'status',
+          render: (text) => (
+            <span>{STATUS[text]}</span>
+          )
         },
         {
           title: '申请人',
-          dataIndex: 'username',
-          key: 'username'
+          dataIndex: 'applyByName',
+          key: 'applyByName'
         },
         {
           title: '申请时间',
-          dataIndex: 'time',
-          key: 'time'
+          dataIndex: 'applyDate',
+          key: 'applyDate',
+          render: (text) => (
+            <span>{dateFormat(text)}</span>
+          )
+        },
+        {
+          title: '申请描述',
+          dataIndex: 'applyDesc',
+          key: 'applyDesc'
         },
         {
           title: '操作',
           key: 'action',
           render: (text, record) => (
               <div>
-                <Popconfirm onConfirm={this.agree.bind(this, record)}
+                <Popconfirm onConfirm={this.dispose.bind(this, record, '同意')}
                     title="确定是否同意"
                 >
                   <Button
@@ -46,7 +57,7 @@ class ApprovalTable extends Component {
                       type="primary"
                   ><a>同意</a></Button>
                 </Popconfirm>
-                <Popconfirm onConfirm={this.reject.bind(this, record)}
+                <Popconfirm onConfirm={this.dispose.bind(this, record, '拒绝')}
                     title="确定是否拒绝"
                 >
                   <Button
@@ -58,7 +69,7 @@ class ApprovalTable extends Component {
         }
       ],
       pagination: {
-        total: 50,
+        total: 0,
         defaultCurrent: 1,
         pageSize: 10,
         showQuickJumper: true,
@@ -69,28 +80,31 @@ class ApprovalTable extends Component {
             orderFiled: '',
             orderRule: ''
           }
-          this.props.Search({pageParam})
+          this.props.search({pageParam})
         }
       }
     };
   }
   // 同意
-  agree(info) {
-    console.log('同意',info)
-  }
-  reject(info) {
-    console.log('拒绝', info)
+  dispose(info, res) {
+    let {applyId,applyType} = info
+    let opts = {
+      applyId,
+      approveType: applyType,
+      approveDesc: res
+    }
+    this.props.operation(opts)
   }
   render() {
-    let { approval } = this.props;
+    let { approval } = this.props
     return (
       <div>
         <Table columns={this.state.columns}
-               dataSource={approval}
-               expandedRowRender={() => (
+            dataSource={approval.data}
+            expandedRowRender={() => (
               <p>展开详情</p>
             )}
-               pagination={this.state.pagination}
+            pagination={{...this.state.pagination, ...approval.pageParam}}
         />
       </div>
     )
@@ -98,7 +112,9 @@ class ApprovalTable extends Component {
 }
 
 ApprovalTable.propTypes = {
-  approval: PropTypes.array,
-};
+  approval: PropTypes.object.isRequired,
+  operation: PropTypes.func.isRequired,
+  search: PropTypes.func.isRequired
+}
 
-export default ApprovalTable;
+export default ApprovalTable

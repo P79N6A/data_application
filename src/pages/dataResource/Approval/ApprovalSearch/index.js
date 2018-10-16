@@ -19,7 +19,13 @@ class ApprovalSearch extends Component {
           beginDate: beginDate ? beginDate.format('YYYY-MM-DD HH:mm:ss') : null,
           endDate: endDate ? endDate.format('YYYY-MM-DD HH:mm:ss') : null 
         }
-        this.props.Search({...values, ...times});
+        let pageParam = {
+          pageIndex: 1,
+          pageSize: 10,
+          orderFiled: '',
+          orderRule: ''
+        }
+        this.props.search({...values, ...times, pageParam});
       }
     });
   }
@@ -60,6 +66,7 @@ class ApprovalSearch extends Component {
                   <Select
                       style={{ width: 140 }}
                   >
+                    {/* <Option value="">全部</Option> */}
                     <Option value="0">审批中</Option>
                     <Option value="1">已审批</Option>
                     <Option value="2">驳回</Option>
@@ -101,6 +108,6 @@ class ApprovalSearch extends Component {
   }
 }
 ApprovalSearch.propTypes = {
-  Search: PropTypes.func.isRequired
+  search: PropTypes.func.isRequired
 }
 export default Form.create()(ApprovalSearch);
