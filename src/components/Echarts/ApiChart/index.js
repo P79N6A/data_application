@@ -13,12 +13,12 @@ class ApiChart extends Component {
     let option = {
       tooltip: {
         trigger: 'item',
-        formatter: '{a} <br/>{b}: {c} ({d}%)',
+        formatter: '{a} <br/>{b}: {c} ({d}%)'
       },
       legend: {
         orient: 'vertical',
         x: 'left',
-        data: ['未启用', '已启用', '发布中', '邮件营销', '联盟广告', '视频广告', '百度', '谷歌', '必应', '其他'],
+        data: ['未启用', '已启用', '发布中', '邮件营销', '联盟广告', '视频广告', '百度', '谷歌', '必应', '其他']
       },
       series: [
         {
@@ -29,18 +29,18 @@ class ApiChart extends Component {
 
           label: {
             normal: {
-              position: 'inner',
+              position: 'inner'
             }
           },
           labelLine: {
             normal: {
-              show: false,
+              show: false
             }
           },
           data: [
             { value: 8, name: '未启用', selected: true },
             { value: 20, name: '已启用' },
-            { value: 5, name: '发布中' },
+            { value: 5, name: '发布中' }
           ]
         },
 
@@ -60,23 +60,23 @@ class ApiChart extends Component {
                 a: {
                   color: '#999',
                   lineHeight: 22,
-                  align: 'center',
+                  align: 'center'
                 },
                 hr: {
                   borderColor: '#aaa',
                   width: '100%',
                   borderWidth: 0.5,
-                  height: 0,
+                  height: 0
                 },
                 b: {
                   fontSize: 16,
-                  lineHeight: 33,
+                  lineHeight: 33
                 },
                 per: {
                   color: '#eee',
                   backgroundColor: '#334455',
                   padding: [2, 4],
-                  borderRadius: 2,
+                  borderRadius: 2
                 }
               }
             }
@@ -86,7 +86,7 @@ class ApiChart extends Component {
             { value: 10, name: '监控识别' },
             { value: 8, name: '图像识别' },
             { value: 7, name: '快递检测' },
-            { value: 5, name: '顺风车安全' },
+            { value: 5, name: '顺风车安全' }
           ]
         }
       ]
@@ -96,7 +96,7 @@ class ApiChart extends Component {
   render() {
     return (
       <div id={'apiChart'}
-           style={{ width: '100%', height: '500px' }}
+          style={{ width: '100%', height: '500px' }}
       >
       </div>
     );

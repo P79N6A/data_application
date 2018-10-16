@@ -7,7 +7,7 @@ const config = {
   defaultColor: '#1089ff',
   shape: {
     interval: {
-      fillOpacity: 1,
+      fillOpacity: 1
     }
   }
 };

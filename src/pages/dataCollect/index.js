@@ -21,13 +21,13 @@ class DataCollect extends Component {
           <Switch>
             {getRoutes(match.path, routerData).map(item => (
               <Route component={item.component}
-                     key={item.key}
-                     path={item.path}
+                  key={item.key}
+                  path={item.path}
               />
             ))}
             <Redirect exact
-                      from="/collect"
-                      to="/collect/list"
+                from="/collect"
+                to="/collect/list"
             />
           </Switch>
         </Content>

@@ -8,8 +8,8 @@ const { CheckableTag } = Tag;
 
 const TagSelectOption = ({ children, checked, onChange, value }) => (
   <CheckableTag checked={checked}
-                key={value}
-                onChange={state => onChange(value, state)}
+      key={value}
+      onChange={state => onChange(value, state)}
   >
     {children}
   </CheckableTag>
@@ -19,14 +19,14 @@ TagSelectOption.isTagSelectOption = true;
 
 class TagSelect extends Component {
   static defaultProps = {
-    hideCheckAll: false,
+    hideCheckAll: false
   };
 
   constructor(props) {
     super(props);
     this.state = {
       expand: false,
-      value: props.value || props.defaultValue || [],
+      value: props.value || props.defaultValue || []
     };
   }
 
@@ -80,7 +80,7 @@ class TagSelect extends Component {
   handleExpand = () => {
     const { expand } = this.state;
     this.setState({
-      expand: !expand,
+      expand: !expand
     });
   };
 
@@ -97,16 +97,16 @@ class TagSelect extends Component {
 
     const cls = classNames(styles.tagSelect, className, {
       [styles.hasExpandTag]: expandable,
-      [styles.expanded]: expand,
+      [styles.expanded]: expand
     });
     return (
       <div className={cls}
-           style={style}
+          style={style}
       >
         {hideCheckAll ? null : (
           <CheckableTag checked={checkedAll}
-                        key="tag-select-__all__"
-                        onChange={this.onSelectAll}
+              key="tag-select-__all__"
+              onChange={this.onSelectAll}
           >
             全部
           </CheckableTag>
@@ -118,14 +118,14 @@ class TagSelect extends Component {
                 key: `tag-select-${child.props.value}`,
                 value: child.props.value,
                 checked: value.indexOf(child.props.value) > -1,
-                onChange: this.handleTagChange,
+                onChange: this.handleTagChange
               });
             }
             return child;
           })}
         {expandable && (
           <a className={styles.trigger}
-             onClick={this.handleExpand}
+              onClick={this.handleExpand}
           >
             {expand ? '收起' : '展开'} <Icon type={expand ? 'up' : 'down'} />
           </a>

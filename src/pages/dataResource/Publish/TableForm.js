@@ -17,7 +17,7 @@ class TableForm extends PureComponent {
       data: props.value,
       loading: false,
       /* eslint-disable-next-line react/no-unused-state */
-      value: props.value,
+      value: props.value
     };
   }
 
@@ -27,7 +27,7 @@ class TableForm extends PureComponent {
     }
     return {
       data: nextProps.value,
-      value: nextProps.value,
+      value: nextProps.value
     };
   }
 
@@ -60,7 +60,7 @@ class TableForm extends PureComponent {
       name: '',
       department: '',
       editable: true,
-      isNew: true,
+      isNew: true
     });
     this.index += 1;
     this.setState({ data: newData });
@@ -98,7 +98,7 @@ class TableForm extends PureComponent {
   saveRow(e, key) {
     e.persist();
     this.setState({
-      loading: true,
+      loading: true
     });
     setTimeout(() => {
       if (this.clickedCancel) {
@@ -121,7 +121,7 @@ class TableForm extends PureComponent {
       const { onChange } = this.props;
       onChange(data);
       this.setState({
-        loading: false,
+        loading: false
       });
     }, 500);
   }
@@ -152,11 +152,11 @@ class TableForm extends PureComponent {
           if (record.editable) {
             return (
               <Input
-                autoFocus
-                onChange={e => this.handleFieldChange(e, 'paramName', record.key)}
-                onKeyPress={e => this.handleKeyPress(e, record.key)}
-                placeholder="参数名"
-                value={text}
+                  autoFocus
+                  onChange={e => this.handleFieldChange(e, 'paramName', record.key)}
+                  onKeyPress={e => this.handleKeyPress(e, record.key)}
+                  placeholder="参数名"
+                  value={text}
               />
             );
           }
@@ -172,12 +172,12 @@ class TableForm extends PureComponent {
           if (record.editable) {
             return (
               <Select
-                allowClear
-                onChange={e => this.handleFieldChange(e, 'paramType', record.key)}
-                onKeyPress={e => this.handleKeyPress(e, record.key)}
-                placeholder="参数类型"
-                style={{ width: '100%' }}
-                value={text}
+                  allowClear
+                  onChange={e => this.handleFieldChange(e, 'paramType', record.key)}
+                  onKeyPress={e => this.handleKeyPress(e, record.key)}
+                  placeholder="参数类型"
+                  style={{ width: '100%' }}
+                  value={text}
               >
                 <Select.Option value="string">string</Select.Option>
                 <Select.Option value="number">number</Select.Option>
@@ -191,16 +191,16 @@ class TableForm extends PureComponent {
       },
       {
         title: '能否为空',
-        dataIndex: 'paramIsNull',
-        key: 'paramIsNull',
+        dataIndex: 'paramIsnull',
+        key: 'paramIsnull',
         width: '20%',
         render: (text, record) => {
           if (record.editable) {
             return (
               <RadioGroup
-                onChange={e => this.handleFieldChange(e, 'paramIsNull', record.key)}
-                onKeyPress={e => this.handleKeyPress(e, record.key)}
-                value={text}
+                  onChange={e => this.handleFieldChange(e, 'paramIsnull', record.key)}
+                  onKeyPress={e => this.handleKeyPress(e, record.key)}
+                  value={text}
               >
                 <Radio value="是">是</Radio>
                 <Radio value="否">否</Radio>
@@ -212,17 +212,17 @@ class TableForm extends PureComponent {
       },
       {
         title: '备注',
-        dataIndex: 'paramNotice',
-        key: 'paramNotice',
+        dataIndex: 'paramRemark',
+        key: 'paramRemark',
         width: '20%',
         render: (text, record) => {
           if (record.editable) {
             return (
               <Input
-                onChange={e => this.handleFieldChange(e, 'paramNotice', record.key)}
-                onKeyPress={e => this.handleKeyPress(e, record.key)}
-                placeholder="备注"
-                value={text}
+                  onChange={e => this.handleFieldChange(e, 'paramRemark', record.key)}
+                  onKeyPress={e => this.handleKeyPress(e, record.key)}
+                  placeholder="备注"
+                  value={text}
               />
             );
           }
@@ -244,7 +244,7 @@ class TableForm extends PureComponent {
                   <a onClick={e => this.saveRow(e, record.key)}>添加</a>
                   <Divider type="vertical"/>
                   <Popconfirm onConfirm={() => this.remove(record.key)}
-                              title="是否要删除此行？"
+                      title="是否要删除此行？"
                   >
                     <a>删除</a>
                   </Popconfirm>
@@ -264,7 +264,7 @@ class TableForm extends PureComponent {
               <a onClick={e => this.toggleEditable(e, record.key)}>编辑</a>
               <Divider type="vertical"/>
               <Popconfirm onConfirm={() => this.remove(record.key)}
-                          title="是否要删除此行？"
+                  title="是否要删除此行？"
               >
                 <a>删除</a>
               </Popconfirm>
@@ -279,17 +279,17 @@ class TableForm extends PureComponent {
     return (
       <Fragment>
         <Table
-          columns={columns}
-          dataSource={data}
-          loading={loading}
-          pagination={false}
-          rowClassName={record => (record.editable ? styles.editable : '')}
+            columns={columns}
+            dataSource={data}
+            loading={loading}
+            pagination={false}
+            rowClassName={record => (record.editable ? styles.editable : '')}
         />
         <Button
-          icon="plus"
-          onClick={this.newMember}
-          style={{ width: '100%', marginTop: 16, marginBottom: 8 }}
-          type="dashed"
+            icon="plus"
+            onClick={this.newMember}
+            style={{ width: '100%', marginTop: 16, marginBottom: 8 }}
+            type="dashed"
         >
           新增参数
         </Button>

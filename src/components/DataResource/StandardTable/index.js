@@ -21,7 +21,7 @@ class StandardTable extends PureComponent {
 
     this.state = {
       selectedRowKeys: [],
-      needTotalList,
+      needTotalList
     };
   }
 
@@ -31,7 +31,7 @@ class StandardTable extends PureComponent {
       const needTotalList = initTotalList(nextProps.columns);
       return {
         selectedRowKeys: [],
-        needTotalList,
+        needTotalList
       };
     }
     return null;
@@ -41,7 +41,7 @@ class StandardTable extends PureComponent {
     let { needTotalList } = this.state;
     needTotalList = needTotalList.map(item => ({
       ...item,
-      total: selectedRows.reduce((sum, val) => sum + parseFloat(val[item.dataIndex], 10), 0),
+      total: selectedRows.reduce((sum, val) => sum + parseFloat(val[item.dataIndex], 10), 0)
     }));
     const { onSelectRow } = this.props;
     if (onSelectRow) {
@@ -74,18 +74,18 @@ class StandardTable extends PureComponent {
       loading,
       columns,
       rowKey,
-      showSizeChanger,
+      showSizeChanger
     } = this.props;
     const paginationProps = {
       showSizeChanger: showSizeChanger,
       showQuickJumper: true,
-      ...pageParam,
+      ...pageParam
     };
     const rowSelection = {
       selectedRowKeys,
       onChange: this.handleRowSelectChange,
       getCheckboxProps: record => ({
-        disabled: record.disabled,
+        disabled: record.disabled
       })
     };
 
@@ -93,12 +93,12 @@ class StandardTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={
+              message={
               <Fragment>
                 已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项&nbsp;&nbsp;
                 {needTotalList.map(item => (
                   <span key={item.dataIndex}
-                        style={{ marginLeft: 8 }}
+                      style={{ marginLeft: 8 }}
                   >
                     {item.title}
                     总计&nbsp;
@@ -108,25 +108,25 @@ class StandardTable extends PureComponent {
                   </span>
                 ))}
                 <a onClick={this.cleanSelectedKeys}
-                   style={{ marginLeft: 24 }}
+                    style={{ marginLeft: 24 }}
                 >
                   清空
                 </a>
               </Fragment>
             }
-            showIcon
-            type="info"
+              showIcon
+              type="info"
           />
         </div>
         <Table
-          columns={columns}
-          dataSource={data}
+            columns={columns}
+            dataSource={data}
           // loading={loading}
-          expandedRowRender={this.showTableInfo}
-          onChange={this.handleTableChange}
-          pagination={paginationProps}
-          rowKey={rowKey || 'key'}
-          rowSelection={rowSelection}
+            expandedRowRender={this.showTableInfo}
+            onChange={this.handleTableChange}
+            pagination={paginationProps}
+            rowKey={rowKey || 'key'}
+            rowSelection={rowSelection}
         />
       </div>
     );
@@ -138,7 +138,7 @@ StandardTable.propTypes = {
   list: PropTypes.array,
   pagination: PropTypes.object,
   columns: PropTypes.array,
-  loading: PropTypes.object,
+  loading: PropTypes.object
 };
 
 export default StandardTable;

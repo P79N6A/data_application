@@ -20,11 +20,11 @@ class Breadcrumb extends Component {
     if (routes && params) {
       return (
         <Breadcrumb
-          className={styles.breadcrumb}
-          itemRender={this.itemRender}
-          params={params}
-          routes={routes.filter(route => route.breadcrumbName)}
-          separator={breadcrumbSeparator}
+            className={styles.breadcrumb}
+            itemRender={this.itemRender}
+            params={params}
+            routes={routes.filter(route => route.breadcrumbName)}
+            separator={breadcrumbSeparator}
         />
       );
     }

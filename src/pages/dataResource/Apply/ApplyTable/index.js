@@ -10,17 +10,17 @@ class ApprovalTable extends Component {
         {
           title: '接口名',
           dataIndex: 'name',
-          key: 'name',
+          key: 'name'
         },
         {
           title: '资源目录',
           dataIndex: 'catalog',
-          key: 'catalog',
+          key: 'catalog'
         },
         {
           title: '所属服务',
           dataIndex: 'services',
-          key: 'services',
+          key: 'services'
         },
         /*{
           title: '申请人',
@@ -30,7 +30,7 @@ class ApprovalTable extends Component {
         {
           title: '申请时间',
           dataIndex: 'time',
-          key: 'time',
+          key: 'time'
         },
         {
           title: '操作',
@@ -38,14 +38,14 @@ class ApprovalTable extends Component {
           render: (text, record) => (
             <div>
                 <Button
-                  style={{ marginRight: '5px' }}
-                  type="primary"
+                    style={{ marginRight: '5px' }}
+                    type="primary"
                 ><a>修改</a></Button>
               <Popconfirm onConfirm={this.reject.bind(this, record)}
-                          title="确定撤回？"
+                  title="确定撤回？"
               >
                 <Button
-                  type="primary"
+                    type="primary"
                 ><a>撤回</a></Button>
               </Popconfirm>
             </div>
@@ -77,11 +77,11 @@ class ApprovalTable extends Component {
     return (
       <div>
         <Table columns={this.state.columns}
-               dataSource={this.props.approval}
-               expandedRowRender={() => (
+            dataSource={this.props.approval}
+            expandedRowRender={() => (
                  <p>展开详情</p>
                )}
-               pagination={this.state.pagination}
+            pagination={this.state.pagination}
         />
       </div>
     );

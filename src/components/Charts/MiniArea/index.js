@@ -17,7 +17,7 @@ class MiniArea extends React.PureComponent {
       line,
       xAxis,
       yAxis,
-      animate = true,
+      animate = true
     } = this.props;
 
     const padding = [36, 5, 30, 5];
@@ -26,11 +26,11 @@ class MiniArea extends React.PureComponent {
       x: {
         type: 'cat',
         range: [0, 1],
-        ...scale.x,
+        ...scale.x
       },
       y: {
         min: 0,
-        ...scale.y,
+        ...scale.y
       }
     };
 
@@ -38,7 +38,7 @@ class MiniArea extends React.PureComponent {
       'x*y',
       (x, y) => ({
         name: x,
-        value: y,
+        value: y
       })
     ];
 
@@ -46,57 +46,57 @@ class MiniArea extends React.PureComponent {
 
     return (
       <div className={styles.miniChart}
-           style={{ height }}
+          style={{ height }}
       >
         <div className={styles.chartContent}>
           {height > 0 && (
             <Chart
-              animate={animate}
-              data={data}
-              forceFit={forceFit}
-              height={chartHeight}
-              padding={padding}
-              scale={scaleProps}
+                animate={animate}
+                data={data}
+                forceFit={forceFit}
+                height={chartHeight}
+                padding={padding}
+                scale={scaleProps}
             >
               <Axis
-                grid={false}
-                key="axis-x"
-                label={false}
-                line={false}
-                name="x"
-                tickLine={false}
-                {...xAxis}
+                  grid={false}
+                  key="axis-x"
+                  label={false}
+                  line={false}
+                  name="x"
+                  tickLine={false}
+                  {...xAxis}
               />
               <Axis
-                grid={false}
-                key="axis-y"
-                label={false}
-                line={false}
-                name="y"
-                tickLine={false}
-                {...yAxis}
+                  grid={false}
+                  key="axis-y"
+                  label={false}
+                  line={false}
+                  name="y"
+                  tickLine={false}
+                  {...yAxis}
               />
               <Tooltip crosshairs={false}
-                       showTitle={false}
+                  showTitle={false}
               />
               <Geom
-                color={color}
-                position="x*y"
-                shape="smooth"
-                style={{
-                  fillOpacity: 1,
+                  color={color}
+                  position="x*y"
+                  shape="smooth"
+                  style={{
+                  fillOpacity: 1
                 }}
-                tooltip={tooltip}
-                type="area"
+                  tooltip={tooltip}
+                  type="area"
               />
               {line ? (
                 <Geom
-                  color={borderColor}
-                  position="x*y"
-                  shape="smooth"
-                  size={borderWidth}
-                  tooltip={false}
-                  type="line"
+                    color={borderColor}
+                    position="x*y"
+                    shape="smooth"
+                    size={borderWidth}
+                    tooltip={false}
+                    type="line"
                 />
               ) : (
                 <span style={{ display: 'none' }} />

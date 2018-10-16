@@ -4,22 +4,22 @@ import style from './index.less';
 
 const BlockChecbox = ({ value, onChange, list }) => (
   <div className={style.blockChecbox}
-       key={value}
+      key={value}
   >
     {list.map(item => (
       <Tooltip key={item.key}
-               title={item.title}
+          title={item.title}
       >
         <div className={style.item}
-             onClick={() => onChange(item.key)}
+            onClick={() => onChange(item.key)}
         >
           <img alt={item.key}
-               src={item.url}
+              src={item.url}
           />
           <div
-            className={style.selectIcon}
-            style={{
-              display: value === item.key ? 'block' : 'none',
+              className={style.selectIcon}
+              style={{
+              display: value === item.key ? 'block' : 'none'
             }}
           >
             <Icon type="check" />

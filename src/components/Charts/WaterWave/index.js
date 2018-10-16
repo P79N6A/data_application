@@ -9,7 +9,7 @@ import styles from './index.less';
 @autoHeight()
 class WaterWave extends PureComponent {
   state = {
-    radio: 1,
+    radio: 1
   };
 
   componentDidMount() {
@@ -45,7 +45,7 @@ class WaterWave extends PureComponent {
       const { height } = this.props;
       const { offsetWidth } = this.root.parentNode;
       this.setState({
-        radio: offsetWidth < height ? offsetWidth / height : 1,
+        radio: offsetWidth < height ? offsetWidth / height : 1
       });
     }
   };
@@ -189,20 +189,20 @@ class WaterWave extends PureComponent {
     const { percent, title, height } = this.props;
     return (
       <div
-        className={styles.waterWave}
-        ref={n => (this.root = n)}
-        style={{ transform: `scale(${radio})` }}
+          className={styles.waterWave}
+          ref={n => (this.root = n)}
+          style={{ transform: `scale(${radio})` }}
       >
         <div style={{ width: height, height, overflow: 'hidden' }}>
           <canvas
-            className={styles.waterWaveCanvasWrapper}
-            height={height * 2}
-            ref={n => (this.node = n)}
-            width={height * 2}
+              className={styles.waterWaveCanvasWrapper}
+              height={height * 2}
+              ref={n => (this.node = n)}
+              width={height * 2}
           />
         </div>
         <div className={styles.text}
-             style={{ width: height }}
+            style={{ width: height }}
         >
           {title && <span>{title}</span>}
           <h4>{percent}%</h4>

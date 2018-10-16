@@ -7,7 +7,7 @@ function onSelect(value) {
 
 class AutoInput extends React.Component {
   state = {
-    dataSource: [],
+    dataSource: []
   };
 
   handleSearch = (value) => {
@@ -15,7 +15,7 @@ class AutoInput extends React.Component {
       dataSource: !value ? [] : [
         value,
         value + value,
-        value + value + value,
+        value + value + value
       ]
     });
   };
@@ -24,12 +24,12 @@ class AutoInput extends React.Component {
     const { dataSource } = this.state;
     return (
       <AutoComplete
-        children={Input}
-        dataSource={dataSource}
-        onSearch={this.handleSearch}
-        onSelect={onSelect}
+          children={Input}
+          dataSource={dataSource}
+          onSearch={this.handleSearch}
+          onSelect={onSelect}
         // style={{ width: 200 }}
-        placeholder="input here"
+          placeholder="input here"
       />
     );
   }

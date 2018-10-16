@@ -7,14 +7,14 @@ export default {
     props: {
       size: 'large',
       prefix: <Icon className={styles.prefixIcon}
-                    type="user"
-      />,
-      placeholder: 'admin',
+          type="user"
+              />,
+      placeholder: 'admin'
     },
     rules: [
       {
         required: true,
-        message: 'Please enter username!',
+        message: 'Please enter username!'
       }
     ]
   },
@@ -22,15 +22,15 @@ export default {
     props: {
       size: 'large',
       prefix: <Icon className={styles.prefixIcon}
-                    type="lock"
-      />,
+          type="lock"
+              />,
       type: 'passWord',
-      placeholder: '888888',
+      placeholder: '888888'
     },
     rules: [
       {
         required: true,
-        message: 'Please enter password!',
+        message: 'Please enter password!'
       }
     ]
   },
@@ -38,18 +38,18 @@ export default {
     props: {
       size: 'large',
       prefix: <Icon className={styles.prefixIcon}
-                    type="mobile"
-      />,
-      placeholder: 'mobile number',
+          type="mobile"
+              />,
+      placeholder: 'mobile number'
     },
     rules: [
       {
         required: true,
-        message: 'Please enter mobile number!',
+        message: 'Please enter mobile number!'
       },
       {
         pattern: /^1\d{10}$/,
-        message: 'Wrong mobile number format!',
+        message: 'Wrong mobile number format!'
       }
     ]
   },
@@ -57,14 +57,14 @@ export default {
     props: {
       size: 'large',
       prefix: <Icon className={styles.prefixIcon}
-                    type="mail"
-      />,
-      placeholder: 'captcha',
+          type="mail"
+              />,
+      placeholder: 'captcha'
     },
     rules: [
       {
         required: true,
-        message: 'Please enter Captcha!',
+        message: 'Please enter Captcha!'
       }
     ]
   }

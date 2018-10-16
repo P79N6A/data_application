@@ -13,7 +13,7 @@ class Login extends Component {
     className: PropTypes.string,
     defaultActiveKey: PropTypes.string,
     onTabChange: PropTypes.func,
-    onSubmit: PropTypes.func,
+    onSubmit: PropTypes.func
   };
 
   static defaultProps = {
@@ -29,13 +29,13 @@ class Login extends Component {
     this.state = {
       type: props.defaultActiveKey,
       tabs: [],
-      active: {},
+      active: {}
     };
   }
 
   onSwitch = type => {
     this.setState({
-      type,
+      type
     });
     const { onTabChange } = this.props;
     onTabChange(type);
@@ -48,12 +48,12 @@ class Login extends Component {
       tabUtil: {
         addTab: id => {
           this.setState({
-            tabs: [...tabs, id],
+            tabs: [...tabs, id]
           });
         },
         removeTab: id => {
           this.setState({
-            tabs: tabs.filter(currentId => currentId !== id),
+            tabs: tabs.filter(currentId => currentId !== id)
           });
         }
       },
@@ -66,7 +66,7 @@ class Login extends Component {
           active[type] = [activeItem];
         }
         this.setState({
-          active,
+          active
         });
       }
     };
@@ -105,10 +105,10 @@ class Login extends Component {
             {tabs.length ? (
               <React.Fragment>
                 <Tabs
-                  activeKey={type}
-                  animated={false}
-                  className={styles.tabs}
-                  onChange={this.onSwitch}
+                    activeKey={type}
+                    animated={false}
+                    className={styles.tabs}
+                    onChange={this.onSwitch}
                 >
                   {TabChildren}
                 </Tabs>

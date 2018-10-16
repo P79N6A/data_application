@@ -5,9 +5,9 @@ import styles from './ThemeColor.less';
 
 const Tag = ({ color, check, ...rest }) => (
   <div
-    {...rest}
-    style={{
-      backgroundColor: color,
+      {...rest}
+      style={{
+      backgroundColor: color
     }}
   >
     {check ? <Icon type="check" /> : ''}
@@ -20,35 +20,35 @@ const ThemeColor = ({ colors, title, value, onChange }) => {
     colorList = [
       {
         key: 'dust',
-        color: '#F5222D',
+        color: '#F5222D'
       },
       {
         key: 'volcano',
-        color: '#FA541C',
+        color: '#FA541C'
       },
       {
         key: 'sunset',
-        color: '#FAAD14',
+        color: '#FAAD14'
       },
       {
         key: 'cyan',
-        color: '#13C2C2',
+        color: '#13C2C2'
       },
       {
         key: 'green',
-        color: '#52C41A',
+        color: '#52C41A'
       },
       {
         key: 'daybreak',
-        color: '#1890FF',
+        color: '#1890FF'
       },
       {
         key: 'geekblue',
-        color: '#2F54EB',
+        color: '#2F54EB'
       },
       {
         key: 'purple',
-        color: '#722ED1',
+        color: '#722ED1'
       }
     ];
   }
@@ -58,13 +58,13 @@ const ThemeColor = ({ colors, title, value, onChange }) => {
       <div className={styles.content}>
         {colorList.map(({ key, color }) => (
           <Tooltip key={color}
-                   title={formatMessage({ id: `app.setting.themecolor.${key}` })}
+              title={formatMessage({ id: `app.setting.themecolor.${key}` })}
           >
             <Tag
-              check={value === color}
-              className={styles.colorBlock}
-              color={color}
-              onClick={() => onChange && onChange(color)}
+                check={value === color}
+                className={styles.colorBlock}
+                color={color}
+                onClick={() => onChange && onChange(color)}
             />
           </Tooltip>
         ))}

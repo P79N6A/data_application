@@ -28,12 +28,12 @@ class ApplySearch extends Component {
         <Row gutter={24}>
           <Col span={6}>
             <FormItem className={styles['ant-form-items']}
-                      label="服务类型"
+                label="服务类型"
             >
               {
                 getFieldDecorator('services')(
                   <Select placeholder="请输入服务类型"
-                          style={{ width: 140 }}
+                      style={{ width: 140 }}
                   >
                     <Option value="0">视频监控</Option>
                     <Option value="1">人脸识别</Option>
@@ -44,23 +44,23 @@ class ApplySearch extends Component {
           </Col>
           <Col span={6}>
             <FormItem className={styles['ant-form-items']}
-                      label="申请人"
+                label="申请人"
             >
               {getFieldDecorator('username')(
                 <Input autoComplete="off"
-                       placeholder="请输入用户名"
+                    placeholder="请输入用户名"
                 />,
               )}
             </FormItem>
           </Col>
           <Col span={6}>
             <FormItem className={styles['ant-form-items']}
-                      label="接口名"
+                label="接口名"
             >
               {
                 getFieldDecorator('interface')(
                   <Input autoComplete="off"
-                         placeholder="请输入接口名"
+                      placeholder="请输入接口名"
                   />,
                 )
               }
@@ -68,7 +68,7 @@ class ApplySearch extends Component {
           </Col>
           <Col span={6}>
             <Button htmlType="submit"
-                    type="primary"
+                type="primary"
             >
               搜索
             </Button>
@@ -80,6 +80,6 @@ class ApplySearch extends Component {
 }
 
 ApplySearch.propTypes = {
-  Search: PropTypes.func.isRequired,
+  Search: PropTypes.func.isRequired
 };
 export default Form.create()(ApplySearch);

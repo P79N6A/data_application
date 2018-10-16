@@ -5,7 +5,7 @@ export default {
 
   state: {
     name: [555],
-    resourceTableList: [],
+    resourceTableList: []
   },
 
   subscriptions: {
@@ -18,7 +18,7 @@ export default {
       const res = yield call(TableList, payload.url);
       yield put({
         type: 'save',
-        data: { resourceTableList: res.data.datalist },
+        data: { resourceTableList: res.data.datalist }
       });
       callback(res);
     },
@@ -28,7 +28,7 @@ export default {
       const newData = payload.data.filter(v => v.id !== payload.id);
       yield put({
         type: 'save',
-        data: { resourceTableList: newData },
+        data: { resourceTableList: newData }
       });
       callback(newData);
     }

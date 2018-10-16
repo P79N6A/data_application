@@ -12,13 +12,13 @@ class BarHZ extends Component {
       // title: { text: '服务分组' },
       tooltip: {},
       xAxis: {
-        data: xAxis,
+        data: xAxis
       },
       yAxis: {},
       series: [{
         name: '总量',
         type: 'bar',
-        data: yAxis,
+        data: yAxis
       }]
     });
   }
@@ -26,7 +26,7 @@ class BarHZ extends Component {
   render() {
     return (
       <div id="bar-hz"
-           style={{ width: '100%', height: '250px' }}
+          style={{ width: '100%', height: '250px' }}
       ></div>
     );
   }
@@ -34,6 +34,6 @@ class BarHZ extends Component {
 
 BarHZ.defaultProps = {
   xAxis: ['顺风车安全', '危险物识别', '监控识别', '图形识别', '快递检测'],
-  yAxis: [5, 20, 36, 10, 10],
+  yAxis: [5, 20, 36, 10, 10]
 };
 export default BarHZ;

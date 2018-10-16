@@ -5,7 +5,7 @@ import Redirect from 'umi/redirect';
 let sendMsg = {
   isSuccess: true,
   msg: '',
-  res: {},
+  res: {}
 };
 
 function checkResponse(response, callback, sucTips = '操作成功') {

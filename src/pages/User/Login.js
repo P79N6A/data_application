@@ -17,7 +17,7 @@ function map({ user, loading }) {
 class LoginPage extends Component {
   state = {
     type: 'account',
-    autoLogin: true,
+    autoLogin: true
   };
 
   onTabChange = type => {
@@ -32,7 +32,7 @@ class LoginPage extends Component {
         type: 'user/userLogin',
         payload: {
           ...values,
-          type,
+          type
         }
       });
 
@@ -41,15 +41,15 @@ class LoginPage extends Component {
 
   changeAutoLogin = e => {
     this.setState({
-      autoLogin: e.target.checked,
+      autoLogin: e.target.checked
     });
   };
 
   renderMessage = content => (
     <Alert message={content}
-           showIcon
-           style={{ marginBottom: 24 }}
-           type="error"
+        showIcon
+        style={{ marginBottom: 24 }}
+        type="error"
     />
   );
 
@@ -58,47 +58,47 @@ class LoginPage extends Component {
     const { type, autoLogin } = this.state;
     return (
       <div className={styles.main}
-           style={{ backgroundImage: bg }}
+          style={{ backgroundImage: bg }}
       >
         <Login
-          defaultActiveKey={type}
-          onSubmit={this.handleSubmit}
-          onTabChange={this.onTabChange}
-          ref={form => {
+            defaultActiveKey={type}
+            onSubmit={this.handleSubmit}
+            onTabChange={this.onTabChange}
+            ref={form => {
             this.loginForm = form;
           }}
         >
           <Tab key="account"
-               tab="账户密码登录"
+              tab="账户密码登录"
           >
             {user.status === 'error' &&
             user.type === 'account' &&
               !submitting &&
               this.renderMessage('账户或密码错误（admin/888888）')}
             <UserName name="userName"
-                      placeholder="admin/user"
+                placeholder="admin/user"
             />
             <PassWord
-              name="passWord"
-              onPressEnter={() => this.loginForm.validateFields(this.handleSubmit)}
-              placeholder="888888/123456"
+                name="passWord"
+                onPressEnter={() => this.loginForm.validateFields(this.handleSubmit)}
+                placeholder="888888/123456"
             />
           </Tab>
           <div>
             <Checkbox
-              checked={autoLogin}
-              className={this.state.autoLogin ? styles['text-auto'] : styles['text-w']}
-              onChange={this.changeAutoLogin}
+                checked={autoLogin}
+                className={this.state.autoLogin ? styles['text-auto'] : styles['text-w']}
+                onChange={this.changeAutoLogin}
             >
               自动登录
             </Checkbox>
             <a href="#"
-               style={{ float: 'right' }}
+                style={{ float: 'right' }}
             >
               忘记密码
             </a>
             <Link className={styles.register}
-                  to="/User/Register"
+                to="/User/Register"
             >
               注册账户
             </Link>

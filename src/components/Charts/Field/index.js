@@ -4,7 +4,7 @@ import styles from './index.less';
 
 const Field = ({ label, value, ...rest }) => (
   <div className={styles.field}
-       {...rest}
+      {...rest}
   >
     <span>{label}</span>
     <span>{value}</span>

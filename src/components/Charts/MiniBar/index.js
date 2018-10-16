@@ -10,10 +10,10 @@ class MiniBar extends React.Component {
 
     const scale = {
       x: {
-        type: 'cat',
+        type: 'cat'
       },
       y: {
-        min: 0,
+        min: 0
       }
     };
 
@@ -23,7 +23,7 @@ class MiniBar extends React.Component {
       'x*y',
       (x, y) => ({
         name: x,
-        value: y,
+        value: y
       })
     ];
 
@@ -32,23 +32,23 @@ class MiniBar extends React.Component {
 
     return (
       <div className={styles.miniChart}
-           style={{ height }}
+          style={{ height }}
       >
         <div className={styles.chartContent}>
           <Chart
-            data={data}
-            forceFit={forceFit}
-            height={chartHeight}
-            padding={padding}
-            scale={scale}
+              data={data}
+              forceFit={forceFit}
+              height={chartHeight}
+              padding={padding}
+              scale={scale}
           >
             <Tooltip crosshairs={false}
-                     showTitle={false}
+                showTitle={false}
             />
             <Geom color={color}
-                  position="x*y"
-                  tooltip={tooltip}
-                  type="interval"
+                position="x*y"
+                tooltip={tooltip}
+                type="interval"
             />
           </Chart>
         </div>
