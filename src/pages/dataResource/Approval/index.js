@@ -14,8 +14,8 @@ class Approval extends Component {
     this.state = {
       applyType: '0',
       status: '0',
-      beginDate: '',
-      endDate: '',
+      beginDate: null,
+      endDate: null,
       pageParam: {
         pageIndex: 1,
         pageSize: 10,

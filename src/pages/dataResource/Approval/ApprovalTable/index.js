@@ -82,7 +82,20 @@ class ApprovalTable extends Component {
           }
           this.props.search({pageParam})
         }
-      }
+      },
+      childColumns: [{
+        title: '接口名',
+        dataIndex: 'interfaceName',
+        key: 'interfaceName'
+      }, {
+        title: '接口描述',
+        dataIndex: 'interfaceDesc',
+        key: 'interfaceDesc'
+      }, {
+        title: '请求类型',
+        dataIndex: 'serviceMethodType',
+        key: 'serviceMethodType'
+      }]
     };
   }
   // 同意
@@ -101,8 +114,8 @@ class ApprovalTable extends Component {
       <div>
         <Table columns={this.state.columns}
             dataSource={approval.data}
-            expandedRowRender={() => (
-              <p>展开详情</p>
+            expandedRowRender={(record) => (
+              <Table columns={this.state.childColumns} dataSource={record.interfaceInfos} pagination={{hideOnSinglePage: true}}></Table>
             )}
             pagination={{...this.state.pagination, ...approval.pageParam}}
         />
