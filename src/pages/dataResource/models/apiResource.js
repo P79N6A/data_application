@@ -47,7 +47,7 @@ export default {
       // message.success('获取数据');
       let res = yield call(apiListJava, option);
 
-      if (checkResponse(res, callback)) {
+      if (checkResponse(res, callback, '更新成功')) {
         yield put({
           type: 'save',
           payload: res.data.data
@@ -74,16 +74,15 @@ export default {
       if (callback) callback();
     },
 
-    * saveApi({ payload, callback }, { call, put, select }) {
-      let oldData = yield select(({ apiResource }) => {
-        return apiResource.data;
-      });
+    * saveApi({ payload, callback }, { call}) {
       // payload.status = 2;
-      payload['paramInfoReqDTOS'].forEach((v,i,a)=>{
+
+      payload['paramInfoReqDTOS'].forEach((v)=>{
         Reflect.deleteProperty(v,'key');
       });
-      yield call(addApi, payload);
-      console.log(payload, oldData);
+
+      let res=yield call(addApi, payload);
+      checkResponse(res,callback,'添加成功')
     },
 
     * update({ payload, callback }, { call, put, select }) {

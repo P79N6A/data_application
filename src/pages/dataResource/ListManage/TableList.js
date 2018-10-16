@@ -27,10 +27,10 @@ function GetOption(props) {
   switch (Number(props.status)) {
     case 0:
       return (<Button type="primary"><a onClick={() => (props.handleOption('use', props.id))}>启用</a></Button>);
-    case 1:
+    case 2:
     case 3:
       return (<Button type="primary"><a onClick={() => (props.handleOption('stop', props.id))}> 停用</a></Button>);
-    case 2:
+    case 1:
       return (
         <span>
           <Button type="primary"><a onClick={() => (props.handleOption('stop', props.id))}>停用</a></Button>
@@ -133,7 +133,7 @@ class TableList extends PureComponent {
 
   // 表格内筛选
   handleRowFilter(value, record) {
-    return Number(record.apiState) === Number(value);
+    return Number(record.status) === Number(value);
   }
 
   // 分页操作

@@ -131,15 +131,20 @@ class AdvancedForm extends PureComponent {
     } = this.props;
     validateFieldsAndScroll((error, values) => {
       if (!error) {
-        // submit the values
+        // 提交数据
         dispatch({
           type: 'apiResource/saveApi',
-          payload: values
+          payload: values,
+          callback:()=>{
+            //跳转地址
+            dispatch({
+              type: 'global/toLocation',
+              payload: '/resource'
+            });
+          }
         });
-        dispatch({
-          type: 'global/toLocation',
-          payload: '/resource'
-        });
+
+
       }
     });
   };
@@ -183,10 +188,15 @@ class AdvancedForm extends PureComponent {
                   sm={24}
                   xl={{ span: 6, offset: 2 }}
               >
-                <Form.Item label={fieldLabels.interfaceDesc}>
-                  {getFieldDecorator('interfaceDesc', {
-                    rules: [{ required: true, message: '请输入描述' }]
-                  })(<Input.TextArea placeholder="请输入描述"/>)}
+                <Form.Item label={fieldLabels.serviceMethodType}>
+                  {getFieldDecorator('serviceMethodType', {
+                    rules: [{ required: true, message: '请选择请求类型' }]
+                  })(
+                    <Select placeholder="请选择请求类型">
+                      <Option value="GET">GET</Option>
+                      <Option value="POST">POST</Option>
+                    </Select>,
+                  )}
                 </Form.Item>
               </Col>
               <Col lg={{ span: 10 }}
@@ -278,15 +288,10 @@ class AdvancedForm extends PureComponent {
                   sm={24}
                   xl={{ span: 6, offset: 2 }}
               >
-                <Form.Item label={fieldLabels.serviceMethodType}>
-                  {getFieldDecorator('serviceMethodType', {
-                    rules: [{ required: true, message: '请选择请求类型' }]
-                  })(
-                    <Select placeholder="请选择请求类型">
-                      <Option value="GET">GET</Option>
-                      <Option value="POST">POST</Option>
-                    </Select>,
-                  )}
+                <Form.Item label={fieldLabels.interfaceDesc}>
+                  {getFieldDecorator('interfaceDesc', {
+                    rules: [{ required: true, message: '请输入描述' }]
+                  })(<Input.TextArea placeholder="请输入描述"/>)}
                 </Form.Item>
               </Col>
             </Row>
