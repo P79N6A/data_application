@@ -1,41 +1,71 @@
 import React, { Component } from 'react';
-import { Tabs } from 'antd';
 import ApprovalSearch from './ApplySearch';
 import ApprovalTable from './ApplyTable';
 import { connect } from 'dva';
+import { message } from 'antd'
 import './index.less';
-
+import { OK_CODE } from '@/config/code'
 class Approval extends Component {
   constructor(props) {
     super(props);
-    this.Search = this.Search.bind(this);
-    this.onChoose = this.onChoose.bind(this);
+    this.search = this.search.bind(this)
+    this.fetchList = this.fetchList.bind(this)
+    this.operation = this.operation.bind(this)
     this.state = {
-      activeKey: '1'
-    };
+      applyType: '0',
+      status: '0',
+      beginDate: null,
+      endDate: null,
+      pageParam: {
+        pageIndex: 1,
+        pageSize: 10,
+        orderFiled: 'approve_date',
+        orderRule: 'desc'
+      }
+    }
   }
-
+  componentDidMount() {
+    this.fetchList(this.state)
+  }
   // 点击搜索按钮
-  Search(values) {
-    // 获取值然后去调用接口
-    this.props.dispatch({
-      type: this.state.activeKey === '1' ? 'approval/fetchUse' : 'approval/fetchRelease',
-      payload: values
-    });
-  }
-
-  // 切换标签
-  onChoose(key) {
+  search(values) {
+    let payload = {...this.state, ...values}
+    this.fetchList(payload)
     this.setState({
-      activeKey: key
-    });
+      ...values
+    })
   }
-
+  // 获取列表
+  fetchList(payload) {
+    this.props.dispatch({
+      type: 'approval/fetchRelease',
+      payload: payload
+    })
+  }
+  //  操作同意或者拒绝
+  operation(values) {
+    this.props.dispatch({
+      type: 'approval/operation',
+      payload: values,
+      callback: (res) => {
+        if(res.code !== OK_CODE) {
+          message.warning(res.message)
+          return
+        }
+        // 重新获取数据
+        this.fetchList(this.state)
+      }
+    })
+  }
   render() {
     return (
       <div>
-        <ApprovalSearch Search={this.Search}/>
-        <ApprovalTable approval={this.props.approval.useList}/>
+        <ApprovalSearch search={this.search}/>
+        <ApprovalTable
+            approval={this.props.approval.reseaseList}
+            operation={this.operation}
+            search={this.search}
+        ></ApprovalTable>
       </div>
     );
   }
