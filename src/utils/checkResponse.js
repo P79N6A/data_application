@@ -13,18 +13,19 @@ function checkResponse(response, callback, sucTips = '操作成功') {
     sendMsg.res = response;
     sendMsg.isSuccess = true;
     sendMsg.msg = sucTips;
-    !!sucTips && message.success(sendMsg.msg);
-    !!callback && callback(sendMsg);
+    message.success(sendMsg.msg);
+    typeof callback==='function' ?callback(sendMsg):'';
     return true;
   } else {
     sendMsg.isSuccess = false;
     sendMsg.msg = response.data.message;
     message.error(sendMsg.msg);
-    !!callback && callback(sendMsg);
-
     if (sendMsg.msg === '未登录') {
       window.location.href = '/user/login';
     }
+    typeof callback==='function' ?callback(sendMsg):'';
+
+
     return false;
   }
 }

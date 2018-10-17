@@ -1,4 +1,4 @@
-import { apiList, removeRule, addApi, apiListJava } from '@/services/api';
+import { apiList, removeRule, addApi, apiListJava, updateApiStatus } from '@/services/api';
 import { message } from 'antd';
 import { checkResponse } from '../../../utils/checkResponse';
 
@@ -11,13 +11,20 @@ let objToMap=function(obj) {
 };
 
 export default {
-  namespace: 'apiResource',
+  namespace: 'ListManage',
 
   state: {
     data: {
       data: [],
-      pageParam: {}
-    }
+      pageParam: {
+        'total': 0,
+        'pageIndex': 1,
+        'pageSize': 10,
+        'orderFiled': 'last_update',
+        'orderRule': 'desc'
+      }
+    },
+    searchFormValue:new Map()
   },
 
 
@@ -47,7 +54,7 @@ export default {
       // message.success('获取数据');
       let res = yield call(apiListJava, option);
 
-      if (checkResponse(res, callback)) {
+      if (checkResponse(res, callback, '更新成功')) {
         yield put({
           type: 'save',
           payload: res.data.data
@@ -74,54 +81,20 @@ export default {
       if (callback) callback();
     },
 
-    * saveApi({ payload, callback }, { call, put, select }) {
-      let oldData = yield select(({ apiResource }) => {
-        return apiResource.data;
-      });
+    * saveApi({ payload, callback }, { call}) {
       // payload.status = 2;
-      payload['paramInfoReqDTOS'].forEach((v,i,a)=>{
+
+      payload['paramInfoReqDTOS'].forEach((v)=>{
         Reflect.deleteProperty(v,'key');
       });
-      yield call(addApi, payload);
-      console.log(payload, oldData);
+
+      let res=yield call(addApi, payload);
+      checkResponse(res,callback,'添加成功')
     },
 
-    * update({ payload, callback }, { call, put, select }) {
-      let oldData = yield select(({ apiResource }) => {
-        return apiResource.data;
-      });
-
-      function setState(state) {
-        oldData.list = oldData.list.map((v, i) => {
-          console.log(v.id, payload.id);
-          if (v.id === payload.id) {
-            v.apiState = state;
-          }
-          return v;
-        });
-      }
-      switch (payload.option) {
-        //state=0
-        case 'use':
-          setState(1);
-          break;
-        //state=2
-        case 'stop':
-          setState(0);
-          break;
-        //state=1
-        case 'pass':
-          setState(1);
-          break;
-        //state=1
-        case 'reject':
-          setState(3);
-          break;
-        default:
-          break;
-      }
-
-      if (callback) callback();
+    * updateApiStatus({ payload, callback }, { call, put, select }) {
+      let res=yield call(updateApiStatus,payload);
+      checkResponse(res,callback,payload.option==='1'?'启用成功':'停用成功')
     }
   },
 

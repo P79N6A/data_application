@@ -11,8 +11,6 @@ import PropTypes from 'prop-types';
 import styles from './TableList.less';
 import {TableSearchForm, AdvanceTableSearchForm, ExpandableSearchForm} from '../../../components/DataResource/Table/TableSearchForm';
 
-const FormItem = Form.Item;
-const { Option } = Select;
 const getValue = obj =>
   Object.keys(obj)
     .map(key => obj[key])
@@ -26,14 +24,14 @@ const status = ['无效', '审批中', '已发布', '已驳回'];
 function GetOption(props) {
   switch (Number(props.status)) {
     case 0:
-      return (<Button type="primary"><a onClick={() => (props.handleOption('use', props.id))}>启用</a></Button>);
-    case 1:
-    case 3:
-      return (<Button type="primary"><a onClick={() => (props.handleOption('stop', props.id))}> 停用</a></Button>);
+      return (<Button type="primary"><a onClick={() => (props.handleOption('1', props))}>启用</a></Button>);
     case 2:
+    case 3:
+      return (<Button type="primary"><a onClick={() => (props.handleOption('0', props))}> 停用</a></Button>);
+    case 1:
       return (
         <span>
-          <Button type="primary"><a onClick={() => (props.handleOption('stop', props.id))}>停用</a></Button>
+          <Button type="primary"><a onClick={() => (props.handleOption('0', props))}>停用</a></Button>
           &nbsp;&nbsp;
           <Button type="primary"><Link to={'/resource/approval'}>去审批</Link></Button></span>);
     /*case 3:
@@ -43,21 +41,28 @@ function GetOption(props) {
   }
 }
 
-function map({ apiResource, loading }) {
-  return { apiResource, loading };
+function map({ ListManage, loading }) {
+  return { ListManage, loading };
 }
 /* eslint react/no-multi-comp:0 */
 @connect(map)
-@Form.create()
+@Form.create({onFieldsChange:(p,f)=>(TableList.getFormValue(p,f))})/*获取搜索框的值*/
 class TableList extends PureComponent {
+  static getFormValue(props,fields){
+    Object.keys(fields).forEach((v)=>{
+      //将搜索参数保存在model中
+        props.ListManage.searchFormValue.set(v,fields[v]['value']);
+    })
+  }
   constructor() {
     super();
     this.handleOption = this.handleOption.bind(this);
     this.handleSelectRows = this.handleSelectRows.bind(this);
     this.handleRowFilter = this.handleRowFilter.bind(this);
     this.handleSearch_w = this.handleSearch_w.bind(this);
-    this.handleFilter = this.handleFilter.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.getFormValue = this.getFormValue.bind(this);
+    this.handleFormReset = this.handleFormReset.bind(this);
     this.state={
       expandForm: false,
       selectedRows: [],
@@ -69,7 +74,7 @@ class TableList extends PureComponent {
   // 初始化表格数据
   componentDidMount() {
     this.props.dispatch({
-      type: 'apiResource/getApiList'
+      type: 'ListManage/getApiList'
     });
   }
 
@@ -133,32 +138,25 @@ class TableList extends PureComponent {
 
   // 表格内筛选
   handleRowFilter(value, record) {
-    return Number(record.apiState) === Number(value);
+    return Number(record.status) === Number(value);
   }
 
-  // 分页操作
+  // 分页操作--结合搜索框查询功能
   handleStandardTableChange = (pagination, filtersArg, sorter) => {
-    const { dispatch } = this.props;
-    const { formValues } = this.state;
-
-    const filters = Object.keys(filtersArg).reduce((obj, key) => {
-      const newObj = { ...obj };
-      newObj[key] = getValue(filtersArg[key]);
-      return newObj;
-    }, {});
+    const { dispatch, ListManage:{searchFormValue, data:{pageParam}} } = this.props;
+    pageParam.pageIndex=pagination.current;
+    let param={};
+    searchFormValue.forEach((v,k)=>{
+      param[k]=v;
+    });
 
     const params = {
-      currentPage: pagination.current,
-      pageSize: pagination.pageSize,
-      ...formValues,
-      ...filters
-    };
-    if (sorter.field) {
-      params.sorter = `${sorter.field}_${sorter.order}`;
+      ...param,
+      pageParam
     }
-
+    // debugger;
     dispatch({
-      type: 'apiResource/fetch',
+      type: 'ListManage/getApiList',
       payload: params
     });
   };
@@ -169,22 +167,14 @@ class TableList extends PureComponent {
     this.setState({ searchText: selectedKeys[0] });
   }
 
-  // 表格字段过滤
-  handleFilter(value, record) {
-    return record.apiName.toLowerCase().includes(value.toLowerCase());
-  }
-
   // 重置搜索
   handleFormReset = () => {
-    const { form, dispatch } = this.props;
+    const { form, ListManage:{searchFormValue} } = this.props;
     form.resetFields();
     this.setState({
       formValues: {}
     });
-    dispatch({
-      type: 'apiResource/fetch',
-      payload: {}
-    });
+    searchFormValue.clear();
   };
 
   // 收起展开搜索表单
@@ -196,10 +186,10 @@ class TableList extends PureComponent {
   };
 
   //处理表格操作
-  handleOption(option, id) {
+  handleOption(option, props) {
     this.props.dispatch({
-      type: 'apiResource/update',
-      payload: { option: option, id: id },
+      type: 'ListManage/updateApiStatus',
+      payload: { option: option, interfaceId:props.interfaceId },
       callback: (res) => {
         console.log(res);
       }
@@ -215,7 +205,7 @@ class TableList extends PureComponent {
     switch (e.key) {
       case 'remove':
         dispatch({
-          type: 'apiResource/remove',
+          type: 'ListManage/remove',
           payload: {
             key: selectedRows.map(row => row.key)
           },
@@ -255,15 +245,19 @@ class TableList extends PureComponent {
         formValues: values
       });
       dispatch({
-        type: 'apiResource/getApiList',
+        type: 'ListManage/getApiList',
         payload: values
       });
     });
   }
 
+  getFormValue(v){
+    debugger;
+  }
+
   render() {
     const {
-      apiResource: { data },
+      ListManage: { data },
       loading,
       form: { getFieldDecorator }
     } = this.props;
