@@ -82,7 +82,7 @@ class ApprovalTable extends Component {
         <Table columns={this.state.columns}
             dataSource={apply.data}
             expandedRowRender={(record) => (
-              <Table columns={this.state.childColumns} dataSource={record.interfaceInfos} pagination={{hideOnSinglePage: true}}></Table>
+              <Table columns={this.state.childColumns} dataSource={record.interfaceInfos} pagination={false}></Table>
             )}
             pagination={{...this.state.pagination, ...apply.pageParam}}
         />

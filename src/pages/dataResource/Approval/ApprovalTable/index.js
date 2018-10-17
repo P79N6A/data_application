@@ -47,25 +47,55 @@ class ApprovalTable extends Component {
         {
           title: '操作',
           key: 'action',
-          render: (text, record) => (
-              <div>
-                <Popconfirm onConfirm={this.dispose.bind(this, record, '同意')}
-                    title="确定是否同意"
-                >
-                  <Button
-                      style={{marginRight: '5px'}}
-                      type="primary"
-                  ><a>同意</a></Button>
-                </Popconfirm>
-                <Popconfirm onConfirm={this.dispose.bind(this, record, '拒绝')}
-                    title="确定是否拒绝"
-                >
-                  <Button
-                      type="primary"
-                  ><a>拒绝</a></Button>
-                </Popconfirm>
-              </div>
-          )
+          render: (text, record) => {
+
+            switch(record.status) {
+              case '0' :
+                return (
+                  <div>
+                    <Popconfirm onConfirm={this.dispose.bind(this, record, '同意')}
+                        title="确定是否同意"
+                    >
+                      <Button
+                          style={{marginRight: '5px'}}
+                          type="primary"
+                      ><a>同意</a></Button>
+                    </Popconfirm>
+                    <Popconfirm onConfirm={this.dispose.bind(this, record, '拒绝')}
+                        title="确定是否拒绝"
+                    >
+                      <Button
+                          type="primary"
+                      ><a>拒绝</a></Button>
+                    </Popconfirm>
+                  </div>
+                )
+              case '1':
+                return (
+                  <div>
+                    <Popconfirm onConfirm={this.dispose.bind(this, record, '拒绝')}
+                        title="确定是否拒绝"
+                    >
+                      <Button
+                          type="primary"
+                      ><a>拒绝</a></Button>
+                    </Popconfirm>
+                  </div>
+                )
+              case '2':
+                return (
+                  <div>
+                    <Popconfirm onConfirm={this.dispose.bind(this, record, '拒绝')}
+                        title="确定是否拒绝"
+                    >
+                      <Button
+                          type="primary"
+                      ><a>拒绝</a></Button>
+                    </Popconfirm>
+                  </div>
+                )
+            }
+          }
         }
       ],
       pagination: {
@@ -115,7 +145,7 @@ class ApprovalTable extends Component {
         <Table columns={this.state.columns}
             dataSource={approval.data}
             expandedRowRender={(record) => (
-              <Table columns={this.state.childColumns} dataSource={record.interfaceInfos} pagination={{hideOnSinglePage: true}}></Table>
+              <Table columns={this.state.childColumns} dataSource={record.interfaceInfos} pagination={false}></Table>
             )}
             pagination={{...this.state.pagination, ...approval.pageParam}}
         />
