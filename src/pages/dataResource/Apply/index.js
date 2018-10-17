@@ -2,15 +2,12 @@ import React, { Component } from 'react';
 import ApprovalSearch from './ApplySearch';
 import ApprovalTable from './ApplyTable';
 import { connect } from 'dva';
-import { message } from 'antd'
 import './index.less';
-import { OK_CODE } from '@/config/code'
 class Approval extends Component {
   constructor(props) {
     super(props);
     this.search = this.search.bind(this)
     this.fetchList = this.fetchList.bind(this)
-    this.operation = this.operation.bind(this)
     this.state = {
       applyType: '0',
       status: '0',
@@ -38,23 +35,8 @@ class Approval extends Component {
   // 获取列表
   fetchList(payload) {
     this.props.dispatch({
-      type: 'approval/fetchRelease',
+      type: 'apply/fetchApply',
       payload: payload
-    })
-  }
-  //  操作同意或者拒绝
-  operation(values) {
-    this.props.dispatch({
-      type: 'approval/operation',
-      payload: values,
-      callback: (res) => {
-        if(res.code !== OK_CODE) {
-          message.warning(res.message)
-          return
-        }
-        // 重新获取数据
-        this.fetchList(this.state)
-      }
     })
   }
   render() {
@@ -62,8 +44,7 @@ class Approval extends Component {
       <div>
         <ApprovalSearch search={this.search}/>
         <ApprovalTable
-            approval={this.props.approval.reseaseList}
-            operation={this.operation}
+            apply={this.props.apply.applyList}
             search={this.search}
         ></ApprovalTable>
       </div>
@@ -71,6 +52,6 @@ class Approval extends Component {
   }
 }
 
-export default connect(({ approval }) => ({
-  approval
+export default connect(({apply}) => ({
+  apply
 }))(Approval);

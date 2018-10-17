@@ -43,29 +43,6 @@ class ApprovalTable extends Component {
           title: '申请描述',
           dataIndex: 'applyDesc',
           key: 'applyDesc'
-        },
-        {
-          title: '操作',
-          key: 'action',
-          render: (text, record) => (
-              <div>
-                <Popconfirm onConfirm={this.dispose.bind(this, record, '同意')}
-                    title="确定是否同意"
-                >
-                  <Button
-                      style={{marginRight: '5px'}}
-                      type="primary"
-                  ><a>同意</a></Button>
-                </Popconfirm>
-                <Popconfirm onConfirm={this.dispose.bind(this, record, '拒绝')}
-                    title="确定是否拒绝"
-                >
-                  <Button
-                      type="primary"
-                  ><a>拒绝</a></Button>
-                </Popconfirm>
-              </div>
-          )
         }
       ],
       pagination: {
@@ -82,29 +59,32 @@ class ApprovalTable extends Component {
           }
           this.props.search({pageParam})
         }
-      }
+      },
+      childColumns: [{
+        title: '接口名',
+        dataIndex: 'interfaceName',
+        key: 'interfaceName'
+      }, {
+        title: '接口描述',
+        dataIndex: 'interfaceDesc',
+        key: 'interfaceDesc'
+      }, {
+        title: '请求类型',
+        dataIndex: 'serviceMethodType',
+        key: 'serviceMethodType'
+      }]
     };
   }
-  // 同意
-  dispose(info, res) {
-    let {applyId,applyType} = info
-    let opts = {
-      applyId,
-      approveType: applyType,
-      approveDesc: res
-    }
-    this.props.operation(opts)
-  }
   render() {
-    let { approval } = this.props
+    let { apply } = this.props
     return (
       <div>
         <Table columns={this.state.columns}
-            dataSource={approval.data}
-            expandedRowRender={() => (
-              <p>展开详情</p>
+            dataSource={apply.data}
+            expandedRowRender={(record) => (
+              <Table columns={this.state.childColumns} dataSource={record.interfaceInfos} pagination={false}></Table>
             )}
-            pagination={{...this.state.pagination, ...approval.pageParam}}
+            pagination={{...this.state.pagination, ...apply.pageParam}}
         />
       </div>
     )
@@ -112,8 +92,7 @@ class ApprovalTable extends Component {
 }
 
 ApprovalTable.propTypes = {
-  approval: PropTypes.object.isRequired,
-  operation: PropTypes.func.isRequired,
+  apply: PropTypes.object.isRequired,
   search: PropTypes.func.isRequired
 }
 
