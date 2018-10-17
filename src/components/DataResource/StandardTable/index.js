@@ -74,7 +74,8 @@ class StandardTable extends PureComponent {
       loading,
       columns,
       rowKey,
-      showSizeChanger
+      showSizeChanger,
+      size='middle'
     } = this.props;
     const paginationProps = {
       showSizeChanger: showSizeChanger,
@@ -127,6 +128,7 @@ class StandardTable extends PureComponent {
             pagination={paginationProps}
             rowKey={rowKey || 'key'}
             rowSelection={rowSelection}
+            size={size}
         />
       </div>
     );

@@ -309,6 +309,7 @@ class TableList extends PureComponent {
                 onSelectRow={this.handleSelectRows}
                 selectedRows={selectedRows}
                 showSizeChanger={false}
+                size={'small'}
             />
           </div>
         </Card>

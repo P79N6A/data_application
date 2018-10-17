@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Table, Button, Popconfirm} from 'antd'
-import dateFormat from '@/utils/dateFormat';
+import {dateFormat} from '@/utils/dateFormat';
 import PropTypes from 'prop-types'
 const APPLYTYPE = ['接口发布', '接口使用']
 const STATUS = ['审批中', '已审批', '驳回']
