@@ -2,7 +2,7 @@ function dateFormat(date) {
   const _date = new Date(date)
   const y = _date.getFullYear()
   const m = _date.getMonth() + 1
-  const d = _date.getDay()
+  const d = _date.getDate()
   const h = _date.getHours()
   const mm = _date.getMinutes()
   const s = _date.getSeconds()
