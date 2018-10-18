@@ -101,6 +101,7 @@ class BasicLayout extends React.PureComponent {
     dispatch({
       type: 'setting/getSetting'
     });
+    // 下次渲染时改变，提高性能
     this.renderRef = requestAnimationFrame(() => {
       this.setState({
         rendering: false
@@ -122,12 +123,13 @@ class BasicLayout extends React.PureComponent {
     this.breadcrumbNameMap = this.getBreadcrumbNameMap();
     const { isMobile } = this.state;
     const { collapsed } = this.props;
+    // this.handleMenuCollapse(false)
     if (isMobile && !preProps.isMobile && !collapsed) {
       this.handleMenuCollapse(false);
     }
   }
   componentDidCatch(err, info) {
-    console.log('+++++++++++++++++++++++++++++++++++++++++++++');
+    // console.log('+++++++++++++++++++++++++++++++++++++++++++++');
     this.setState({ err: true, errState: { err: err, info: info } });
   }
 

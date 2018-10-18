@@ -22,9 +22,9 @@ function checkResponse(response, callback, sucTips = '操作成功') {
     message.error(sendMsg.msg);
     if (sendMsg.msg === '未登录') {
       window.location.href = '/user/login';
+      return false;
     }
     typeof callback==='function' ?callback(sendMsg):'';
-
 
     return false;
   }

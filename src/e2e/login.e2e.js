@@ -14,7 +14,10 @@ describe('Login', () => {
     await page.evaluate(() => window.localStorage.setItem('antd-pro-authority', 'guest'));
   });
 
-  afterEach(() => page.close());
+  afterEach(() => {
+    if (!page.close)return;
+    return page.close()
+  });
 
   it('should login with failure', async () => {
     await page.waitForSelector('#userName', {

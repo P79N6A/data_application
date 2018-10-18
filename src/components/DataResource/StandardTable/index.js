@@ -47,9 +47,7 @@ class StandardTable extends PureComponent {
     if (onSelectRow) {
       onSelectRow(selectedRows);
     }
-
     this.setState({ selectedRowKeys, needTotalList });
-    console.log(this.state);
   };
 
   handleTableChange = (pagination, filters, sorter) => {
@@ -69,22 +67,30 @@ class StandardTable extends PureComponent {
 
   render() {
     const { selectedRowKeys, needTotalList } = this.state;
-    const {
+    let {
       data: { data = [], pageParam = {} },
       loading,
       columns,
       rowKey,
       showSizeChanger,
-      size='middle'
+      size='middle',
+      paginationSet={}
     } = this.props;
+
+    // 分页参数
     const paginationProps = {
       showSizeChanger: showSizeChanger,
       showQuickJumper: true,
-      ...pageParam
+      hideOnSinglePage:true,
+      ...pageParam,
+      ...paginationSet
     };
+
+
     const rowSelection = {
       selectedRowKeys,
       onChange: this.handleRowSelectChange,
+      // 选择框默认属性配置
       getCheckboxProps: record => ({
         disabled: record.disabled
       })

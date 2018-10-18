@@ -2,14 +2,15 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import {
-  Row, Col, Card, Form, Input, Select, Icon,
-  Button, Dropdown, Menu, DatePicker, Badge
+  Card, Form,  Icon, Button,
+  Dropdown, Menu, Badge
 } from 'antd';
 import StandardTable from '@/components//DataResource/StandardTable';
 import { Link } from 'dva/router';
 import PropTypes from 'prop-types';
 import styles from './TableList.less';
-import {TableSearchForm, AdvanceTableSearchForm, ExpandableSearchForm} from '../../../components/DataResource/Table/TableSearchForm';
+import { ExpandableSearchForm} from '../../../components/DataResource/Table/TableSearchForm';
+import ApiDetailModal from './ApiDetailModal'
 
 const getValue = obj =>
   Object.keys(obj)
@@ -24,16 +25,16 @@ const status = ['无效', '审批中', '已发布', '已驳回'];
 function GetOption(props) {
   switch (Number(props.status)) {
     case 0:
-      return (<Button type="primary"><a onClick={() => (props.handleOption('1', props))}>启用</a></Button>);
+      return (<a onClick={() => (props.handleOption('1', props))}>启用</a>);
     case 2:
     case 3:
-      return (<Button type="primary"><a onClick={() => (props.handleOption('0', props))}> 停用</a></Button>);
+      return (<a onClick={() => (props.handleOption('0', props))}> 停用</a>);
     case 1:
       return (
         <span>
-          <Button type="primary"><a onClick={() => (props.handleOption('0', props))}>停用</a></Button>
+          <a onClick={() => (props.handleOption('0', props))}>停用</a>
           &nbsp;&nbsp;
-          <Button type="primary"><Link to={'/resource/approval'}>去审批</Link></Button></span>);
+          <Link to={'/resource/approval'}>去审批</Link></span>);
     /*case 3:
       return (<Button type="primary"><a onClick={() => (props.handleOption('edit', props.id))}>修改</a></Button>);*/
     default:
@@ -63,26 +64,28 @@ class TableList extends PureComponent {
     this.handleSearch = this.handleSearch.bind(this);
     this.getFormValue = this.getFormValue.bind(this);
     this.handleFormReset = this.handleFormReset.bind(this);
+    this.handleModalOk = this.handleModalOk.bind(this);
+    this.handleModalCancel = this.handleModalCancel.bind(this);
+    this.toggleModalVisible = this.toggleModalVisible.bind(this);
     this.state={
       expandForm: false,
       selectedRows: [],
-      formValues: {}
+      formValues: {},
+      modal:{
+        modalTitle:'面板',
+        modalVisible:false,
+        modalContent:{}
+      }
     }
   }
-
-
-  // 初始化表格数据
-  componentDidMount() {
-    this.props.dispatch({
-      type: 'ListManage/getApiList'
-    });
-  }
-
   columns = [
     {
       title: '接口名称',
       dataIndex: 'interfaceName',
-      key: 'interfaceName'
+      key: 'interfaceName',
+      render: (text, record) =>{
+        return (<a onClick={() => (this.toggleModalVisible(record))}> {text}</a>)
+      }
     },
     {
       title: '描述',
@@ -136,6 +139,13 @@ class TableList extends PureComponent {
     }
   ];
 
+  // 初始化表格数据
+  componentDidMount() {
+    this.props.dispatch({
+      type: 'ListManage/getApiList'
+    });
+  }
+
   // 表格内筛选
   handleRowFilter(value, record) {
     return Number(record.status) === Number(value);
@@ -187,11 +197,16 @@ class TableList extends PureComponent {
 
   //处理表格操作
   handleOption(option, props) {
-    this.props.dispatch({
+    let { dispatch }=this.props;
+    dispatch({
       type: 'ListManage/updateApiStatus',
       payload: { option: option, interfaceId:props.interfaceId },
       callback: (res) => {
-        console.log(res);
+        if (res.isSuccess){
+          dispatch({
+            type:'ListManage/getApiList'
+          })
+        }
       }
     });
   }
@@ -227,10 +242,24 @@ class TableList extends PureComponent {
     });
   }
 
+  toggleModalVisible(record){
+    let {modalVisible}=this.state.modal;
+    this.setState({modal:{
+      modalVisible: !modalVisible,
+        modalTitle: record.interfaceName,
+        modalContent: {...record}
+    }});
+  }
+  handleModalCancel(){
+    this.setState({modal:{modalVisible:false}});
+  }
+  handleModalOk(){
+    this.setState({modal:{modalVisible:false}});
+  }
+
 // 顶部搜索栏提交
   handleSearch(e) {
     e.preventDefault();
-
     const { dispatch, form } = this.props;
 
     form.validateFields((err, fieldsValue) => {
@@ -256,12 +285,13 @@ class TableList extends PureComponent {
   }
 
   render() {
+
     const {
       ListManage: { data },
       loading,
       form: { getFieldDecorator }
     } = this.props;
-    const { selectedRows } = this.state;
+    const { selectedRows, modal } = this.state;
     const menu = (
       <Menu onClick={this.handleMenuClick}
           selectedKeys={[]}
@@ -307,12 +337,19 @@ class TableList extends PureComponent {
                 loading={loading}
                 onChange={this.handleStandardTableChange}
                 onSelectRow={this.handleSelectRows}
+                rowKey={(record)=>(record.interfaceId)}
                 selectedRows={selectedRows}
-                showSizeChanger={false}
+                showSizeChanger
                 size={'small'}
             />
           </div>
         </Card>
+        <ApiDetailModal
+            {...modal}
+            handleModalCancel={this.handleModalCancel}
+            handleModalOk={this.handleModalOk}
+
+        />
       </div>
     );
   }
