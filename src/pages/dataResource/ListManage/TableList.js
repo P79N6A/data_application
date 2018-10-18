@@ -25,16 +25,32 @@ const status = ['无效', '审批中', '已发布', '已驳回'];
 function GetOption(props) {
   switch (Number(props.status)) {
     case 0:
-      return (<a onClick={() => (props.handleOption('1', props))}>启用</a>);
+      return (
+        <span>
+          <a onClick={() => (props.handleOption('1', props))}>启用</a>
+          &nbsp;&nbsp;
+          <a onClick={() => (props.toggleModalVisible(props))}> 详情</a>
+        </span>
+      );
     case 2:
     case 3:
-      return (<a onClick={() => (props.handleOption('0', props))}> 停用</a>);
+      return (
+        <span>
+          <a onClick={() => (props.handleOption('0', props))}> 停用</a>
+          &nbsp;&nbsp;
+          <a onClick={() => (props.toggleModalVisible(props))}> 详情</a>
+        </span>
+        );
     case 1:
       return (
         <span>
           <a onClick={() => (props.handleOption('0', props))}>停用</a>
           &nbsp;&nbsp;
-          <Link to={'/resource/approval'}>去审批</Link></span>);
+          <Link to={'/resource/approval'}>去审批</Link>
+          &nbsp;&nbsp;
+          <a onClick={() => (props.toggleModalVisible(props))}> 详情</a>
+        </span>
+      );
     /*case 3:
       return (<Button type="primary"><a onClick={() => (props.handleOption('edit', props.id))}>修改</a></Button>);*/
     default:
@@ -134,6 +150,7 @@ class TableList extends PureComponent {
       render: (text, record) => (
         <GetOption {...record}
             handleOption={this.handleOption}
+            toggleModalVisible={this.toggleModalVisible}
         />
       )
     }

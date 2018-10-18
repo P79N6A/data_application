@@ -30,12 +30,12 @@ export default [
           {
             path: '/resource/monitor',
             name: 'monitor',
+            hideInMenu:true,
             component: './dataResource/Monitor/Monitor',
           },
           {
             path: '/resource/monitorApi',
             name: 'monitorApi',
-            hideInMenu: true,
             component: './dataResource/Monitor/MonitorApi',
           },
           {

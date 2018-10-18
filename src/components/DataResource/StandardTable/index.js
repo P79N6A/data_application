@@ -129,7 +129,7 @@ class StandardTable extends PureComponent {
             columns={columns}
             dataSource={data}
           // loading={loading}
-            expandedRowRender={this.showTableInfo}
+          //   expandedRowRender={this.showTableInfo}
             onChange={this.handleTableChange}
             pagination={paginationProps}
             rowKey={rowKey || 'key'}
