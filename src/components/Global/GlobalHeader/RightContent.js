@@ -6,6 +6,7 @@ import groupBy from 'lodash/groupBy';
 import NoticeIcon from '../NoticeIcon';
 import HeaderSearch from '../HeaderSearch/index';
 import styles from './index.less';
+import avatar from '../../../assets/avatar.png'
 
 export default class GlobalHeaderRight extends PureComponent {
   getNoticeData() {
@@ -150,16 +151,16 @@ export default class GlobalHeaderRight extends PureComponent {
               title="待办"
           />
         </NoticeIcon>
-        {currentUser.name ? (
+        {currentUser.userName ? (
           <Dropdown overlay={menu}>
             <span className={`${styles.action} ${styles.account}`}>
               <Avatar
                   alt="avatar"
                   className={styles.avatar}
                   size="small"
-                  src={currentUser.avatar}
+                  src={avatar}
               />
-              <span className={styles.name}>{currentUser.name}</span>
+              <span className={styles.name}>{currentUser.userName?currentUser.userName:'admin'}</span>
             </span>
           </Dropdown>
         ) : (

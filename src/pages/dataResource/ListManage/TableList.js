@@ -313,7 +313,7 @@ class TableList extends PureComponent {
       <Menu onClick={this.handleMenuClick}
           selectedKeys={[]}
       >
-        <Menu.Item key="remove">删除</Menu.Item>
+        <Menu.Item key="remove">批量启用</Menu.Item>
         <Menu.Item key="approval">批量停用</Menu.Item>
       </Menu>
     );
@@ -339,7 +339,6 @@ class TableList extends PureComponent {
 
               {selectedRows.length > 0 && (
                 <span>
-                  <Button>批量通过</Button>
                   <Dropdown overlay={menu}>
                     <Button>
                       更多操作 <Icon type="down"/>
@@ -357,7 +356,7 @@ class TableList extends PureComponent {
                 rowKey={(record)=>(record.interfaceId)}
                 selectedRows={selectedRows}
                 showSizeChanger
-                size={'small'}
+                size={'medium'}
             />
           </div>
         </Card>

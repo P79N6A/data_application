@@ -20,7 +20,6 @@ export default {
   effects: {
     * userLogin({ payload, callback }, { call, put }) {
       let res = yield call(login, payload);
-
       //登录失败
       if (!checkResponse(res, callback)) {
         return;
@@ -30,6 +29,11 @@ export default {
         status: 'ok',
         type: 'account'
       };
+      yield put({
+        type:'saveCurrentUser',
+        payload: res.data.data
+      });
+
       yield put({
         type: 'changeLoginStatus',
         payload: rs
@@ -72,8 +76,10 @@ export default {
         }),
       );
     },
+
     *fetch(_, { call, put }) {
       const response = yield call(queryUsers);
+      debugger;
       yield put({
         type: 'save',
         payload: response
@@ -81,10 +87,10 @@ export default {
     },
     *fetchCurrent(_, { call, put }) {
       const response = yield call(queryCurrent);
-      yield put({
+      /*yield put({
         type: 'saveCurrentUser',
         payload: response.name ? response : response.data
-      });
+      });*/
     }
   },
 
