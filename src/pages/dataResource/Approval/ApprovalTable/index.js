@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Table, Button, Popconfirm} from 'antd'
+import InterfaceList from './interfaceList'
+import InterfaceHistory from './interfaceHistory'
 import dateFormat from '@/utils/dateFormat';
 import PropTypes from 'prop-types'
 const APPLYTYPE = ['接口发布', '接口使用']
@@ -112,40 +114,31 @@ class ApprovalTable extends Component {
           }
           this.props.search({pageParam})
         }
-      },
-      childColumns: [{
-        title: '接口名',
-        dataIndex: 'interfaceName',
-        key: 'interfaceName'
-      }, {
-        title: '接口描述',
-        dataIndex: 'interfaceDesc',
-        key: 'interfaceDesc'
-      }, {
-        title: '请求类型',
-        dataIndex: 'serviceMethodType',
-        key: 'serviceMethodType'
-      }]
+      }
     };
   }
   // 同意
   dispose(info, res) {
-    let {applyId,applyType} = info
+    let {applyId} = info
     let opts = {
       applyId,
-      approveType: applyType,
+      approveType: res === '同意' ? '0' : '1',
       approveDesc: res
     }
     this.props.operation(opts)
   }
   render() {
     let { approval } = this.props
+    console.log(approval)
     return (
       <div>
         <Table columns={this.state.columns}
             dataSource={approval.data}
             expandedRowRender={(record) => (
-              <Table columns={this.state.childColumns} dataSource={record.interfaceInfos} pagination={false}></Table>
+              <div className="interface-info">
+                <InterfaceList interfaceInfos={record.interfaceInfos}></InterfaceList>
+                <InterfaceHistory approveHistorys={record.approveHistorys}></InterfaceHistory>
+              </div>
             )}
             pagination={{...this.state.pagination, ...approval.pageParam}}
         />
