@@ -95,6 +95,7 @@ class ApprovalTable extends Component {
         <Table columns={this.state.columns}
             dataSource={apply.data}
             pagination={{...this.state.pagination, ...apply.pageParam}}
+            size="middle"
         />
         <Modal footer={null} onCancel={this.handleCancel} visible={this.state.visible} width="800px">
           <InterfaceList interfaceInfos={this.state.interfaceInfos}></InterfaceList>
