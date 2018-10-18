@@ -1,26 +1,36 @@
 @import '../../../../node_modules/antd/lib/style/themes/default.less';
 
+@nav-header-height: 64px;
 @pro-header-hover-bg: rgba(0, 0, 0, 0.025);
 
 .header {
   height: 54px;
   padding: 0 12px 0 0;
-  background: #fff;
+  background: #333434;
   //box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
   position: relative;
 }
-
 .logo {
-  height: 64px;
-  line-height: 58px;
-  vertical-align: top;
-  display: inline-block;
-  padding: 0 0 0 24px;
-  cursor: pointer;
-  font-size: 20px;
+  height: @nav-header-height;
+  position: relative;
+  line-height: @nav-header-height;
+  padding-left: (@menu-collapsed-width - 32px) / 2;
+  transition: all 0.3s;
+  background: #333434;
+  overflow: hidden;
   img {
     display: inline-block;
     vertical-align: middle;
+    height: 32px;
+  }
+  h1 {
+    color: white;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 20px;
+    margin: 0 0 0 12px;
+    font-family: 'Myriad Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-weight: 600;
   }
 }
 
@@ -51,27 +61,33 @@ i.trigger {
 }
 
 .right {
-  float: right;
+  position: absolute;
+  top: 0;
+  right: 40px;
   height: 100%;
   overflow: hidden;
+  color: #fff;
   .action {
+    color: #fff;
     cursor: pointer;
     padding: 0 12px;
     display: inline-block;
     transition: all 0.3s;
     height: 100%;
     > i {
+      color: #fff;
       vertical-align: middle;
-      color: @text-color;
     }
     &:hover {
       background: @pro-header-hover-bg;
     }
     :global(&.ant-popover-open) {
+      color: #fff;
       background: @pro-header-hover-bg;
     }
   }
   .search {
+    color: #fff;
     padding: 0 12px;
     &:hover {
       background: transparent;
@@ -80,7 +96,7 @@ i.trigger {
   .account {
     .avatar {
       margin: 20px 8px 20px 0;
-      color: @primary-color;
+      color: #fff;
       background: rgba(255, 255, 255, 0.85);
       vertical-align: middle;
     }
@@ -122,7 +138,7 @@ i.trigger {
     }
     .right {
       position: absolute;
-      right: 12px;
+      right: 40px;
       top: 0;
       background: #fff;
       .account {

@@ -242,30 +242,31 @@ class BasicLayout extends React.PureComponent {
     const routerConfig = this.matchParamsPath(pathname);
     const layout = (
       <Layout>
-        {isTop && !isMobile ? null : (
-          <SiderMenu
-              Authorized={Authorized}
-              isMobile={isMobile}
-              logo={logo}
-              menuData={menuData}
-              onCollapse={this.handleMenuCollapse}
-              theme={navTheme}
-              {...this.props}
-          />
-        )}
+        <Header
+            handleMenuCollapse={this.handleMenuCollapse}
+            isMobile={isMobile}
+            logo={logo}
+            menuData={menuData}
+            {...this.props}
+            style={{width:'100%'}}
+        />
         <Layout
             style={{
             ...this.getLayoutStyle(),
             minHeight: '100vh'
           }}
         >
-          <Header
-              handleMenuCollapse={this.handleMenuCollapse}
-              isMobile={isMobile}
-              logo={logo}
-              menuData={menuData}
-              {...this.props}
-          />
+          {isTop && !isMobile ? null : (
+            <SiderMenu
+                Authorized={Authorized}
+                isMobile={isMobile}
+                logo={logo}
+                menuData={menuData}
+                onCollapse={this.handleMenuCollapse}
+                theme={navTheme}
+                {...this.props}
+            />
+          )}
           <Content style={this.getContentStyle()}>
             <Authorized authority={routerConfig.authority}
                 noMatch={<Exception403/>}

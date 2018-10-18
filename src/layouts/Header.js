@@ -38,7 +38,8 @@ class HeaderView extends PureComponent {
     if (isMobile || !fixedHeader || layout === 'topmenu') {
       return '100%';
     }
-    return collapsed ? 'calc(100% - 80px)' : 'calc(100% - 256px)';
+    // return collapsed ? 'calc(100% - 80px)' : 'calc(100% - 256px)';
+    return '100%'
   };
 
   handleNoticeClear = type => {

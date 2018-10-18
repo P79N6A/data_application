@@ -9,8 +9,8 @@ import StandardTable from '@/components//DataResource/StandardTable';
 import { Link } from 'dva/router';
 import PropTypes from 'prop-types';
 import styles from './TableList.less';
-import { ExpandableSearchForm} from '../../../components/DataResource/Table/TableSearchForm';
-import ApiDetailModal from './ApiDetailModal'
+import { ExpandableSearchForm} from '@/components/DataResource/Table/TableSearchForm';
+import ApiDetailModal from '@/components/DataResource/ApiDetailModal/ApiDetailModal'
 
 const getValue = obj =>
   Object.keys(obj)

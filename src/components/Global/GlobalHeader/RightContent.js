@@ -110,17 +110,6 @@ export default class GlobalHeaderRight extends PureComponent {
           }}
             placeholder="站内搜索"
         />
-        {/* <Tooltip title="使用文档">
-          <a
-              className={styles.action}
-              href="#"
-              rel="noopener noreferrer"
-              // target="_blank"
-              title="使用文档"
-          >
-            <Icon type="question-circle-o" />
-          </a>
-        </Tooltip>*/}
         <NoticeIcon
             className={styles.action}
             count={currentUser.notifyCount}
@@ -168,7 +157,7 @@ export default class GlobalHeaderRight extends PureComponent {
               style={{ marginLeft: 8, marginRight: 8 }}
           />
         )}
-        <Button
+        {/*<Button
             ghost={theme === 'dark'}
             onClick={() => {
             this.changLang();
@@ -179,7 +168,7 @@ export default class GlobalHeaderRight extends PureComponent {
           }}
         >
           <FormattedMessage id="navbar.lang" />
-        </Button>
+        </Button>*/}
       </div>
     );
   }

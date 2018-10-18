@@ -53,7 +53,7 @@ export default [
           {
             path: '/resource/manage',
             name: 'manage',
-            component: './dataResource/ListManage/TableList',
+            component: './dataResource/ListManage',
           },
           {
             path: '/resource/approval',

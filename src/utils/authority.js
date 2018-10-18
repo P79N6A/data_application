@@ -1,8 +1,10 @@
 //从本地存储获取用户信息
+let defaultAuth=[]
+
 export function getAuthority(str) {
   // return localStorage.getItem('antd-pro-authority') || ['admin', 'user'];
   const authorityString =
-    typeof str === 'undefined' ? localStorage.getItem('antd-pro-authority') : str;
+    typeof str === 'undefined' ? localStorage.getItem('authority') : str;
   // authorityString could be admin, "admin", ["admin"]
   let authority;
   try {
@@ -13,11 +15,15 @@ export function getAuthority(str) {
   if (typeof authority === 'string') {
     return [authority];
   }
-  return authority || ['admin'];
+  return authority || defaultAuth;
 }
 
 // 把服务端的用户信息存到本地
 export function setAuthority(authority) {
   const proAuthority = typeof authority === 'string' ? [authority] : authority;
-  return localStorage.setItem('antd-pro-authority', JSON.stringify(proAuthority));
+  return localStorage.setItem('authority', JSON.stringify(proAuthority));
+}
+
+export function clearAuthority() {
+  return localStorage.setItem('authority', null)
 }

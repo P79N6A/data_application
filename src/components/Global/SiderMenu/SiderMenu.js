@@ -107,16 +107,6 @@ export default class SiderMenu extends PureComponent {
           trigger={null}
           width={256}
       >
-        <div className={styles.logo}
-            id="logo"
-        >
-          <Link to="/">
-            <img alt="logo"
-                src={logo}
-            />
-            <h1>精准社会服务平台</h1>
-          </Link>
-        </div>
         <BaseMenu
             {...this.props}
             handleOpenChange={this.handleOpenChange}

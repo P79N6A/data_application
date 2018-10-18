@@ -102,7 +102,7 @@ export default class NoticeIcon extends PureComponent {
           placement="bottomRight"
           popupAlign={popupAlign}
           popupClassName={styles.popover}
-          trigger="click"
+          // trigger="click"
           {...popoverProps}
       >
         {trigger}

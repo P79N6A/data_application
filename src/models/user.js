@@ -2,7 +2,7 @@ import { query as queryUsers, queryCurrent } from '@/services/user';
 import { routerRedux } from 'dva/router';
 import { stringify } from 'qs';
 import { login } from '../services/user';
-import { setAuthority } from '@/utils/authority';
+import { setAuthority, clearAuthority } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
 import { reloadAuthorized } from '@/utils/Authorized';
 import { checkResponse } from '../utils/checkResponse';
@@ -67,6 +67,7 @@ export default {
         }
       });
       reloadAuthorized();
+      clearAuthority();
       yield put(
         routerRedux.push({
           pathname: '/user/login',
