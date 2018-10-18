@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import { Table, Button, Popconfirm} from 'antd'
-import {dateFormat} from '@/utils/dateFormat';
+import { Table, Modal } from 'antd'
+import dateFormat from '@/utils/dateFormat';
 import PropTypes from 'prop-types'
+import InterfaceList from '../../Approval/ApprovalTable/interfaceList'
+import InterfaceHistory from '../../Approval/ApprovalTable/InterfaceHistory'
 const APPLYTYPE = ['接口发布', '接口使用']
 const STATUS = ['审批中', '已审批', '驳回']
 class ApprovalTable extends Component {
@@ -43,6 +45,16 @@ class ApprovalTable extends Component {
           title: '申请描述',
           dataIndex: 'applyDesc',
           key: 'applyDesc'
+        },{
+          title: '操作',
+          key: 'action',
+          render: (text, record) => {
+            return(
+              <div>
+                <a onClick={this.openInfo.bind(this, record)}>详情</a>
+              </div>
+            )
+          }
         }
       ],
       pagination: {
@@ -60,20 +72,21 @@ class ApprovalTable extends Component {
           this.props.search({pageParam})
         }
       },
-      childColumns: [{
-        title: '接口名',
-        dataIndex: 'interfaceName',
-        key: 'interfaceName'
-      }, {
-        title: '接口描述',
-        dataIndex: 'interfaceDesc',
-        key: 'interfaceDesc'
-      }, {
-        title: '请求类型',
-        dataIndex: 'serviceMethodType',
-        key: 'serviceMethodType'
-      }]
+      interfaceInfos: [],
+      approveHistorys: []
     };
+  }
+  openInfo(record) {
+    this.setState({
+      visible: true,
+      interfaceInfos: record.interfaceInfos,
+      approveHistorys:record.approveHistorys
+    })
+  }
+  handleCancel = () => {
+    this.setState({
+      visible: false
+    });
   }
   render() {
     let { apply } = this.props
@@ -81,11 +94,13 @@ class ApprovalTable extends Component {
       <div>
         <Table columns={this.state.columns}
             dataSource={apply.data}
-            expandedRowRender={(record) => (
-              <Table columns={this.state.childColumns} dataSource={record.interfaceInfos} pagination={false}></Table>
-            )}
             pagination={{...this.state.pagination, ...apply.pageParam}}
+            size="middle"
         />
+        <Modal footer={null} onCancel={this.handleCancel} visible={this.state.visible} width="800px">
+          <InterfaceList interfaceInfos={this.state.interfaceInfos}></InterfaceList>
+          <InterfaceHistory approveHistorys={this.state.approveHistorys}></InterfaceHistory>
+        </Modal>
       </div>
     )
   }
