@@ -5,7 +5,7 @@ const columns = [{
   title: '时间',
   dataIndex: 'approveDate',
   key: 'approveDate',
-  width: '400px',
+  width: '200px',
   render: (text) => (
     <span>{dateFormat(text)}</span>
   )
@@ -13,7 +13,7 @@ const columns = [{
   title: '操作描述',
   dataIndex: 'approveDesc',
   key: 'approveDesc',
-  width: '400px'
+  width: '200px'
 },{
   title: '操作人',
   dataIndex: 'approveByName',
@@ -27,7 +27,7 @@ const InterfaceHistory = (props) => {
           pagination={false}
           title={() => '审批记录'}
           bordered
-          size="middle" 
+          size="small" 
       />
   )
 }

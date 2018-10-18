@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table, Button, Popconfirm} from 'antd'
+import { Table, Popconfirm, Modal} from 'antd'
 import InterfaceList from './interfaceList'
 import InterfaceHistory from './interfaceHistory'
 import dateFormat from '@/utils/dateFormat';
@@ -58,42 +58,26 @@ class ApprovalTable extends Component {
                     <Popconfirm onConfirm={this.dispose.bind(this, record, '同意')}
                         title="确定是否同意"
                     >
-                      <Button
-                          style={{marginRight: '5px'}}
-                          type="primary"
-                      ><a>同意</a></Button>
+                      <a>同意</a>
                     </Popconfirm>
                     <Popconfirm onConfirm={this.dispose.bind(this, record, '拒绝')}
                         title="确定是否拒绝"
                     >
-                      <Button
-                          type="primary"
-                      ><a>拒绝</a></Button>
+                      <a>拒绝</a>
                     </Popconfirm>
+                    <a onClick={this.openInfo.bind(this, record)}>详情</a>
                   </div>
                 )
               case '1':
                 return (
                   <div>
-                    <Popconfirm onConfirm={this.dispose.bind(this, record, '拒绝')}
-                        title="确定是否拒绝"
-                    >
-                      <Button
-                          type="primary"
-                      ><a>拒绝</a></Button>
-                    </Popconfirm>
+                    <a onClick={this.openInfo.bind(this, record)}>详情</a>
                   </div>
                 )
               case '2':
                 return (
                   <div>
-                    <Popconfirm onConfirm={this.dispose.bind(this, record, '拒绝')}
-                        title="确定是否拒绝"
-                    >
-                      <Button
-                          type="primary"
-                      ><a>拒绝</a></Button>
-                    </Popconfirm>
+                    <a onClick={this.openInfo.bind(this, record)}>详情</a>
                   </div>
                 )
             }
@@ -114,10 +98,13 @@ class ApprovalTable extends Component {
           }
           this.props.search({pageParam})
         }
-      }
+      },
+      visible: false,
+      interfaceInfos: [],
+      approveHistorys: []
     };
   }
-  // 同意
+  // 同意或者聚聚
   dispose(info, res) {
     let {applyId} = info
     let opts = {
@@ -127,21 +114,30 @@ class ApprovalTable extends Component {
     }
     this.props.operation(opts)
   }
+  openInfo(record) {
+    this.setState({
+      visible: true,
+      interfaceInfos: record.interfaceInfos,
+      approveHistorys:record.approveHistorys
+    })
+  }
+  handleCancel = () => {
+    this.setState({
+      visible: false
+    });
+  }
   render() {
     let { approval } = this.props
-    console.log(approval)
     return (
       <div>
         <Table columns={this.state.columns}
             dataSource={approval.data}
-            expandedRowRender={(record) => (
-              <div className="interface-info">
-                <InterfaceList interfaceInfos={record.interfaceInfos}></InterfaceList>
-                <InterfaceHistory approveHistorys={record.approveHistorys}></InterfaceHistory>
-              </div>
-            )}
             pagination={{...this.state.pagination, ...approval.pageParam}}
         />
+        <Modal footer={null} onCancel={this.handleCancel} visible={this.state.visible} width="800px">
+          <InterfaceList interfaceInfos={this.state.interfaceInfos}></InterfaceList>
+          <InterfaceHistory approveHistorys={this.state.approveHistorys}></InterfaceHistory>
+        </Modal>
       </div>
     )
   }
