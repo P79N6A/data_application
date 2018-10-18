@@ -105,5 +105,11 @@ export default {
         data: action.payload
       };
     }
+  },
+
+  subscriptions:{
+    whatchAndUpdateApiList({dispatch, ...res}){
+
+    }
   }
 };

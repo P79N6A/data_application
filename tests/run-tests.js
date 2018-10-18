@@ -29,8 +29,8 @@ startServer.stdout.on('data', data => {
       stdio: 'inherit',
     });
     testCmd.on('exit', code => {
-      startServer.kill();
-      process.exit(code);
-    });
-  }
+  startServer.kill();
+  process.exit(code);
+});
+}
 });
