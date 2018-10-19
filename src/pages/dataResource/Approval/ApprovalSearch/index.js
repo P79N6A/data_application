@@ -67,7 +67,7 @@ class ApprovalSearch extends Component {
                       style={{ width: 140 }}
                   >
                     {/* <Option value="">全部</Option> */}
-                    <Option value="0">审批中</Option>
+                    <Option value="0">待审批</Option>
                     <Option value="1">已审批</Option>
                     <Option value="2">驳回</Option>
                   </Select>,

@@ -7,6 +7,7 @@ import {
 
 const FormItem = Form.Item;
 const { Option } = Select;
+const {RangPicker}=DatePicker;
 
 function TableSearchForm(props) {
   let {getFieldDecorator, handleFormReset, toggleForm, handleSearch}=props;
@@ -140,9 +141,8 @@ function AdvanceTableSearchForm(props) {
         >
           <FormItem label="发布时间">
             {getFieldDecorator('publishTime')(
-              <DatePicker
+              <DatePicker.RangePicker
                   format="YYYY-MM-DD HH:mm:ss"
-                  placeholder="选择时间点"
                   showTime
                   style={{ width: '100%' }}
               />,

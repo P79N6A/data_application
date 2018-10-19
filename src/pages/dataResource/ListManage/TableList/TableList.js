@@ -19,7 +19,7 @@ const getValue = obj =>
 
 // 状态码
 const statusMap = ['default', 'processing', 'success', 'error'];
-const status = ['无效', '审批中', '已发布', '已驳回'];
+const status = ['无效', '待审批', '已发布', '已驳回'];
 
 // 根据状态码和权限显示操作
 function GetOption(props) {
@@ -334,8 +334,8 @@ class TableList extends PureComponent {
               }
               </div>
             <div className={styles.tableListOperator}>
-              <Button type="primary"><Link to="/resource/manage/publish">发布接口</Link>
-              </Button><Button type="primary"><Link to="/resource/approval">查看接口使用申请</Link></Button>
+              <Button type="primary"><Link to="/resource/manage/publish">发布接口</Link></Button>
+              {/*<Button type="primary"><Link to="/resource/approval">查看接口使用申请</Link></Button>*/}
 
               {selectedRows.length > 0 && (
                 <span>

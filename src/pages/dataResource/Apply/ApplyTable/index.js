@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import InterfaceList from '../../Approval/ApprovalTable/interfaceList'
 import InterfaceHistory from '../../Approval/ApprovalTable/InterfaceHistory'
 const APPLYTYPE = ['接口发布', '接口使用']
-const STATUS = ['审批中', '已审批', '驳回']
+const STATUS = ['待审批', '已审批', '驳回']
 class ApprovalTable extends Component {
   constructor(props) {
     super(props)
