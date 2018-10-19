@@ -59,7 +59,7 @@ class Approval extends Component {
   }
   render() {
     return (
-      <div>
+      <div style={{padding: '24px 32px'}}>
         <ApprovalSearch search={this.search}/>
         <ApprovalTable
             approval={this.props.approval.reseaseList}
