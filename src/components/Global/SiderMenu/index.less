@@ -1,8 +1,6 @@
 @import '../../../../node_modules/antd/lib/style/themes/default.less';
 @nav-header-height: 64px;
 
-@import '../../../global';
-
 .sider {
   min-height: 100vh;
   box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
@@ -10,7 +8,7 @@
   z-index: 10;
   &.fixSiderbar {
     position: fixed;
-    top: @fixed-top-menu-height;
+    top: @nav-header-height;
     left: 0;
     :global(.ant-menu-root) {
       overflow-y: auto;
