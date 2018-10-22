@@ -45,8 +45,15 @@ class ApiDetailModal extends Component {
   toggleModalVisible: ƒ ()*/
 
   render() {
-    let {modalVisible, handleModalCancel, handleModalOk, modalTitle, modalContent={}}=this.props;
-
+    let {
+      modalVisible, handleModalCancel,
+      handleModalOk, modalTitle, modalContent={}
+    }=this.props;
+    let {paramInfoResDTOS=[]}=modalContent;
+    paramInfoResDTOS=paramInfoResDTOS.map((v,i)=>{
+      v['paramInd']=++i;
+      return v;
+    })
     const data = [
       `服务编号：${modalContent.intefaceId}`,
       `服务名：${modalContent.serviceName}`,
@@ -56,6 +63,11 @@ class ApiDetailModal extends Component {
       `最后更新：${modalContent.lastUpdate}`
     ];
     const columns=[
+      {
+        title:'序号',
+        dataIndex:'paramInd',
+        key:'paramInd'
+      },
       {
         title:'参数名',
         dataIndex:'paramName',
@@ -77,6 +89,7 @@ class ApiDetailModal extends Component {
         key:'paramRemark'
       }
     ];
+
     return (
         <Modal
             className={styles['detail-modal']}
@@ -102,6 +115,7 @@ class ApiDetailModal extends Component {
                   key="2"
               >
                 <Table
+                    bordered
                     columns={columns}
                     dataSource={modalContent.paramInfoResDTOS}
                     pagination={false}
