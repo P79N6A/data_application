@@ -5,7 +5,7 @@ import {
   Card, Form,  Icon, Button,
   Dropdown, Menu, Badge
 } from 'antd';
-import StandardTable from '@/components//DataResource/StandardTable';
+import StandardTable from '@/components//DataResource/Table/StandardTable';
 import { Link } from 'dva/router';
 import PropTypes from 'prop-types';
 import styles from './TableList.less';

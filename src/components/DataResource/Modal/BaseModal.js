@@ -2,15 +2,9 @@ import React, { Component } from 'react';
 import {Modal} from 'antd';
 import styles from './BaseModal.less';
 import PropTypes from 'prop-types';
-//此处统一弹框样式
 
+//此组件统一弹框样式
 class BaseModal extends Component {
-  constructor(props) {
-    super(props);
-    this.state={
-    }
-  }
-
   render() {
     let {
       modalVisible, handleModalCancel,children,
@@ -32,7 +26,11 @@ class BaseModal extends Component {
 }
 
 BaseModal.propTypes = {
-  children: PropTypes.object
+  modalVisible: PropTypes.bool,
+  handleModalCancel: PropTypes.func,
+  handleModalOk: PropTypes.func,
+  children: PropTypes.node.isRequired,
+  modalTitle: PropTypes.string
 }
 
 export default BaseModal;

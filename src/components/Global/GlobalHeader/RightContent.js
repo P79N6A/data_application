@@ -154,7 +154,7 @@ export default class GlobalHeaderRight extends PureComponent {
             </span>
           </Dropdown>
         ) : (
-          <Redirect to="/user/login"/>
+          <Spin size={'small'} />
         )}
         {/*<Button
             ghost={theme === 'dark'}
