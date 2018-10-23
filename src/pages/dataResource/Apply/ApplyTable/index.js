@@ -74,7 +74,7 @@ class ApprovalTable extends Component {
       interfaceInfos: [],
       approveHistorys: [],
       modal:{
-        modalTitle:'面板',
+        modalTitle:'详情',
         modalVisible:false,
         modalContent:{}
     }

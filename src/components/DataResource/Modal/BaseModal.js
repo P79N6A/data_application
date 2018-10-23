@@ -14,7 +14,7 @@ class BaseModal extends Component {
   render() {
     let {
       modalVisible, handleModalCancel,children,
-      handleModalOk, modalTitle
+      handleModalOk, modalTitle=''
     }=this.props;
 
     return (
@@ -22,7 +22,7 @@ class BaseModal extends Component {
           className={styles['detail-modal']}
           onCancel={handleModalCancel}
           onOk={handleModalOk}
-          title={modalTitle}
+          title={modalTitle?modalTitle:'详情面板'}
           visible={modalVisible}
       >
         {children}
