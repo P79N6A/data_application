@@ -29,7 +29,7 @@ export default {
 
 
   effects: {
-    * getApiList({payload={}, callback }, { call, put, select }) {
+    * getApiList({payload={}, callback }, { call, put, select, takeEvery, take }) {
 
       let option = {
         method:'POST',
@@ -60,16 +60,17 @@ export default {
           payload: data
         });
       }
-
     },
 
-    * add({ payload, callback }, { call, put }) {
+
+     * add({ payload, callback }, { call, put }) {
       const response = yield call(addRule, payload);
       yield put({
         type: 'save',
         payload: response
       });
       if (callback) callback();
+
     },
 
     * remove({ payload, callback }, { call, put }) {
@@ -95,6 +96,14 @@ export default {
     * updateApiStatus({ payload, callback }, { call, put, select }) {
       let res=yield call(updateApiStatus,payload);
       checkResponse(res,callback,payload.option==='1'?'启用成功':'停用成功')
+    },
+
+    *testE( {payload}, { call, watcher, take }) {
+      for (let i=1; i<3;i++){
+        let as=yield take(['getApiList', 'userLogin'])
+        console.log('======-==============='+i,take.toString(),as)
+      }
+      yield console.log('take end')
     }
   },
 
