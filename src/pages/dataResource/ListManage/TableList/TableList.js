@@ -10,7 +10,7 @@ import { Link } from 'dva/router';
 import PropTypes from 'prop-types';
 import styles from './TableList.less';
 import { ExpandableSearchForm} from '@/components/DataResource/Table/TableSearchForm';
-import ApiDetailModal from '@/components/DataResource/ApiDetailModal/ApiDetailModal'
+import ApiDetailModal from '@/components/DataResource/Modal/ApiDetailModal'
 
 const getValue = obj =>
   Object.keys(obj)
@@ -94,6 +94,12 @@ class TableList extends PureComponent {
       }
     }
   }
+  // 初始化表格数据
+  componentDidMount() {
+    this.props.dispatch({
+      type: 'ListManage/getApiList'
+    });
+  }
   columns = [
     {
       title: '接口名称',
@@ -139,8 +145,8 @@ class TableList extends PureComponent {
 
       render(val) {
         return <Badge status={statusMap[val]}
-            text={status[val]}
-               />;
+                      text={status[val]}
+        />;
       }
     },
     {
@@ -149,19 +155,12 @@ class TableList extends PureComponent {
       width: 250,
       render: (text, record) => (
         <GetOption {...record}
-            handleOption={this.handleOption}
-            toggleModalVisible={this.toggleModalVisible}
+                   handleOption={this.handleOption}
+                   toggleModalVisible={this.toggleModalVisible}
         />
       )
     }
   ];
-
-  // 初始化表格数据
-  componentDidMount() {
-    this.props.dispatch({
-      type: 'ListManage/getApiList'
-    });
-  }
 
   // 表格内筛选
   handleRowFilter(value, record) {
@@ -261,11 +260,13 @@ class TableList extends PureComponent {
 
   toggleModalVisible(record){
     let {modalVisible}=this.state.modal;
-    this.setState({modal:{
-      modalVisible: !modalVisible,
+    this.setState({
+      modal:{
+        modalVisible: !modalVisible,
         modalTitle: record.interfaceName,
         modalContent: {...record}
-    }});
+      }
+    });
   }
   handleModalCancel(){
     this.setState({modal:{modalVisible:false}});
@@ -340,8 +341,6 @@ class TableList extends PureComponent {
               >
                 <Link to="/resource/manage/publish">发布接口</Link>
               </Button>
-              {/*<Button type="primary"><Link to="/resource/approval">查看接口使用申请</Link></Button>*/}
-
               {selectedRows.length > 0 && (
                 <span>
                   <Dropdown overlay={menu}>

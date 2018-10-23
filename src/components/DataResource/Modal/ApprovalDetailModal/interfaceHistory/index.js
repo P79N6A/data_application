@@ -1,33 +1,39 @@
 import React from 'react'
 import { Table } from 'antd'
 import dateFormat from '@/utils/dateFormat';
-const columns = [{
+import {addColumnKey} from '@/utils/utils';
+
+const columns = [
+  {
+    title:'序号',
+    dataIndex:'serial',
+    key:'serial'
+  },
+  {
   title: '时间',
   dataIndex: 'approveDate',
   key: 'approveDate',
-  width: '200px',
   render: (text) => (
     <span>{dateFormat(text)}</span>
   )
 },{
   title: '操作描述',
   dataIndex: 'approveDesc',
-  key: 'approveDesc',
-  width: '200px'
+  key: 'approveDesc'
 },{
   title: '操作人',
   dataIndex: 'approveByName',
   key: 'approveByName'
 }]
 const InterfaceHistory = (props) => {
-  const { approveHistorys } = props
+  let { approveHistorys=[] } = props
+  approveHistorys=addColumnKey(approveHistorys);
   return (
-      <Table columns={columns}
+      <Table bordered
+          columns={columns}
           dataSource={approveHistorys}
           pagination={false}
-          title={() => '审批记录'}
-          bordered
-          size="small" 
+          size="small"
       />
   )
 }

@@ -252,3 +252,11 @@ export function getCookie(name) {
   }
   return '';
 }
+
+// 表格数据添加序号字段
+export function addColumnKey(columns) {
+  return columns.map((v,i)=>{
+    v['serial']=++i;
+    return v;
+  });
+}
