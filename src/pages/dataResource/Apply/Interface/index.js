@@ -1,23 +1,23 @@
 import React, { Component } from 'react'
 import { connect } from 'dva';
+import InterfaceTable from './InterfaceTable'
+import InterfaceSearch from './InterfaceSearch'
 class Interface extends Component{
   constructor(props) {
     super(props)
     this.state = {
       search: {
-        catalogId: '1',
-        interfaceName: '',
+        catalogId: this.props.global.catalog[0].id,
+        interfaceName: null,
         pageParam: {
-            orderFiled: '',
-            orderRule: '',
+            orderFiled: 'last_update',
+            orderRule: 'desc',
             pageIndex: 1,
-            pageSize: 3,
-            start: 0,
-            total: 0
+            pageSize: 3
         },
-        serviceMethodType: '',
-        serviceName: '',
-        status: null
+        serviceMethodType: null,
+        serviceName: null,
+        status: '0'
       }
     }
   }
@@ -25,20 +25,23 @@ class Interface extends Component{
     this.fetchInterface(this.state.search)
   }
   fetchInterface =(pageParam)=> {
-    let payload = {...this.state.search, ... pageParam}
+    let payload = {...this.state.search, ...pageParam}
     this.props.dispatch({
       type: 'apply/fetchInterface',
       payload: payload
     })
   }
   render() {
+    console.log(this.props.global)
     return(
-      <div>
-        表单申请
+      <div >
+        <InterfaceSearch catalog={this.props.global.catalog} fetchInterface={this.fetchInterface}></InterfaceSearch>
+        <InterfaceTable fetchInterface={this.fetchInterface} interfaces={this.props.apply.interfaces}></InterfaceTable>
       </div>
     )
   }
 }
-export default connect(({apply}) => ({
-  apply
+export default connect(({apply, global}) => ({
+  apply,
+  global
 }))(Interface)

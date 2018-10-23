@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ApprovalSearch from '../ApplySearch';
-import ApprovalTable from '../ApplyTable';
+import ApprovalSearch from './ApplySearch';
+import ApprovalTable from './ApplyTable';
 import { connect } from 'dva';
 import './index.less';
 class Apply extends Component {
