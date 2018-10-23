@@ -101,6 +101,10 @@ class BasicLayout extends React.PureComponent {
     dispatch({
       type: 'setting/getSetting'
     });
+
+    dispatch({
+      type:'global/getCatalog'
+    });
     // 下次渲染时改变，提高性能
     this.renderRef = requestAnimationFrame(() => {
       this.setState({

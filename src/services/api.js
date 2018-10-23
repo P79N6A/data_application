@@ -26,3 +26,7 @@ export async function updateApiStatus(params) {
 export async function queryNotices() {
   return request('/mock/notices/list');
 }
+
+export async function getCatalog() {
+  return request('/register/catalog/findAll');
+}

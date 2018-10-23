@@ -1,12 +1,14 @@
-import { queryNotices } from '@/services/api';
+import { queryNotices, getCatalog } from '@/services/api';
 import { routerRedux } from 'dva/router';
+import {checkResponse} from '../utils/checkResponse';
 
 export default {
   namespace: 'global',
 
   state: {
     collapsed: false,
-    notices: []
+    notices: [],
+    catalog:[]
   },
 
   effects: {
@@ -41,6 +43,18 @@ export default {
     // 函数式地址跳转
     * toLocation({ payload }, { put }) {
       yield put(routerRedux.push(payload));
+    },
+
+    //获取服务分组信息
+    *getCatalog({ payload }, { call, put }) {
+      let res=yield call(getCatalog, payload);
+      if (! checkResponse(res)){
+        return;
+      }
+      yield put({
+        type:'saveCatalog',
+        payload:res.data.data
+      })
     }
   },
 
@@ -56,6 +70,12 @@ export default {
         ...state,
         notices: payload
       };
+    },
+    saveCatalog(state,{payload}){
+      return {
+        ...state,
+        catalog:payload
+      }
     },
     saveClearedNotices(state, { payload }) {
       return {

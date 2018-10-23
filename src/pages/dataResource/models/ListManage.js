@@ -108,8 +108,7 @@ export default {
   },
 
   subscriptions:{
-    whatchAndUpdateApiList({dispatch, ...res}){
-
+    whatchAndUpdateApiList({dispatch, ...res}, ...rr){
     }
   }
 };
