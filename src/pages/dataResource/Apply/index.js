@@ -1,59 +1,33 @@
 import React, { Component } from 'react';
-import ApprovalSearch from './ApplySearch';
-import ApprovalTable from './ApplyTable';
-import { connect } from 'dva';
-import { Button } from 'antd'
-import './index.less';
+import { Tabs } from 'antd'
+import Apply from './Apply'
+import Interface from './Interface'
+const TabPane = Tabs.TabPane;
 class Approval extends Component {
-  constructor(props) {
-    super(props);
-    this.search = this.search.bind(this)
-    this.fetchList = this.fetchList.bind(this)
-    this.state = {
-      applyType: '0',
-      status: '0',
-      beginDate: null,
-      endDate: null,
-      pageParam: {
-        pageIndex: 1,
-        pageSize: 10,
-        orderFiled: 'approve_date',
-        orderRule: 'desc'
-      }
-    }
+  state = {
+    activeKey: '1'
   }
-  componentDidMount() {
-    this.fetchList(this.state)
-  }
-  // 点击搜索按钮
-  search(values) {
-    let payload = {...this.state, ...values}
-    this.fetchList(payload)
+  callback = (key) => {
     this.setState({
-      ...values
-    })
-  }
-  // 获取列表
-  fetchList(payload) {
-    this.props.dispatch({
-      type: 'apply/fetchApply',
-      payload: payload
+      activeKey: key
     })
   }
   render() {
     return (
       <div style={{padding: '24px 32px'}}>
-        <ApprovalSearch search={this.search}/>
-          <Button style={{marginBottom: '10px'}} type="primary">服务申请</Button>
-        <ApprovalTable
-            apply={this.props.apply.applyList}
-            search={this.search}
-        ></ApprovalTable>
+        <Tabs onChange={this.callback} type="card">
+          <TabPane key="1" tab="服务订单">
+          {this.state.activeKey==='1'?<Apply/>:<div> </div>}
+            {/* <Apply></Apply> */}
+          </TabPane>
+          <TabPane key="2" tab="服务申请">
+            {/* <Interface></Interface> */}
+            {this.state.activeKey==='2'?<Interface/>:<div> </div>}
+          </TabPane>
+        </Tabs>
       </div>
     );
   }
 }
 
-export default connect(({apply}) => ({
-  apply
-}))(Approval);
+export default Approval
