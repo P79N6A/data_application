@@ -13,7 +13,7 @@ export default {
       const data = response.data
       // 捕获异常
       if(!data.code ||data.code !== OK_CODE) {
-        message.error(data.message)
+        message.error(data.message);
         return
       }
       yield put({

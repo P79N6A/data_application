@@ -36,8 +36,9 @@ const tableData = [
   }
 ];
 
-@connect(({ loading }) => ({
-  submitting: loading.effects['ListManage/submitAdvancedForm']
+@connect(({ loading, global }) => ({
+  submitting: loading.effects['ListManage/submitAdvancedForm'],
+  catalog:global.catalog
 }))
 @Form.create()
 class AdvancedForm extends PureComponent {
@@ -61,7 +62,7 @@ class AdvancedForm extends PureComponent {
 
   getErrorInfo = () => {
     const {
-      form: { getFieldsError }
+      form: { getFieldsError },
     } = this.props;
     const errors = getFieldsError();
     const errorCount = Object.keys(errors).filter(key => errors[key]).length;
@@ -152,7 +153,8 @@ class AdvancedForm extends PureComponent {
   render() {
     const {
       form: { getFieldDecorator },
-      submitting
+      submitting,
+      catalog=[]
     } = this.props;
     const { width } = this.state;
 
@@ -208,53 +210,12 @@ class AdvancedForm extends PureComponent {
                   {getFieldDecorator('catalogId', {
                     rules: [{ required: true, message: '请输入服务分组' }]
                   })(
-                    <TreeSelect
-                        allowClear
-                        dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
-                        onChange={this.onChange}
-                        placeholder="Please select"
-                        showSearch
-                        style={{ width: 300 }}
-                        treeDefaultExpandAll
-                      // value={this.state.value}
-                    >
-                      <TreeNode key="0-1"
-                          title="两江大数据组"
-                          value="2"
-                      >
-                        <TreeNode key="0-1-1"
-                            title="视频监控服务"
-                            value="3"
-                        >
-                          <TreeNode key="random"
-                              title="车牌识别"
-                              value="1"
-                          />
-                          <TreeNode key="random1"
-                              title="人脸识别"
-                              value="leaf2"
-                          />
-                        </TreeNode>
-                        <TreeNode key="random2"
-                            title="图片服务"
-                            value="parent 1-1"
-                        >
-                          <TreeNode key="random3"
-                              title={<b style={{ color: '#08c' }}>人像身份识别</b>}
-                              value="sss"
-                          />
-                        </TreeNode>
-                      </TreeNode>
-                      <TreeNode key="random3"
-                          title="语音服务"
-                          value="parent 1-1"
-                      >
-                        <TreeNode key="random3"
-                            title={<b style={{ color: '#08c' }}>录音分析</b>}
-                            value="sss"
-                        />
-                      </TreeNode>
-                    </TreeSelect>,
+                    <Select placeholder="请选择服务分组">
+                      {catalog.map((v)=>{
+                        return (<Option key={v['id']} value={v['catalogName']}>{v['catalogName']}</Option>)
+                      })}
+
+                    </Select>,
                   )}
                 </Form.Item>
               </Col>

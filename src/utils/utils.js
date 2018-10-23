@@ -252,3 +252,31 @@ export function getCookie(name) {
   }
   return '';
 }
+
+// 表格数据添加序号字段
+export function addColumnKey(columns) {
+  return columns.map((v,i)=>{
+    v['serial']=++i;
+    return v;
+  });
+}
+
+export function store(option='',param) {
+  if (!window.localStorage){
+    return console.log('不支持localStorage')
+  }
+  let t=typeof param;
+  switch (option) {
+    case 'save':
+      if (t==='object'){
+        for (let k in param) {
+          window.localStorage.setItem(k,JSON.stringify(param[k]))
+        }
+      }
+      break;
+    case 'get':
+      return window.localStorage.getItem(param);
+    default:
+      break;
+  }
+}

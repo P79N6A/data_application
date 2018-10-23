@@ -3,7 +3,7 @@ import { routerRedux } from 'dva/router';
 import { stringify } from 'qs';
 import { login } from '../services/user';
 import { setAuthority, clearAuthority } from '@/utils/authority';
-import { getPageQuery } from '@/utils/utils';
+import { getPageQuery, store } from '@/utils/utils';
 import { reloadAuthorized } from '@/utils/Authorized';
 import { checkResponse } from '../utils/checkResponse';
 
@@ -24,6 +24,7 @@ export default {
       if (!checkResponse(res, callback)) {
         return;
       }
+      store('save',{currentUser:JSON.stringify(res.data.data)});
       let rs = {
         currentAuthority: payload.userName,
         status: 'ok',
@@ -80,18 +81,25 @@ export default {
 
     *fetch(_, { call, put }) {
       const response = yield call(queryUsers);
-      debugger;
       yield put({
         type: 'save',
         payload: response
       });
     },
+
     *fetchCurrent(_, { call, put }) {
-      const response = yield call(queryCurrent);
-      /*yield put({
+      let cu=store('get','currentUser');
+      let cus=cu.replace(/\\/g,'');
+      cus=cus.substring(1,cus.length-1);
+      let user=JSON.parse(cus);
+
+      if (!user || !user.userId){
+        return window.location.href='/user/login'
+      }
+      yield put({
         type: 'saveCurrentUser',
-        payload: response.name ? response : response.data
-      });*/
+        payload: user
+      });
     }
   },
 

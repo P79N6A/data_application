@@ -95,11 +95,15 @@ class BasicLayout extends React.PureComponent {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    /*dispatch({
+    dispatch({
       type: 'user/fetchCurrent'
-    });*/
+    });
     dispatch({
       type: 'setting/getSetting'
+    });
+
+    dispatch({
+      type:'global/getCatalog'
     });
     // 下次渲染时改变，提高性能
     this.renderRef = requestAnimationFrame(() => {

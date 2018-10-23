@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Table, Popconfirm, Modal} from 'antd'
-import InterfaceList from './interfaceList'
-import InterfaceHistory from './interfaceHistory'
 import dateFormat from '@/utils/dateFormat';
+import ApprovalDetailModal from '@/components/DataResource/Modal/ApprovalDetailModal'
+
 import PropTypes from 'prop-types'
 const APPLYTYPE = ['接口发布', '接口使用']
 const STATUS = ['待审批', '已审批', '驳回']
@@ -101,7 +101,12 @@ class ApprovalTable extends Component {
       },
       visible: false,
       interfaceInfos: [],
-      approveHistorys: []
+      approveHistorys: [],
+      modal:{
+        modalTitle:'详情',
+        modalVisible:false,
+        modalContent:{}
+      }
     };
   }
   // 同意或者聚聚
@@ -115,19 +120,28 @@ class ApprovalTable extends Component {
     this.props.operation(opts)
   }
   openInfo(record) {
+    let {modalVisible}=this.state.modal;
     this.setState({
-      visible: true,
-      interfaceInfos: record.interfaceInfos,
-      approveHistorys:record.approveHistorys
+      modal:{
+        modalVisible: !modalVisible,
+        modalTitle: record.interfaceName,
+        modalContent: {...record}
+      }
     })
   }
   handleCancel = () => {
     this.setState({
-      visible: false
+      modal:{
+        modalVisible:false
+      }
     });
+  };
+  handleModalOk=()=>{
+
   }
   render() {
-    let { approval } = this.props
+    let {modal={}}=this.state;
+    let { approval } = this.props;
     return (
       <div>
         <Table columns={this.state.columns}
@@ -135,10 +149,11 @@ class ApprovalTable extends Component {
             pagination={{...this.state.pagination, ...approval.pageParam}}
             size="middle"
         />
-        <Modal footer={null} onCancel={this.handleCancel} visible={this.state.visible} width="800px">
-          <InterfaceList interfaceInfos={this.state.interfaceInfos}></InterfaceList>
-          <InterfaceHistory approveHistorys={this.state.approveHistorys}></InterfaceHistory>
-        </Modal>
+        <ApprovalDetailModal
+            {...modal}
+            handleModalCancel={this.handleCancel}
+            handleModalOk={this.handleModalOk}
+        />
       </div>
     )
   }

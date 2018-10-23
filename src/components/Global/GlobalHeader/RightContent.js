@@ -7,6 +7,7 @@ import NoticeIcon from '../NoticeIcon';
 import HeaderSearch from '../HeaderSearch/index';
 import styles from './index.less';
 import avatar from '../../../assets/avatar.png'
+import Redirect from 'umi/redirect';
 
 export default class GlobalHeaderRight extends PureComponent {
   getNoticeData() {
@@ -153,9 +154,7 @@ export default class GlobalHeaderRight extends PureComponent {
             </span>
           </Dropdown>
         ) : (
-          <Spin size="small"
-              style={{ marginLeft: 8, marginRight: 8 }}
-          />
+          <Spin size={'small'} />
         )}
         {/*<Button
             ghost={theme === 'dark'}

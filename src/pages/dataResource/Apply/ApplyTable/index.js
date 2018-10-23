@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import { Table, Modal } from 'antd'
 import dateFormat from '@/utils/dateFormat';
 import PropTypes from 'prop-types'
-import InterfaceList from '../../Approval/ApprovalTable/interfaceList'
-import InterfaceHistory from '../../Approval/ApprovalTable/InterfaceHistory'
+import ApprovalDetailModal from '@/components/DataResource/Modal/ApprovalDetailModal'
 const APPLYTYPE = ['接口发布', '接口使用']
 const STATUS = ['待审批', '已审批', '驳回']
 class ApprovalTable extends Component {
@@ -73,22 +72,37 @@ class ApprovalTable extends Component {
         }
       },
       interfaceInfos: [],
-      approveHistorys: []
+      approveHistorys: [],
+      modal:{
+        modalTitle:'详情',
+        modalVisible:false,
+        modalContent:{}
+    }
     };
   }
   openInfo(record) {
+    let {modalVisible}=this.state.modal;
     this.setState({
-      visible: true,
-      interfaceInfos: record.interfaceInfos,
-      approveHistorys:record.approveHistorys
+      modal:{
+        modalVisible: !modalVisible,
+        modalTitle: record.interfaceName,
+        modalContent: {...record}
+      }
     })
   }
   handleCancel = () => {
     this.setState({
-      visible: false
+      modal:{
+        modalVisible:false
+      }
     });
   }
+
+  handleOk=()=>{
+
+  }
   render() {
+    let {modal={}}=this.state;
     let { apply } = this.props
     return (
       <div>
@@ -97,10 +111,11 @@ class ApprovalTable extends Component {
             pagination={{...this.state.pagination, ...apply.pageParam}}
             size="middle"
         />
-        <Modal footer={null} onCancel={this.handleCancel} visible={this.state.visible} width="800px">
-          <InterfaceList interfaceInfos={this.state.interfaceInfos}></InterfaceList>
-          <InterfaceHistory approveHistorys={this.state.approveHistorys}></InterfaceHistory>
-        </Modal>
+        <ApprovalDetailModal
+            {...modal}
+            handleModalCancel={this.handleCancel}
+            handleModalOk={this.handleModalOk}
+        />
       </div>
     )
   }

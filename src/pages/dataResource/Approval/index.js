@@ -58,6 +58,7 @@ class Approval extends Component {
     })
   }
   render() {
+    let {modal={}}=this.state;
     return (
       <div style={{padding: '24px 32px'}}>
         <ApprovalSearch search={this.search}/>
@@ -65,7 +66,7 @@ class Approval extends Component {
             approval={this.props.approval.reseaseList}
             operation={this.operation}
             search={this.search}
-        ></ApprovalTable>
+        />
       </div>
     );
   }
