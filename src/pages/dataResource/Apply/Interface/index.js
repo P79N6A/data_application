@@ -25,7 +25,7 @@ class Interface extends Component{
     this.fetchInterface(this.state.search)
   }
   fetchInterface =(pageParam)=> {
-    let payload = {...this.state.search, ... pageParam}
+    let payload = {...this.state.search, ...pageParam}
     this.props.dispatch({
       type: 'apply/fetchInterface',
       payload: payload
@@ -35,7 +35,7 @@ class Interface extends Component{
     console.log(this.props.global)
     return(
       <div >
-        <InterfaceSearch global={this.props.global.catalog}></InterfaceSearch>
+        <InterfaceSearch catalog={this.props.global.catalog} fetchInterface={this.fetchInterface}></InterfaceSearch>
         <InterfaceTable fetchInterface={this.fetchInterface} interfaces={this.props.apply.interfaces}></InterfaceTable>
       </div>
     )

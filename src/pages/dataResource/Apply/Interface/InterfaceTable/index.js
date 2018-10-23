@@ -56,10 +56,12 @@ class InterfaceTable extends Component {
   }
   handleTableChange = (pagination, filters) =>{
     let pageParam = {
-      pageIndex: pagination.current,
-      pageSize: pagination.pageSize,
-      orderFiled: 'last_update',
-      orderRule: 'desc'
+      pageParam: {
+        pageIndex: pagination.current,
+        pageSize: pagination.pageSize,
+        orderFiled: 'last_update',
+        orderRule: 'desc'
+      }
     }
     if(filters.status){
       this.props.fetchInterface(pageParam, filters.status[0])

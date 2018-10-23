@@ -12,7 +12,7 @@ class InterfaceSearch extends Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log(values)
+        this.props.fetchInterface(values)
       }
     });
   }
@@ -22,19 +22,21 @@ class InterfaceSearch extends Component {
       <div>
         <Form onSubmit={this.handleSearch}>
           <Row gutter={24}>
-            <Col span={5}>
+            <Col span={6}>
               <FormItem className={styles['ant-form-items']}
-                  label="申请类型"
+                  label="服务分组"
               >
                 {
-                  getFieldDecorator('applyType', {
+                  getFieldDecorator('catalogId', {
                     initialValue: '0'
                   })(
                     <Select
-                        style={{ width: 140 }}
+                        style={{ width: 200 }}
                     >
-                      <Option value="0">接口发布</Option>
-                      <Option value="1">接口使用</Option>
+                      {this.props.catalog.map(item => {
+                        return (<Option key={item.id} value={item.id}>{item.catalogName}</Option>)
+                      })}
+                     
                     </Select>,
                   )
                 }
