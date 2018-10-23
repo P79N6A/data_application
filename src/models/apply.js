@@ -45,7 +45,7 @@ export default {
     setInterface(state, {payload}) {
       return{
         ...state,
-        applyList: payload.data
+        interfaces: payload.data
       }
     }
   }

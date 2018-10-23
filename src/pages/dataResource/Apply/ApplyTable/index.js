@@ -89,8 +89,9 @@ class ApprovalTable extends Component {
     });
   }
   render() {
-    let { apply } = this.props
+    let { apply, status } = this.props
     return (
+      // <div style={{display: status===0 ? 'none' : 'block'}}>
       <div>
         <Table columns={this.state.columns}
             dataSource={apply.data}
