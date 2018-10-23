@@ -13,7 +13,7 @@ function checkResponse(response, callback, sucTips = '操作成功') {
     sendMsg.res = response;
     sendMsg.isSuccess = true;
     sendMsg.msg = sucTips;
-    message.success(sendMsg.msg);
+    // message.success(sendMsg.msg);
     typeof callback==='function' ?callback(sendMsg):'';
     return true;
   } else {

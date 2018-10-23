@@ -53,11 +53,11 @@ export default {
       };
       // message.success('获取数据');
       let res = yield call(apiListJava, option);
-
+      let {data:{data}}=res;
       if (checkResponse(res, callback, '更新成功')) {
         yield put({
           type: 'save',
-          payload: res.data.data
+          payload: data
         });
       }
 

@@ -364,7 +364,6 @@ class TableList extends PureComponent {
             {...modal}
             handleModalCancel={this.handleModalCancel}
             handleModalOk={this.handleModalOk}
-
         />
       </div>
     );
