@@ -35,79 +35,81 @@ class ApprovalSearch extends Component {
       rules: [{ type: 'object'}]
     }
     return (
-      <Form onSubmit={this.handleSearch}>
-        <Row gutter={24}>
-          <Col span={5}>
-            <FormItem className={styles['ant-form-items']}
-                label="申请类型"
-            >
-              {
-                getFieldDecorator('applyType', {
-                  initialValue: '0'
-                })(
-                  <Select
-                      style={{ width: 140 }}
-                  >
-                    <Option value="0">接口发布</Option>
-                    <Option value="1">接口使用</Option>
-                  </Select>,
-                )
-              }
-            </FormItem>
-          </Col>
-          <Col span={5}>
-            <FormItem className={styles['ant-form-items']}
-                label="状态"
-            >
-              {
-                getFieldDecorator('status', {
-                  initialValue: '0'
-                })(
-                  <Select
-                      style={{ width: 140 }}
-                  >
-                    {/* <Option value="">全部</Option> */}
-                    <Option value="0">待审批</Option>
-                    <Option value="1">已审批</Option>
-                    <Option value="2">驳回</Option>
-                  </Select>,
-                )
-              }
-            </FormItem>
-          </Col>
-          <Col span={6}>
-            <FormItem className={styles['ant-form-items']}
-                label="开始时间"
-            >
-              {getFieldDecorator('beginDate', config)(
-                <DatePicker format="YYYY-MM-DD HH:mm:ss"
-                    showTime
-                />
-              )}
-            </FormItem>
-          </Col>
-          <Col span={6}>
-            <FormItem className={styles['ant-form-items']}
-                label="结束时间"
-            >
-              {
-                getFieldDecorator('endDate', config)(
+      <div>
+        <Form onSubmit={this.handleSearch}>
+          <Row gutter={24}>
+            <Col span={5}>
+              <FormItem className={styles['ant-form-items']}
+                  label="申请类型"
+              >
+                {
+                  getFieldDecorator('applyType', {
+                    initialValue: '0'
+                  })(
+                    <Select
+                        style={{ width: 140 }}
+                    >
+                      <Option value="0">接口发布</Option>
+                      <Option value="1">接口使用</Option>
+                    </Select>,
+                  )
+                }
+              </FormItem>
+            </Col>
+            <Col span={5}>
+              <FormItem className={styles['ant-form-items']}
+                  label="状态"
+              >
+                {
+                  getFieldDecorator('status', {
+                    initialValue: '0'
+                  })(
+                    <Select
+                        style={{ width: 140 }}
+                    >
+                      {/* <Option value="">全部</Option> */}
+                      <Option value="0">待审批</Option>
+                      <Option value="1">已审批</Option>
+                      <Option value="2">驳回</Option>
+                    </Select>,
+                  )
+                }
+              </FormItem>
+            </Col>
+            <Col span={6}>
+              <FormItem className={styles['ant-form-items']}
+                  label="开始时间"
+              >
+                {getFieldDecorator('beginDate', config)(
                   <DatePicker format="YYYY-MM-DD HH:mm:ss"
                       showTime
                   />
-                )
-              }
-            </FormItem>
-          </Col>
-          <Col span={2}>
-            <Button htmlType="submit"
-                type="primary"
-            >
-              搜索
-            </Button>
-          </Col>
-        </Row>
-      </Form>
+                )}
+              </FormItem>
+            </Col>
+            <Col span={6}>
+              <FormItem className={styles['ant-form-items']}
+                  label="结束时间"
+              >
+                {
+                  getFieldDecorator('endDate', config)(
+                    <DatePicker format="YYYY-MM-DD HH:mm:ss"
+                        showTime
+                    />
+                  )
+                }
+              </FormItem>
+            </Col>
+            <Col span={2}>
+              <Button htmlType="submit"
+                  type="primary"
+              >
+                搜索
+              </Button>
+            </Col>
+          </Row>
+        </Form>
+      </div>
     );
   }
 }

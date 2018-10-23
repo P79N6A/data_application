@@ -10,3 +10,25 @@ export async function applyList(params) {
     }
   })
 }
+/**
+ *  接口使用列表
+ */
+export async function interfaceList(params) {
+  return request('/register/interface/findMyApplyPage', {
+    method: 'POST',
+    body: {
+      ...params
+    }
+  })
+}
+/**
+ * 新增申请
+ */
+export async function addService(params) {
+  return request('/register/apply/add', {
+    method: 'POST',
+    body: {
+      ...params
+    }
+  })
+}
