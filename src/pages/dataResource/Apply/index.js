@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ApprovalSearch from './ApplySearch';
 import ApprovalTable from './ApplyTable';
 import { connect } from 'dva';
+import { Button } from 'antd'
 import './index.less';
 class Approval extends Component {
   constructor(props) {
@@ -43,6 +44,7 @@ class Approval extends Component {
     return (
       <div style={{padding: '24px 32px'}}>
         <ApprovalSearch search={this.search}/>
+          <Button style={{marginBottom: '10px'}} type="primary">服务申请</Button>
         <ApprovalTable
             apply={this.props.apply.applyList}
             search={this.search}
