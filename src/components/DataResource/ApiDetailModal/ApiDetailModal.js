@@ -53,7 +53,7 @@ class ApiDetailModal extends Component {
     paramInfoResDTOS=paramInfoResDTOS.map((v,i)=>{
       v['paramInd']=++i;
       return v;
-    })
+    });
     const data = [
       `服务编号：${modalContent.intefaceId}`,
       `服务名：${modalContent.serviceName}`,
@@ -92,13 +92,13 @@ class ApiDetailModal extends Component {
 
     return (
         <Modal
+            align={'center'}
             className={styles['detail-modal']}
             onCancel={handleModalCancel}
             onOk={handleModalOk}
             title={modalTitle}
             visible={modalVisible}
         >
-          <div>
             <Collapse defaultActiveKey={['1']}
                 onChange={callback}
             >
@@ -123,7 +123,6 @@ class ApiDetailModal extends Component {
                 />
               </Panel>
             </Collapse>
-          </div>
         </Modal>
     );
   }

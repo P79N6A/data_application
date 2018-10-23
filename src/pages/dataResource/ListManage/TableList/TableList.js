@@ -334,13 +334,18 @@ class TableList extends PureComponent {
               }
               </div>
             <div className={styles.tableListOperator}>
-              <Button type="primary"><Link to="/resource/manage/publish">发布接口</Link></Button>
+              <Button
+                  htmlType={'button'}
+                  type="primary"
+              >
+                <Link to="/resource/manage/publish">发布接口</Link>
+              </Button>
               {/*<Button type="primary"><Link to="/resource/approval">查看接口使用申请</Link></Button>*/}
 
               {selectedRows.length > 0 && (
                 <span>
                   <Dropdown overlay={menu}>
-                    <Button>
+                    <Button htmlType={'button'}>
                       更多操作 <Icon type="down"/>
                     </Button>
                   </Dropdown>
