@@ -280,3 +280,22 @@ export function store(option='',param) {
       break;
   }
 }
+// 处理接口数据
+export function modelResponse(response) {
+  let sendMsg =  {
+      isSuccess: false,
+      msg: '',
+      res: {}
+  };
+
+  if (response && (response.error_code || response.error)) {
+      sendMsg.isSuccess = false;
+      sendMsg.msg = response.message;
+  } else {
+      sendMsg.res = response;
+      sendMsg.isSuccess = true;
+      sendMsg.msg = '操作成功';
+  }
+
+  return sendMsg;
+}

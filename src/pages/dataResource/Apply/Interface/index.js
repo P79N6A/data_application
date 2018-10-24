@@ -1,41 +1,32 @@
 import React, { Component } from 'react'
 import { connect } from 'dva';
-import InterfaceTable from './InterfaceTable'
-import InterfaceSearch from './InterfaceSearch'
+import Table from '@/components/Table'
+import {mockData} from '@/services/apply'
+const column = [
+  {
+    title: '名字',
+    dataIndex: 'name',
+    key: 'name'
+  }, {
+    title:'年龄',
+    dataIndex: 'age',
+    key:'age'
+  }
+]
 class Interface extends Component{
   constructor(props) {
     super(props)
-    this.state = {
-      search: {
-        catalogId: this.props.global.catalog[0].id,
-        interfaceName: null,
-        pageParam: {
-            orderFiled: 'last_update',
-            orderRule: 'desc',
-            pageIndex: 1,
-            pageSize: 10
-        },
-        serviceMethodType: null,
-        serviceName: null,
-        status: '0'
-      }
-    }
   }
   componentDidMount() {
-    this.fetchInterface(this.state.search)
-  }
-  fetchInterface =(pageParam)=> {
-    let payload = {...this.state.search, ...pageParam}
-    this.props.dispatch({
-      type: 'apply/fetchInterface',
-      payload: payload
-    })
+    console.log(mockData)
   }
   render() {
     return(
       <div >
-        <InterfaceSearch catalog={this.props.global.catalog} fetchInterface={this.fetchInterface}></InterfaceSearch>
-        <InterfaceTable fetchInterface={this.fetchInterface} interfaces={this.props.apply.interfaces} {...this.props}></InterfaceTable>
+        测试table
+        {/* <Table 
+            columnsArr={column}
+        /> */}
       </div>
     )
   }
