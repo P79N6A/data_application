@@ -44,7 +44,7 @@ export default {
 
 
   effects: {
-    /** getApiList({payload={}, callback }, { call, put, select, takeEvery, take }) {
+   /* * getApiList({payload={}, callback }, { call, put, select, takeEvery, take }) {
 
       let option = {
         method:'POST',
@@ -78,16 +78,6 @@ export default {
       }
     },*/
 
-     * add({ payload, callback }, { call, put }) {
-      const response = yield call(addRule, payload);
-      yield put({
-        type: 'save',
-        payload: response
-      });
-      if (callback) callback();
-
-    },
-
     * remove({ payload, callback }, { call, put }) {
       const response = yield call(removeRule, payload);
       yield put({
@@ -116,11 +106,10 @@ export default {
     // 监听并触发更新api列表
     * watchAndUpdateApiList({callback},{call, put, take, select, race }){
       // 初始化表格数据
-      setTimeout(callback,20);
+      setTimeout(callback,100);
       while (true){
         // 监听列表
-        let watch=yield take(['getApiList','saveApi','updateApiStatus', 'updatePageParam', 'add', 'updateParam']);
-
+        let watch=yield take(['getApiList','saveApi','updateApiStatus', 'updatePageParam', 'updateParam']);
         // 获取请求参数
         let [defaultParam, searchParam, pageParam]=yield select(({ListManage})=> ([ListManage.defaultParam, ListManage.searchParam, ListManage.pageParam]));
         let option=Object.assign(defaultParam,searchParam);
@@ -185,6 +174,10 @@ export default {
       return {
         ...newState
       }
+    },
+
+    getApiList(state) {
+      return state;
     }
   },
 
