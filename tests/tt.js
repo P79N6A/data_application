@@ -1,3 +1,3 @@
-let str='abc';
-str[0]='sss';
-console.log(str[2])
+function * gen() {
+  let res=yield setTimeout(())
+}
