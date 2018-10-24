@@ -121,7 +121,7 @@ export default {
         let option={...options};
         option.body.pageParam=pageParam;
 
-        for (let i=0; i<3; i++) {
+        for (let i=1; i<=3; i++) {
           let {res, timeOut} = yield race({
             res: call(apiListJava, option),
             timeOut: call(delay, 4000)
@@ -137,9 +137,12 @@ export default {
             }
             break;
           } else {
-            message.error(`请求超时, 重试${i+1}/3次`)
+            if (i===3){
+              message.error('请求超时,请检查网络')
+              break;
+            }
+            message.error(`请求超时, 重试${i}/3次`)
           }
-          message.error('请求超时,请检查网络')
         }
       }
     },
