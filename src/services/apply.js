@@ -1,4 +1,5 @@
 import request from '@/utils/request_w'
+import {modelResponse} from '@/utils/utils'
 /**
  * 获取我的申请列表
  */
@@ -34,10 +35,12 @@ export async function addService(params) {
 }
 // 模拟数据
 export function mockData(params) {
-  request('https://dsn.apizza.net/mock/40a8b4a3ed5d6fd4c01e6e3743b65925/table', {
+  return request('/register/apply/findMyApplyByPage', {
     method: 'POST',
     body: {
       ...params
     }
+  }).then((data) => {
+    return modelResponse(data)
   })
 }
