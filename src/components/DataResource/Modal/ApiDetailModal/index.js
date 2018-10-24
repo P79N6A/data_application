@@ -25,7 +25,7 @@ class ApiDetailModal extends Component {
       `服务分类：${modalContent.catalogName}`,
       `服务路径：${modalContent.servicePath}`,
       `请求类型：${modalContent.serviceMethodType}`,
-      `最后更新：${modalContent.lastUpdate}`
+      `最后更新：${new Date(modalContent.lastUpdate).toLocaleDateString()}`
     ];
     const columns=[
       {
