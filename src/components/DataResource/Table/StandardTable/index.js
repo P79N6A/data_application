@@ -76,7 +76,6 @@ class StandardTable extends PureComponent {
       size='middle',
       paginationSet={}
     } = this.props;
-
     // 分页参数
     const paginationProps = {
       showSizeChanger: showSizeChanger,
