@@ -13,7 +13,7 @@ class Interface extends Component{
             orderFiled: 'last_update',
             orderRule: 'desc',
             pageIndex: 1,
-            pageSize: 3
+            pageSize: 10
         },
         serviceMethodType: null,
         serviceName: null,

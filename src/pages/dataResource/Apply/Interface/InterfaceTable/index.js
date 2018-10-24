@@ -57,7 +57,7 @@ class InterfaceTable extends Component {
       pagination: {
         total: 0,
         defaultCurrent: 1,
-        pageSize: 3,
+        pageSize: 10,
         showQuickJumper: true
       },
       selectedRows: [],
