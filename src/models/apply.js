@@ -33,6 +33,16 @@ export default {
         type: 'setInterface',
         payload: data
       })
+    },
+    // 提交申请
+    *add({payload, callback}, {call}) {
+      const response = yield call(addService, payload)
+      const data = response.data
+      if(!data.code || data.code !== OK_CODE) {
+        message.error(data.message)
+        return
+      }
+      callback(data)
     }
   },
   reducers: {
