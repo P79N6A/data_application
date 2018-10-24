@@ -88,19 +88,21 @@ export default {
     },
 
     *fetchCurrent(_, { call, put }) {
-      let cu=store('get','currentUser');
-      let cus=cu.replace(/\\/g,'');
-      cus=cus.substring(1,cus.length-1);
-      let user=JSON.parse(cus);
+        let cu=store('get','currentUser');
+        if (cu!=='undefined') {
+          let cus=cu.replace(/\\/g,'');
+          cus=cus.substring(1,cus.length-1);
+          let user=JSON.parse(cus);
 
-      if (!user || !user.userId){
-        return window.location.href='/user/login'
+          if (!user || !user.userId){
+            return window.location.href='/user/login'
+          }
+          yield put({
+            type: 'saveCurrentUser',
+            payload: user
+          });
+        }
       }
-      yield put({
-        type: 'saveCurrentUser',
-        payload: user
-      });
-    }
   },
 
   reducers: {

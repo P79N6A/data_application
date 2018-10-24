@@ -198,7 +198,9 @@ export default function request(url, options = {}) {
   return fetch(url, optio)
     .then(checkStatus)
     .then(parseResponse)
-    .then(data => ({ data }))
+    .then(data => {
+      return {data};
+    })
     .catch(err => {
       return err;
     });

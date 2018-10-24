@@ -1,21 +1,24 @@
 import { message } from 'antd';
-import Redirect from 'umi/redirect';
-
-
-let sendMsg = {
-  isSuccess: true,
-  msg: '',
-  res: {}
-};
 
 function checkResponse(response, callback, sucTips = '操作成功') {
-  if (response && response.data && response.data.message === '操作成功') {
+  let msg=response.data.message;
+  let code=response.data.code;
+
+  let sendMsg = {
+    isSuccess: true,
+    msg: '',
+    res: {},
+    code:code
+  };
+
+
+  if (msg.includes('操作成功')) {
     sendMsg.res = response;
     sendMsg.isSuccess = true;
     sendMsg.msg = sucTips;
     // message.success(sendMsg.msg);
     typeof callback==='function' ?callback(sendMsg):'';
-    return true;
+    return sendMsg;
   } else {
     sendMsg.isSuccess = false;
     sendMsg.msg = response.data.message;
@@ -26,7 +29,7 @@ function checkResponse(response, callback, sucTips = '操作成功') {
     }
     typeof callback==='function' ?callback(sendMsg):'';
 
-    return false;
+    return sendMsg;
   }
 }
 

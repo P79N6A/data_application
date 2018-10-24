@@ -30,3 +30,7 @@ export async function queryNotices() {
 export async function getCatalog() {
   return request('/register/catalog/findAll');
 }
+
+export async function testS() {
+  return setTimeout(()=>console.log('sss==='),1000);
+}

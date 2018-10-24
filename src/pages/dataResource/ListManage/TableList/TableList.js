@@ -68,7 +68,7 @@ class TableList extends PureComponent {
   static getFormValue(props,fields){
     Object.keys(fields).forEach((v)=>{
       //将搜索参数保存在model中
-        props.ListManage.searchFormValue.set(v,fields[v]['value']);
+        props.ListManage.apiReqParam.body[v]=fields[v]['value'];
     })
   }
   constructor() {
@@ -102,6 +102,9 @@ class TableList extends PureComponent {
     this.props.dispatch({
       type: 'ListManage/getApiList'
     });
+    this.props.dispatch({
+      type:'ListManage/watchAndUpdateApiList'
+    })
 
   }
   columns = [
@@ -173,22 +176,14 @@ class TableList extends PureComponent {
 
   // 分页操作--结合搜索框查询功能
   handleStandardTableChange = (pagination, filtersArg, sorter) => {
-    const { dispatch, ListManage:{searchFormValue, data:{pageParam}} } = this.props;
+    const { dispatch, ListManage:{pageParam}} = this.props;
     pageParam.pageIndex=pagination.current;
-    let param={};
-    searchFormValue.forEach((v,k)=>{
-      param[k]=v;
-    });
 
-    const params = {
-      ...param,
-      pageParam
-    }
     // debugger;
     dispatch({
-      type: 'ListManage/getApiList',
-      payload: params
-    });
+      type: 'ListManage/updateReqParam',
+      pageParam
+    })
   };
 
   // 表格字段搜索

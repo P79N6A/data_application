@@ -1,14 +1,7 @@
-import { apiList, removeRule, addApi, apiListJava, updateApiStatus } from '@/services/api';
+import { apiList, removeRule, addApi, apiListJava, updateApiStatus, testS } from '@/services/api';
 import { message } from 'antd';
 import { checkResponse } from '../../../utils/checkResponse';
-
-let objToMap=function(obj) {
-  let m=new Map();
-  for (let k in obj){
-    obj[k]?m.set(k,obj[k]):'';
-  }
-  return m;
-};
+import {delay} from 'redux-saga'
 
 export default {
   namespace: 'ListManage',
@@ -24,7 +17,28 @@ export default {
         'orderRule': 'desc'
       }
     },
-    searchFormValue:new Map()
+
+    searchFormValue:new Map(),
+
+    apiReqParam:{
+      method:'POST',
+      body: {
+        'catalogId': '1',
+        'serviceName': null,
+        'status': null,
+        'interfaceName':null,
+        'serviceMethodType': null,
+        'beginDate': null,
+        'endDate': null
+      }
+    },
+    pageParam:{
+      'total': 0,
+      'pageIndex': 1,
+      'pageSize': 10,
+      'orderFiled': 'last_update',
+      'orderRule': 'desc'
+    }
   },
 
 
@@ -53,6 +67,7 @@ export default {
       };
       // message.success('获取数据');
       let res = yield call(apiListJava, option);
+
       let {data:{data}}=res;
       if (checkResponse(res, callback, '更新成功')) {
         yield put({
@@ -61,7 +76,6 @@ export default {
         });
       }
     },
-
 
      * add({ payload, callback }, { call, put }) {
       const response = yield call(addRule, payload);
@@ -98,13 +112,45 @@ export default {
       checkResponse(res,callback,payload.option==='1'?'启用成功':'停用成功')
     },
 
-    *testE( {payload}, { call, watcher, take }) {
+    // 监听并触发更新api列表
+    * watchAndUpdateApiList({n},{call, put, take, fork, takeLatest, select, race }){
+      while (true){
+        let watch=yield take(['getApiList','saveApi','updateApiStatus', 'updateReqParam', 'add']);
+
+        let [options,pageParam]=yield select(({ListManage})=>([ListManage.apiReqParam, ListManage.pageParam]));
+        let option={...options};
+        option.body.pageParam=pageParam;
+
+        for (let i=0; i<3; i++) {
+          let {res, timeOut} = yield race({
+            res: call(apiListJava, option),
+            timeOut: call(delay, 4000)
+          });
+          // let res=yield call(apiListJava,option);
+          if (res) {
+            let { data: { data } } = res;
+            if (checkResponse(res, watch, '更新成功')) {
+              yield put({
+                type: 'save',
+                payload: data
+              });
+            }
+            break;
+          } else {
+            message.error(`请求超时, 重试${i+1}/3次`)
+          }
+          message.error('请求超时,请检查网络')
+        }
+      }
+    },
+
+    /**testE( {payload}, { call, watcher, take }) {
       for (let i=1; i<3;i++){
         let as=yield take(['getApiList', 'userLogin'])
         console.log('======-==============='+i,take.toString(),as)
       }
       yield console.log('take end')
-    }
+    }*/
   },
 
   reducers: {
@@ -113,11 +159,16 @@ export default {
         ...state,
         data: action.payload
       };
+    },
+
+    updateReqParam(state,{pageParam}){
+      return {
+        ...state,
+        pageParam:pageParam
+      }
     }
   },
 
   subscriptions:{
-    whatchAndUpdateApiList({dispatch, ...res}, ...rr){
-    }
   }
 };

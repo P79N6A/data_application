@@ -16,7 +16,7 @@ class BaseModal extends Component {
           className={styles['detail-modal']}
           onCancel={handleModalCancel}
           onOk={handleModalOk}
-          title={modalTitle?modalTitle:'详情面板'}
+          title={modalTitle?modalTitle: '详情面板'}
           visible={modalVisible}
       >
         {children}
