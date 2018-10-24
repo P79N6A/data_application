@@ -1,5 +1,5 @@
-import ApiChart from '../../../components/Echarts/ApiChart';
-import React, { PureComponent } from 'react';
+// import ApiChart from '../../../components/Echarts/ApiChart';
+import React from 'react';
 import { Row, Col, Card, Tooltip } from 'antd';
 import { Gauge } from '@/components/Charts';
 import styles from './Monitor.less';
@@ -9,7 +9,6 @@ import BarHZ from './BarHZ';
 class MonitorApi extends React.Component {
   render() {
     return (
-
       <Row gutter={10}
           style={{ height: '600px' }}
       >
@@ -37,8 +36,8 @@ class MonitorApi extends React.Component {
             <BarHZ/>
           </Card>
           <Card
-              bodyStyle={{ textAlign: 'center' }}
-              bordered={false}
+              // bodyStyle={{ textAlign: 'center' }}
+              // bordered={false}
               className={styles['antd-card-color']}
               style={{ height: 290 }}
               title="服务稳定性"
