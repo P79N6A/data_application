@@ -43,7 +43,8 @@ class InterfaceTable extends Component {
       rowSelection: {
         onChange: (selectedRowKeys, selectedRows) => {
           this.setState({
-            selectedRows: selectedRows
+            selectedRows: selectedRows,
+            selectedRowKeys: selectedRowKeys
           })
           console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
         },
@@ -57,7 +58,8 @@ class InterfaceTable extends Component {
         pageSize: 3,
         showQuickJumper: true
       },
-      selectedRows: []
+      selectedRows: [],
+      selectedRowKeys: []
     }
   }
   handleTableChange = (pagination) => {
@@ -85,7 +87,8 @@ class InterfaceTable extends Component {
         if (res.code === OK_CODE) {
           // 操作成功
           this.setState({
-            selectedRows: []
+            selectedRows: [],
+            selectedRowKeys: []
           })
           // 重新获取数据
           let pageParam = {
@@ -107,10 +110,11 @@ class InterfaceTable extends Component {
       <div>
         <Button onClick={this.sumbit} style={{ display: this.state.selectedRows.length > 0 ? 'block' : 'none' }} type="primary">提交审批</Button>
         <Table columns={this.state.columns}
-          dataSource={interfaces.data}
-          onChange={this.handleTableChange}
-          pagination={{ ...this.state.pagination, ...interfaces.pageParam }}
-          rowSelection={this.state.rowSelection}
+            dataSource={interfaces.data}
+            onChange={this.handleTableChange}
+            pagination={{ ...this.state.pagination, ...interfaces.pageParam }}
+            rowKey={(record => record.interfaceId)}
+            rowSelection={{...this.state.rowSelection, selectedRowKeys:this.state.selectedRowKeys}}
         />
       </div>
     )

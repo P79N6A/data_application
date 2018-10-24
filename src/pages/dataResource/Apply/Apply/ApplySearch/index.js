@@ -44,7 +44,7 @@ class ApprovalSearch extends Component {
               >
                 {
                   getFieldDecorator('applyType', {
-                    initialValue: '0'
+                    initialValue: '1'
                   })(
                     <Select
                         style={{ width: 140 }}
