@@ -97,8 +97,12 @@ class TableList extends PureComponent {
   // 初始化表格数据
   componentDidMount() {
     this.props.dispatch({
+      type: 'ListManage/testE'
+    });
+    this.props.dispatch({
       type: 'ListManage/getApiList'
     });
+
   }
   columns = [
     {

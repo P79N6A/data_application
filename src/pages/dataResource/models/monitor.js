@@ -14,7 +14,7 @@ export default {
         type: 'saveTags',
         payload: response.list
       });
-    }
+    },
   },
 
   reducers: {

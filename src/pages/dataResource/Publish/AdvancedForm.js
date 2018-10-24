@@ -3,10 +3,10 @@ import {
   Card, Button, Form, Icon, Col,
   Row, Input, Select, Popover, TreeSelect
 } from 'antd';
-import { connect } from 'dva';
+import { connect } from 'dva';styles from './style.less';
 import FooterToolbar from '@/components/Global/FooterToolbar';
 import TableForm from './TableForm';
-import styles from './style.less';
+import
 import DefaultTreeSelect from '@/components/DataResource/DefaultTreeSelect';
 import AutoInput from '@/components/DataResource/AutoInput';
 
@@ -62,7 +62,7 @@ class AdvancedForm extends PureComponent {
 
   getErrorInfo = () => {
     const {
-      form: { getFieldsError },
+      form: { getFieldsError }
     } = this.props;
     const errors = getFieldsError();
     const errorCount = Object.keys(errors).filter(key => errors[key]).length;
@@ -212,7 +212,10 @@ class AdvancedForm extends PureComponent {
                   })(
                     <Select placeholder="请选择服务分组">
                       {catalog.map((v)=>{
-                        return (<Option key={v['id']} value={v['catalogName']}>{v['catalogName']}</Option>)
+                        return (
+                          <Option key={v['id']}
+                              value={v['id']}
+                          >{v['catalogName']}</Option>)
                       })}
 
                     </Select>,
