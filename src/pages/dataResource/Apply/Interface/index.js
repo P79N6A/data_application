@@ -32,11 +32,10 @@ class Interface extends Component{
     })
   }
   render() {
-    console.log(this.props.global)
     return(
       <div >
         <InterfaceSearch catalog={this.props.global.catalog} fetchInterface={this.fetchInterface}></InterfaceSearch>
-        <InterfaceTable fetchInterface={this.fetchInterface} interfaces={this.props.apply.interfaces}></InterfaceTable>
+        <InterfaceTable fetchInterface={this.fetchInterface} interfaces={this.props.apply.interfaces} {...this.props}></InterfaceTable>
       </div>
     )
   }
