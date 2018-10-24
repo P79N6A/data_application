@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table, Popconfirm, Modal} from 'antd'
+import { Table, Popconfirm} from 'antd'
 import dateFormat from '@/utils/dateFormat';
 import ApprovalDetailModal from '@/components/DataResource/Modal/ApprovalDetailModal'
 
@@ -58,12 +58,12 @@ class ApprovalTable extends Component {
                     <Popconfirm onConfirm={this.dispose.bind(this, record, '同意')}
                         title="确定是否同意"
                     >
-                      <a>同意</a>
+                      <a>同意</a>&nbsp;&nbsp;
                     </Popconfirm>
                     <Popconfirm onConfirm={this.dispose.bind(this, record, '拒绝')}
                         title="确定是否拒绝"
                     >
-                      <a>拒绝</a>
+                      <a>拒绝</a>&nbsp;&nbsp;
                     </Popconfirm>
                     <a onClick={this.openInfo.bind(this, record)}>详情</a>
                   </div>
