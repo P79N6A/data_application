@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { Table, Badge, Button } from 'antd'
+import { Table, Badge, Button, message  } from 'antd'
 import { OK_CODE } from '@/config/code'
+import BaseModal from '@/components/DataResource/Modal/BaseModal'
+import InterfaceList from '@/components/DataResource/Modal/ApprovalDetailModal/InterfaceList'
 const STATUS = ['未使用', '已使用']
 class InterfaceTable extends Component {
   constructor(props) {
@@ -34,9 +36,9 @@ class InterfaceTable extends Component {
           render: (text, record) => {
             return record.status === '0' ?
               (
-                <span><a>详情</a></span>
+                <span><a onClick={this.details.bind(this, record)}>详情</a></span>
               ) : (
-                <span><a>点赞</a></span>
+                <span><a onClick={() => {message.success('点赞成功')}}>点赞</a></span>
               )
           }
         }],
@@ -59,7 +61,12 @@ class InterfaceTable extends Component {
         showQuickJumper: true
       },
       selectedRows: [],
-      selectedRowKeys: []
+      selectedRowKeys: [],
+      modal:{
+        modalTitle:'接口详情',
+        modalVisible:false,
+        modalContent:{}
+      }
     }
   }
   handleTableChange = (pagination) => {
@@ -104,10 +111,33 @@ class InterfaceTable extends Component {
       }
     })
   }
+  // 点击展开详情
+  details = (record) => {
+    this.setState({
+      modal:{
+        modalVisible:true,
+        children: <InterfaceList interfaceInfos={[record]}/>
+      }
+    })
+  }
+  // 点击隐藏详情
+  handleCancel = () => {
+    this.setState({
+      modal:{
+        modalVisible:false
+      }
+    })
+  }
   render() {
     const { interfaces } = this.props
+    let {modal={}}=this.state;
     return (
       <div>
+        <BaseModal
+            {...modal}
+            handleModalCancel={this.handleCancel}
+            handleModalOk={this.handleModalOk}
+         />
         <Button onClick={this.sumbit} style={{ display: this.state.selectedRows.length > 0 ? 'block' : 'none' }} type="primary">提交审批</Button>
         <Table columns={this.state.columns}
             dataSource={interfaces.data}
