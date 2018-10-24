@@ -5,7 +5,6 @@ const STATUS = ['未使用', '已使用']
 class InterfaceTable extends Component {
   constructor(props) {
     super(props)
-    this.sumbit = this.sumbit.bind(this);
     this.state = {
       columns: [
         {
@@ -26,9 +25,7 @@ class InterfaceTable extends Component {
           key: 'status',
           render: (text) => {
             return (<span>
-              <Badge status={text === '0' ? 'success' : 'default'}
-                  text={STATUS[text]}
-              />
+              <Badge status={text === '0' ? 'success' : 'default'} text={STATUS[text]} />
             </span>)
           }
         }, {
@@ -43,6 +40,18 @@ class InterfaceTable extends Component {
               )
           }
         }],
+      rowSelection: {
+        onChange: (selectedRowKeys, selectedRows) => {
+          this.setState({
+            selectedRows: selectedRows,
+            selectedRowKeys: selectedRowKeys
+          })
+          console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+        },
+        getCheckboxProps: record => ({
+          disabled: record.status === '1'   // 已使用就不能够再次勾选
+        })
+      },
       pagination: {
         total: 0,
         defaultCurrent: 1,
@@ -50,7 +59,7 @@ class InterfaceTable extends Component {
         showQuickJumper: true
       },
       selectedRows: [],
-      selectedRowKeys:[]
+      selectedRowKeys: []
     }
   }
   handleTableChange = (pagination) => {
@@ -63,18 +72,7 @@ class InterfaceTable extends Component {
       }
     }
     this.props.fetchInterface(pageParam)
-  };
-
-  rowSelection= {
-    onChange: (selectedRowKeys, selectedRows) => {
-      this.setState({selectedRowKeys})
-      // console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-    },
-    getCheckboxProps: record => ({
-      disabled: record.status === '1'   // 已使用就不能够再次勾选
-    })
-  };
-
+  }
   sumbit = () => {
     console.log(this.state.selectedRows)
     const interfaceIds = (this.state.selectedRows.map(item => item.interfaceId)).join(',')
@@ -89,9 +87,9 @@ class InterfaceTable extends Component {
         if (res.code === OK_CODE) {
           // 操作成功
           this.setState({
-            selectedRows: []
-          });
-          this.forceUpdate();
+            selectedRows: [],
+            selectedRowKeys: []
+          })
           // 重新获取数据
           let pageParam = {
             pageParam: {
@@ -110,15 +108,13 @@ class InterfaceTable extends Component {
     const { interfaces } = this.props
     return (
       <div>
-        <Button onClick={this.sumbit}
-            style={{ display: this.state.selectedRowKeys.length > 0 ? 'block' : 'none' }}
-            type="primary"
-        >提交审批</Button>
+        <Button onClick={this.sumbit} style={{ display: this.state.selectedRows.length > 0 ? 'block' : 'none' }} type="primary">提交审批</Button>
         <Table columns={this.state.columns}
             dataSource={interfaces.data}
             onChange={this.handleTableChange}
             pagination={{ ...this.state.pagination, ...interfaces.pageParam }}
-            rowSelection={{...this.rowSelection,selectedRowKeys:this.state.selectedRowKeys}}
+            rowKey={(record => record.interfaceId)}
+            rowSelection={{...this.state.rowSelection, selectedRowKeys:this.state.selectedRowKeys}}
         />
       </div>
     )

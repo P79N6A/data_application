@@ -4,9 +4,9 @@ import {
   Row, Input, Select, Popover, TreeSelect
 } from 'antd';
 import { connect } from 'dva';
-import styles from './style.less';
 import FooterToolbar from '@/components/Global/FooterToolbar';
 import TableForm from './TableForm';
+import styles from './style.less';
 import DefaultTreeSelect from '@/components/DataResource/DefaultTreeSelect';
 import AutoInput from '@/components/DataResource/AutoInput';
 

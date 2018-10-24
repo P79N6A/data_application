@@ -20,7 +20,7 @@ function checkResponse(response, callback, sucTips = '操作成功') {
     sendMsg.isSuccess = false;
     sendMsg.msg = response.data.message;
     message.error(sendMsg.msg);
-    if (sendMsg.msg === '未登录') {
+    if (sendMsg.msg === '未登录' || sendMsg.msg === null) {
       window.location.href = '/user/login';
       return false;
     }

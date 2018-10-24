@@ -9,7 +9,7 @@ class Apply extends Component {
     this.search = this.search.bind(this)
     this.fetchList = this.fetchList.bind(this)
     this.state = {
-      applyType: '0',
+      applyType: '1',
       status: '0',
       beginDate: null,
       endDate: null,
