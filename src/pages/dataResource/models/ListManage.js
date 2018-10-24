@@ -18,9 +18,7 @@ export default {
       }
     },
 
-    searchFormValue:new Map(),
-
-    apiReqParam:{
+    defaultParam:{
       method:'POST',
       body: {
         'catalogId': '1',
@@ -32,6 +30,9 @@ export default {
         'endDate': null
       }
     },
+
+    searchParam:{body:{}},
+
     pageParam:{
       'total': 0,
       'pageIndex': 1,
@@ -43,7 +44,7 @@ export default {
 
 
   effects: {
-    * getApiList({payload={}, callback }, { call, put, select, takeEvery, take }) {
+    /** getApiList({payload={}, callback }, { call, put, select, takeEvery, take }) {
 
       let option = {
         method:'POST',
@@ -75,7 +76,7 @@ export default {
           payload: data
         });
       }
-    },
+    },*/
 
      * add({ payload, callback }, { call, put }) {
       const response = yield call(addRule, payload);
@@ -113,19 +114,25 @@ export default {
     },
 
     // 监听并触发更新api列表
-    * watchAndUpdateApiList({n},{call, put, take, fork, takeLatest, select, race }){
+    * watchAndUpdateApiList({callback},{call, put, take, select, race }){
+      // 初始化表格数据
+      setTimeout(callback,20);
       while (true){
-        let watch=yield take(['getApiList','saveApi','updateApiStatus', 'updateReqParam', 'add']);
+        // 监听列表
+        let watch=yield take(['getApiList','saveApi','updateApiStatus', 'updatePageParam', 'add', 'updateParam']);
 
-        let [options,pageParam]=yield select(({ListManage})=>([ListManage.apiReqParam, ListManage.pageParam]));
-        let option={...options};
+        // 获取请求参数
+        let [defaultParam, searchParam, pageParam]=yield select(({ListManage})=> ([ListManage.defaultParam, ListManage.searchParam, ListManage.pageParam]));
+        let option=Object.assign(defaultParam,searchParam);
         option.body.pageParam=pageParam;
 
+        // 带延时处理的请求
         for (let i=1; i<=3; i++) {
           let {res, timeOut} = yield race({
             res: call(apiListJava, option),
             timeOut: call(delay, 4000)
           });
+
           // let res=yield call(apiListJava,option);
           if (res) {
             let { data: { data } } = res;
@@ -137,11 +144,11 @@ export default {
             }
             break;
           } else {
-            if (i===3){
-              message.error('请求超时,请检查网络')
-              break;
-            }
             message.error(`请求超时, 重试${i}/3次`)
+            if (i===3){
+              call(delay,1000, message.error('请求超时,请检查网络')
+              )
+            }
           }
         }
       }
@@ -164,10 +171,19 @@ export default {
       };
     },
 
-    updateReqParam(state,{pageParam}){
+    updatePageParam(state, {pageParam}){
       return {
         ...state,
         pageParam:pageParam
+      }
+    },
+
+    updateParam(state,{payload}){
+      let newState=Object.assign({},state,);
+      Object.assign(newState.searchParam,{body:{...payload}});
+      Object.assign(newState.pageParam,{pageIndex:1});
+      return {
+        ...newState
       }
     }
   },

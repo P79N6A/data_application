@@ -68,7 +68,7 @@ class TableList extends PureComponent {
   static getFormValue(props,fields){
     Object.keys(fields).forEach((v)=>{
       //将搜索参数保存在model中
-        props.ListManage.apiReqParam.body[v]=fields[v]['value'];
+        props.ListManage.searchParam.body[v]=fields[v]['value'];
     })
   }
   constructor() {
@@ -96,16 +96,13 @@ class TableList extends PureComponent {
   }
   // 初始化表格数据
   componentDidMount() {
-    this.props.dispatch({
-      type: 'ListManage/testE'
-    });
-    this.props.dispatch({
-      type: 'ListManage/getApiList'
-    });
-    this.props.dispatch({
-      type:'ListManage/watchAndUpdateApiList'
+    const {dispatch}=this.props;
+    dispatch({
+      type: 'ListManage/watchAndUpdateApiList',
+      callback:()=>{
+        dispatch({type:'ListManage/getApiList' })
+      }
     })
-
   }
   columns = [
     {
@@ -152,8 +149,8 @@ class TableList extends PureComponent {
 
       render(val) {
         return <Badge status={statusMap[val]}
-                      text={status[val]}
-        />;
+            text={status[val]}
+               />;
       }
     },
     {
@@ -162,8 +159,8 @@ class TableList extends PureComponent {
       width: 250,
       render: (text, record) => (
         <GetOption {...record}
-                   handleOption={this.handleOption}
-                   toggleModalVisible={this.toggleModalVisible}
+            handleOption={this.handleOption}
+            toggleModalVisible={this.toggleModalVisible}
         />
       )
     }
@@ -181,7 +178,7 @@ class TableList extends PureComponent {
 
     // debugger;
     dispatch({
-      type: 'ListManage/updateReqParam',
+      type: 'ListManage/updatePageParam',
       pageParam
     })
   };
@@ -194,12 +191,16 @@ class TableList extends PureComponent {
 
   // 重置搜索
   handleFormReset = () => {
-    const { form, ListManage:{searchFormValue} } = this.props;
+    const { form, dispatch } = this.props;
     form.resetFields();
     this.setState({
       formValues: {}
     });
-    searchFormValue.clear();
+
+    dispatch({
+      type:'ListManage/updateParam',
+      payload:{}
+    })
   };
 
   // 收起展开搜索表单
@@ -215,14 +216,7 @@ class TableList extends PureComponent {
     let { dispatch }=this.props;
     dispatch({
       type: 'ListManage/updateApiStatus',
-      payload: { option: option, interfaceId:props.interfaceId },
-      callback: (res) => {
-        if (res.isSuccess){
-          dispatch({
-            type:'ListManage/getApiList'
-          })
-        }
-      }
+      payload: { option: option, interfaceId:props.interfaceId }
     });
   }
 
@@ -286,12 +280,12 @@ class TableList extends PureComponent {
         ...fieldsValue,
         updatedAt: fieldsValue.updatedAt && fieldsValue.updatedAt.valueOf()
       };
-
       this.setState({
         formValues: values
       });
+
       dispatch({
-        type: 'ListManage/getApiList',
+        type: 'ListManage/updateParam',
         payload: values
       });
     });
@@ -306,7 +300,8 @@ class TableList extends PureComponent {
     const {
       ListManage: { data },
       loading,
-      form: { getFieldDecorator }
+      form: { getFieldDecorator },
+      ListManage:{pageParam}
     } = this.props;
     const { selectedRows, modal } = this.state;
     const menu = (
@@ -356,6 +351,7 @@ class TableList extends PureComponent {
                 loading={loading}
                 onChange={this.handleStandardTableChange}
                 onSelectRow={this.handleSelectRows}
+                paginationSet={{current:pageParam.pageIndex}}
                 rowKey={(record)=>(record.interfaceId)}
                 selectedRows={selectedRows}
                 showSizeChanger
