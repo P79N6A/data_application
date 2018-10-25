@@ -300,12 +300,11 @@ export function modelResponse(response) {
       msg: '',
       res: {}
   };
-
   if (response && (response.code !== OK_CODE)) {
       sendMsg.isSuccess = false;
       sendMsg.msg = response.message;
   } else {
-      sendMsg.res = setRes(response);
+      sendMsg.res = setRes(response.data);
       sendMsg.isSuccess = true;
       sendMsg.msg = '操作成功';
   }

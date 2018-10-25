@@ -1,53 +1,105 @@
 import React, { Component } from 'react';
 import ApprovalSearch from './ApplySearch';
-import ApprovalTable from './ApplyTable';
+import Table from '@/components/Common/Table/1.0'
+import ApprovalDetailModal from '@/components/DataResource/Modal/ApprovalDetailModal'
+import dateFormat from '@/utils/dateFormat';
+import {applyList} from '@/services/apply'
 import { connect } from 'dva';
 import './index.less';
+const APPLYTYPE = ['接口发布', '接口使用']
+const STATUS = ['待审批', '已审批', '驳回']
 class Apply extends Component {
   constructor(props) {
     super(props);
-    this.search = this.search.bind(this)
-    this.fetchList = this.fetchList.bind(this)
     this.state = {
-      applyType: '1',
-      status: '0',
-      beginDate: null,
-      endDate: null,
-      pageParam: {
-        pageIndex: 1,
-        pageSize: 10,
-        orderFiled: 'approve_date',
-        orderRule: 'desc'
+      columns: [
+        {
+          title: '申请类型',
+          dataIndex: 'applyType',
+          key: 'applyType',
+          render: (text) => (
+            <span>{APPLYTYPE[text]}</span>
+          )
+        },
+        {
+          title: '接口状态',
+          dataIndex: 'status',
+          key: 'status',
+          render: (text) => (
+            <span>{STATUS[text]}</span>
+          )
+        },
+        {
+          title: '申请人',
+          dataIndex: 'applyByName',
+          key: 'applyByName'
+        },
+        {
+          title: '申请时间',
+          dataIndex: 'applyDate',
+          key: 'applyDate',
+          render: (text) => (
+            <span>{dateFormat(text)}</span>
+          )
+        },
+        {
+          title: '申请描述',
+          dataIndex: 'applyDesc',
+          key: 'applyDesc'
+        },{
+          title: '操作',
+          key: 'action',
+          render: (text, record) => {
+            return(
+              <div>
+                <a onClick={this.openInfo.bind(this, record)}>详情</a>
+              </div>
+            )
+          }
+        }
+      ],
+      modal:{
+        modalTitle:'详情',
+        modalVisible:false,
+        modalContent:{}
       }
     }
   }
-  componentDidMount() {
-    this.fetchList(this.state)
-  }
-  // 点击搜索按钮
-  search(values) {
-    let payload = {...this.state, ...values}
-    this.fetchList(payload)
+  openInfo(record) {
     this.setState({
-      ...values
+      modal:{
+        modalVisible: true,
+        modalTitle: record.interfaceName,
+        modalContent: {...record}
+      }
     })
   }
-  // 获取列表
-  fetchList(payload) {
-    this.props.dispatch({
-      type: 'apply/fetchApply',
-      payload: payload
-    })
+  handleCancel = () => {
+    this.setState({
+      modal:{
+        modalVisible:false
+      }
+    });
   }
   render() {
-    console.log(this.props.apply)
+    let {modal={}}=this.state;
     return (
       <div>
-        <ApprovalSearch search={this.search}/>
-        <ApprovalTable
-            apply={this.props.apply.applyList}
-            search={this.search}
-        ></ApprovalTable>
+        <ApprovalDetailModal
+            {...modal}
+            handleModalCancel={this.handleCancel}
+            handleModalOk={this.handleModalOk}
+        ></ApprovalDetailModal>
+        <Table 
+            antdTableProps={{
+              rowSelection: null
+            }}
+            columnsArr={this.state.columns}
+            getFn={applyList}
+            hasSearch={false}
+            HeaderExtend={ApprovalSearch}
+            searchExtendParam={{applyType: '1', status: '0'}}
+        />
       </div>
     );
   }

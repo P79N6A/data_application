@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table, Modal } from 'antd'
+import { Table } from 'antd'
 import dateFormat from '@/utils/dateFormat';
 import PropTypes from 'prop-types'
 import ApprovalDetailModal from '@/components/DataResource/Modal/ApprovalDetailModal'

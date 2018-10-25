@@ -29,7 +29,6 @@ BaseModal.propTypes = {
   modalVisible: PropTypes.bool,
   handleModalCancel: PropTypes.func,
   handleModalOk: PropTypes.func,
-  children: PropTypes.node.isRequired,
   modalTitle: PropTypes.string
 }
 
