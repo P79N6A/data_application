@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import {Modal, Collapse, List, Table} from 'antd';
-import styles from './index.less';
+import {Collapse} from 'antd';
 import BaseModal from '../BaseModal';
 import InterfaceList from './interfaceList';
 import InterfaceHistory from './interfaceHistory';
