@@ -12,7 +12,8 @@ class HeaderMenu extends Component {
   render() {
     return (
       <span className={styles['header-menu']}>
-            <Link to={'/api/manage'} > 5555</Link>
+        <Link to={'/api/monitorApi'} > 数据资源</Link>
+        <Link to={'/community'}>社区应用</Link>
       </span>
     );
   }
