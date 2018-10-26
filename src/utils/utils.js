@@ -1,6 +1,7 @@
 import moment from 'moment';
 import React from 'react';
 import nzh from 'nzh/cn';
+import { OK_CODE } from '@/config/code'
 import { parse, stringify } from 'qs';
 
 export function fixedZero(val) {
@@ -261,7 +262,6 @@ export function addColumnKey(columns) {
   });
 }
 
-// 操作localStorage
 export function store(option='',param) {
   if (!window.localStorage){
     return console.log('不支持localStorage')
@@ -281,16 +281,33 @@ export function store(option='',param) {
       break;
   }
 }
-
-export function timeout(delay) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      try {
-        resolve(1)
-      } catch (e) {
-        reject(0)
-      }
-    }, delay)
-  })
+// 处理数据
+export function setRes(res) {
+  const {data, pageParam} = res
+  const page_param = {
+    order_filed: pageParam.orderFiled,
+    order_rule: pageParam.orderRule,
+    page_index: pageParam.pageIndex,
+    page_size: pageParam.pageSize,
+    total: pageParam.total
+  }
+  return {data, page_param}
 }
+// 处理接口数据
+export function modelResponse(response) {
+  let sendMsg =  {
+      isSuccess: false,
+      msg: '',
+      res: {}
+  };
+  if (response && (response.code !== OK_CODE)) {
+      sendMsg.isSuccess = false;
+      sendMsg.msg = response.message;
+  } else {
+      sendMsg.res = setRes(response.data);
+      sendMsg.isSuccess = true;
+      sendMsg.msg = '操作成功';
+  }
 
+  return sendMsg;
+}

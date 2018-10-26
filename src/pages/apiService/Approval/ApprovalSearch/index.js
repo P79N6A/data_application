@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Form, Row, Col, Button, Select, DatePicker } from 'antd';
-import PropTypes from 'prop-types';
 import styles from './index.less';
 const Option = Select.Option;
 const FormItem = Form.Item;
@@ -19,13 +18,7 @@ class ApprovalSearch extends Component {
           beginDate: beginDate ? beginDate.format('YYYY-MM-DD HH:mm:ss') : null,
           endDate: endDate ? endDate.format('YYYY-MM-DD HH:mm:ss') : null
         }
-        let pageParam = {
-          pageIndex: 1,
-          pageSize: 10,
-          orderFiled: 'approve_date',
-          orderRule: 'desc'
-        }
-        this.props.search({...values, ...times, pageParam});
+        this.props.searchFilterFn({...values, ...times})
       }
     });
   }
@@ -43,7 +36,7 @@ class ApprovalSearch extends Component {
             >
               {
                 getFieldDecorator('applyType', {
-                  initialValue: '0'
+                  initialValue: '1'
                 })(
                   <Select
                       style={{ width: 140 }}
@@ -110,8 +103,5 @@ class ApprovalSearch extends Component {
       </Form>
     );
   }
-}
-ApprovalSearch.propTypes = {
-  search: PropTypes.func.isRequired
 }
 export default Form.create()(ApprovalSearch);

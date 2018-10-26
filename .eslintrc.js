@@ -63,14 +63,14 @@ module.exports = {
     'react/jsx-no-literals': 0, //防止使用未包装的JSX字符串
     'react/jsx-no-undef': 1, //在JSX中禁止未声明的变量
     'react/jsx-pascal-case': 0, //为用户定义的JSX组件强制使用PascalCase
-    'react/jsx-sort-props': 2, //强化props按字母排序
+    'react/jsx-sort-props': 0, //强化props按字母排序
     'react/jsx-uses-react': 1, //防止反应被错误地标记为未使用
     'react/jsx-uses-vars': 2, //防止在JSX中使用的变量被错误地标记为未使用
     'react/no-danger': 0, //防止使用危险的JSX属性
     'react/no-did-mount-set-state': 0, //防止在componentDidMount中使用setState
     'react/no-did-update-set-state': 1, //防止在componentDidUpdate中使用setState
     'react/no-direct-mutation-state': 2, //防止this.state的直接变异
-    'react/no-multi-comp': 2, //防止每个文件有多个组件定义
+    'react/no-multi-comp': 0, //防止每个文件有多个组件定义
     'react/no-set-state': 0, //防止使用setState
     'react/no-unknown-property': 2, //防止使用未知的DOM属性
     'react/prefer-es6-class': 2, //为React组件强制执行ES5或ES6类

@@ -3,6 +3,7 @@ import { Table, Badge, Button, message  } from 'antd'
 import { OK_CODE } from '@/config/code'
 import BaseModal from '@/components/DataResource/Modal/BaseModal'
 import InterfaceList from '@/components/DataResource/Modal/ApprovalDetailModal/InterfaceList'
+// import Table from '@/components/Table'
 const STATUS = ['未使用', '已使用']
 class InterfaceTable extends Component {
   constructor(props) {

@@ -1,3 +1,16 @@
+//base.less
+
+body, p, h1, h2, h3, h4, h5, h6, ul, ol, dl, li, dt, dd {
+  /* 默认有边距，都要清除 */
+  margin: 0;
+  padding: 0;
+  /*字体设置*/
+  font-size: 14px;
+  font-family: "Microsoft Yahei", sans-serif;
+  color: #ccc;
+  /* 去掉列表的原点 */
+  list-style: none;
+}
 
 /*行内块元素*/
 input, img {
@@ -8,38 +21,73 @@ input, img {
   vertical-align: bottom;
 }
 
-@fixed-top-menu-height:64px;
-
-html,
-body,
-#root {
-  height: 100%;
+/*行内元素*/
+a, a:hover, a:active, a:visited {
+  /*下划线和颜色*/
+  text-decoration: none;
 }
 
-.colorWeak {
-  filter: invert(80%);
+textarea {
+  /* 边框清零 */
+  border: none;
+  /* 轮廓线清零 */
+  outline: none;
+  /* 防止文本域被随意拖拽 */
+  resize: none;
 }
 
-.ant-layout {
-  min-height: 100vh;
+i {
+  /*文字样式*/
+  font-style: normal;
 }
 
-canvas {
+table {
+  /*边框合并*/
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+:global(.fr) {
+  float: right;
+}
+
+:global(.fl) {
+  float: left;
+}
+
+/* 使用伪元素清除浮动 */
+:global(.clearfix::before),
+:global(.clearfix::after) {
+  content: "";
+  height: 0;
+  line-height: 0;
   display: block;
+  visibility: none;
+  clear: both;
 }
 
-body {
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:global(.clearfix) {
+  *zoom: 1;
 }
 
-.globalSpin {
+html {
+  @media screen and (min-width: 1600px), (min-height: 950px ) {
+      font-size: 100%; // 16px
+  }
+  @media screen and (max-width: 1599px), (max-height: 949px ) {
+      font-size: 87.5%; // 14px
+  }
+}
+
+:global(.h3c-content) {
+  min-height: 10vh;
+  display: flex;
+}
+
+:global(#root) {
   width: 100%;
-  margin: 40px 0 !important;
 }
 
-ul,
-ol {
-  list-style: none;
+:global(.ant-form-item-with-help) {
+  margin-bottom: 5px
 }

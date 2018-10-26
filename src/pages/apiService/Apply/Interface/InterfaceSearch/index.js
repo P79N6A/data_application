@@ -1,20 +1,50 @@
 import React, { Component } from 'react';
 import { Form, Row, Col, Button, Select } from 'antd';
 import styles from './index.less';
+import { connect } from 'dva';
+import { OK_CODE } from '@/config/code'
 const Option = Select.Option;
 const FormItem = Form.Item;
+@connect(({global}) => ({
+  global
+}))
 class InterfaceSearch extends Component {
   constructor(props) {
     super(props);
+    this.state={
+      values: {}
+    }
     this.handleSearch = this.handleSearch.bind(this);
   }
   handleSearch(e) {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        this.props.fetchInterface(values)
+        this.setState({
+          values: {...values}
+        })
+        this.props.searchFilterFn(values)
       }
     });
+  }
+  add = () => {
+    const SelectedRowKeys = this.props.getSelectedRowKeys()
+    const interfaceIds = SelectedRowKeys.join(',')
+    this.props.dispatch({
+      type: 'apply/add',
+      payload: {
+        applyDesc: '接口使用申请',
+        applyType: '1',
+        interfaceIds
+      },
+      callback: (res) => {
+        if (res.code === OK_CODE) {
+          this.props.clearSelecteRowKeys(SelectedRowKeys)
+          // 操作成功
+          this.props.searchFilterFn(this.state.values)
+        }
+      }
+    })
   }
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -33,12 +63,10 @@ class InterfaceSearch extends Component {
                     <Select
                         style={{ width: 200 }}
                     >
-                      {this.props.catalog.map(item => {
-                        return (<Option key={item.id}
-                            value={item.id}
-                                >{item.catalogName}</Option>)
+                      {this.props.global.catalog.map(item => {
+                        return (<Option key={item.id} value={item.id}>{item.catalogName}</Option>)
                       })}
-
+                     
                     </Select>,
                   )
                 }
@@ -69,6 +97,16 @@ class InterfaceSearch extends Component {
                 搜索
               </Button>
             </Col>
+          </Row>
+          <Row style={{display: (this.props.getSelectedRowKeys().length) > 0 ? 'block':'none'}}>
+            <Col span={2}>
+                <Button htmlType="submit"
+                    onClick={this.add}
+                    type="primary"
+                >
+                  去审批
+                </Button>
+              </Col>
           </Row>
         </Form>
       </div>
