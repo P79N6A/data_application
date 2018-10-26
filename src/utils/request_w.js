@@ -115,7 +115,7 @@ function setCookie(defReq) {
   const userName = getCookie('username');
   const user = `usercode:${userCode}&username:${userName}`;
 
-  defReq.headers.append('x-client-ajax', 'data-test');
+  defReq.headers.append('x-client-ajax', 'dataResource-test');
   defReq.headers.append('Authorization', escape(escape(user)));
   defReq.headers.append(
     'us-app',
@@ -143,7 +143,7 @@ export default function request(url, options = {}) {
       Accept:
         'application/json,text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
       /**
-       * 可选application/x-www-form-urlencoded  multipart/form-data text/plain application/json
+       * 可选application/x-www-form-urlencoded  multipart/form-dataResource text/plain application/json
        必须和body的类型一致
        'Content-Type': 'application/x-www-form-urlencoded' ; charset=utf-8; 默认表单类型
        */

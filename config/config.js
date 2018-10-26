@@ -105,7 +105,7 @@ export default {
       'pathRewrite': { '^/api': '' },
     },
     '/ser': {
-      'target': 'http://192.168.110.28:8901/api/',
+      'target': 'http://192.168.110.28:8901/apiService/',
       'changeOrigin': true,
       'pathRewrite': { '^/api': '' },
     },

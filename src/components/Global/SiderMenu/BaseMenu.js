@@ -13,6 +13,9 @@ const { SubMenu } = Menu;
 //   icon: 'http://demo.com/icon.png',
 //   icon: <Icon type="setting" />,
 const getIcon = icon => {
+  if (typeof icon === 'undefined'){
+    return <React.Fragment />
+  }
   if (typeof icon === 'string' && icon.indexOf('http') === 0) {
     return <img alt="icon"
         className={styles.icon}
@@ -26,7 +29,7 @@ const getIcon = icon => {
 };
 
 export const getMenuMatches = (flatMenuKeys, path) =>
-  flatMenuKeys.filter(item => item && pathToRegexp(item).test(path));
+     flatMenuKeys.filter(item => item && pathToRegexp(item).test(path));
 
 export default class BaseMenu extends PureComponent {
   constructor(props) {
@@ -35,7 +38,7 @@ export default class BaseMenu extends PureComponent {
   }
 
   /**
-   * Recursively flatten the data
+   * Recursively flatten the dataResource
    * [{path:string},{path:string}] => {path,path2}
    * @param  menus
    */

@@ -93,7 +93,7 @@ export default class PageHeader extends PureComponent {
     const { breadcrumbSeparator, home, itemRender, linkElement = 'a' } = this.props;
     // Convert the url to an array
     const pathSnippets = urlToList(routerLocation.pathname);
-    // Loop data mosaic routing
+    // Loop dataResource mosaic routing
     const extraBreadcrumbItems = pathSnippets.map((url, index) => {
       const currentBreadcrumb = getBreadcrumb(breadcrumbNameMap, url);
       if (currentBreadcrumb.inherited) {

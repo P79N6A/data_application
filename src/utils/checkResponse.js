@@ -18,7 +18,7 @@ function checkResponse(response, callback, sucTips = '操作成功') {
     sendMsg.msg = sucTips;
     // message.success(sendMsg.msg);
     typeof callback==='function' ?callback(sendMsg):'';
-    return sendMsg;
+    return true;
   } else {
     sendMsg.isSuccess = false;
     sendMsg.msg = response.data.message;
@@ -29,7 +29,7 @@ function checkResponse(response, callback, sucTips = '操作成功') {
     }
     typeof callback==='function' ?callback(sendMsg):'';
 
-    return sendMsg;
+    return false;
   }
 }
 

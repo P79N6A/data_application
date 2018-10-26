@@ -39,12 +39,12 @@ const checkStatus = response => {
 
 const cachedSave = (response, hashcode) => {
   /**
-   * Clone a response data and store it in sessionStorage
-   * Does not support data other than json, Cache only json
+   * Clone a response dataResource and store it in sessionStorage
+   * Does not support dataResource other than json, Cache only json
    */
   const contentType = response.headers.get('Content-Type');
   if (contentType && contentType.match(/application\/json/i)) {
-    // All data is saved as text
+    // All dataResource is saved as text
     response
       .clone()
       .text()
@@ -61,7 +61,7 @@ const cachedSave = (response, hashcode) => {
  *
  * @param  {string} url       The URL we want to request
  * @param  {object} [options] The options we want to pass to "fetch"
- * @return {object}           An object containing either "data" or "err"
+ * @return {object}           An object containing either "dataResource" or "err"
  */
 export default function request(
   url,
@@ -123,7 +123,7 @@ export default function request(
     .then(checkStatus)
     .then(response => cachedSave(response, hashcode))
     .then(response => {
-      // DELETE and 204 do not return data by default
+      // DELETE and 204 do not return dataResource by default
       // using .json will report an error.
       if (newOptions.method === 'DELETE' || response.status === 204) {
         return response.text();

@@ -3,7 +3,7 @@ import { Drawer } from 'antd';
 import SiderMenu from './SiderMenu';
 
 /**
- * Recursively flatten the data
+ * Recursively flatten the dataResource
  * [{path:string},{path:string}] => {path,path2}
  * @param  menus
  */

@@ -25,7 +25,7 @@ const havePermissionAsync = new Promise(resolve => {
   monitor,
   loading: loading.models.monitor
 }))
-class Monitor extends PureComponent {
+class Index extends PureComponent {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
@@ -209,4 +209,4 @@ class Monitor extends PureComponent {
   }
 }
 
-export default Monitor;
+export default Index;

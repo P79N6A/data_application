@@ -1,5 +1,5 @@
 //从本地存储获取用户信息
-let defaultAuth=[]
+let defaultAuth=['admin']
 
 export function getAuthority(str) {
   // return localStorage.getItem('antd-pro-authority') || ['admin', 'user'];

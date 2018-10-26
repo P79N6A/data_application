@@ -3,7 +3,7 @@ export default {
   'menu.home': 'Home',
   'menu.dashboard': 'Dashboard',
   'menu.dashboard.analysis': 'Analysis',
-  'menu.dashboard.monitor': 'Monitor',
+  'menu.dashboard.monitor': 'Index',
   'menu.dashboard.workplace': 'Workplace',
   'menu.form': 'Form',
   'menu.form.basicform': 'Basic Form',

@@ -32,7 +32,7 @@ class Pie extends Component {
   componentDidUpdate(preProps) {
     const { data } = this.props;
     if (data !== preProps.data) {
-      // because of charts data create when rendered
+      // because of charts dataResource create when rendered
       // so there is a trick for get rendered time
       this.getLegendData();
     }
