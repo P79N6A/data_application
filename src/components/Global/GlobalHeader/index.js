@@ -4,6 +4,7 @@ import Link from 'umi/link';
 import Debounce from 'lodash-decorators/debounce';
 import styles from './index.less';
 import RightContent from './RightContent';
+import HeaderMenu from './HeaderMenu';
 
 export default class GlobalHeader extends PureComponent {
   componentWillUnmount() {
@@ -49,6 +50,7 @@ export default class GlobalHeader extends PureComponent {
             <h1>精准社会服务平台</h1>
           </Link>
         </div>
+        <HeaderMenu />
         <RightContent {...this.props} />
       </div>
     );
