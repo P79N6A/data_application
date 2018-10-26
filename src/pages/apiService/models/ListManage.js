@@ -69,11 +69,11 @@ export default {
       // message.success('获取数据');
       let res = yield call(apiListJava, option);
 
-      let {data:{data}}=res;
+      let {dataResource:{dataResource}}=res;
       if (checkResponse(res, callback, '更新成功')) {
         yield put({
           type: 'save',
-          payload: data
+          payload: dataResource
         });
       }
     },*/
@@ -141,7 +141,7 @@ export default {
           }
         }
       }
-    },
+    }
 
     /**testE( {payload}, { call, watcher, take }) {
       for (let i=1; i<3;i++){

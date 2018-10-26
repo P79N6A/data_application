@@ -57,8 +57,7 @@ class ApiDetailModal extends Component {
 
     return (
         <BaseModal {...this.props}>
-            <Collapse defaultActiveKey={['1']}
-            >
+            <Collapse defaultActiveKey={['1']}>
               <Panel header="服务详情"
                   key="1"
               >

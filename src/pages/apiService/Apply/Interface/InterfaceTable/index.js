@@ -27,7 +27,9 @@ class InterfaceTable extends Component {
           key: 'status',
           render: (text) => {
             return (<span>
-              <Badge status={text === '0' ? 'success' : 'default'} text={STATUS[text]} />
+              <Badge status={text === '0' ? 'success' : 'default'}
+                  text={STATUS[text]}
+              />
             </span>)
           }
         }, {
@@ -137,8 +139,11 @@ class InterfaceTable extends Component {
             {...modal}
             handleModalCancel={this.handleCancel}
             handleModalOk={this.handleModalOk}
-         />
-        <Button onClick={this.sumbit} style={{ display: this.state.selectedRows.length > 0 ? 'block' : 'none' }} type="primary">提交审批</Button>
+        />
+        <Button onClick={this.sumbit}
+            style={{ display: this.state.selectedRows.length > 0 ? 'block' : 'none' }}
+            type="primary"
+        >提交审批</Button>
         <Table columns={this.state.columns}
             dataSource={interfaces.data}
             onChange={this.handleTableChange}

@@ -24,7 +24,7 @@ const getDefaultCollapsedSubMenus = props => {
 };
 
 /**
- * Recursively flatten the data
+ * Recursively flatten the dataResource
  * [{path:string},{path:string}] => {path,path2}
  * @param  menu
  */

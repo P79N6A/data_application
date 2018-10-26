@@ -6,7 +6,7 @@ let datas = Mock.mock({
     'apiDesc|1': ['用于学校监控', '用于社区门禁', '用于高速路收费站'],
     'apiName|1': ['管制刀具识别', '危险人物识别', '非法持枪识别'],
     'serviceName|1': ['危险物品识别', '监控识别'],
-    'apiPath|1': ['/api/identify', '/api/watch'],
+    'apiPath|1': ['/apiService/identify', '/apiService/watch'],
     'serviceGroup|1': ['安全管制', '威胁预警'],
     'apiState|0-2': 1,
     'id|+1': 1,

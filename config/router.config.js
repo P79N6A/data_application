@@ -22,51 +22,52 @@ export default [
       // dashboard
       { path: '/', redirect: '/resource/manage' },
       { path: '/resource', redirect: '/resource/manage' },
+      { path: '/data', redirect: '/data/resource' },
       {
-        path: '/resource',
-        name: 'resource',
+        path: '/api',
+        name: 'api',
         icon: 'cluster',
         routes: [
           {
-            path: '/resource/monitor',
+            path: '/api/monitor',
             name: 'monitor',
             hideInMenu:true,
-            component: './dataResource/Monitor/Monitor',
+            component: './apiService/Monitor',
           },
           {
-            path: '/resource/monitorApi',
+            path: '/api/monitorApi',
             name: 'monitorApi',
-            component: './dataResource/Monitor/MonitorApi',
+            component: './apiService/Monitor/MonitorApi',
           },
           {
-            path: '/resource/apply',
+            path: '/api/apply',
             name: 'monitorApi',
             hideInMenu: true,
-            component: './dataResource/Apply',
+            component: './apiService/Apply',
           },
           {
-            path: '/resource/manage/publish',
+            path: '/api/manage/publish',
             name: 'publish',
             hideInMenu: true,
-            component: './dataResource/Publish/AdvancedForm.js',
+            component: './apiService/Publish/AdvancedForm.js',
           },
           {
-            path: '/resource/manage',
+            path: '/api/manage',
             name: 'manage',
-            component: './dataResource/ListManage',
+            component: './apiService/ListManage',
           },
           {
-            path: '/resource/approval',
+            path: '/api/approval',
             name: 'approval',
-            component: './dataResource/approval'
+            component: './apiService/approval'
           },
           {
-            path: '/resource/apply',
+            path: '/api/apply',
             name: 'apply',
-            component: './dataResource/Apply',
+            component: './apiService/Apply',
           },
           {
-            path: '/resource/echart',
+            path: '/api/echart',
             hideInMenu: true,
             name: 'echart',
             component: './testComponent'
@@ -74,24 +75,29 @@ export default [
         ]
       },
       {
-        path: '/collect',
-        name: 'collect',
+        path: '/data',
+        name: 'data',
         icon: 'hdd',
         routes: [
           {
-            path: '/collect/main',
+            path: '/data/main',
             name: 'main',
-            component: './dataCollect/CollectMain',
+            component: './dataResource/CollectMain',
           },
           {
-            path: '/collect/list',
+            path: '/data/list',
             name: 'list',
-            component: './dataCollect/CollectList',
+            component: './dataResource/CollectList',
           },
           {
-            path: '/collect/mission',
+            path: '/data/mission',
             name: 'mission',
-            component: './dataCollect/CollectMission',
+            component: './dataResource/CollectMission',
+          },
+          {
+            path: '/data/manage',
+            name: 'manage',
+            component: './dataResource/Manage',
           },
         ],
       },

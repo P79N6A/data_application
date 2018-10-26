@@ -34,9 +34,11 @@ class InterfaceSearch extends Component {
                         style={{ width: 200 }}
                     >
                       {this.props.catalog.map(item => {
-                        return (<Option key={item.id} value={item.id}>{item.catalogName}</Option>)
+                        return (<Option key={item.id}
+                            value={item.id}
+                                >{item.catalogName}</Option>)
                       })}
-                     
+
                     </Select>,
                   )
                 }

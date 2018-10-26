@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from '../../../pages/dataResource/ListManage/TableList/TableList.less';
+import styles from '../../../pages/apiService/ListManage/TableList/TableList.less';
 import {
   Row, Col, Form, Input, Select, Icon,
   Button,  DatePicker
