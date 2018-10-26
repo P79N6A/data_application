@@ -5,6 +5,7 @@ import { formatMessage } from 'umi/locale';
 import pathToRegexp from 'path-to-regexp';
 import { urlToList } from '../../_utils/pathTools';
 import styles from './index.less';
+import PropTypes from 'prop-types';
 
 const { SubMenu } = Menu;
 
@@ -12,6 +13,7 @@ const { SubMenu } = Menu;
 //   icon: 'setting',
 //   icon: 'http://demo.com/icon.png',
 //   icon: <Icon type="setting" />,
+
 const getIcon = icon => {
   if (typeof icon === 'undefined'){
     return <React.Fragment />
@@ -30,6 +32,7 @@ const getIcon = icon => {
 
 export const getMenuMatches = (flatMenuKeys, path) =>
      flatMenuKeys.filter(item => item && pathToRegexp(item).test(path));
+
 
 export default class BaseMenu extends PureComponent {
   constructor(props) {
@@ -166,8 +169,8 @@ export default class BaseMenu extends PureComponent {
   };
 
   render() {
-    const { openKeys, theme, mode } = this.props;
-    // if pathname can't match, use the nearest parent's key
+    const { openKeys, theme, mode, handleOpenChange, style, menuData } = this.props;
+    //无匹配时使用默认值
     let selectedKeys = this.getSelectedMenuKeys();
     if (!selectedKeys.length && openKeys) {
       selectedKeys = [openKeys[openKeys.length - 1]];
@@ -178,7 +181,6 @@ export default class BaseMenu extends PureComponent {
         openKeys
       };
     }
-    const { handleOpenChange, style, menuData } = this.props;
     return (
       <Menu
           className={mode === 'horizontal' ? 'top-nav-menu' : ''}
@@ -195,3 +197,16 @@ export default class BaseMenu extends PureComponent {
     );
   }
 }
+// const { openKeys, theme, mode, handleOpenChange, style, menuData } = this.props;
+
+BaseMenu.propTypes = {
+  mode:PropTypes.string,
+  theme:PropTypes.string,
+  openKeys:PropTypes.array,
+  handleOpenChange:PropTypes.func,
+  style:PropTypes.object,
+  menuData:PropTypes.array,
+  location:PropTypes.shape({
+    pathname:PropTypes.string,
+  })
+};
