@@ -50,7 +50,7 @@ export default class GlobalHeader extends PureComponent {
             <h1>精准社会服务平台</h1>
           </Link>
         </div>
-        <HeaderMenu />
+        <HeaderMenu {...this.props} />
         <RightContent {...this.props} />
       </div>
     );

@@ -9,6 +9,11 @@ import PropTypes from 'prop-types';
 
 const { SubMenu } = Menu;
 
+let pathMenu={
+  data:['api','data','application','result','exception'],
+  community:['community']
+}
+
 // Allow menu.js config icon as string or ReactNode
 //   icon: 'setting',
 //   icon: 'http://demo.com/icon.png',
@@ -64,6 +69,7 @@ export default class BaseMenu extends PureComponent {
     if (!menusData) {
       return [];
     }
+    let {location}=this.props;
     return menusData
       .filter(item => item.name && !item.hideInMenu)
       .map(item => {
@@ -71,7 +77,17 @@ export default class BaseMenu extends PureComponent {
         const ItemDom = this.getSubMenuOrItem(item, parent);
         return this.checkPermissionItem(item.authority, ItemDom);
       })
-      .filter(item => item);
+      .filter(item =>  {
+        if (!item) {return false}
+        let path=pathToRegexp.parse(location.pathname)[0].split('/').filter(i=>i)[0];
+
+        if (pathMenu.community.includes(path)){
+          return item.key.includes(path)
+        }else if (pathMenu.data.includes(path)){
+          return pathMenu.data.some((v) =>item.key.includes(v) )
+        }
+        return false;
+      });
   };
 
   // 选中菜单
@@ -153,6 +169,7 @@ export default class BaseMenu extends PureComponent {
 
   // permission to check
   checkPermissionItem = (authority, ItemDom) => {
+
     const { Authorized } = this.props;
     if (Authorized && Authorized.check) {
       const { check } = Authorized;
@@ -169,7 +186,7 @@ export default class BaseMenu extends PureComponent {
   };
 
   render() {
-    const { openKeys, theme, mode, handleOpenChange, style, menuData } = this.props;
+    const { openKeys, theme, mode, handleOpenChange, style, menuData, location } = this.props;
     //无匹配时使用默认值
     let selectedKeys = this.getSelectedMenuKeys();
     if (!selectedKeys.length && openKeys) {
@@ -192,7 +209,7 @@ export default class BaseMenu extends PureComponent {
           theme={theme}
           {...props}
       >
-        {this.getNavMenuItems(menuData)}
+        {this.getNavMenuItems(menuData, location)}
       </Menu>
     );
   }

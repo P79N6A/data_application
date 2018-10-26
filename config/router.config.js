@@ -1,5 +1,5 @@
 export default [
-  // user
+  // 用户中心路由
   {
     path: '/user',
     component: '../layouts/UserLayout',
@@ -10,19 +10,21 @@ export default [
       { path: '/user/register-result', component: './User/RegisterResult' },
     ]
   },
-  // app
+  // 应用路由
   {
     path: '/',
     component: '../layouts/BasicLayout',
     Routes: ['src/pages/Authorized'],
     // 配置路由权限
-    authority: ['admin', 'user', 'wan'],
+    authority: ['admin', 'community'],
 
     routes: [
-      // dashboard
+      // 配置各应用的默认路由
       { path: '/', redirect: '/resource/manage' },
       { path: '/resource', redirect: '/resource/manage' },
       { path: '/data', redirect: '/data/resource' },
+      { path: '/community', redirect: '/community/main' },
+      /*=================接口服务===============*/
       {
         path: '/api',
         name: 'api',
@@ -74,6 +76,7 @@ export default [
           }
         ]
       },
+      /*=================数据资源===============*/
       {
         path: '/data',
         name: 'data',
@@ -101,6 +104,7 @@ export default [
           },
         ],
       },
+      /*=================数据应用===============*/
       {
         path: '/application',
         name: 'application',
@@ -123,6 +127,20 @@ export default [
           },
         ],
       },
+      /*=================社区应用===============*/
+      {name: 'community',
+        icon: 'check-circle-o',
+        path: '/community',
+        routes: [
+          {
+            path: '/community/main',
+            name: 'main',
+            component: './community',
+          },
+        ],
+        authority: ['admin']
+      },
+      /*=================帮助页面===============*/
       {
         name: 'result',
         icon: 'check-circle-o',
@@ -137,6 +155,7 @@ export default [
           { path: '/result/fail', name: 'fail', component: './Result/Error' },
         ]
       },
+      /*=================错误页面===============*/
       {
         name: 'exception',
         icon: 'warning',
