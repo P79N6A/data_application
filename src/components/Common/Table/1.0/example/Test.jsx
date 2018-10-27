@@ -94,10 +94,10 @@ const headerMoreFnArr = [
         key: "excel",
         // view: ExcelBtn,
         render: (props) => {
-            return <ExcelBtn 
-                {...props} 
-                exlName="tqtTest" 
-                columnsArr={columnsArr} 
+            return <ExcelBtn
+                {...props}
+                exlName="tqtTest"
+                columnsArr={columnsArr}
                 // exlBtn={null}
             />
         }

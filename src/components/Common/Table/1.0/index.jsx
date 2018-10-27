@@ -408,7 +408,6 @@ class LayoutComponent extends PureComponent {
             showSizeChanger,
             antdTableProps={}
         } = this.props;
-
         const { selectedRowKeys } = this.state;
 
         const initRowSelection = {
@@ -467,8 +466,8 @@ class LayoutComponent extends PureComponent {
                         showTotal: total => {
                             return total > 0 ? `共${this.state.total}条` : null;
                         },
-                        showQuickJumper: showQuickJumper ? showQuickJumper : true,
-                        showSizeChanger: showSizeChanger ? showSizeChanger : true,
+                        showQuickJumper: (showQuickJumper||showQuickJumper===false) ? showQuickJumper : true,
+                        showSizeChanger: (showQuickJumper||showQuickJumper===false) ? showSizeChanger : true,
                         current: this.state.page_index,
                         total: this.state.total,
                         pageSize: this.state.page_size

@@ -83,7 +83,7 @@ class EditMenu extends React.Component {
     const WrappedRegistrationForm = Form.create()(menuForm);
     return (
       <Modal
-        title={this.props.title || `编辑菜单`}
+        title={this.props.title || `新建任务`}
         destroyOnClose={true}
         onCancel={this._onCancel}
         visible={this.state.visible}

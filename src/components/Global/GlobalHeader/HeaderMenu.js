@@ -8,23 +8,25 @@ import { reloadAuthorized } from '@/utils/Authorized';
 class HeaderMenu extends Component {
   constructor(props) {
     super(props);
-    this.state={selectedKeys:[]}
+    this.changePathAuth = this.changePathAuth.bind(this);
+    this.state={}
   }
 
   // 切换路由菜单
-   async changePathAuth (path) {
-    await store('save',{'path':path});
-     await reloadAuthorized();
+    changePathAuth (path) {
+      this.setState({activePath:path});
   }
 
   render() {
-
+    let activePath=this.state.activePath;
     return (
       <span className={styles['header-menu']}>
         <Link onClick={()=>this.changePathAuth('data')}
+            className={!activePath || activePath==='data' ?styles['active-link']:''}
             to={'/api'}
         > 数据平台</Link>
         <Link onClick={()=>this.changePathAuth('community')}
+            className={activePath==='community'?styles['active-link']:''}
             to={'/community'}
         >社区平台</Link>
       </span>
