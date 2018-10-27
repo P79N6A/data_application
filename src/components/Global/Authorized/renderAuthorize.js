@@ -20,6 +20,5 @@ const renderAuthorize = Authorized => currentAuthority => {
   }
   return Authorized;
 };
-
 export { CURRENT };
 export default Authorized => renderAuthorize(Authorized);

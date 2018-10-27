@@ -5,13 +5,20 @@ import { formatMessage } from 'umi/locale';
 import pathToRegexp from 'path-to-regexp';
 import { urlToList } from '../../_utils/pathTools';
 import styles from './index.less';
+import PropTypes from 'prop-types';
 
 const { SubMenu } = Menu;
+
+let pathMenu={
+  data:['api','data','application','result','exception'],
+  community:['community']
+}
 
 // Allow menu.js config icon as string or ReactNode
 //   icon: 'setting',
 //   icon: 'http://demo.com/icon.png',
 //   icon: <Icon type="setting" />,
+
 const getIcon = icon => {
   if (typeof icon === 'undefined'){
     return <React.Fragment />
@@ -30,6 +37,7 @@ const getIcon = icon => {
 
 export const getMenuMatches = (flatMenuKeys, path) =>
      flatMenuKeys.filter(item => item && pathToRegexp(item).test(path));
+
 
 export default class BaseMenu extends PureComponent {
   constructor(props) {
@@ -61,6 +69,7 @@ export default class BaseMenu extends PureComponent {
     if (!menusData) {
       return [];
     }
+    let {location}=this.props;
     return menusData
       .filter(item => item.name && !item.hideInMenu)
       .map(item => {
@@ -68,7 +77,17 @@ export default class BaseMenu extends PureComponent {
         const ItemDom = this.getSubMenuOrItem(item, parent);
         return this.checkPermissionItem(item.authority, ItemDom);
       })
-      .filter(item => item);
+      .filter(item =>  {
+        if (!item) {return false}
+        let path=pathToRegexp.parse(location.pathname)[0].split('/').filter(i=>i)[0];
+
+        if (pathMenu.community.includes(path)){
+          return item.key.includes(path)
+        }else if (pathMenu.data.includes(path)){
+          return pathMenu.data.some((v) =>item.key.includes(v) )
+        }
+        return false;
+      });
   };
 
   // 选中菜单
@@ -150,6 +169,7 @@ export default class BaseMenu extends PureComponent {
 
   // permission to check
   checkPermissionItem = (authority, ItemDom) => {
+
     const { Authorized } = this.props;
     if (Authorized && Authorized.check) {
       const { check } = Authorized;
@@ -166,8 +186,8 @@ export default class BaseMenu extends PureComponent {
   };
 
   render() {
-    const { openKeys, theme, mode } = this.props;
-    // if pathname can't match, use the nearest parent's key
+    const { openKeys, theme, mode, handleOpenChange, style, menuData, location } = this.props;
+    //无匹配时使用默认值
     let selectedKeys = this.getSelectedMenuKeys();
     if (!selectedKeys.length && openKeys) {
       selectedKeys = [openKeys[openKeys.length - 1]];
@@ -178,7 +198,6 @@ export default class BaseMenu extends PureComponent {
         openKeys
       };
     }
-    const { handleOpenChange, style, menuData } = this.props;
     return (
       <Menu
           className={mode === 'horizontal' ? 'top-nav-menu' : ''}
@@ -190,8 +209,21 @@ export default class BaseMenu extends PureComponent {
           theme={theme}
           {...props}
       >
-        {this.getNavMenuItems(menuData)}
+        {this.getNavMenuItems(menuData, location)}
       </Menu>
     );
   }
 }
+// const { openKeys, theme, mode, handleOpenChange, style, menuData } = this.props;
+
+BaseMenu.propTypes = {
+  mode:PropTypes.string,
+  theme:PropTypes.string,
+  openKeys:PropTypes.array,
+  handleOpenChange:PropTypes.func,
+  style:PropTypes.object,
+  menuData:PropTypes.array,
+  location:PropTypes.shape({
+    pathname:PropTypes.string,
+  })
+};
