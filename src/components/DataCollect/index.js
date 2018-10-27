@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import {Button} from 'antd';
 
 import Table from "../../components/Common/Table/1.0";
 import Tree from "../../components/Common/Tree";
+import Search from "./Search";
+import EditMenu from "./EditMenu";
 import styles from "./index.less";
 
 class CollectData extends Component {
@@ -25,36 +26,35 @@ class CollectData extends Component {
           key: "description"
         }
       ],
-      headerMoreFnArr : [
+      moreFnArr : [
         {
-          key: "add",
-          render: () => {
-            return <Button>添加</Button>
-          }
-        }
+            key: "edit1234",
+            title: "编辑",
+            view: EditMenu
+        },
       ]
     }
   }
 
   _handlePromise = () => {
-    return new Promise((resolve, reject)=> {
+    let data =[];
+    for(let i=0; i<100 ; i++){
+      data.push({
+        type:"MySql"+i,
+        time:"2018-10-27 11:0" + i%10,
+        description:"员工资料数据库"+i,
+        key:"i"
+      })
+    }
+    return new Promise((resolve)=> {
         setTimeout(() => {
-          let data =[];
-          for(let i=0; i<100 ; i++){
-            data.push({
-              type:"MySql",
-              time:"2018-10-27 11:" + i%60,
-              description:"员工资料数据库",
-              key:"i"
-            })
-          }
           resolve({
             res:{
               data:data
             },
             isSuccess:true
           })
-        }, 1000 * 0.1)
+        }, 1000 * 0.3);
     });
   };
 
@@ -67,14 +67,15 @@ class CollectData extends Component {
         <div className={styles.contentTable}>
           <h1>数据库采集</h1>
             <Table
+              antdTableProps={{rowSelection:false}}
+              HeaderExtend={Search}
               recordIDName="010101"
-              headerMoreFnArr={this.state.headerMoreFnArr}
               getFn={() => this._handlePromise()}
               updateFn={() => this._handlePromise()}
-              deleteFn={() => this._handlePromise()}
               columnsArr={this.state.columns}
               app_id="1"
-              hasSearch
+              hasSearch={false}
+              moreFnArr={this.state.moreFnArr}
             />
         </div>
       </div>
