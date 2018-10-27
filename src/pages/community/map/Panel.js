@@ -48,23 +48,29 @@ class RightPanel extends Component {
         <Collapse onChange={callback}
             style={{margin:'0 0 0 40px'}}
         >
-          <Panel header="This is panel header 1"
+          <Panel header="数据总览"
               key="1"
           >
-            <Collapse defaultActiveKey="1">
+            {/*<Collapse defaultActiveKey="1">
               <Panel header="This is panel nest panel"
                   key="1"
               >
                 <p>{text}</p>
               </Panel>
-            </Collapse>
+            </Collapse>*/}
+
           </Panel>
-          <Panel header="This is panel header 2"
+          <Panel header="实有人口"
               key="2"
           >
             <p>{text}</p>
           </Panel>
-          <Panel header="This is panel header 3"
+          <Panel header="实有房屋"
+              key="3"
+          >
+            <p>{text}</p>
+          </Panel>
+          <Panel header="实有房屋"
               key="3"
           >
             <p>{text}</p>
