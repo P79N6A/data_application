@@ -136,7 +136,7 @@ export default [
           {
             path: '/community/map',
             name: 'map',
-            component: './community',
+            component: './community/map',
           },
         ],
         authority: ['admin']
