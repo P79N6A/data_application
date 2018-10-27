@@ -36,12 +36,14 @@ class RightPanel extends Component {
 
 
   render() {
+    const {isCollapse}=this.state;
+
     return (
       <div className={styles['ant-collapse-content']}
           ref={this.contentRef}
       >
         <span className={styles['collapse-btn']} onClick={this.toggleCollapse} >
-          <span className={'span'}> >> </span>
+          <span className={'span'}>{isCollapse?'>>':'<<'}</span>
         </span>
         <Collapse onChange={callback}
             style={{margin:'0 0 0 40px'}}
