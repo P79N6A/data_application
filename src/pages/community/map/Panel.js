@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Collapse } from 'antd';
 import styles from './Panel.less';
+import WeekChart from './charts/weekChart';
+import WeekLine from './charts/weekLine';
+import People from './panels/people';
 
 const Panel = Collapse.Panel;
 
@@ -21,7 +24,7 @@ class RightPanel extends Component {
     this.contentRef=React.createRef();
     this.state={isCollapse:false}
   }
-  
+
   toggleCollapse(){
     let {isCollapse}=this.state;
     let style=this.contentRef.current.style;
@@ -42,14 +45,18 @@ class RightPanel extends Component {
       <div className={styles['ant-collapse-content']}
           ref={this.contentRef}
       >
-        <span className={styles['collapse-btn']} onClick={this.toggleCollapse} >
+        <span className={styles['collapse-btn']}
+            onClick={this.toggleCollapse}
+        >
           <span className={'span'}>{isCollapse?'>>':'<<'}</span>
         </span>
+        {/*<WeekChart />*/}
         <Collapse onChange={callback}
-            style={{margin:'0 0 0 40px'}}
+            style={{margin:'0 0 0 30px'}}
         >
           <Panel header="数据总览"
               key="1"
+              className={styles['data-all']}
           >
             {/*<Collapse defaultActiveKey="1">
               <Panel header="This is panel nest panel"
@@ -58,20 +65,21 @@ class RightPanel extends Component {
                 <p>{text}</p>
               </Panel>
             </Collapse>*/}
-
+            <WeekChart />
+            <WeekLine />
           </Panel>
           <Panel header="实有人口"
               key="2"
           >
-            <p>{text}</p>
+            <People />
           </Panel>
           <Panel header="实有房屋"
               key="3"
           >
             <p>{text}</p>
           </Panel>
-          <Panel header="实有房屋"
-              key="3"
+          <Panel header="实有单位"
+              key="4"
           >
             <p>{text}</p>
           </Panel>
