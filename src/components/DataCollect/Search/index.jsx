@@ -30,51 +30,65 @@ class Search extends Component {
       <div>
         <Form onSubmit={this.handleSearch}>
           <Row gutter={24}>
-            <Col span={7}>
+            <Col span={6}>
               <FormItem className={styles['ant-form-items']}
-                  label="数据库类型"
+                  label="任务名称"
               >
                 {
-                  getFieldDecorator('status', {
-                    initialValue: '0'
-                  })(
-                    <Select
-                        style={{ width: 140 }}
-                    >
-                      <Option value="0">Oracle</Option>
-                      <Option value="1">MySQL</Option>
-                      <Option value="2">PostgreSQL</Option>
-                    </Select>,
+                  getFieldDecorator('name')(
+                    <Input />
                   )
                 }
               </FormItem>
             </Col>
-            <Col span={7}>
+            <Col span={5}>
               <FormItem className={styles['ant-form-items']}
-                  label="开始时间"
+                  label="状态"
               >
-                {getFieldDecorator('beginDate', config)(
-                  <DatePicker format="YYYY-MM-DD HH:mm:ss"
-                      showTime
-                  />
+                {getFieldDecorator('status')(
+                  <Select
+                    style={{ width: 140 }}
+                  >
+                    <Option value="0">准备中</Option>
+                    <Option value="1">进行中</Option>
+                    <Option value="2">失败</Option>
+                    <Option value="3">完成</Option>
+                  </Select>
                 )}
               </FormItem>
             </Col>
             <Col span={5}>
               <FormItem className={styles['ant-form-items']}
-                  label="描述"
+                  label="创建者"
               >
                 {
-                  getFieldDecorator('name', {
+                  getFieldDecorator('user', {
                   })(
                     <Input/>
                   )
                 }
               </FormItem>
             </Col>
+            <Col span={6}>
+              <FormItem className={styles['ant-form-items']}
+                        label="数据库类型"
+              >
+                {
+                  getFieldDecorator('type')(
+                    <Select
+                      style={{ width: 140 }}
+                    >
+                      <Option value="0">Oracle</Option>
+                      <Option value="1">MySQL</Option>
+                      <Option value="2">PostgreSQL</Option>
+                    </Select>
+                  )
+                }
+              </FormItem>
+            </Col>
             <Col span={2}>
               <Button htmlType="submit"
-                  type="primary"
+                      type="primary"
               >
                 搜索
               </Button>

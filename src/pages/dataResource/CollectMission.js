@@ -5,7 +5,7 @@ import MissionComponent from "../../components/DataCollect/CollectMission";
 class CollectMission extends Component {
   render() {
     return (
-      <div>
+      <div style={{width: '100%', height: '100%'}}>
         <MissionComponent />
       </div>
     );
