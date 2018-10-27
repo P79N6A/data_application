@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 const { SubMenu } = Menu;
 
 let pathMenu={
-  data:['api','data','application','result','exception'],
+  data:['api','data','application','result','exception', 'dataprocess','catalog', 'audit'],
   community:['community']
 }
 
