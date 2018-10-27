@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-class Manage extends Component {
+class CollectFile extends Component {
+
   render() {
     return (
       <div>
@@ -10,4 +11,4 @@ class Manage extends Component {
   }
 }
 
-export default Manage;
+export default CollectFile;

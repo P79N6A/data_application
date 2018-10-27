@@ -85,14 +85,19 @@ export default [
             component: './dataResource/CollectMain',
           },
           {
-            path: '/data/list',
-            name: 'list',
-            component: './dataResource/CollectList',
+            path: '/data/file',
+            name: 'file',
+            component: './dataResource/CollectFile',
           },
           {
             path: '/data/mission',
             name: 'mission',
             component: './dataResource/CollectMission',
+          },
+          {
+            path: '/data/list',
+            name: 'list',
+            component: './dataResource/CollectList',
           },
           {
             path: '/data/manage',
