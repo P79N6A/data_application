@@ -53,6 +53,7 @@ class RightPanel extends Component {
         {/*<WeekChart />*/}
         <Collapse onChange={callback}
             style={{margin:'0 0 0 30px'}}
+            defaultActiveKey={'1'}
         >
           <Panel header="数据总览"
               key="1"
