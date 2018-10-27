@@ -13,7 +13,7 @@ const initRecordIDName = "id";
  * 参数说明：
  *          app_id：            上级id（如果接口不需要上级id可以不传）
  *          recordIDName（*）：  table list的主要data key id，用于接口调用以及react list render优化
- * 
+ *
  *          AddPop：            新增弹窗（抛出 getFn(obj) 方法，可用于更新列表数据）
  *          UpdatePop：         编辑弹窗（不传将自动使用AddPop，及add和update合二为一。同抛出 getFn）
  *          moreFnArr：         自定义扩展功能按钮（
@@ -38,7 +38,7 @@ const initRecordIDName = "id";
  *                                      view: ExcelBtn, // react组件，优先级低于render
  *                                      render: render函数，返回react组件
  *                                  }
- * 
+ *
  *                              ）
  *          HeaderExtend:       自定义扩展header内容组件（
  *                                  抛出 searchFilterFn(obj, onlyGet) 方法，可用于触发筛选更新列表数据，onlyGet true时不重置分页等参数
@@ -52,12 +52,12 @@ const initRecordIDName = "id";
  *          deleteFn：          删除的接口函数（要求同上）
  *          columnsArr（*）：   列表属性（与antd的columns类似）
  *                              扩展值 editable 是否可编辑 、inputType 编辑框类型 、moreRules antd的form自动检查配置参数 、inputExtend 编辑框扩展对象（详细配置看mod/Editable）
- * 
+ *
  *          sorterObj：         初始排序筛选条件，参数：columnKey: dataIndex ; sortOrder: "descend" / "ascend"
  *          antdTableProps：    想要传给Table继承的antd原有api props，（支持大部分，如：expandedRowRender等），暂时不支持覆盖当前table的内部属性
  *          fnWidth:            功能栏宽度
  *          hasSearch：         是否有搜索框
- * 
+ *
  *          其他请看源码: scrollX / showQuickJumper / showSizeChanger 等
  *          实例：readme.md
  */
@@ -84,7 +84,7 @@ class LayoutComponent extends PureComponent {
         };
 
         this.searchExtendParam = searchExtendParam || {};
-        
+
         this.sorterObj = {
             ...sorterObj,
             columnKey: null,
@@ -118,7 +118,7 @@ class LayoutComponent extends PureComponent {
                 if (item.render) {
                     oldRenderFn = item.render;
                 }
-                
+
                 item.render = (text, record, index) => {
                     return (
                         <a href="javascript:;" onClick={() => {
@@ -488,21 +488,21 @@ class LayoutComponent extends PureComponent {
                     })
                 }
                 {
-                    AddPop && <AddPop 
+                    AddPop && <AddPop
                         ref={ref => {
                             this.addPopRef = ref;
 
                             if (!UpdatePop) {
                                 this.updatePopRef = ref;
                             }
-                        }} 
+                        }}
                         getFn={this.getData}
                         app_id={app_id}
                     />
                 }
                 {
-                    UpdatePop && <UpdatePop 
-                        ref={ref => this.updatePopRef = ref} 
+                    UpdatePop && <UpdatePop
+                        ref={ref => this.updatePopRef = ref}
                         getFn={this.getData}
                         app_id={app_id}
                     />
@@ -609,7 +609,7 @@ class LayoutComponent extends PureComponent {
         if (isChange) {
             this.setState({
                 selectedRowKeys
-            });   
+            });
         }
     }
 
@@ -638,7 +638,7 @@ class LayoutComponent extends PureComponent {
             this.state.page_index = 1;
             this.searchExtendParam = {...obj};
         }
-        
+
         this.getData();
     }
 
@@ -654,7 +654,7 @@ class LayoutComponent extends PureComponent {
         // 更新单条数据
         const { recordIDName=initRecordIDName } = this.props;
         let data = [...this.state.data];
-        
+
         for (let i = 0, l = data.length; i < l; i++) {
             if (data[i][recordIDName] == itemState[recordIDName]) {
                 data[i] = {

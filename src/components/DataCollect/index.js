@@ -28,34 +28,33 @@ class CollectData extends Component {
       ],
       moreFnArr : [
         {
-            key: "edit",
-            iconName: "edit",
+            key: "edit1234",
             title: "编辑",
-            View: EditMenu
+            view: EditMenu
         },
       ]
     }
   }
 
   _handlePromise = () => {
-    return new Promise((resolve, reject)=> {
+    let data =[];
+    for(let i=0; i<100 ; i++){
+      data.push({
+        type:"MySql"+i,
+        time:"2018-10-27 11:0" + i%10,
+        description:"员工资料数据库"+i,
+        key:"i"
+      })
+    }
+    return new Promise((resolve)=> {
         setTimeout(() => {
-          let data =[];
-          for(let i=0; i<100 ; i++){
-            data.push({
-              type:"MySql",
-              time:"2018-10-27 11:" + i%60,
-              description:"员工资料数据库",
-              key:"i"
-            })
-          }
           resolve({
             res:{
               data:data
             },
             isSuccess:true
           })
-        }, 1000 * 0.5)
+        }, 1000 * 0.3);
     });
   };
 
@@ -77,7 +76,6 @@ class CollectData extends Component {
               app_id="1"
               hasSearch={false}
               moreFnArr={this.state.moreFnArr}
-              AddPop={EditMenu}
             />
         </div>
       </div>
