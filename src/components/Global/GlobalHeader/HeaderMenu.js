@@ -22,11 +22,11 @@ class HeaderMenu extends Component {
     return (
       <span className={styles['header-menu']}>
         <Link onClick={()=>this.changePathAuth('data')}
-            to={'/api/monitorApi'}
-        > 数据资源</Link>
+            to={'/api'}
+        > 数据平台</Link>
         <Link onClick={()=>this.changePathAuth('community')}
             to={'/community'}
-        >社区应用</Link>
+        >社区平台</Link>
       </span>
     );
   }

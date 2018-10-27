@@ -23,7 +23,8 @@ export default [
       { path: '/', redirect: '/resource/manage' },
       { path: '/resource', redirect: '/resource/manage' },
       { path: '/data', redirect: '/data/resource' },
-      { path: '/community', redirect: '/community/main' },
+      { path: '/api', redirect: '/api/monitorApi' },
+      { path: '/community', redirect: '/community/map' },
       /*=================接口服务===============*/
       {
         path: '/api',
@@ -133,8 +134,8 @@ export default [
         path: '/community',
         routes: [
           {
-            path: '/community/main',
-            name: 'main',
+            path: '/community/map',
+            name: 'map',
             component: './community',
           },
         ],
