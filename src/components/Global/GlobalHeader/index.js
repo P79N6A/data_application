@@ -27,7 +27,7 @@ export default class GlobalHeader extends PureComponent {
   };
 
   render() {
-    const { isMobile, logo } = this.props;
+    const {collapsed, isMobile, logo } = this.props;
     return (
       <div className={styles.header}>
         {isMobile && (
@@ -49,8 +49,15 @@ export default class GlobalHeader extends PureComponent {
             />
             <h1>精准社会服务平台</h1>
           </Link>
+          <Icon
+            className={styles.trigger}
+            style={{position:'absolute'}}
+            type={collapsed ? 'menu-unfold' : 'menu-fold'}
+            onClick={this.toggle}
+          />
         </div>
-        <HeaderMenu />
+
+        <HeaderMenu {...this.props} />
         <RightContent {...this.props} />
       </div>
     );

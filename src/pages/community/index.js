@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class Manage extends Component {
+class Community extends Component {
   render() {
     return (
       <div>
-        开发中
+        community
       </div>
     );
   }
 }
 
-export default Manage;
+export default Community;

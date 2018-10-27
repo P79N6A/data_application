@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class Manage extends Component {
+class Map extends Component {
   render() {
     return (
       <div>
-        开发中
+        一标三实
       </div>
     );
   }
 }
 
-export default Manage;
+export default Map;
