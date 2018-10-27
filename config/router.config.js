@@ -20,7 +20,7 @@ export default [
 
     routes: [
       // 配置各应用的默认路由
-      { path: '/', redirect: '/resource/manage' },
+      { path: '/', redirect: '/api/monitorApi' },
       { path: '/resource', redirect: '/resource/manage' },
       { path: '/data', redirect: '/data/resource' },
       { path: '/api', redirect: '/api/monitorApi' },
@@ -221,6 +221,11 @@ export default [
             name: 'map',
             component: './community/map',
           },
+          {
+            path: '/community/person',
+            name: 'person',
+            component: './community/person'
+          }
         ],
         authority: ['admin']
       },

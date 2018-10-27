@@ -1,4 +1,7 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent } from 'react';
+import BaseInfo from './BaseInfo';
+import Operation from './Operation'
+import Interface from './Interface'
 import { Tabs } from 'antd';
 const TabPane = Tabs.TabPane;
 class Detail extends PureComponent{
@@ -6,9 +9,15 @@ class Detail extends PureComponent{
     return (
       <div>
         <Tabs defaultActiveKey="1">
-          <TabPane tab="Tab 1" key="1">Content of Tab Pane 1</TabPane>
-          <TabPane tab="Tab 2" key="2">Content of Tab Pane 2</TabPane>
-          <TabPane tab="Tab 3" key="3">Content of Tab Pane 3</TabPane>
+          <TabPane tab="基本信息" key="1">
+            <BaseInfo></BaseInfo>
+          </TabPane>
+          <TabPane tab="操作记录" key="2">
+            <Operation></Operation>
+          </TabPane>
+          <TabPane tab="接口目录" key="3">
+            <Interface></Interface>
+          </TabPane>
         </Tabs>
       </div>
     )
