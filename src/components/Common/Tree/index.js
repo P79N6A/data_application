@@ -50,7 +50,6 @@ class TreeComponent extends Component {
     return (
       <div className={styles.wrapTree}>
         <Tree
-          dropdownStyle={{border: "1px solid gray"}}
           treeData={this.props.treeData || treeData}
         >
         </Tree>

@@ -84,6 +84,11 @@ export default [
         icon: 'hdd',
         routes: [
           {
+            path: '/data/mission',
+            name: 'mission',
+            component: './dataResource/CollectMission',
+          },
+          {
             path: '/data/main',
             name: 'main',
             component: './dataResource/CollectMain',
@@ -92,11 +97,6 @@ export default [
             path: '/data/file',
             name: 'file',
             component: './dataResource/CollectFile',
-          },
-          {
-            path: '/data/mission',
-            name: 'mission',
-            component: './dataResource/CollectMission',
           },
           {
             path: '/data/list',

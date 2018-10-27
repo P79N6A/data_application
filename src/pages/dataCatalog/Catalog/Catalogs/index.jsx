@@ -19,7 +19,9 @@ class Catalogs extends PureComponent{
     this.setState({
       modal:{
         modalVisible:true,
-        children: <Detail />
+        children: <Detail />,
+        width: '800px',
+        modalTitle:'服务主题详情'
       }
     })
   }

@@ -8,9 +8,9 @@ class BaseModal extends Component {
   render() {
     let {
       modalVisible, handleModalCancel,children,
-      handleModalOk, modalTitle='',width='520px'
+      handleModalOk, modalTitle='', width='520px'
     }=this.props;
-
+    console.log(width)
     return (
       <Modal
           className={styles['detail-modal']}
