@@ -49,6 +49,7 @@ export default {
   },
   externals: {
     '@antv/data-set': 'DataSet',
+    'BMap':'BMap'
   },
   ignoreMomentLocale: true,
   lessLoaderOptions: {
