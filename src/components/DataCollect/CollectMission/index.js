@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 
-import Tree from "../../Common/Tree";
-import Echart from "./Echart";
-import styles from "./index.less";
+import Tree from '../../Common/Tree';
+import Echart from './Echart';
+import styles from './index.less';
 
 const treeData = [{
   title: '内部数据',
@@ -20,7 +20,6 @@ class CollectMission extends Component {
           <Tree treeData={treeData}/>
         </div>
         <div className={styles.contentTable}>
-          <h1>总览</h1>
           <Echart />
         </div>
       </div>
