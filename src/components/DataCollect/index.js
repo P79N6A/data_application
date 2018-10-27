@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import {Button} from 'antd';
 
 import Table from "../../components/Common/Table/1.0";
 import Tree from "../../components/Common/Tree";
+import Search from "./Search";
+import EditMenu from "./EditMenu";
 import styles from "./index.less";
 
 class CollectData extends Component {
@@ -25,13 +26,13 @@ class CollectData extends Component {
           key: "description"
         }
       ],
-      headerMoreFnArr : [
+      moreFnArr : [
         {
-          key: "add",
-          render: () => {
-            return <Button>添加</Button>
-          }
-        }
+            key: "edit",
+            iconName: "edit",
+            title: "编辑",
+            View: EditMenu
+        },
       ]
     }
   }
@@ -67,14 +68,16 @@ class CollectData extends Component {
         <div className={styles.contentTable}>
           <h1>数据库采集</h1>
             <Table
+              antdTableProps={{rowSelection:false}}
+              HeaderExtend={Search}
               recordIDName="010101"
-              headerMoreFnArr={this.state.headerMoreFnArr}
               getFn={() => this._handlePromise()}
               updateFn={() => this._handlePromise()}
-              deleteFn={() => this._handlePromise()}
               columnsArr={this.state.columns}
               app_id="1"
-              hasSearch
+              hasSearch={false}
+              moreFnArr={this.state.moreFnArr}
+              AddPop={EditMenu}
             />
         </div>
       </div>
