@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import BMap from 'BMap'
+import styles from './index.less';
+import RightPanel from './Panel';
 
 class Map extends Component {
 
@@ -18,7 +20,7 @@ class Map extends Component {
       }
     ]*/
 
-    map.centerAndZoom(point, 20);
+    map.centerAndZoom(point, 18);
     map.enableScrollWheelZoom(true);
 
     //左上工具栏
@@ -31,51 +33,46 @@ class Map extends Component {
     map.setCurrentCity('康庄');
     // map.setMapStyleV2({styleJson:styleJson});
 
-    function addMark(x, y){
+    function showInfo(x,y,info){
+      let opts = {
+        width : 200,     // 信息窗口宽度
+        height: 50,     // 信息窗口高度
+        title : '康庄c区'  // 信息窗口标题
+      }
+      let infoWindow = new BMap.InfoWindow(`${info}, 暂无信息`, opts);  // 创建信息窗口对象
+      map.openInfoWindow(infoWindow, new BMap.Point(x,y));
+    }
+    function addMark(x, y, info){
       let point1 = new BMap.Point(x, y);
       let marker = new BMap.Marker(point1);        // 创建标注
-      map.addOverlay(marker);
-    }
-    addMark(106.489954,29.644639);
-    addMark(106.48937,29.644741)
-    addMark(106.488894,29.645)
-
-    let opts = {
-      width : 200,     // 信息窗口宽度
-      height: 50,     // 信息窗口高度
-      title : '1栋'  // 信息窗口标题
-    }
-    let infoWindow = new BMap.InfoWindow('暂无信息', opts);  // 创建信息窗口对象
-    map.openInfoWindow(infoWindow, new BMap.Point(106.489954, 29.644639));
-
-
-
-
-    function addMarker(point, index){  // 创建图标对象
-      var myIcon = new BMap.Icon('markers.png', new BMap.Size(23, 25), {
-        // 指定定位位置。
-        // 当标注显示在地图上时，其所指向的地理位置距离图标左上
-        // 角各偏移10像素和25像素。您可以看到在本例中该位置即是
-        // 图标中央下端的尖角位置。
-        anchor: new BMap.Size(10, 25),
-        // 设置图片偏移。
-        // 当您需要从一幅较大的图片中截取某部分作为标注图标时，您
-        // 需要指定大图的偏移位置，此做法与css sprites技术类似。
-        imageOffset: new BMap.Size(0, 0 - index * 25)   // 设置图片偏移
+      marker.addEventListener('click', function(e){
+        showInfo(x,y,info)
       });
-      // 创建标注对象并添加到地图
-      var marker = new BMap.Marker(point, {icon: myIcon});
       map.addOverlay(marker);
     }
 
-    var bounds = map.getBounds();
-    var lngSpan = bounds.maxX - bounds.minX;
-    var latSpan = bounds.maxY - bounds.minY;
-    for (let i = 0; i < 10; i ++) {
-      let point = new BMap.Point(bounds.minX + lngSpan * (Math.random() * 0.7 + 0.15),
-        bounds.minY + latSpan * (Math.random() * 0.7 + 0.15));
-      addMarker(point, i);
-    }
+    addMark(106.489954,29.644639, '一栋');
+    addMark(106.48937,29.644741, '二栋');
+    addMark(106.488894,29.645, '三栋');
+    addMark(106.488512,29.645373, '四栋');
+    addMark(106.488243,29.645918, '五栋');
+    addMark(106.488499,29.646338, '六栋');
+    addMark(106.489258,29.647025, '八栋');
+
+    var polyline = new BMap.Polyline([
+        new BMap.Point(106.490493,29.64367),
+        new BMap.Point(106.486334,29.643803),
+        new BMap.Point(106.487668,29.6485),
+        new BMap.Point(106.489599,29.647888),
+        new BMap.Point(106.490057,29.647613),
+        new BMap.Point(106.490434,29.647197),
+        new BMap.Point(106.490704,29.646766),
+        new BMap.Point(106.490848,29.646342),
+        new BMap.Point(106.490493,29.64367),
+      ],
+      {strokeColor:"blue", strokeWeight:6, strokeOpacity:0.5}
+    );
+    map.addOverlay(polyline);
 
   }
   render() {
@@ -83,6 +80,7 @@ class Map extends Component {
 
 
       <div style={{overflow:'hidden', height:'692px'}}>
+        <RightPanel />
         <div style={{width:1450, height:692, display:'block'}}
             id="container"
         > </div>
