@@ -42,12 +42,12 @@ export default [
             name: 'monitorApi',
             component: './apiService/Monitor/MonitorApi',
           },
-          {
-            path: '/api/apply',
-            name: 'monitorApi',
-            hideInMenu: true,
-            component: './apiService/Apply',
-          },
+          // {
+          //   path: '/api/apply',
+          //   name: 'monitorApi',
+          //   hideInMenu: true,
+          //   component: './apiService/Apply',
+          // },
           {
             path: '/api/manage/publish',
             name: 'publish',
@@ -132,6 +132,84 @@ export default [
             component: './dataApplication/PyAnalyze',
           },
         ],
+      },
+      // 数据处理
+      {
+        name: 'dataprocess',
+        icon: 'check-circle-o',
+        path: '/process',
+        routes: [
+          {
+            // 数据清理
+            path: '/process/clean',
+            name: 'clean',
+            component: './DataProcess/Clean'
+          },
+          {
+            // 数据整合
+            path: '/process/integration',
+            name:'integration',
+            component: './DataProcess/Integration'
+          }
+        ]
+      },
+      // 资源目录
+      {
+        name: 'catalog',
+        icon: 'check-circle-o',
+        path: '/catalog',
+        routes: [
+          {
+            // 目录管理
+            path: '/catalog/manage',
+            name: 'manage',
+            component: './dataCatalog/Manage'
+          },
+          {
+            // 资源目录管理
+            path: '/catalog/catalog',
+            name: 'catalog',
+            component: './dataCatalog/Catalog'
+          },
+          {
+            // 数据资源管理
+            path: '/catalog/datamanage',
+            name: 'datamanage',
+            component: './dataCatalog/DataManage'
+          }
+        ]
+      },
+      // 运维统计
+      {
+        name: 'audit',
+        icon: 'check-circle-o',
+        path: '/audit',
+        routes: [
+          {
+            // 数据监控
+            name: 'dmonitor',
+            path: '/audit/dmonitor',
+            component: './dataAudit/DataMonitor'
+          },
+          {
+            // 系统监控
+            name: 'ymonitor',
+            path: '/audit/ymonitor',
+            component: './dataAudit/SysMonitor'
+          },
+          {
+            // 数据统计
+            name: 'statis',
+            path: '/audit/statis',
+            component: './dataAudit/Statis'
+          },
+          {
+            // 审计管理
+            name: 'amanage',
+            path: '/audit/amanage',
+            component: './dataAudit/AuditManage'
+          }
+        ]
       },
       /*=================社区应用===============*/
       {name: 'community',
