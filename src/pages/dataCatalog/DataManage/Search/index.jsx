@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Row, Col, Button, Select, DatePicker } from 'antd';
+import { Form, Row, Col, Button, Select, Input, DatePicker } from 'antd';
 import styles from './index.less';
 const Option = Select.Option;
 const FormItem = Form.Item;
@@ -23,56 +23,53 @@ class Search extends Component {
   }
   render() {
     const { getFieldDecorator } = this.props.form;
+    const config = {
+      rules: [{ type: 'object'}]
+    }
     return (
-      <div className={styles['search-container']}>
+      <div>
         <Form onSubmit={this.handleSearch}>
-          <Row gutter={24}>
-          <Col span={6}>
+          {/* <Row gutter={24}>
+            <Col span={7}>
               <FormItem className={styles['ant-form-items']}
-                  label="操作资源"
-              >
-                {
-                  getFieldDecorator('res', {
-                    initialValue: '0'
-                  })(
-                    <Select
-                    >
-                      <Option value="0">无限制</Option>
-                      <Option value="1">可访问</Option>
-                      <Option value="2">不可访问</Option>
-                    </Select>,
-                  )
-                }
-              </FormItem>
-            </Col>
-            <Col span={6}>
-              <FormItem className={styles['ant-form-items']}
-                  label="操作动作"
+                  label="查看方式"
               >
                 {
                   getFieldDecorator('status', {
-                    initialValue: '4'
+                    initialValue: '0'
                   })(
                     <Select
-        
+                        style={{ width: 140 }}
                     >
-                      <Option value="0">删除</Option>
-                      <Option value="1">编辑</Option>
-                      <Option value="2">新增</Option>
-                      <Option value="3">修改</Option>
-                      <Option value="4">所有</Option>
+                      <Option value="0">所有资源查看</Option>
+                      <Option value="1">按数据主管部门查看</Option>
+                      <Option value="2">按来源业务域查看</Option>
                     </Select>,
                   )
                 }
               </FormItem>
             </Col>
-            <Col span={9}>
+            <Col span={7}>
               <FormItem className={styles['ant-form-items']}
-                  label="时间"
+                  label="开始时间"
               >
-                {getFieldDecorator('beginDate')(
-                  <DatePicker.RangePicker/>
+                {getFieldDecorator('beginDate', config)(
+                  <DatePicker format="YYYY-MM-DD HH:mm:ss"
+                      showTime
+                  />
                 )}
+              </FormItem>
+            </Col>
+            <Col span={5}>
+              <FormItem className={styles['ant-form-items']}
+                  label="主题名"
+              >
+                {
+                  getFieldDecorator('name', {
+                  })(
+                    <Input/>
+                  )
+                }
               </FormItem>
             </Col>
             <Col span={2}>
@@ -82,6 +79,16 @@ class Search extends Component {
                 搜索
               </Button>
             </Col>
+          </Row> */}
+          <Row>
+            <Col span={2}>
+                <Button htmlType="submit"
+                    onClick={this.add}
+                    type="primary"
+                >
+                  新增
+                </Button>
+              </Col>
           </Row>
         </Form>
       </div>

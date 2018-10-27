@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import Catalogs from './Catalogs'
 import style from './index.less'
 import Search from './Search'
+import TreeComponent from '@/components/Common/Tree'
 import { Pagination } from 'antd';
 const datas = [
   {
@@ -77,7 +78,7 @@ class Catalog extends PureComponent{
     return (
       <div className={style['container']}>
         <div className={style['tree']}>
-          右边
+          <TreeComponent />
         </div>
         <div className={style['lists']}>
           <div className={style['search']}><Search></Search></div>

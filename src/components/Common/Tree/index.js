@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tree, Icon} from 'antd';
+import { Tree} from 'antd';
 
 import styles from "./index.less";
 
@@ -50,6 +50,7 @@ class TreeComponent extends Component {
     return (
       <div className={styles.wrapTree}>
         <Tree
+          defaultExpandAll={this.props.defaultExpandAll || false}
           treeData={this.props.treeData || treeData}
         >
         </Tree>

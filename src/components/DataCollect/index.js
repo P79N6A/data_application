@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import Table from "../../components/Common/Table/1.0";
-import Tree from "../../components/Common/Tree";
+import Table from "../Common/Table/1.0";
+import Tree from "../Common/Tree";
 import Search from "./Search";
 import EditMenu from "./EditMenu";
 import styles from "./index.less";
@@ -13,22 +13,32 @@ class CollectData extends Component {
     this.state={
       columns:[
         {
-          title: "数据库类型",
-          dataIndex: 'type',
-          key: "type"
+          title: "任务名称",
+          dataIndex: 'name',
+          key: "name"
         },{
-          title: "时间",
+          title: "状态",
+          dataIndex: 'status',
+          key: 'status',
+          width:"150"
+        },{
+          title: "创建时间",
           dataIndex: 'time',
           key: 'time'
         },{
-          title: "描述",
-          dataIndex: 'description',
-          key: "description"
+          title: "创建者",
+          dataIndex: 'user',
+          key: "user",
+          width:"150"
+        },{
+          title: "数据库类型",
+          dataIndex: 'type',
+          key: "type"
         }
       ],
       moreFnArr : [
         {
-            key: "edit1234",
+            key: "edit",
             title: "编辑",
             view: EditMenu
         },
@@ -37,20 +47,39 @@ class CollectData extends Component {
   }
 
   _handlePromise = () => {
-    let data =[];
-    for(let i=0; i<100 ; i++){
-      data.push({
-        type:"MySql"+i,
-        time:"2018-10-27 11:0" + i%10,
-        description:"员工资料数据库"+i,
-        key:"i"
-      })
-    }
     return new Promise((resolve)=> {
         setTimeout(() => {
           resolve({
             res:{
-              data:data
+              data:[{
+                key:"1",
+                name: "获取华智人员数据",
+                status: "完成",
+                time: "2018-10-27 15:39:20",
+                user: "张一山",
+                type: "MySQL"
+              },{
+                key:"2",
+                name: "修改华智人员数据",
+                status: "完成",
+                time: "2018-10-27 15:39:30",
+                user: "张一山",
+                type: "MySQL"
+              },{
+                key:"3",
+                name: "添加华三人员数据",
+                status: "准备中",
+                time: "2018-10-27 15:39:20",
+                user: "张一山",
+                type: "PostgreSQL"
+              },{
+                key:"4",
+                name: "添加华三人员数据",
+                status: "失败",
+                time: "2018-10-27 15:39:20",
+                user: "张一山",
+                type: "PostgreSQL"
+              }]
             },
             isSuccess:true
           })
@@ -62,18 +91,21 @@ class CollectData extends Component {
     return (
       <div className={styles.fr}>
         <div className={styles.orgTree}>
-        <Tree />
+        <Tree defaultExpandAll/>
         </div>
         <div className={styles.contentTable}>
           <h1>数据库采集</h1>
             <Table
-              antdTableProps={{rowSelection:false}}
+              antdTableProps={{
+                rowSelection:null,
+                bordered:true,
+              }}
               HeaderExtend={Search}
-              recordIDName="010101"
+              showQuickJumper={false}
+              showSizeChanger={false}
               getFn={() => this._handlePromise()}
               updateFn={() => this._handlePromise()}
               columnsArr={this.state.columns}
-              app_id="1"
               hasSearch={false}
               moreFnArr={this.state.moreFnArr}
             />

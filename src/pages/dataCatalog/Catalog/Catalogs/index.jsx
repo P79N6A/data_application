@@ -11,7 +11,7 @@ class Catalogs extends PureComponent{
         modalTitle:'服务主题详情',
         modalVisible:false,
         modalContent:{},
-        width: '800px'
+        width: '1200px'
       }
     }
   }
