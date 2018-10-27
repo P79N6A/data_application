@@ -1,33 +1,28 @@
 
 .person{
     display: flex;
-    padding: 40px 0px 0px;
-    position: relative;
+    justify-content: space-between;
     :global{
         .ant-tabs-top{
             margin: 0 15px;
         }
     }
 }
-.personMegDiv{
-    width: 25%;
-    min-width: 300px;
-    padding: 20px;
-    background-color: #fff;
-}
-.personMegDiv>div{
+
+.personDiv>div{
     width: 100%;
 }
-.personMegDiv label{
-    width: 70px;
+.personDiv label{
+    width: 85px;
     display: inline-block;
     color: #434646;
     line-height: 40px;
     text-align: right;
+    font-weight: bold;
 }
-.personMegDiv span{
+.personDiv span{
     display: inline-flex;
-    width: calc(~'100% - 70px');
+    width: calc(~'100% - 85px');
     padding-left: 10px;
     color: #434646;
 }
@@ -49,4 +44,27 @@
 .carImg{
     width: 100%;
     height: 150px;
+}
+.megTabs{
+    background-color: #fff;
+    :global{
+        .ant-tabs-nav{
+            padding: 7px 0;
+        }
+    }
+}
+.carMeg{
+    margin: 10px 0;
+}
+.carMeg label{
+    width: 50px;
+    display: inline-block;
+    text-align: left;
+    line-height: 30px;
+    color: #434646;
+}
+.carMeg span{
+    width: calc(~'100% - 50px');
+    display: inline-flex;
+    color: #434646;
 }
