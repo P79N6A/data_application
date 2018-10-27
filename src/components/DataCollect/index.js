@@ -54,7 +54,7 @@ class CollectData extends Component {
             },
             isSuccess:true
           })
-        }, 1000 * 0.1)
+        }, 1000 * 0.5)
     });
   };
 
