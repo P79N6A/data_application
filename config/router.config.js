@@ -221,6 +221,11 @@ export default [
             name: 'map',
             component: './community/map',
           },
+          {
+            path: '/community/person',
+            name: 'person',
+            component: './community/person'
+          }
         ],
         authority: ['admin']
       },

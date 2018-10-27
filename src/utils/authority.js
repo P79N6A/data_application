@@ -16,9 +16,9 @@ export function getAuthority(str) {
     authority = authorityString;
   }
   if (typeof authority === 'string') {
-    return [authority].concat(pathAuthority);
+    return [authority];
   }
-  return authority.concat(pathAuthority) || defaultAuth.concat(pathAuthority);
+  return authority || defaultAuth;
 }
 
 // 把服务端的用户信息存到本地
