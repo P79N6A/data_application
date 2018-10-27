@@ -9,7 +9,7 @@ class HeaderMenu extends Component {
   constructor(props) {
     super(props);
     this.changePathAuth = this.changePathAuth.bind(this);
-    this.state={}
+    this.state={activePath:'data'}
   }
 
   // 切换路由菜单
@@ -19,6 +19,7 @@ class HeaderMenu extends Component {
 
   render() {
     let activePath=this.state.activePath;
+
     return (
       <span className={styles['header-menu']}>
         <Link onClick={()=>this.changePathAuth('data')}
