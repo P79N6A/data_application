@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { Card, Tabs, Tag,  Icon } from 'antd';
-import styles from '../index.less'
+import styles from './index.less'
 import carbg1 from '../../../assets/car1.jpg'
 import carbg2 from '../../../assets/car2.jpg'
 import userImg from '../../../assets/user.png'
