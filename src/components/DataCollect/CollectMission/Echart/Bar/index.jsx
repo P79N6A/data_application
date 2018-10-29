@@ -15,11 +15,11 @@ class Bar extends PureComponent{
     myChart.setOption({
         tooltip: {},
         title: {
-          text: '采集量',
+          text: '区域采集量',
         },
         color: ['#3398DB'],
         xAxis: {
-            data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+            data: ['渝中区', '江北区', '南岸区', '沙坪坝区', '九龙坡区', '北碚区', '巴南区'],
         },
         yAxis: {},
         series: [{
