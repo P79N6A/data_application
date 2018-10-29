@@ -1,15 +1,16 @@
+# 社区大数据平台
+###### [API](http://192.168.110.28:8901/doc.html) | [YAPI](http://192.168.105.236:3000/group/168)
+> 两江公安试点项目，代码禁止外传
 
  ## 说明
- 
 - src/pages/.umi/下的文件为自动生成的配置文件，修改无效，请到config文件夹下修改
-- 插件配置/路由配置/其他配置在config文件夹
-
-- app.js为打包上线运行的node入口
+- 插件配置/路由配置/接口配置在config文件夹
+- app.js为打包上线运行的node文件入口
 - models可以配置为全局/页面级，推荐配置为页面级，方便迁移
 - 推荐在render函数第一行从props取值，方便写propsType约束
+- 
 
 ## 帮助
-- react学习建议
   - 本项目经过中间工具的高度整合，省略了大量实现细节，不利于新人学习，现列出以下工具细节
   - js基础以及web技术参考: [MDN](https://developer.mozilla.org/zh-CN/)
   - es6基础 : [es6入门-阮一峰](http://es6.ruanyifeng.com/#docs/let)
@@ -19,7 +20,6 @@
   - dvajs 本项目采用的状态管理方案，整合以上两个工具 [官方文档](https://dvajs.com/)
   - react-router 前端路由解决方案 [官方文档](http://react-guide.github.io/react-router-cn/docs/API.html)
   - umijs 插件自动化配置 [配置详情](https://umijs.org/zh/)
-- umi配置参考https://umijs.org/zh/config/#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE
 
 ## 特性
 
