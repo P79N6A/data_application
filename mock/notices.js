@@ -75,7 +75,7 @@ const getNotices = (req, res) =>
       extra: '待修改',
       status: 'urgent',
       type: '待办',
-    } /*
+    }, /*
     {
       id: '000000011',
       title: '信息安全考试',
@@ -91,7 +91,7 @@ const getNotices = (req, res) =>
       extra: '进行中',
       status: 'processing',
       type: '待办',
-    }*/
+    } */
   ]);
 
 export default {

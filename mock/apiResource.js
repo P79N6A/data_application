@@ -1,7 +1,7 @@
 import { parse } from 'url';
 import Mock from 'mockjs';
 
-let datas = Mock.mock({
+const datas = Mock.mock({
   'tableListDataSource|5-8': [{
     'apiDesc|1': ['用于学校监控', '用于社区门禁', '用于高速路收费站'],
     'apiName|1': ['管制刀具识别', '危险人物识别', '非法持枪识别'],
@@ -11,7 +11,7 @@ let datas = Mock.mock({
     'apiState|0-2': 1,
     'id|+1': 1,
     'key|+1': 1,
-  }]
+  }],
 });
 
 function getApi(req, res, u) {
@@ -21,7 +21,7 @@ function getApi(req, res, u) {
   }
 
   const params = parse(url, true).query;
-  let dataSource = datas['tableListDataSource'];
+  let dataSource = datas.tableListDataSource;
 
   if (params.sorter) {
     const s = params.sorter.split('_');
@@ -59,7 +59,7 @@ function getApi(req, res, u) {
       total: dataSource.length,
       pageSize,
       current: parseInt(params.currentPage, 10) || 1,
-    }
+    },
   };
 
   return res.json(result);
@@ -82,7 +82,7 @@ function postRuleAdd(req, res, u, b) {
     list: datas.tableListDataSource,
     pagination: {
       total: datas.tableListDataSource.length,
-    }
+    },
   };
 
   return res.json(result);

@@ -16,8 +16,8 @@ export default {
       },
       {
         key: '1',
-        label: '专注设计'
-      }
+        label: '专注设计',
+      },
     ],
     notifyCount: 12,
     country: 'China',
@@ -29,7 +29,7 @@ export default {
       city: {
         label: '杭州市',
         key: '330100',
-      }
+      },
     },
     address: '西湖区工专路 77 号',
     phone: '0752-268888888',
@@ -66,7 +66,7 @@ export default {
         type,
         currentAuthority: 'guest',
       });
-    },*/
+    }, */
 
   'GET /mock/user/register/user/login': (req, res) => {
     const users = {
@@ -75,7 +75,7 @@ export default {
       wan: 'qingying',
       skr: 'sker',
     };
-    let names = Object.keys(users);
+    const names = Object.keys(users);
     console.log('===========================', req.url);
     console.log('=========================');
     const { passWord, userName, type } = req.body;
@@ -139,5 +139,5 @@ export default {
       message: 'Unauthorized',
       path: '/base/category/list',
     });
-  }
+  },
 };
