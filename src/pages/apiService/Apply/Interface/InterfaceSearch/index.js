@@ -3,30 +3,33 @@ import { Form, Row, Col, Button, Select } from 'antd';
 import styles from './index.less';
 import { connect } from 'dva';
 import { OK_CODE } from '@/config/code'
+
 const Option = Select.Option;
 const FormItem = Form.Item;
 @connect(({global}) => ({
-  global
+  global,
 }))
 class InterfaceSearch extends Component {
   constructor(props) {
     super(props);
     this.state={
-      values: {}
+      values: {},
     }
     this.handleSearch = this.handleSearch.bind(this);
   }
+
   handleSearch(e) {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         this.setState({
-          values: {...values}
+          values: {...values},
         })
         this.props.searchFilterFn(values)
       }
     });
   }
+
   add = () => {
     const SelectedRowKeys = this.props.getSelectedRowKeys()
     const interfaceIds = SelectedRowKeys.join(',')
@@ -35,7 +38,7 @@ class InterfaceSearch extends Component {
       payload: {
         applyDesc: '接口使用申请',
         applyType: '1',
-        interfaceIds
+        interfaceIds,
       },
       callback: (res) => {
         if (res.code === OK_CODE) {
@@ -43,9 +46,10 @@ class InterfaceSearch extends Component {
           // 操作成功
           this.props.searchFilterFn(this.state.values)
         }
-      }
+      },
     })
   }
+
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
@@ -53,15 +57,16 @@ class InterfaceSearch extends Component {
         <Form onSubmit={this.handleSearch}>
           <Row gutter={24}>
             <Col span={6}>
-              <FormItem className={styles['ant-form-items']}
-                  label="服务分组"
+              <FormItem
+                className={styles['ant-form-items']}
+                label="服务分组"
               >
                 {
                   getFieldDecorator('catalogId', {
-                    initialValue: '0'
+                    initialValue: '0',
                   })(
                     <Select
-                        style={{ width: 200 }}
+                      style={{ width: 200 }}
                     >
                       {this.props.global.catalog.map(item => {
                         return (<Option key={item.id} value={item.id}>{item.catalogName}</Option>)
@@ -73,15 +78,16 @@ class InterfaceSearch extends Component {
               </FormItem>
             </Col>
             <Col span={5}>
-              <FormItem className={styles['ant-form-items']}
-                  label="状态"
+              <FormItem
+                className={styles['ant-form-items']}
+                label="状态"
               >
                 {
                   getFieldDecorator('status', {
-                    initialValue: '0'
+                    initialValue: '0',
                   })(
                     <Select
-                        style={{ width: 140 }}
+                      style={{ width: 140 }}
                     >
                       <Option value="0">未使用</Option>
                       <Option value="1">已使用</Option>
@@ -91,8 +97,9 @@ class InterfaceSearch extends Component {
               </FormItem>
             </Col>
             <Col span={2}>
-              <Button htmlType="submit"
-                  type="primary"
+              <Button
+                htmlType="submit"
+                type="primary"
               >
                 搜索
               </Button>
@@ -100,13 +107,14 @@ class InterfaceSearch extends Component {
           </Row>
           <Row style={{display: (this.props.getSelectedRowKeys().length) > 0 ? 'block':'none'}}>
             <Col span={2}>
-                <Button htmlType="submit"
-                    onClick={this.add}
-                    type="primary"
-                >
+              <Button
+                htmlType="submit"
+                onClick={this.add}
+                type="primary"
+              >
                   去审批
-                </Button>
-              </Col>
+              </Button>
+            </Col>
           </Row>
         </Form>
       </div>

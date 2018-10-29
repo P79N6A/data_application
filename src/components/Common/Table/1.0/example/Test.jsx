@@ -30,19 +30,19 @@ const columnsArr = [
             width: 160,
             optionsArr: [
                 {
-                    value: "test1"
+                    value: "test1",
                 },
                 {
-                    value: "test2"
+                    value: "test2",
                 },
-            ]
-        }
+            ],
+        },
     },
     {
         width: 200,
         title: "菜单编号",
         dataIndex: "menu_code",
-        sorter: true
+        sorter: true,
     },
     {
         width: 300,
@@ -51,13 +51,13 @@ const columnsArr = [
         editable: true,
         render: (text, record, index) => {
             return (
-                <span>
-                    <img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=2562428211,1327135209&fm=58&bpow=1175&bpoh=769" alt=""/>
-                    {text}
-                </span>
+              <span>
+                <img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=2562428211,1327135209&fm=58&bpow=1175&bpoh=769" alt="" />
+                {text}
+              </span>
             );
-        }
-    }
+        },
+    },
 ];
 
 const moreFnArr = [
@@ -94,44 +94,41 @@ const headerMoreFnArr = [
         key: "excel",
         // view: ExcelBtn,
         render: (props) => {
-            return <ExcelBtn
+            return (
+              <ExcelBtn
                 {...props}
                 exlName="tqtTest"
                 columnsArr={columnsArr}
-                // exlBtn={null}
-            />
-        }
-    }
+              />
+)
+        },
+    },
 ];
 
 class LayoutComponent extends PureComponent {
     render() {
         const { app_id=44 } = this.props;
         return (
-            <div>
-                <Table
-                    app_id={app_id}
-                    recordIDName="menu_id"
-                    moreFnArr={moreFnArr}
-                    headerMoreFnArr={headerMoreFnArr}
-                    HeaderExtend={HeaderExtend}
-                    getFn={getMenuInfo}
-                    updateFn={updateMenuById}
-                    deleteFn={deleteMenuInfo}
-                    columnsArr={columnsArr}
+          <div>
+            <Table
+              app_id={app_id}
+              recordIDName="menu_id"
+              moreFnArr={moreFnArr}
+              headerMoreFnArr={headerMoreFnArr}
+              HeaderExtend={HeaderExtend}
+              getFn={getMenuInfo}
+              updateFn={updateMenuById}
+              deleteFn={deleteMenuInfo}
+              columnsArr={columnsArr}
                     // AddPop={EditMenu}
                     // UpdatePop={EditMenu} 添加和编辑弹窗整合为一个
-                    antdTableProps={{
+              antdTableProps={{
                         expandedRowRender: (record, index, indent, expanded) => {
                             return `test antdTableProps expandedRowRender.`;
-                        }
+                        },
                     }}
-                    // antdTableProps={{
-                    //     rowSelection: false
-                    // }}
-                    // hasSearch={false}
-                />
-            </div>
+            />
+          </div>
         );
     }
 }

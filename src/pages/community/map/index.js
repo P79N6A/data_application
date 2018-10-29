@@ -7,10 +7,10 @@ import house from '@/assets/house.jpg';
 class Map extends Component {
 
   componentDidMount(){
-    //创建地图
-    let map = new BMap.Map('container');
-    let point = new BMap.Point(106.490327,29.645848);
-    /*let styleJson=[
+    // 创建地图
+    const map = new BMap.Map('container');
+    const point = new BMap.Point(106.490327,29.645848);
+    /* let styleJson=[
       {
         'featureType': 'building',
         'elementType': 'geometry',
@@ -19,15 +19,15 @@ class Map extends Component {
           // 'color':'#000'
         }
       }
-    ]*/
+    ] */
 
     map.centerAndZoom(point, 18);
     map.enableScrollWheelZoom(true);
 
-    //左上工具栏
-    let opts1 = {type: BMAP_NAVIGATION_CONTROL_SMALL}
+    // 左上工具栏
+    const opts1 = {type: BMAP_NAVIGATION_CONTROL_SMALL}
     map.addControl(new BMap.NavigationControl(opts1));
-    //开启滚轮缩放
+    // 开启滚轮缩放
     map.addControl(new BMap.ScaleControl());
     // map.addControl(new BMap.OverviewMapControl());
     // map.addControl(new BMap.MapTypeControl());
@@ -35,12 +35,12 @@ class Map extends Component {
     // map.setMapStyleV2({styleJson:styleJson});
 
     function showInfo(x,y,info){
-      let opts = {
+      const opts = {
         width : 200,     // 信息窗口宽度
         height: 150,     // 信息窗口高度
-        title : '康庄c区'  // 信息窗口标题
+        title : '康庄c区',  // 信息窗口标题
       };
-      let sContent = `
+      const sContent = `
 <div style="color:blue; position:absolute">
     <p style="color:blue">${info}:  25层</p>
     <p style="color:blue">住户:  895户</p>
@@ -55,12 +55,12 @@ class Map extends Component {
       // map.openInfoWindow(infoWindow, new BMap.Point(x,y));
     }
     function addMark(x, y, info){
-      let point1 = new BMap.Point(x, y);
-      let marker = new BMap.Marker(point1);        // 创建标注
-      let infoWindow=showInfo(x,y,info);
-      marker.addEventListener('click', function(e){
+      const point1 = new BMap.Point(x, y);
+      const marker = new BMap.Marker(point1);        // 创建标注
+      const infoWindow=showInfo(x,y,info);
+      marker.addEventListener('click', (e) => {
         map.openInfoWindow(infoWindow, new BMap.Point(x,y));
-        let img=Array.from(document.getElementsByClassName('imgDemo'))[0];
+        const img=Array.from(document.getElementsByClassName('imgDemo'))[0];
         if (img){
           img.onload=function() {
             infoWindow.redraw()
@@ -81,7 +81,7 @@ class Map extends Component {
     addMark(106.488499,29.646338, '六栋');
     addMark(106.489258,29.647025, '八栋');
 
-    let polyLine = new BMap.Polyline([
+    const polyLine = new BMap.Polyline([
         new BMap.Point(106.490493,29.64367),
         new BMap.Point(106.486334,29.643803),
         new BMap.Point(106.487668,29.6485),
@@ -98,20 +98,22 @@ class Map extends Component {
 
 
 
-        /*.onload = function (){
+        /* .onload = function (){
         ;   //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
-      }*/
+      } */
 
   }
+
   render() {
     return (
 
 
       <div style={{overflow:'hidden', height:'692px'}}>
         <RightPanel />
-        <div style={{width:1450, height:692, display:'block'}}
-            id="container"
-        > </div>
+        <div
+          style={{width:1450, height:692, display:'block'}}
+          id="container"
+        />
       </div>
     );
   }

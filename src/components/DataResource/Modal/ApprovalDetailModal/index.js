@@ -14,29 +14,31 @@ class ApprovalDetailModal extends Component {
   }
 
   render() {
-    let { modalContent={} } =this.props
+    const { modalContent={} } =this.props
     let { paramInfoResDTOS=[]}=modalContent;
     // 数据源加入序号
     paramInfoResDTOS=paramInfoResDTOS.map((v,i)=>{
-      v['paramInd']=++i;
+      v.paramInd=++i;
       return v;
     });
 
     return (
       <BaseModal {...this.props}>
         <Collapse defaultActiveKey={['1']}>
-          <Panel header="接口列表"
-              key="1"
+          <Panel
+            header="接口列表"
+            key="1"
           >
             <InterfaceList
-                interfaceInfos={modalContent.interfaceInfos}
+              interfaceInfos={modalContent.interfaceInfos}
             />
           </Panel>
 
-          <Panel header="审批记录"
-              key="2"
+          <Panel
+            header="审批记录"
+            key="2"
           >
-            <InterfaceHistory approveHistorys={modalContent.approveHistorys}/>
+            <InterfaceHistory approveHistorys={modalContent.approveHistorys} />
           </Panel>
         </Collapse>
       </BaseModal>

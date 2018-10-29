@@ -43,7 +43,7 @@ export default {
   'menu.event.check': '事件审核',
   'menu.event.report': '事件上报',
   'menu.event.message': '事件推送',
-  'menu.analyze': '监控分析',
+  'menu.analyze': '研判分析',
   'menu.analyze.alarm': '重点人员预警',
   'menu.analyze.traffic': '人流量预警',
   'menu.monitor': '监控',
@@ -162,6 +162,6 @@ export default {
   'app.setting.copy': '拷贝设置',
   'app.setting.copyinfo': '拷贝成功，请到 src/defaultSettings.js 中替换默认配置',
   'app.setting.production.hint':
-    '配置栏只在开发环境用于预览，生产环境不会展现，请拷贝后手动修改配置文件'
+    '配置栏只在开发环境用于预览，生产环境不会展现，请拷贝后手动修改配置文件',
 
 };

@@ -1,11 +1,12 @@
 import {applyList, interfaceList, addService} from '@/services/apply'
 import { message } from 'antd'
 import { OK_CODE } from '@/config/code'
+
 export default {
   namespace: 'apply',
   state: {
     applyList: {},
-    interfaces: {}
+    interfaces: {},
   },
   effects: {
     // 获取我的申请列表
@@ -18,7 +19,7 @@ export default {
       }
       yield put({
         type: 'setApply',
-        payload: data
+        payload: data,
       })
     },
     // 获取接口列表
@@ -31,7 +32,7 @@ export default {
       }
       yield put({
         type: 'setInterface',
-        payload: data
+        payload: data,
       })
     },
     // 提交申请
@@ -43,20 +44,20 @@ export default {
         return
       }
       callback(data)
-    }
+    },
   },
   reducers: {
     setApply(state, {payload}) {
       return{
         ...state,
-        applyList: payload.data
+        applyList: payload.data,
       }
     },
     setInterface(state, {payload}) {
       return{
         ...state,
-        interfaces: payload.data
+        interfaces: payload.data,
       }
-    }
-  }
+    },
+  },
 }

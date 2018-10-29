@@ -8,7 +8,7 @@ import styles from '../index.less';
 @autoHeight()
 class Bar extends Component {
   state = {
-    autoHideXLabels: false
+    autoHideXLabels: false,
   };
 
   componentDidMount() {
@@ -44,12 +44,12 @@ class Bar extends Component {
     if (canvasWidth <= minWidth) {
       if (!autoHideXLabels) {
         this.setState({
-          autoHideXLabels: true
+          autoHideXLabels: true,
         });
       }
     } else if (autoHideXLabels) {
       this.setState({
-        autoHideXLabels: false
+        autoHideXLabels: false,
       });
     }
   }
@@ -61,58 +61,62 @@ class Bar extends Component {
       forceFit = true,
       data,
       color = 'rgba(24, 144, 255, 0.85)',
-      padding
+      padding,
     } = this.props;
 
     const { autoHideXLabels } = this.state;
 
     const scale = {
       x: {
-        type: 'cat'
+        type: 'cat',
       },
       y: {
-        min: 0
-      }
+        min: 0,
+      },
     };
 
     const tooltip = [
       'x*y',
       (x, y) => ({
         name: x,
-        value: y
-      })
+        value: y,
+      }),
     ];
 
     return (
-      <div className={styles.chart}
-          ref={this.handleRoot}
-          style={{ height }}
+      <div
+        className={styles.chart}
+        ref={this.handleRoot}
+        style={{ height }}
       >
         <div ref={this.handleRef}>
           {title && <h4 style={{ marginBottom: 20 }}>{title}</h4>}
           <Chart
-              data={data}
-              forceFit={forceFit}
-              height={title ? height - 41 : height}
-              padding={padding || 'auto'}
-              scale={scale}
+            data={data}
+            forceFit={forceFit}
+            height={title ? height - 41 : height}
+            padding={padding || 'auto'}
+            scale={scale}
           >
             <Axis
-                label={autoHideXLabels ? false : {}}
-                name="x"
-                tickLine={autoHideXLabels ? false : {}}
-                title={false}
+              label={autoHideXLabels ? false : {}}
+              name="x"
+              tickLine={autoHideXLabels ? false : {}}
+              title={false}
             />
-            <Axis min={0}
-                name="y"
+            <Axis
+              min={0}
+              name="y"
             />
-            <Tooltip crosshairs={false}
-                showTitle={false}
+            <Tooltip
+              crosshairs={false}
+              showTitle={false}
             />
-            <Geom color={color}
-                position="x*y"
-                tooltip={tooltip}
-                type="interval"
+            <Geom
+              color={color}
+              position="x*y"
+              tooltip={tooltip}
+              type="interval"
             />
           </Chart>
         </div>

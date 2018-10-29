@@ -15,9 +15,9 @@ class DefaultTreeSelect extends Component {
     return data.map((v) => {
       return (
         <TreeNode
-            key={v.value}
-            title={v.title}
-            value={v.value}
+          key={v.value}
+          title={v.title}
+          value={v.value}
         >
           {v.children ? this.renderTreeNode(v.children) : null}
         </TreeNode>
@@ -27,26 +27,26 @@ class DefaultTreeSelect extends Component {
 
   render() {
 
-    let data = [
+    const data = [
       {
         title: '重庆市', value: 'cq', children: [
           {
             title: '学校', value: 'sc', children: [
               { title: '学校1', value: 's1' },
-              { title: '学校2', value: 's2' }
-            ]
+              { title: '学校2', value: 's2' },
+            ],
           },
           {
             title: '政府机构', value: 'cg', children: [
               { title: '机构1', value: 'c1' },
-              { title: '机构2', value: 'c2' }
-            ]
-          }
-        ]
-      }
+              { title: '机构2', value: 'c2' },
+            ],
+          },
+        ],
+      },
     ];
 
-    let {
+    const {
       allowClear = true,
       dropDownStyle = { maxHeight: 400, overflow: 'auto' },
       onChange,
@@ -55,19 +55,19 @@ class DefaultTreeSelect extends Component {
       style = { width: 300 },
       treeDefaultExpandAll = true,
       value = '',
-      dataSource = data
+      dataSource = data,
     } = { ...this.props };
     return (
       <div>
         <TreeSelect
-            allowClear={allowClear}
-            dropdownStyle={dropDownStyle}
-            onChange={onChange}
-            placeholder={placeholder}
-            showSearch={showSearch}
-            style={style}
-            treeDefaultExpandAll={treeDefaultExpandAll}
-            value={value}
+          allowClear={allowClear}
+          dropdownStyle={dropDownStyle}
+          onChange={onChange}
+          placeholder={placeholder}
+          showSearch={showSearch}
+          style={style}
+          treeDefaultExpandAll={treeDefaultExpandAll}
+          value={value}
         >
           {this.renderTreeNode(dataSource)}
         </TreeSelect>,

@@ -21,7 +21,7 @@ class menuForm extends Component {
     const {getFieldDecorator} = this.props.form;
     return (
       <Form className={styles.form_c}>
-        <FormItem label="数据库类型" {...formItemLayout} >
+        <FormItem label="数据库类型" {...formItemLayout}>
           {getFieldDecorator('type', {initialValue: "MySQL"})(
             <Input />
           )}
@@ -32,9 +32,9 @@ class menuForm extends Component {
           {...formItemLayout}
         >
           {getFieldDecorator('time', {
-            initialValue:"2018-10-27 11:11"
+            initialValue:"2018-10-27 11:11",
           })(
-            <Input style={{width: 350, maxWidth: 350}}/>
+            <Input style={{width: 350, maxWidth: 350}} />
           )}
         </FormItem>
         <FormItem
@@ -43,9 +43,9 @@ class menuForm extends Component {
           {...formItemLayout}
         >
           {getFieldDecorator('description', {
-            initialValue:"开发人员数据库"
+            initialValue:"开发人员数据库",
           })(
-            <TextArea style={{width: 350, maxWidth: 350}} rows={4}/>
+            <TextArea style={{width: 350, maxWidth: 350}} rows={4} />
           )}
         </FormItem>
       </Form>
@@ -57,7 +57,7 @@ class EditMenu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false
+      visible: false,
     }
   }
 
@@ -84,7 +84,7 @@ class EditMenu extends React.Component {
     return (
       <Modal
         title={this.props.title || `新建任务`}
-        destroyOnClose={true}
+        destroyOnClose
         onCancel={this._onCancel}
         visible={this.state.visible}
         onOk={this._onCancel}

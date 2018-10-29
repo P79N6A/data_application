@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import {
   Card, Button, Form, Icon, Col,
-  Row, Input, Select, Popover, TreeSelect
+  Row, Input, Select, Popover, TreeSelect,
 } from 'antd';
 import { connect } from 'dva';
 import FooterToolbar from '@/components/Global/FooterToolbar';
@@ -21,7 +21,7 @@ const fieldLabels = {
   catalogId: '服务分组',
   serviceName: '服务名称',
   servicePath: '接口路径',
-  serviceMethodType: '请求类型'
+  serviceMethodType: '请求类型',
 };
 
 
@@ -32,13 +32,13 @@ const tableData = [
     paramName: 'name',
     paramType: 'string',
     paramIsnull: '是',
-    paramRemark: '备注'
-  }
+    paramRemark: '备注',
+  },
 ];
 
 @connect(({ loading, global }) => ({
   submitting: loading.effects['ListManage/submitAdvancedForm'],
-  catalog:global.catalog
+  catalog:global.catalog,
 }))
 @Form.create()
 class AdvancedForm extends PureComponent {
@@ -49,7 +49,7 @@ class AdvancedForm extends PureComponent {
   }
 
   state = {
-    width: '100%'
+    width: '100%',
   };
 
   componentDidMount() {
@@ -62,7 +62,7 @@ class AdvancedForm extends PureComponent {
 
   getErrorInfo = () => {
     const {
-      form: { getFieldsError }
+      form: { getFieldsError },
     } = this.props;
     const errors = getFieldsError();
     const errorCount = Object.keys(errors).filter(key => errors[key]).length;
@@ -80,12 +80,14 @@ class AdvancedForm extends PureComponent {
         return null;
       }
       return (
-        <li className={styles.errorListItem}
-            key={key}
-            onClick={() => scrollToField(key)}
+        <li
+          className={styles.errorListItem}
+          key={key}
+          onClick={() => scrollToField(key)}
         >
-          <Icon className={styles.errorIcon}
-              type="cross-circle-o"
+          <Icon
+            className={styles.errorIcon}
+            type="cross-circle-o"
           />
           <div className={styles.errorMessage}>{errors[key][0]}</div>
           <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -95,13 +97,13 @@ class AdvancedForm extends PureComponent {
     return (
       <span className={styles.errorIcon}>
         <Popover
-            content={errorList}
-            getPopupContainer={trigger => trigger.parentNode}
-            overlayClassName={styles.errorPopover}
-            title="表单校验信息"
-            trigger="click"
+          content={errorList}
+          getPopupContainer={trigger => trigger.parentNode}
+          overlayClassName={styles.errorPopover}
+          title="表单校验信息"
+          trigger="click"
         >
-          <Icon type="exclamation-circle"/>
+          <Icon type="exclamation-circle" />
         </Popover>
         {errorCount}
       </span>
@@ -128,7 +130,7 @@ class AdvancedForm extends PureComponent {
   validate = () => {
     const {
       form: { validateFieldsAndScroll },
-      dispatch
+      dispatch,
     } = this.props;
     validateFieldsAndScroll((error, values) => {
       if (!error) {
@@ -137,12 +139,12 @@ class AdvancedForm extends PureComponent {
           type: 'ListManage/saveApi',
           payload: values,
           callback:()=>{
-            //跳转地址
+            // 跳转地址
             dispatch({
               type: 'global/toLocation',
-              payload: '/resource'
+              payload: '/resource',
             });
-          }
+          },
         });
 
 
@@ -154,45 +156,49 @@ class AdvancedForm extends PureComponent {
     const {
       form: { getFieldDecorator },
       submitting,
-      catalog=[]
+      catalog=[],
     } = this.props;
     const { width } = this.state;
 
     return (
       <div
-        /*content="请输入接口详细信息。"
-        title="发布接口"*/
-          wrapperClassName={styles.advancedForm}
+        /* content="请输入接口详细信息。"
+        title="发布接口" */
+        wrapperClassName={styles.advancedForm}
       >
-        <Card bordered={false}
-            className={styles.card}
-            title="接口信息"
+        <Card
+          bordered={false}
+          className={styles.card}
+          title="接口信息"
         >
-          <Form hideRequiredMark
-              layout="vertical"
+          <Form
+            hideRequiredMark
+            layout="vertical"
           >
             <Row gutter={16}>
-              <Col lg={6}
-                  md={12}
-                  sm={24}
+              <Col
+                lg={6}
+                md={12}
+                sm={24}
               >
                 <Form.Item label={fieldLabels.interfaceName}>
                   {getFieldDecorator('interfaceName', {
-                    rules: [{ required: true, message: '请输入接口名称' }]
+                    rules: [{ required: true, message: '请输入接口名称' }],
                     // 表单控件输入值
                     // getValueFromEvent:this.getAutoInputValue,
                     // trigger:'onSelect'
-                  })(<Input/>)}
+                  })(<Input />)}
                 </Form.Item>
               </Col>
-              <Col lg={{ span: 8 }}
-                  md={{ span: 12 }}
-                  sm={24}
-                  xl={{ span: 6, offset: 2 }}
+              <Col
+                lg={{ span: 8 }}
+                md={{ span: 12 }}
+                sm={24}
+                xl={{ span: 6, offset: 2 }}
               >
                 <Form.Item label={fieldLabels.serviceMethodType}>
                   {getFieldDecorator('serviceMethodType', {
-                    rules: [{ required: true, message: '请选择请求类型' }]
+                    rules: [{ required: true, message: '请选择请求类型' }],
                   })(
                     <Select placeholder="请选择请求类型">
                       <Option value="GET">GET</Option>
@@ -201,21 +207,24 @@ class AdvancedForm extends PureComponent {
                   )}
                 </Form.Item>
               </Col>
-              <Col lg={{ span: 10 }}
-                  md={{ span: 24 }}
-                  sm={24}
-                  xl={{ span: 8, offset: 2 }}
+              <Col
+                lg={{ span: 10 }}
+                md={{ span: 24 }}
+                sm={24}
+                xl={{ span: 8, offset: 2 }}
               >
                 <Form.Item label={fieldLabels.catalogId}>
                   {getFieldDecorator('catalogId', {
-                    rules: [{ required: true, message: '请输入服务分组' }]
+                    rules: [{ required: true, message: '请输入服务分组' }],
                   })(
                     <Select placeholder="请选择服务分组">
                       {catalog.map((v)=>{
                         return (
-                          <Option key={v['id']}
-                              value={v['id']}
-                          >{v['catalogName']}</Option>)
+                          <Option
+                            key={v.id}
+                            value={v.id}
+                          >{v.catalogName}
+                          </Option>)
                       })}
 
                     </Select>,
@@ -224,55 +233,60 @@ class AdvancedForm extends PureComponent {
               </Col>
             </Row>
             <Row gutter={16}>
-              <Col lg={6}
-                  md={12}
-                  sm={24}
+              <Col
+                lg={6}
+                md={12}
+                sm={24}
               >
                 <Form.Item label={fieldLabels.serviceName}>
                   {getFieldDecorator('serviceName', {
-                    rules: [{ required: true, message: '请输入服务名' }]
-                  })(<Input placeholder="请输入接服务名"/>)}
+                    rules: [{ required: true, message: '请输入服务名' }],
+                  })(<Input placeholder="请输入接服务名" />)}
                 </Form.Item>
               </Col>
-              <Col lg={{ span: 8 }}
-                  md={{ span: 12 }}
-                  sm={24}
-                  xl={{ span: 6, offset: 2 }}
+              <Col
+                lg={{ span: 8 }}
+                md={{ span: 12 }}
+                sm={24}
+                xl={{ span: 6, offset: 2 }}
               >
                 <Form.Item label={fieldLabels.servicePath}>
                   {getFieldDecorator('servicePath', {
-                    rules: [{ required: true, message: '请输入接口路径' }]
+                    rules: [{ required: true, message: '请输入接口路径' }],
                   })(
-                    <Input placeholder="请输入接口路径"/>,
+                    <Input placeholder="请输入接口路径" />,
                   )}
                 </Form.Item>
               </Col>
-              <Col lg={{ span: 8 }}
-                  md={{ span: 12 }}
-                  sm={24}
-                  xl={{ span: 6, offset: 2 }}
+              <Col
+                lg={{ span: 8 }}
+                md={{ span: 12 }}
+                sm={24}
+                xl={{ span: 6, offset: 2 }}
               >
                 <Form.Item label={fieldLabels.interfaceDesc}>
                   {getFieldDecorator('interfaceDesc', {
-                    rules: [{ required: true, message: '请输入描述' }]
-                  })(<Input.TextArea placeholder="请输入描述"/>)}
+                    rules: [{ required: true, message: '请输入描述' }],
+                  })(<Input.TextArea placeholder="请输入描述" />)}
                 </Form.Item>
               </Col>
             </Row>
           </Form>
         </Card>
-        <Card bordered={false}
-            title="输入参数"
+        <Card
+          bordered={false}
+          title="输入参数"
         >
           {getFieldDecorator('paramInfoReqDTOS', {
-            initialValue: tableData
-          })(<TableForm/>)}
+            initialValue: tableData,
+          })(<TableForm />)}
         </Card>
         <FooterToolbar style={{ width }}>
           {this.getErrorInfo()}
-          <Button loading={submitting}
-              onClick={this.validate}
-              type="primary"
+          <Button
+            loading={submitting}
+            onClick={this.validate}
+            type="primary"
           >
             提交
           </Button>

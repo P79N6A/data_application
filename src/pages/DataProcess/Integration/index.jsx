@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+
 class Integration extends PureComponent{
   render() {
     return (

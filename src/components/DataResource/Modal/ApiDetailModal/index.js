@@ -14,7 +14,7 @@ class ApiDetailModal extends Component {
   }
 
   render() {
-    let { modalContent={}} =this.props;
+    const { modalContent={}} =this.props;
     let { paramInfoResDTOS=[]}=modalContent;
     // 数据源加入序号
     paramInfoResDTOS=addColumnKey(paramInfoResDTOS);
@@ -25,61 +25,63 @@ class ApiDetailModal extends Component {
       `服务分类：${modalContent.catalogName}`,
       `服务路径：${modalContent.servicePath}`,
       `请求类型：${modalContent.serviceMethodType}`,
-      `最后更新：${new Date(modalContent.lastUpdate).toLocaleDateString()}`
+      `最后更新：${new Date(modalContent.lastUpdate).toLocaleDateString()}`,
     ];
     const columns=[
       {
         title:'序号',
         dataIndex:'serial',
-        key:'serial'
+        key:'serial',
       },
       {
         title:'参数名',
         dataIndex:'paramName',
-        key:'paramName'
+        key:'paramName',
       },
       {
         title:'参数类型',
         dataIndex:'paramType',
-        key:'paramType'
+        key:'paramType',
       },
       {
         title:'能否为空',
         dataIndex:'paramIsnull',
-        key:'paramIsnull'
+        key:'paramIsnull',
       },
       {
         title:'备注',
         dataIndex:'paramRemark',
-        key:'paramRemark'
-      }
+        key:'paramRemark',
+      },
     ];
 
     return (
-        <BaseModal {...this.props}>
-            <Collapse defaultActiveKey={['1']}>
-              <Panel header="服务详情"
-                  key="1"
-              >
-                <List
-                    bordered
-                    dataSource={data}
-                    renderItem={item => (<List.Item>{item}</List.Item>)}
-                />
-              </Panel>
-              <Panel header="接口参数"
-                  key="2"
-              >
-                <Table
-                    bordered
-                    columns={columns}
-                    dataSource={paramInfoResDTOS}
-                    pagination={false}
-                    size="small"
-                />
-              </Panel>
-            </Collapse>
-        </BaseModal>
+      <BaseModal {...this.props}>
+        <Collapse defaultActiveKey={['1']}>
+          <Panel
+            header="服务详情"
+            key="1"
+          >
+            <List
+              bordered
+              dataSource={data}
+              renderItem={item => (<List.Item>{item}</List.Item>)}
+            />
+          </Panel>
+          <Panel
+            header="接口参数"
+            key="2"
+          >
+            <Table
+              bordered
+              columns={columns}
+              dataSource={paramInfoResDTOS}
+              pagination={false}
+              size="small"
+            />
+          </Panel>
+        </Collapse>
+      </BaseModal>
     );
   }
 }

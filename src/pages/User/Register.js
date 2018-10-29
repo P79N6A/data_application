@@ -12,18 +12,18 @@ const InputGroup = Input.Group;
 const passwordStatusMap = {
   ok: <div className={styles.success}>强度：强</div>,
   pass: <div className={styles.warning}>强度：中</div>,
-  poor: <div className={styles.error}>强度：太短</div>
+  poor: <div className={styles.error}>强度：太短</div>,
 };
 
 const passwordProgressMap = {
   ok: 'success',
   pass: 'normal',
-  poor: 'exception'
+  poor: 'exception',
 };
 
 @connect(({ register, loading }) => ({
   register,
-  submitting: loading.effects['register/submit']
+  submitting: loading.effects['register/submit'],
 }))
 @Form.create()
 class Register extends Component {
@@ -32,7 +32,7 @@ class Register extends Component {
     confirmDirty: false,
     visible: false,
     help: '',
-    prefix: '86'
+    prefix: '86',
   };
 
   componentDidUpdate() {
@@ -42,8 +42,8 @@ class Register extends Component {
       router.push({
         pathname: '/user/register-result',
         state: {
-          account
-        }
+          account,
+        },
       });
     }
   }
@@ -86,8 +86,8 @@ class Register extends Component {
           type: 'register/submit',
           payload: {
             ...values,
-            prefix
-          }
+            prefix,
+          },
         });
       }
     });
@@ -113,16 +113,16 @@ class Register extends Component {
     if (!value) {
       this.setState({
         help: '请输入密码！',
-        visible: !!value
+        visible: !!value,
       });
       callback('error');
     } else {
       this.setState({
-        help: ''
+        help: '',
       });
       if (!visible) {
         this.setState({
-          visible: !!value
+          visible: !!value,
         });
       }
       if (value.length < 6) {
@@ -139,7 +139,7 @@ class Register extends Component {
 
   changePrefix = value => {
     this.setState({
-      prefix: value
+      prefix: value,
     });
   };
 
@@ -150,11 +150,11 @@ class Register extends Component {
     return value && value.length ? (
       <div className={styles[`progress-${passwordStatus}`]}>
         <Progress
-            className={styles.progress}
-            percent={value.length * 10 > 100 ? 100 : value.length * 10}
-            showInfo={false}
-            status={passwordProgressMap[passwordStatus]}
-            strokeWidth={6}
+          className={styles.progress}
+          percent={value.length * 10 > 100 ? 100 : value.length * 10}
+          showInfo={false}
+          status={passwordProgressMap[passwordStatus]}
+          strokeWidth={6}
         />
       </div>
     ) : null;
@@ -173,20 +173,21 @@ class Register extends Component {
               rules: [
                 {
                   required: true,
-                  message: '请输入邮箱地址！'
+                  message: '请输入邮箱地址！',
                 },
                 {
                   type: 'email',
-                  message: '邮箱地址格式错误！'
-                }
-              ]
-            })(<Input placeholder="邮箱"
-                size="large"
-               />)}
+                  message: '邮箱地址格式错误！',
+                },
+              ],
+            })(<Input
+              placeholder="邮箱"
+              size="large"
+            />)}
           </FormItem>
           <FormItem help={help}>
             <Popover
-                content={
+              content={
                 <div style={{ padding: '4px 0' }}>
                   {passwordStatusMap[this.getPasswordStatus()]}
                   {this.renderPasswordProgress()}
@@ -195,20 +196,21 @@ class Register extends Component {
                   </div>
                 </div>
               }
-                overlayStyle={{ width: 240 }}
-                placement="right"
-                visible={visible}
+              overlayStyle={{ width: 240 }}
+              placement="right"
+              visible={visible}
             >
               {getFieldDecorator('passWord', {
                 rules: [
                   {
-                    validator: this.checkPassword
-                  }
-                ]
-              })(<Input placeholder="至少6位密码，区分大小写"
-                  size="large"
-                  type="passWord"
-                 />)}
+                    validator: this.checkPassword,
+                  },
+                ],
+              })(<Input
+                placeholder="至少6位密码，区分大小写"
+                size="large"
+                type="passWord"
+              />)}
             </Popover>
           </FormItem>
           <FormItem>
@@ -216,24 +218,25 @@ class Register extends Component {
               rules: [
                 {
                   required: true,
-                  message: '请确认密码！'
+                  message: '请确认密码！',
                 },
                 {
-                  validator: this.checkConfirm
-                }
-              ]
-            })(<Input placeholder="确认密码"
-                size="large"
-                type="passWord"
-               />)}
+                  validator: this.checkConfirm,
+                },
+              ],
+            })(<Input
+              placeholder="确认密码"
+              size="large"
+              type="passWord"
+            />)}
           </FormItem>
           <FormItem>
             <InputGroup compact>
               <Select
-                  onChange={this.changePrefix}
-                  size="large"
-                  style={{ width: '20%' }}
-                  value={prefix}
+                onChange={this.changePrefix}
+                size="large"
+                style={{ width: '20%' }}
+                value={prefix}
               >
                 <Option value="86">+86</Option>
                 <Option value="87">+87</Option>
@@ -242,17 +245,18 @@ class Register extends Component {
                 rules: [
                   {
                     required: true,
-                    message: '请输入手机号！'
+                    message: '请输入手机号！',
                   },
                   {
                     pattern: /^1\d{10}$/,
-                    message: '手机号格式错误！'
-                  }
-                ]
-              })(<Input placeholder="11位手机号"
-                  size="large"
-                  style={{ width: '80%' }}
-                 />)}
+                    message: '手机号格式错误！',
+                  },
+                ],
+              })(<Input
+                placeholder="11位手机号"
+                size="large"
+                style={{ width: '80%' }}
+              />)}
             </InputGroup>
           </FormItem>
           <FormItem>
@@ -262,19 +266,20 @@ class Register extends Component {
                   rules: [
                     {
                       required: true,
-                      message: '请输入验证码！'
-                    }
-                  ]
-                })(<Input placeholder="验证码"
-                    size="large"
-                   />)}
+                      message: '请输入验证码！',
+                    },
+                  ],
+                })(<Input
+                  placeholder="验证码"
+                  size="large"
+                />)}
               </Col>
               <Col span={8}>
                 <Button
-                    className={styles.getCaptcha}
-                    disabled={count}
-                    onClick={this.onGetCaptcha}
-                    size="large"
+                  className={styles.getCaptcha}
+                  disabled={count}
+                  onClick={this.onGetCaptcha}
+                  size="large"
                 >
                   {count ? `${count} s` : '获取验证码'}
                 </Button>
@@ -283,16 +288,17 @@ class Register extends Component {
           </FormItem>
           <FormItem>
             <Button
-                className={styles.submit}
-                htmlType="submit"
-                loading={submitting}
-                size="large"
-                type="primary"
+              className={styles.submit}
+              htmlType="submit"
+              loading={submitting}
+              size="large"
+              type="primary"
             >
               注册
             </Button>
-            <Link className={styles.login}
-                to="/User/Login"
+            <Link
+              className={styles.login}
+              to="/User/Login"
             >
               使用已有账户登录
             </Link>

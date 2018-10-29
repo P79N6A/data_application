@@ -16,8 +16,8 @@ export async function operationApproval(params) {
   return request('/register/apply/approve', {
     method: 'GET',
     body: {
-      ...params
-    }
+      ...params,
+    },
   })
 }
 export function approvalList(params) {
@@ -31,14 +31,14 @@ export function approvalList(params) {
       pageIndex: page_index,
       pageSize: page_size,
       orderFiled: 'approve_date',
-      orderRule: 'desc'
-    }
+      orderRule: 'desc',
+    },
   }
   return request('/register/apply/findApproveByPage', {
     method: 'POST',
     body: {
-      ...payload
-    }
+      ...payload,
+    },
   }).then((data) => {
     return modelResponse(data.data)
   })

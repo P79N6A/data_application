@@ -7,7 +7,7 @@ const columns = [
   {
     title:'序号',
     dataIndex:'serial',
-    key:'serial'
+    key:'serial',
   },
   {
   title: '时间',
@@ -15,26 +15,27 @@ const columns = [
   key: 'approveDate',
   render: (text) => (
     <span>{dateFormat(text)}</span>
-  )
+  ),
 },{
   title: '操作描述',
   dataIndex: 'approveDesc',
-  key: 'approveDesc'
+  key: 'approveDesc',
 },{
   title: '操作人',
   dataIndex: 'approveByName',
-  key: 'approveByName'
+  key: 'approveByName',
 }]
 const InterfaceHistory = (props) => {
   let { approveHistorys=[] } = props
   approveHistorys=addColumnKey(approveHistorys);
   return (
-      <Table bordered
-          columns={columns}
-          dataSource={approveHistorys}
-          pagination={false}
-          size="small"
-      />
+    <Table
+      bordered
+      columns={columns}
+      dataSource={approveHistorys}
+      pagination={false}
+      size="small"
+    />
   )
 }
 export default InterfaceHistory

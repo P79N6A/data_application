@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import {
   Card, Form,  Icon, Button,
-  Dropdown, Menu, Badge
+  Dropdown, Menu, Badge,
 } from 'antd';
 import StandardTable from '@/components//DataResource/Table/StandardTable';
 import { Link } from 'dva/router';
@@ -46,13 +46,13 @@ function GetOption(props) {
         <span>
           <a onClick={() => (props.handleOption('0', props))}>停用</a>
           &nbsp;&nbsp;
-          <Link to={'/resource/approval'}>去审批</Link>
+          <Link to="/resource/approval">去审批</Link>
           &nbsp;&nbsp;
           <a onClick={() => (props.toggleModalVisible(props))}> 详情</a>
         </span>
       );
-    /*case 3:
-      return (<Button type="primary"><a onClick={() => (props.handleOption('edit', props.id))}>修改</a></Button>);*/
+    /* case 3:
+      return (<Button type="primary"><a onClick={() => (props.handleOption('edit', props.id))}>修改</a></Button>); */
     default:
       return (<React.Fragment>未知状态</React.Fragment>);
   }
@@ -63,14 +63,15 @@ function map({ ListManage, loading }) {
 }
 /* eslint react/no-multi-comp:0 */
 @connect(map)
-@Form.create({onFieldsChange:(p,f)=>(TableList.getFormValue(p,f))})/*获取搜索框的值*/
+@Form.create({onFieldsChange:(p,f)=>(TableList.getFormValue(p,f))})/* 获取搜索框的值 */
 class TableList extends PureComponent {
   static getFormValue(props,fields){
     Object.keys(fields).forEach((v)=>{
-      //将搜索参数保存在model中
-        props.ListManage.searchParam.body[v]=fields[v]['value'];
+      // 将搜索参数保存在model中
+        props.ListManage.searchParam.body[v]=fields[v].value;
     })
   }
+
   constructor() {
     super();
     this.handleOption = this.handleOption.bind(this);
@@ -90,10 +91,11 @@ class TableList extends PureComponent {
       modal:{
         modalTitle:'面板',
         modalVisible:false,
-        modalContent:{}
-      }
+        modalContent:{},
+      },
     }
   }
+
   // 初始化表格数据
   componentDidMount() {
     const {dispatch}=this.props;
@@ -101,9 +103,10 @@ class TableList extends PureComponent {
       type: 'ListManage/watchAndUpdateApiList',
       callback:()=>{
         dispatch({type:'ListManage/getApiList' })
-      }
+      },
     })
   }
+
   columns = [
     {
       title: '接口名称',
@@ -111,17 +114,17 @@ class TableList extends PureComponent {
       key: 'interfaceName',
       render: (text, record) =>{
         return (<a onClick={() => (this.toggleModalVisible(record))}> {text}</a>)
-      }
+      },
     },
     {
       title: '描述',
       dataIndex: 'interfaceDesc',
-      key: 'interfaceDesc'
+      key: 'interfaceDesc',
     },
     {
       title: '服务名称',
       dataIndex: 'serviceName',
-      key: 'serviceName'
+      key: 'serviceName',
     },
     {
       title: '状态',
@@ -130,40 +133,44 @@ class TableList extends PureComponent {
       filters: [
         {
           text: status[0],
-          value: 0
+          value: 0,
         },
         {
           text: status[1],
-          value: 1
+          value: 1,
         },
         {
           text: status[2],
-          value: 2
+          value: 2,
         },
         {
           text: status[3],
-          value: 3
-        }
+          value: 3,
+        },
       ],
       onFilter: (value, record) => (this.handleRowFilter(value, record)),
 
       render(val) {
-        return <Badge status={statusMap[val]}
+        return (
+          <Badge
+            status={statusMap[val]}
             text={status[val]}
-               />;
-      }
+          />
+);
+      },
     },
     {
       title: '操作',
       key: 'option',
       width: 250,
       render: (text, record) => (
-        <GetOption {...record}
-            handleOption={this.handleOption}
-            toggleModalVisible={this.toggleModalVisible}
+        <GetOption
+          {...record}
+          handleOption={this.handleOption}
+          toggleModalVisible={this.toggleModalVisible}
         />
-      )
-    }
+      ),
+    },
   ];
 
   // 表格内筛选
@@ -179,7 +186,7 @@ class TableList extends PureComponent {
     // debugger;
     dispatch({
       type: 'ListManage/updatePageParam',
-      pageParam
+      pageParam,
     })
   };
 
@@ -194,12 +201,12 @@ class TableList extends PureComponent {
     const { form, dispatch } = this.props;
     form.resetFields();
     this.setState({
-      formValues: {}
+      formValues: {},
     });
 
     dispatch({
       type:'ListManage/updateParam',
-      payload:{}
+      payload:{},
     })
   };
 
@@ -207,16 +214,16 @@ class TableList extends PureComponent {
   toggleForm = () => {
     const { expandForm } = this.state;
     this.setState({
-      expandForm: !expandForm
+      expandForm: !expandForm,
     });
   };
 
-  //处理表格操作
+  // 处理表格操作
   handleOption(option, props) {
-    let { dispatch }=this.props;
+    const { dispatch }=this.props;
     dispatch({
       type: 'ListManage/updateApiStatus',
-      payload: { option: option, interfaceId:props.interfaceId }
+      payload: { option, interfaceId:props.interfaceId },
     });
   }
 
@@ -231,13 +238,13 @@ class TableList extends PureComponent {
         dispatch({
           type: 'ListManage/remove',
           payload: {
-            key: selectedRows.map(row => row.key)
+            key: selectedRows.map(row => row.key),
           },
           callback: () => {
             this.setState({
-              selectedRows: []
+              selectedRows: [],
             });
-          }
+          },
         });
         break;
       default:
@@ -247,23 +254,25 @@ class TableList extends PureComponent {
 
   handleSelectRows(rows) {
     this.setState({
-      selectedRows: rows
+      selectedRows: rows,
     });
   }
 
   toggleModalVisible(record){
-    let {modalVisible}=this.state.modal;
+    const {modalVisible}=this.state.modal;
     this.setState({
       modal:{
         modalVisible: !modalVisible,
         modalTitle: record.interfaceName,
-        modalContent: {...record}
-      }
+        modalContent: {...record},
+      },
     });
   }
+
   handleModalCancel(){
     this.setState({modal:{modalVisible:false}});
   }
+
   handleModalOk(){
     this.setState({modal:{modalVisible:false}});
   }
@@ -278,15 +287,15 @@ class TableList extends PureComponent {
 
       const values = {
         ...fieldsValue,
-        updatedAt: fieldsValue.updatedAt && fieldsValue.updatedAt.valueOf()
+        updatedAt: fieldsValue.updatedAt && fieldsValue.updatedAt.valueOf(),
       };
       this.setState({
-        formValues: values
+        formValues: values,
       });
 
       dispatch({
         type: 'ListManage/updateParam',
-        payload: values
+        payload: values,
       });
     });
   }
@@ -301,12 +310,13 @@ class TableList extends PureComponent {
       ListManage: { data },
       loading,
       form: { getFieldDecorator },
-      ListManage:{pageParam}
+      ListManage:{pageParam},
     } = this.props;
     const { selectedRows, modal } = this.state;
     const menu = (
-      <Menu onClick={this.handleMenuClick}
-          selectedKeys={[]}
+      <Menu
+        onClick={this.handleMenuClick}
+        selectedKeys={[]}
       >
         <Menu.Item key="remove">批量启用</Menu.Item>
         <Menu.Item key="approval">批量停用</Menu.Item>
@@ -323,46 +333,46 @@ class TableList extends PureComponent {
                   handleSearch:this.handleSearch,
                   toggleForm:this.toggleForm,
                   handleFormReset:this.handleFormReset,
-                  getFieldDecorator:getFieldDecorator,
-                  expandForm:this.state.expandForm
+                  getFieldDecorator,
+                  expandForm:this.state.expandForm,
                 })
               }
-              </div>
+            </div>
             <div className={styles.tableListOperator}>
               <Button
-                  htmlType={'button'}
-                  type="primary"
+                htmlType="button"
+                type="primary"
               >
                 <Link to="/api/manage/publish">发布接口</Link>
               </Button>
               {selectedRows.length > 0 && (
                 <span>
                   <Dropdown overlay={menu}>
-                    <Button htmlType={'button'}>
-                      更多操作 <Icon type="down"/>
+                    <Button htmlType="button">
+                      更多操作 <Icon type="down" />
                     </Button>
                   </Dropdown>
                 </span>
               )}
             </div>
             <StandardTable
-                columns={this.columns}
-                data={data}
-                loading={loading}
-                onChange={this.handleStandardTableChange}
-                onSelectRow={this.handleSelectRows}
-                paginationSet={{current:pageParam.pageIndex}}
-                rowKey={(record)=>(record.interfaceId)}
-                selectedRows={selectedRows}
-                showSizeChanger
-                size={'medium'}
+              columns={this.columns}
+              data={data}
+              loading={loading}
+              onChange={this.handleStandardTableChange}
+              onSelectRow={this.handleSelectRows}
+              paginationSet={{current:pageParam.pageIndex}}
+              rowKey={(record)=>(record.interfaceId)}
+              selectedRows={selectedRows}
+              showSizeChanger
+              size="medium"
             />
           </div>
         </Card>
         <ApiDetailModal
-            {...modal}
-            handleModalCancel={this.handleModalCancel}
-            handleModalOk={this.handleModalOk}
+          {...modal}
+          handleModalCancel={this.handleModalCancel}
+          handleModalOk={this.handleModalOk}
         />
       </div>
     );
@@ -372,7 +382,7 @@ class TableList extends PureComponent {
 TableList.propTypes = {
   data: PropTypes.shape({
     data: PropTypes.array,
-    pageParam: PropTypes.object
-})
+    pageParam: PropTypes.object,
+}),
 };
 export default TableList;

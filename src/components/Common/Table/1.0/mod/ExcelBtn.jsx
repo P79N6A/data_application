@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import { Button, message } from 'antd';
 
-var idTmr;
+let idTmr;
 const uri = 'data:application/vnd.ms-excel;base64,';
 const template = [
     '<html>',
@@ -11,7 +11,7 @@ const template = [
         '<body>',
             '<table>{{table}}</table>',
         '</body>',
-    '</html>'
+    '</html>',
 ].join("");
 
 /**
@@ -24,7 +24,7 @@ class LayoutComponent extends PureComponent {
         super(props);
 
         this.state = {
-            data: []
+            data: [],
         };
     }
 
@@ -38,23 +38,23 @@ class LayoutComponent extends PureComponent {
     _renderTd = (data, index) => {
         const { columnsArr } = this.props;
         return (
-            <tr key={index}>
-                {
+          <tr key={index}>
+            {
                    columnsArr && columnsArr.map((item, index) => {
                         return (
-                            <td key={item.dataIndex}>
-                                {
+                          <td key={item.dataIndex}>
+                            {
                                     item.render
                                     ?
                                     item.render(data[item.dataIndex], data, index)
                                     :
                                     data[item.dataIndex]
                                 }
-                            </td>
+                          </td>
                         );
                     })
                 }
-            </tr>
+          </tr>
         );
     }
 
@@ -64,24 +64,24 @@ class LayoutComponent extends PureComponent {
         this.curTableID = `exl-${+new Date()}`;
 
         return (
-            <table id={this.curTableID}>
-                <thead>
-                    <tr>
-                        {
+          <table id={this.curTableID}>
+            <thead>
+              <tr>
+                {
                             columnsArr && columnsArr.map((item) => {
                                 return (
-                                    <th key={item.dataIndex}>{item.title}</th>
+                                  <th key={item.dataIndex}>{item.title}</th>
                                 );
                             })
                         }
-                    </tr>
-                </thead>
-                <tbody>
-                    {
+              </tr>
+            </thead>
+            <tbody>
+              {
                         this.state.data.map(this._renderTd)
                     }
-                </tbody>
-            </table>
+            </tbody>
+          </table>
         );
     }
 
@@ -104,7 +104,7 @@ class LayoutComponent extends PureComponent {
         this.loading = "doing";
 
         this.setState({
-            data: thisState.data
+            data: thisState.data,
         });
     }
 
@@ -112,25 +112,27 @@ class LayoutComponent extends PureComponent {
         const { exlBtn } = this.props;
 
         return (
-            <div style={{display: "inline-block"}}>
-                {
+          <div style={{display: "inline-block"}}>
+            {
                     typeof exlBtn === "undefined"
                     ?
                     (
-                        <Button onClick={() => {
+                      <Button onClick={() => {
                             this.exportExcel();
-                        }}>导出数据</Button>
+                        }}
+                      >导出数据
+                      </Button>
                     )
                     :
                     exlBtn
                 }
-                <div style={{"display": "none"}}>
-                    <a href="javascript:;"  id="exportExcel"></a>
-                    {
+            <div style={{"display": "none"}}>
+              <a href="javascript:;" id="exportExcel" />
+              {
                         this._renderTable()
                     }
-                </div>
             </div>
+          </div>
         );
     }
 
@@ -167,7 +169,7 @@ class LayoutComponent extends PureComponent {
                 oWB.Close(savechanges = false); 
                 oXL.Quit(); 
                 oXL = null; 
-                idTmr = window.setInterval(function() { 
+                idTmr = window.setInterval(() => { 
                     window.clearInterval(idTmr);
                     window.CollectGarbage(); 
                 } , 1);
@@ -178,7 +180,7 @@ class LayoutComponent extends PureComponent {
 
         const ctx = {
             worksheet: exlName || 'Worksheet',
-            table: tableDom.innerHTML
+            table: tableDom.innerHTML,
         };
 
         // window.location.href = uri + base64(format(template, ctx));
@@ -189,26 +191,26 @@ class LayoutComponent extends PureComponent {
     }
 }
 
- //获取当前浏览器类型 
+ // 获取当前浏览器类型 
 function getExplorer() { 
-    var explorer = window.navigator.userAgent; 
-    //ie 
+    const explorer = window.navigator.userAgent; 
+    // ie 
     if (explorer.indexOf("MSIE") >= 0) { 
         return 'ie';
     } 
-    //firefox 
+    // firefox 
     else if (explorer.indexOf("Firefox") >= 0) { 
         return 'Firefox';
     } 
-    //Chrome 
+    // Chrome 
     else if(explorer.indexOf("Chrome") >= 0) { 
         return 'Chrome';
     } 
-    //Opera 
+    // Opera 
     else if(explorer.indexOf("Opera") >= 0) { 
         return 'Opera';
     } 
-    //Safari 
+    // Safari 
     else if(explorer.indexOf("Safari") >= 0) { 
         return 'Safari';
     }
@@ -216,7 +218,7 @@ function getExplorer() {
 }
 
 function format(s, c) { 
-    return s.replace(/{{(\w+)}}/g, function(m, p) { return c[p]; });
+    return s.replace(/{{(\w+)}}/g, (m, p) => { return c[p]; });
 }
 
 function base64(s) { 

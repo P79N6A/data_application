@@ -3,17 +3,17 @@ import { urlToList } from '../../_utils/pathTools';
 
 const routerData = {
   '/dashboard/analysis': {
-    name: '分析页'
+    name: '分析页',
   },
   '/userinfo': {
-    name: '用户列表'
+    name: '用户列表',
   },
   '/userinfo/:id': {
-    name: '用户信息'
+    name: '用户信息',
   },
   '/userinfo/:id/addr': {
-    name: '收货订单'
-  }
+    name: '收货订单',
+  },
 };
 describe('test getBreadcrumb', () => {
   it('Simple url', () => {

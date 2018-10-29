@@ -6,10 +6,10 @@ import styles from './index.less';
 
 const treeData = [{
   title: '内部数据',
-  key: '0'
+  key: '0',
 }, {
   title: '外部数据',
-  key: '1'
+  key: '1',
 }];
 
 class CollectMission extends Component {
@@ -17,7 +17,7 @@ class CollectMission extends Component {
     return (
       <div className={styles.fr}>
         <div className={styles.orgTree}>
-          <Tree treeData={treeData}/>
+          <Tree treeData={treeData} />
         </div>
         <div className={styles.contentTable}>
           <Echart />

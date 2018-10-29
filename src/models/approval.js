@@ -1,10 +1,11 @@
 import { approvalList, operationApproval } from '../services/approval';
 import { message } from 'antd'
 import { OK_CODE } from '@/config/code'
+
 export default {
    namespace: 'approval',
    state: {
-     reseaseList: {}
+     reseaseList: {},
    },
    effects: {
      // 获取接口发布审批模块
@@ -18,7 +19,7 @@ export default {
       }
       yield put({
         type: 'releaseLists',
-        payload: data
+        payload: data,
       })
     },
     // 接口审批处理  同意 或 拒绝
@@ -26,14 +27,14 @@ export default {
       const response = yield call(operationApproval, payload)
       const data = response.data
       callback(data)
-    }
+    },
    },
    reducers: {
     releaseLists(state, { payload }) {
        return {
          ...state,
-         reseaseList: payload.data
+         reseaseList: payload.data,
        }
-     }
-   }
+     },
+   },
 }

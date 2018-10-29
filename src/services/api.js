@@ -13,13 +13,13 @@ export async function addApi(params) {
   return request('/register/interface/add', {
     method: 'POST',
     body: {
-      ...params
-    }
+      ...params,
+    },
   });
 }
 
 export async function updateApiStatus(params) {
-  let url=`/register/interface/updateStatus?interfaceId=${params.interfaceId}&opType=${params.option}`;
+  const url=`/register/interface/updateStatus?interfaceId=${params.interfaceId}&opType=${params.option}`;
   return request(url);
 }
 

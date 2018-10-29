@@ -79,7 +79,7 @@ class LayoutComponent extends PureComponent {
             total: 0,
             loading: true,
             data: [],
-            enabledID: null
+            enabledID: null,
         };
 
         this.searchExtendParam = {};
@@ -87,7 +87,7 @@ class LayoutComponent extends PureComponent {
         this.sorterObj = {
             ...sorterObj,
             columnKey: null,
-            sortOrder: null
+            sortOrder: null,
         };
 
         this.loading = false;
@@ -104,11 +104,11 @@ class LayoutComponent extends PureComponent {
             AddPop,
             UpdatePop,
             deleteFn,
-            moreFnArr
+            moreFnArr,
         } = props;
 
         let hasUpdateFn = false;
-        let columns = [];
+        const columns = [];
         const hasPop = UpdatePop || AddPop;
 
         columnsArr.forEach((item) => {
@@ -120,12 +120,16 @@ class LayoutComponent extends PureComponent {
 
                 item.render = (text, record, index) => {
                     return (
-                        <a href="javascript:;" onClick={() => {
+                      <a
+                        href="javascript:;"
+                        onClick={() => {
                             if (this.state.enabledID) {
                                 return ;
                             }
                             this.updatePopRef && this.updatePopRef.show(record);
-                        }}>{ oldRenderFn ? oldRenderFn(text, record, index) : text}</a>
+                        }}
+                      >{ oldRenderFn ? oldRenderFn(text, record, index) : text}
+                      </a>
                     );
                 }
             }
@@ -150,7 +154,7 @@ class LayoutComponent extends PureComponent {
                         editing: record[recordIDName] == this.state.enabledID,
                         trID: record[recordIDName],
                         inputType: item.inputType || "text",
-                        inputExtend: item.inputExtend
+                        inputExtend: item.inputExtend,
                     };
                 };
             }
@@ -168,7 +172,7 @@ class LayoutComponent extends PureComponent {
             fixed: scrollX ? "right" : false,
             width: fnWidth,
             render: this._renderFnView,
-            align: fnAlign || "left"
+            align: fnAlign || "left",
         });
 
         return columns;
@@ -229,54 +233,54 @@ class LayoutComponent extends PureComponent {
         const { moreFnArr, deleteFn, recordIDName=initRecordIDName } = this.props;
 
         return (
-            <div>
-                {
+          <div>
+            {
                     this.hasUpdateFn && (
-                        <span
-                            className={styles["fnButton"]}
-                            style={{marginRight: 20}}
-                            onClick={() => {
+                    <span
+                      className={styles.fnButton}
+                      style={{marginRight: 20}}
+                      onClick={() => {
                                 this.setState({
-                                    enabledID: this.state.enabledID ? null : record[recordIDName]
+                                    enabledID: this.state.enabledID ? null : record[recordIDName],
                                 });
                             }}
-                        >
-                            {
+                    >
+                      {
                                 this.state.enabledID ===  record[recordIDName] ? "放弃修改" : "编辑"
                             }
-                        </span>
+                    </span>
                     )
                 }
-                {
+            {
                     moreFnArr && moreFnArr.map((item) => {
                         return (
-                            <span
-                                key={item.key}
-                                className={styles["fnButton"]}
-                                style={{marginRight: 20}}
-                                onClick={() => {
+                          <span
+                            key={item.key}
+                            className={styles.fnButton}
+                            style={{marginRight: 20}}
+                            onClick={() => {
                                     if (this.state.enabledID || item.render) {
                                         return ;
                                     }
 
                                     this.refs[item.key] && this.refs[item.key].show(record);
                                 }}
-                            >
-                                {
+                          >
+                            {
                                     item.render ? item.render(text, record, index, {
                                         getFn: this.getData,
-                                        updateState: this.updateState
+                                        updateState: this.updateState,
                                     }) : item.title
                                 }
-                            </span>
+                          </span>
                         );
                     })
                 }
-                {
+            {
                     deleteFn && (
-                        <span
-                            className={styles["fnButton"]}
-                            onClick={() => {
+                    <span
+                      className={styles.fnButton}
+                      onClick={() => {
                                 if (this.state.enabledID) {
                                     return ;
                                 }
@@ -289,12 +293,12 @@ class LayoutComponent extends PureComponent {
                                     });;
                                 })
                             }}
-                        >
+                    >
                             删除
-                        </span>
+                    </span>
                     )
                 }
-            </div>
+          </div>
         );
     }
 
@@ -303,40 +307,40 @@ class LayoutComponent extends PureComponent {
         const selectedRowKeysByPage = this.getSelectedRowKeys();
         const hasSelected = selectedRowKeysByPage.length > 0;
         const commonStyle = {
-            marginLeft: 15
+            marginLeft: 15,
         };
 
         return (
-            <div>
-                <div className="clearfix">
-                    <div className="fl">
-                        {
+          <div>
+            <div className="clearfix">
+              <div className="fl">
+                {
                             AddPop && (
-                                <Button
-                                    type="primary"
-                                    onClick={() => {
+                            <Button
+                              type="primary"
+                              onClick={() => {
                                         this.addPopRef && this.addPopRef.show();
                                     }}
-                                >
-                                    <Icon type="plus"/> 添加
-                                </Button>
+                            >
+                              <Icon type="plus" /> 添加
+                            </Button>
                             )
                         }
-                        {
+                {
                             deleteFn && (
-                                <Button
-                                    style={{...(AddPop ? commonStyle : {})}}
-                                    type="primary"
-                                    onClick={() => {
+                            <Button
+                              style={{...(AddPop ? commonStyle : {})}}
+                              type="primary"
+                              onClick={() => {
                                         this._deleteTips(this._deleteAll);
                                     }}
-                                    disabled={!hasSelected}
-                                >
-                                    <Icon type="delete"/> 批量删除
-                                </Button>
+                              disabled={!hasSelected}
+                            >
+                              <Icon type="delete" /> 批量删除
+                            </Button>
                             )
                         }
-                        {
+                {
                             headerMoreFnArr && headerMoreFnArr.map((item) => {
                                 const childrenProps = {
                                     getState: this.getState,
@@ -344,12 +348,12 @@ class LayoutComponent extends PureComponent {
                                     updateState: this.updateState,
                                     getFn: this.getData,
                                     getSelectedRowKeys: this.getSelectedRowKeys,
-                                    clearSelecteRowKeys: this.clearSelecteRowKeys
+                                    clearSelecteRowKeys: this.clearSelecteRowKeys,
                                 };
 
                                 return (
-                                    <span style={{...((AddPop || deleteFn) ? commonStyle : {})}} key={item.key}>
-                                        {
+                                  <span style={{...((AddPop || deleteFn) ? commonStyle : {})}} key={item.key}>
+                                    {
                                             item.render
                                             ?
                                             (
@@ -357,40 +361,40 @@ class LayoutComponent extends PureComponent {
                                             )
                                             :
                                             (
-                                                <item.view {...childrenProps} />
+                                              <item.view {...childrenProps} />
                                             )
                                         }
-                                    </span>
+                                  </span>
                                 );
                             })
                         }
-                    </div>
-                    {
+              </div>
+              {
                         hasSearch && (
-                            <div className="fr">
-                                <Input.Search
-                                    enterButton={true}
-                                    placeholder="搜索"
-                                    onSearch={this._onSearch}
-                                    style={{width: 200}}
-                                />
-                            </div>
+                        <div className="fr">
+                          <Input.Search
+                            enterButton
+                            placeholder="搜索"
+                            onSearch={this._onSearch}
+                            style={{width: 200}}
+                          />
+                        </div>
                         )
                     }
-                </div>
-                {
+            </div>
+            {
                     HeaderExtend && (
-                        <div style={{marginTop: 12}}>
-                            <HeaderExtend
-                                getState={this.getState}
-                                searchFilterFn={this.searchFilterFn}
-                                getSelectedRowKeys={this.getSelectedRowKeys}
-                                clearSelecteRowKeys={this.clearSelecteRowKeys}
-                            />
-                        </div>
+                    <div style={{marginTop: 12}}>
+                      <HeaderExtend
+                        getState={this.getState}
+                        searchFilterFn={this.searchFilterFn}
+                        getSelectedRowKeys={this.getSelectedRowKeys}
+                        clearSelecteRowKeys={this.clearSelecteRowKeys}
+                      />
+                    </div>
                     )
                 }
-            </div>
+          </div>
         );
     }
 
@@ -405,7 +409,7 @@ class LayoutComponent extends PureComponent {
             moreFnArr,
             showQuickJumper,
             showSizeChanger,
-            antdTableProps={}
+            antdTableProps={},
         } = this.props;
 
         const { selectedRowKeys } = this.state;
@@ -413,12 +417,12 @@ class LayoutComponent extends PureComponent {
         const rowSelection = {
             columnWidth: 20,
             selectedRowKeys,
-            onChange: this._onSelectChange
+            onChange: this._onSelectChange,
         };
 
         this.rowRef = {};
 
-        let keyObj = {};
+        const keyObj = {};
         let rowIndex = 0;
         const components = {
             body: {
@@ -428,86 +432,92 @@ class LayoutComponent extends PureComponent {
                         rowIndex++;
                     }
                     return (
-                        <EditableFormRow
-                            wrappedComponentRef={ref => this.rowRef[props["data-row-key"]] = ref}
-                            {...props}
-                            rowIndex={keyObj[props["data-row-key"]]}
-                        />
+                      <EditableFormRow
+                        wrappedComponentRef={ref => this.rowRef[props["data-row-key"]] = ref}
+                        {...props}
+                        rowIndex={keyObj[props["data-row-key"]]}
+                      />
                     )
                 },
-                cell: EditableCell
-            }
+                cell: EditableCell,
+            },
         };
 
         const columns = this._dealColumnSorter();
         return (
-            <div className={className(styles['table-container'], 'common-table-container')} id={this.tableID}>
-                <Table
-                    //bordered
-                    size="middle"
-                    rowSelection={rowSelection}
-                    {...(scrollX ? {scroll: { x: fnWidth ? scrollX : true}} : {})}
-                    {...antdTableProps}
-                    className="table-main"
-                    components={components}
-                    title={this._renderHeader}
-                    columns={columns}
-                    rowKey={record => record[recordIDName]}
-                    dataSource={this.state.data || []}
-                    loading={this.state.loading}
-                    pagination={{
+          <div className={className(styles['table-container'], 'common-table-container')} id={this.tableID}>
+            <Table
+                    // bordered
+              size="middle"
+              rowSelection={rowSelection}
+              {...(scrollX ? {scroll: { x: fnWidth ? scrollX : true}} : {})}
+              {...antdTableProps}
+              className="table-main"
+              components={components}
+              title={this._renderHeader}
+              columns={columns}
+              rowKey={record => record[recordIDName]}
+              dataSource={this.state.data || []}
+              loading={this.state.loading}
+              pagination={{
                         showTotal: total => {
                             return total > 0 ? `共${this.state.total}条` : null;
                         },
-                        showQuickJumper: showQuickJumper ? showQuickJumper : false,
-                        showSizeChanger: showSizeChanger ? showSizeChanger : false,
+                        showQuickJumper: showQuickJumper || false,
+                        showSizeChanger: showSizeChanger || false,
                         current: this.state.page_index,
                         total: this.state.total,
-                        pageSize: this.state.page_size
+                        pageSize: this.state.page_size,
                     }}
-                    onChange={this._handleTableChange}
-                />
-                {
+              onChange={this._handleTableChange}
+            />
+            {
                     moreFnArr && moreFnArr.map((item) => {
                         const ItemPop = item.view;
-                        return ItemPop && <ItemPop
-                            key={`pop-${item.key}`}
-                            ref={item.key}
-                            app_id = {app_id}
-                            getFn={this.getData}
-                            updateState={this.updateState}
-                        />;
+                        return ItemPop && (
+                        <ItemPop
+                          key={`pop-${item.key}`}
+                          ref={item.key}
+                          app_id={app_id}
+                          getFn={this.getData}
+                          updateState={this.updateState}
+                        />
+);
                     })
                 }
-                {
-                    AddPop && <AddPop
-                        ref={ref => {
+            {
+                    AddPop && (
+                    <AddPop
+                      ref={ref => {
                             this.addPopRef = ref;
 
                             if (!UpdatePop) {
                                 this.updatePopRef = ref;
                             }
                         }}
-                        getFn={this.getData}
-                        app_id={app_id}
+                      getFn={this.getData}
+                      app_id={app_id}
                     />
+)
                 }
-                {
-                    UpdatePop && <UpdatePop
-                        ref={ref => this.updatePopRef = ref}
-                        getFn={this.getData}
-                        app_id={app_id}
+            {
+                    UpdatePop && (
+                    <UpdatePop
+                      ref={ref => this.updatePopRef = ref}
+                      getFn={this.getData}
+                      app_id={app_id}
                     />
+)
                 }
-            </div>
+          </div>
         );
     }
 
     // 自己管理排序显示问题
     _dealColumnSorter() {
-        let newColumn = [];
+        const newColumn = [];
         this.columns.forEach((item) => {
-            let newItem = {...item};
+            const newItem = {...item};
             if (newItem.sorter && (newItem.dataIndex === this.sorterObj.columnKey)) {
                 newItem.sortOrder = this.sorterObj.sortOrder;
             } else {
@@ -533,7 +543,7 @@ class LayoutComponent extends PureComponent {
             cancelText: "取消",
             onOk: () => {
                 cb && cb();
-            }
+            },
         })
     }
 
@@ -543,10 +553,10 @@ class LayoutComponent extends PureComponent {
         return await deleteFn(...[
             app_id,
             {
-                [recordIDName]: item[recordIDName]
-            }
+                [recordIDName]: item[recordIDName],
+            },
         ].filter(x => {
-            return x ? x : false
+            return x || false
         })).then((data={}) => {
             if (this.componentUnmount === true) { return ; }
 
@@ -558,7 +568,7 @@ class LayoutComponent extends PureComponent {
                     this.getData();
                 }, 1000 * .5);
             } else {
-                message.error(`删除数据失败: ` + data.msg);
+                message.error(`删除数据失败: ${  data.msg}`);
             }
 
             return data;
@@ -570,7 +580,7 @@ class LayoutComponent extends PureComponent {
         const selectedRowKeys = this.getSelectedRowKeys();
 
         this._delete({
-            [recordIDName]: selectedRowKeys.join(",")
+            [recordIDName]: selectedRowKeys.join(","),
         }).then((data) => {
             if (data.isSuccess === true) {
                 this.clearSelecteRowKeys(selectedRowKeys);
@@ -580,7 +590,7 @@ class LayoutComponent extends PureComponent {
 
     clearSelecteRowKeys = (arr) => {
         let isChange = false;
-        let selectedRowKeys = [...this.state.selectedRowKeys];
+        const selectedRowKeys = [...this.state.selectedRowKeys];
 
         if (Array.isArray(arr)) {
             arr.forEach(item => {
@@ -600,17 +610,17 @@ class LayoutComponent extends PureComponent {
 
         if (isChange) {
             this.setState({
-                selectedRowKeys
+                selectedRowKeys,
             });
         }
     }
 
     // 获取当前选框状态
     getSelectedRowKeys = () => {
-        let arr = [];
+        const arr = [];
         const { recordIDName=initRecordIDName } = this.props;
         const { selectedRowKeys=[], data=[] } = this.state;
-        let selectedArr = [...selectedRowKeys];
+        const selectedArr = [...selectedRowKeys];
         data.forEach(item => {
             for (let i = 0; i < selectedArr.length; i++) {
                 if (selectedArr[i] == item[recordIDName]) {
@@ -638,24 +648,24 @@ class LayoutComponent extends PureComponent {
         // 更新全部数据
         if (Array.isArray(itemState)) {
             this.setState({
-                data: [...itemState]
+                data: [...itemState],
             });
             return ;
         }
 
         // 更新单条数据
         const { recordIDName=initRecordIDName } = this.props;
-        let data = [...this.state.data];
+        const data = [...this.state.data];
 
         for (let i = 0, l = data.length; i < l; i++) {
             if (data[i][recordIDName] == itemState[recordIDName]) {
                 data[i] = {
                     ...data[i],
-                    ...itemState
+                    ...itemState,
                 }
 
                 this.setState({
-                    data
+                    data,
                 });
 
                 break;
@@ -672,7 +682,7 @@ class LayoutComponent extends PureComponent {
         this.loading = true;
 
         !isShowLoading && this.setState({
-            loading: true
+            loading: true,
         });
 
         getFn(...[
@@ -682,10 +692,10 @@ class LayoutComponent extends PureComponent {
                 page_size: this.state.page_size,
                 page_index: this.state.page_index,
                 ...this.searchExtendParam,
-                ...params
-            }
+                ...params,
+            },
         ].filter(x => {
-            return x ? x : false
+            return x || false
         })).then((data={}) => {
             if (this.componentUnmount === true) { return ; }
 
@@ -695,14 +705,14 @@ class LayoutComponent extends PureComponent {
                 this.setState({
                     data: data.res.data || [],
                     total: data.res.page_param ? data.res.page_param.total : 0,
-                    loading: false
+                    loading: false,
                 });
 
                 return;
             }
 
             this.setState({
-                loading: false
+                loading: false,
             });
 
             message.error(`请求数据失败！`);
@@ -713,31 +723,31 @@ class LayoutComponent extends PureComponent {
         this.state.page_index = 1;
         this.searchValue = value;
         this.getData({
-            search: value
+            search: value,
         });
     }
 
     _handleTableChange = (pagination, filters, sorter) => {
         this.setState({
             page_index: pagination.current,
-            page_size: pagination.pageSize
+            page_size: pagination.pageSize,
         });
 
         let orderObj = {};
         let sorterObj = {
             ...this.sorterObj,
-            sortOrder: false
+            sortOrder: false,
         };
 
         if (sorter.columnKey) {
             orderObj = {
                 order_filed: sorter.columnKey,
-                order_rule: sorter.order !== "descend" ? "asc" : "desc"
+                order_rule: sorter.order !== "descend" ? "asc" : "desc",
             };
 
             sorterObj = {
                 columnKey: sorter.columnKey,
-                sortOrder: sorter.order
+                sortOrder: sorter.order,
             };
         }
 
@@ -746,7 +756,7 @@ class LayoutComponent extends PureComponent {
         this.getData({
             ...orderObj,
             page_size: pagination.pageSize,
-            page_index: pagination.current
+            page_index: pagination.current,
         });
     }
 
@@ -775,9 +785,9 @@ class LayoutComponent extends PureComponent {
                     updateFn(...[
                         app_id,
                         this.state.enabledID,
-                        params
+                        params,
                     ].filter(x => {
-                        return x ? x : false
+                        return x || false
                     })).then((data) => {
                         if (data.isSuccess === true) {
                             const newData = [...this.state.data];
@@ -786,12 +796,12 @@ class LayoutComponent extends PureComponent {
                             const oldIndexData = {...newData[index]};
                             newData[index] = {
                                 ...oldIndexData,
-                                ...params
+                                ...params,
                             };
 
                             this.setState({
                                 enabledID: null,
-                                data: newData
+                                data: newData,
                             });
 
                             message.success(`更新数据成功！`);
@@ -810,7 +820,7 @@ class LayoutComponent extends PureComponent {
             },
             onCancel: () => {
                 this.updatePopShow = false;
-            }
+            },
         });
     }
 }

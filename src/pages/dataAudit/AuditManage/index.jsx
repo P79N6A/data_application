@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+
 class AuditManage extends PureComponent{
   render() {
     return (

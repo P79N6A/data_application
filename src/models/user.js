@@ -14,30 +14,30 @@ export default {
   state: {
     status: undefined,
     list: [],
-    currentUser: {}
+    currentUser: {},
   },
 
   effects: {
     * userLogin({ payload, callback }, { call, put }) {
-      let res = yield call(login, payload);
-      //登录失败
+      const res = yield call(login, payload);
+      // 登录失败
       if (!checkResponse(res, callback)) {
         return;
       }
       store('save',{currentUser:JSON.stringify(res.data.data)});
-      let rs = {
+      const rs = {
         currentAuthority: payload.userName,
         status: 'ok',
-        type: 'account'
+        type: 'account',
       };
       yield put({
         type:'saveCurrentUser',
-        payload: res.data.data
+        payload: res.data.data,
       });
 
       yield put({
         type: 'changeLoginStatus',
-        payload: rs
+        payload: rs,
       });
       // 登录成功跳转
         reloadAuthorized();
@@ -64,8 +64,8 @@ export default {
         type: 'changeLoginStatus',
         payload: {
           status: false,
-          currentAuthority: 'guest'
-        }
+          currentAuthority: 'guest',
+        },
       });
       reloadAuthorized();
       clearAuthority();
@@ -73,8 +73,8 @@ export default {
         routerRedux.push({
           pathname: '/user/login',
           search: stringify({
-            redirect: window.location.href
-          })
+            redirect: window.location.href,
+          }),
         }),
       );
     },
@@ -83,39 +83,39 @@ export default {
       const response = yield call(queryUsers);
       yield put({
         type: 'save',
-        payload: response
+        payload: response,
       });
     },
 
     *fetchCurrent(_, { call, put }) {
-        let cu=store('get','currentUser');
+        const cu=store('get','currentUser');
         if (cu!=='undefined') {
           let cus=cu.replace(/\\/g,'');
           cus=cus.substring(1,cus.length-1);
-          let user=JSON.parse(cus);
+          const user=JSON.parse(cus);
 
           if (!user || !user.userId){
             return window.location.href='/user/login'
           }
           yield put({
             type: 'saveCurrentUser',
-            payload: user
+            payload: user,
           });
         }
-      }
+      },
   },
 
   reducers: {
     save(state, action) {
       return {
         ...state,
-        list: action.payload
+        list: action.payload,
       };
     },
     saveCurrentUser(state, action) {
       return {
         ...state,
-        currentUser: action.payload || {}
+        currentUser: action.payload || {},
       };
     },
     changeNotifyCount(state, action) {
@@ -123,8 +123,8 @@ export default {
         ...state,
         currentUser: {
           ...state.currentUser,
-          notifyCount: action.payload
-        }
+          notifyCount: action.payload,
+        },
       };
     },
     // 改变路由权限
@@ -133,8 +133,8 @@ export default {
       return {
         ...state,
         status: payload.status,
-        type: payload.type
+        type: payload.type,
       };
-    }
-  }
+    },
+  },
 };

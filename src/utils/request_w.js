@@ -22,7 +22,7 @@ const codeMessage = {
   500: '服务器发生错误，请检查服务器。',
   502: '网关错误。',
   503: '服务不可用，服务器暂时过载或维护。',
-  504: '网关超时。'
+  504: '网关超时。',
 };
 
 // 解析返回数据
@@ -105,7 +105,7 @@ function initOptions(defReq, options) {
 
   return {
     ...defReq,
-    ...options
+    ...options,
   };
 }
 
@@ -147,7 +147,7 @@ export default function request(url, options = {}) {
        必须和body的类型一致
        'Content-Type': 'application/x-www-form-urlencoded' ; charset=utf-8; 默认表单类型
        */
-      'Content-Type': 'application/json' //默认json类型
+      'Content-Type': 'application/json', // 默认json类型
       // 'Content-Type': 'application/x-www-form-urlencoded ; charset=utf-8', //表单类型
     }),
     // 请求体
@@ -161,7 +161,7 @@ export default function request(url, options = {}) {
     // 对重定向处理的模式： follow, error, or manual
     redirect: 'follow',
     // no-referrer, client, 或一个 URL
-    referrer: 'client'
+    referrer: 'client',
   };
 
   // mock数据处理
@@ -171,8 +171,8 @@ export default function request(url, options = {}) {
     // 支持自定义请求/简单请求
     return axios({
       method: options.method ? options.method : 'GET',
-      url: url,
-      data: options.body ? options.body : null
+      url,
+      data: options.body ? options.body : null,
     });
   }
 
@@ -194,7 +194,7 @@ export default function request(url, options = {}) {
     delete options.body;
   }
 
-  let optio = initOptions(defReq, options);
+  const optio = initOptions(defReq, options);
   return fetch(url, optio)
     .then(checkStatus)
     .then(parseResponse)

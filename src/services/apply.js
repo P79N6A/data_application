@@ -29,8 +29,8 @@ export async function addService(params) {
   return request('/register/apply/add', {
     method: 'POST',
     body: {
-      ...params
-    }
+      ...params,
+    },
   })
 }
 // 获取使用接口列表
@@ -46,14 +46,14 @@ export function interfaceList(params) {
       pageIndex: page_index,
       pageSize: page_size,
       orderFiled: 'last_update',
-      orderRule: 'desc'
-    }
+      orderRule: 'desc',
+    },
   }
   return request('/register/interface/findMyApplyPage', {
     method: 'POST',
     body: {
-      ...payload
-    }
+      ...payload,
+    },
   }).then((data) => {
     return modelResponse(data.data)
   })
@@ -72,14 +72,14 @@ export function applyList(params) {
       pageIndex: page_index,
       pageSize: page_size,
       orderFiled: 'apply_date',
-      orderRule: 'desc'
-    }
+      orderRule: 'desc',
+    },
   }
   return request('/register/apply/findMyApplyByPage', {
     method: 'POST',
     body: {
-      ...payload
-    }
+      ...payload,
+    },
   }).then((data) => {
     return modelResponse(data.data)
   })

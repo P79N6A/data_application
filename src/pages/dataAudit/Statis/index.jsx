@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+
 class Statis extends PureComponent{
   render() {
     return (

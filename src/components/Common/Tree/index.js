@@ -17,31 +17,31 @@ const treeData = [{
         key: "0000",
         children: [{
           title: "社区大数据组",
-          key:"00000"
+          key:"00000",
         },{
           title: "APP组",
-          key:"00001"
+          key:"00001",
         },{
           title: "数仓组",
-          key:"00002"
+          key:"00002",
         },{
           title: "系统组",
-          key:"00003"
+          key:"00003",
         },{
           title: "园区应用组",
-          key:"00004"
+          key:"00004",
         },{
           title: "基础架构组",
-          key:"00005"
+          key:"00005",
         },{
           title: "视综平台组",
-          key:"00006"
-        }]
+          key:"00006",
+        }],
       },{
         title: "测试部",
-        key:"0001"
-      }]
-    }]
+        key:"0001",
+      }],
+    }],
   }],
 }];
 
@@ -52,8 +52,7 @@ class TreeComponent extends Component {
         <Tree
           defaultExpandAll={this.props.defaultExpandAll || false}
           treeData={this.props.treeData || treeData}
-        >
-        </Tree>
+        />
       </div>
     );
   }

@@ -9,7 +9,7 @@ export default {
     collapsed: false,
     notices: [],
     catalog:[],
-    currentApp:'data'
+    currentApp:'data',
   },
 
   effects: {
@@ -20,11 +20,11 @@ export default {
       data=data.data;
       yield put({
         type: 'saveNotices',
-        payload: data
+        payload: data,
       });
       yield put({
         type: 'user/changeNotifyCount',
-        payload: data.length
+        payload: data.length,
       });
     },
 
@@ -32,12 +32,12 @@ export default {
     *clearNotices({ payload }, { put, select }) {
       yield put({
         type: 'saveClearedNotices',
-        payload
+        payload,
       });
       const count = yield select(state => state.global.notices.length);
       yield put({
         type: 'user/changeNotifyCount',
-        payload: count
+        payload: count,
       });
     },
 
@@ -46,52 +46,52 @@ export default {
       yield put(routerRedux.push(payload));
     },
 
-    //获取服务分组信息
+    // 获取服务分组信息
     *getCatalog({ payload }, { call, put }) {
-      let res=yield call(getCatalog, payload);
+      const res=yield call(getCatalog, payload);
       if (! checkResponse(res)){
         return;
       }
       yield put({
         type:'saveCatalog',
-        payload:res.data.data
+        payload:res.data.data,
       })
-    }
+    },
   },
 
   reducers: {
     changeLayoutCollapsed(state, { payload }) {
       return {
         ...state,
-        collapsed: payload
+        collapsed: payload,
       };
     },
 
     changeCurrentApp(state,{payload}){
       return {
         ...state,
-        currentApp: payload.currentApp
+        currentApp: payload.currentApp,
       }
     },
 
     saveNotices(state, { payload }) {
       return {
         ...state,
-        notices: payload
+        notices: payload,
       };
     },
     saveCatalog(state,{payload}){
       return {
         ...state,
-        catalog:payload
+        catalog:payload,
       }
     },
     saveClearedNotices(state, { payload }) {
       return {
         ...state,
-        notices: state.notices.filter(item => item.type !== payload)
+        notices: state.notices.filter(item => item.type !== payload),
       };
-    }
+    },
   },
 
   subscriptions: {
@@ -102,6 +102,6 @@ export default {
           window.ga('send', 'pageview', pathname + search);
         }
       });
-    }
-  }
+    },
+  },
 };

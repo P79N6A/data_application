@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+
 class DataMonitor extends PureComponent{
   render() {
     return (

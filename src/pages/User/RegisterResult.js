@@ -7,8 +7,9 @@ import styles from './RegisterResult.less';
 const actions = (
   <div className={styles.actions}>
     <a href="">
-      <Button size="large"
-          type="primary"
+      <Button
+        size="large"
+        type="primary"
       >
         查看邮箱
       </Button>
@@ -21,18 +22,18 @@ const actions = (
 
 const RegisterResult = ({ location }) => (
   <Result
-      actions={actions}
-      className={styles.registerResult}
-      description="激活邮件已发送到你的邮箱中，邮件有效期为24小时。请及时登录邮箱，点击邮件中的链接激活帐户。"
-      style={{ marginTop: 56 }}
-      title={
+    actions={actions}
+    className={styles.registerResult}
+    description="激活邮件已发送到你的邮箱中，邮件有效期为24小时。请及时登录邮箱，点击邮件中的链接激活帐户。"
+    style={{ marginTop: 56 }}
+    title={
       <div className={styles.title}>
         你的账户：
         {location.state ? location.state.account : 'AntDesign@example.com'}
         注册成功
       </div>
     }
-      type="success"
+    type="success"
   />
 );
 

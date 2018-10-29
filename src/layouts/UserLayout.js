@@ -9,23 +9,23 @@ const links = [
   {
     key: 'help',
     title: '帮助',
-    href: ''
+    href: '',
   },
   {
     key: 'privacy',
     title: '隐私',
-    href: ''
+    href: '',
   },
   {
     key: 'terms',
     title: '条款',
-    href: ''
-  }
+    href: '',
+  },
 ];
 
 const copyright = (
   <Fragment>
-    Copyright <Icon type="copyright"/> 2018 紫光华智智慧社区
+    Copyright <Icon type="copyright" /> 2018 紫光华智智慧社区
   </Fragment>
 );
 
@@ -50,9 +50,10 @@ class UserLayout extends React.PureComponent {
           <div className={styles.top}>
             <div className={styles.header}>
               <Link to="/">
-                <img alt="logo"
-                    className={styles.logo}
-                    src={logo}
+                <img
+                  alt="logo"
+                  className={styles.logo}
+                  src={logo}
                 />
                 <span className={styles.title}>智慧社区</span>
               </Link>
@@ -61,9 +62,10 @@ class UserLayout extends React.PureComponent {
           </div>
           {children}
         </div>
-        <GlobalFooter className={styles.footer}
-            copyright={copyright}
-            links={links}
+        <GlobalFooter
+          className={styles.footer}
+          copyright={copyright}
+          links={links}
         />
       </div>
     );

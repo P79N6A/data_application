@@ -9,13 +9,13 @@ export default class TopNavHeader extends PureComponent {
     super(props);
 
     this.state = {
-      maxWidth: (props.contentWidth === 'Fixed' ? 1200 : window.innerWidth) - 330 - 165 - 4 - 36
+      maxWidth: (props.contentWidth === 'Fixed' ? 1200 : window.innerWidth) - 330 - 165 - 4 - 36,
     };
   }
 
   static getDerivedStateFromProps(props) {
     return {
-      maxWidth: (props.contentWidth === 'Fixed' ? 1200 : window.innerWidth) - 330 - 165 - 4 - 36
+      maxWidth: (props.contentWidth === 'Fixed' ? 1200 : window.innerWidth) - 330 - 165 - 4 - 36,
     };
   }
 
@@ -25,30 +25,33 @@ export default class TopNavHeader extends PureComponent {
     return (
       <div className={`${styles.head} ${theme === 'light' ? styles.light : ''}`}>
         <div
-            className={`${styles.main} ${contentWidth === 'Fixed' ? styles.wide : ''}`}
-            ref={ref => {
+          className={`${styles.main} ${contentWidth === 'Fixed' ? styles.wide : ''}`}
+          ref={ref => {
             this.maim = ref;
           }}
         >
           <div className={styles.left}>
-            <div className={styles.logo}
-                id="logo"
-                key="logo"
+            <div
+              className={styles.logo}
+              id="logo"
+              key="logo"
             >
               <Link to="/">
-                <img alt="logo"
-                    src={logo}
+                <img
+                  alt="logo"
+                  src={logo}
                 />
                 <h1>紫光华智top</h1>
               </Link>
             </div>
             <div
-                style={{
-                maxWidth
+              style={{
+                maxWidth,
               }}
             >
-              <BaseMenu {...this.props}
-                  style={{ border: 'none', height: 64 }}
+              <BaseMenu
+                {...this.props}
+                style={{ border: 'none', height: 64 }}
               />
             </div>
           </div>

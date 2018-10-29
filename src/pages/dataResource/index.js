@@ -20,14 +20,16 @@ class DataCollect extends Component {
           <HzMenu {...this.props} />
           <Switch>
             {getRoutes(match.path, routerData).map(item => (
-              <Route component={item.component}
-                  key={item.key}
-                  path={item.path}
+              <Route
+                component={item.component}
+                key={item.key}
+                path={item.path}
               />
             ))}
-            <Redirect exact
-                from="/collect"
-                to="/collect/list"
+            <Redirect
+              exact
+              from="/collect"
+              to="/collect/list"
             />
           </Switch>
         </Content>

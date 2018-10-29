@@ -6,24 +6,25 @@ import  'echarts/lib/chart/pie';
 // 引入提示框和标题组件
 import 'echarts/lib/component/tooltip';
 import 'echarts/lib/component/title';
+
 class Pie extends PureComponent{
   componentDidMount() {
     // 基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(document.getElementById('bar-bar'));
+    const myChart = echarts.init(document.getElementById('bar-bar'));
     // 绘制图表
     myChart.setOption({
       title : {
           text: '采集来源',
-          x:'center'
+          x:'center',
       },
       tooltip : {
           trigger: 'item',
-          formatter: '{a} <br/>{b} : {c} ({d}%)'
+          formatter: '{a} <br/>{b} : {c} ({d}%)',
       },
       legend: {
           orient: 'vertical',
           left: 'left',
-          data: ['公安','学校','医院','园区','社区']
+          data: ['公安','学校','医院','园区','社区'],
       },
       series : [
           {
@@ -36,22 +37,23 @@ class Pie extends PureComponent{
                   {value:310, name:'学校'},
                   {value:234, name:'医院'},
                   {value:135, name:'园区'},
-                  {value:1548, name:'社区'}
+                  {value:1548, name:'社区'},
               ],
               itemStyle: {
                   emphasis: {
                       shadowBlur: 10,
                       shadowOffsetX: 0,
-                      shadowColor: 'rgba(0, 0, 0, 0.5)'
-                  }
-              }
-          }
-      ]
+                      shadowColor: 'rgba(0, 0, 0, 0.5)',
+                  },
+              },
+          },
+      ],
   });
   }
+
     render() {
       return(
-        <div id="bar-bar" style={{width: '100%', height: '100%'}}></div>
+        <div id="bar-bar" style={{width: '100%', height: '100%'}} />
       )
     }
 }

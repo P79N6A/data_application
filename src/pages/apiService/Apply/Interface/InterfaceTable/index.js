@@ -13,26 +13,29 @@ class InterfaceTable extends Component {
         {
           title: '接口名称',
           dataIndex: 'interfaceName',
-          key: 'interfaceName'
+          key: 'interfaceName',
         }, {
           title: '描述',
           dataIndex: 'interfaceDesc',
-          key: 'interfaceDesc'
+          key: 'interfaceDesc',
         }, {
           title: '服务名称',
           dataIndex: 'serviceName',
-          key: 'serviceName'
+          key: 'serviceName',
         }, {
           title: '状态',
           dataIndex: 'status',
           key: 'status',
           render: (text) => {
-            return (<span>
-              <Badge status={text === '0' ? 'success' : 'default'}
+            return (
+              <span>
+                <Badge
+                  status={text === '0' ? 'success' : 'default'}
                   text={STATUS[text]}
-              />
-            </span>)
-          }
+                />
+              </span>
+)
+          },
         }, {
           title: '操作',
           key: 'action',
@@ -43,46 +46,48 @@ class InterfaceTable extends Component {
               ) : (
                 <span><a onClick={() => {message.success('点赞成功')}}>点赞</a></span>
               )
-          }
+          },
         }],
       rowSelection: {
         onChange: (selectedRowKeys, selectedRows) => {
           this.setState({
-            selectedRows: selectedRows,
-            selectedRowKeys: selectedRowKeys
+            selectedRows,
+            selectedRowKeys,
           })
           console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
         },
         getCheckboxProps: record => ({
-          disabled: record.status === '1'   // 已使用就不能够再次勾选
-        })
+          disabled: record.status === '1',   // 已使用就不能够再次勾选
+        }),
       },
       pagination: {
         total: 0,
         defaultCurrent: 1,
         pageSize: 10,
-        showQuickJumper: true
+        showQuickJumper: true,
       },
       selectedRows: [],
       selectedRowKeys: [],
       modal:{
         modalTitle:'接口详情',
         modalVisible:false,
-        modalContent:{}
-      }
+        modalContent:{},
+      },
     }
   }
+
   handleTableChange = (pagination) => {
-    let pageParam = {
+    const pageParam = {
       pageParam: {
         pageIndex: pagination.current,
         pageSize: pagination.pageSize,
         orderFiled: 'last_update',
-        orderRule: 'desc'
-      }
+        orderRule: 'desc',
+      },
     }
     this.props.fetchInterface(pageParam)
   }
+
   sumbit = () => {
     console.log(this.state.selectedRows)
     const interfaceIds = (this.state.selectedRows.map(item => item.interfaceId)).join(',')
@@ -91,66 +96,72 @@ class InterfaceTable extends Component {
       payload: {
         applyDesc: '接口使用申请',
         applyType: '1',
-        interfaceIds
+        interfaceIds,
       },
       callback: (res) => {
         if (res.code === OK_CODE) {
           // 操作成功
           this.setState({
             selectedRows: [],
-            selectedRowKeys: []
+            selectedRowKeys: [],
           })
           // 重新获取数据
-          let pageParam = {
+          const pageParam = {
             pageParam: {
               pageIndex: this.state.pagination.defaultCurrent,
               pageSize: this.state.pagination.pageSize,
               orderFiled: 'last_update',
-              orderRule: 'desc'
-            }
+              orderRule: 'desc',
+            },
           }
           this.props.fetchInterface(pageParam)
         }
-      }
+      },
     })
   }
+
   // 点击展开详情
   details = (record) => {
     this.setState({
       modal:{
         modalVisible:true,
-        children: <InterfaceList interfaceInfos={[record]}/>
-      }
+        children: <InterfaceList interfaceInfos={[record]} />,
+      },
     })
   }
+
   // 点击隐藏详情
   handleCancel = () => {
     this.setState({
       modal:{
-        modalVisible:false
-      }
+        modalVisible:false,
+      },
     })
   }
+
   render() {
     const { interfaces } = this.props
-    let {modal={}}=this.state;
+    const {modal={}}=this.state;
     return (
       <div>
         <BaseModal
-            {...modal}
-            handleModalCancel={this.handleCancel}
-            handleModalOk={this.handleModalOk}
+          {...modal}
+          handleModalCancel={this.handleCancel}
+          handleModalOk={this.handleModalOk}
         />
-        <Button onClick={this.sumbit}
-            style={{ display: this.state.selectedRows.length > 0 ? 'block' : 'none' }}
-            type="primary"
-        >提交审批</Button>
-        <Table columns={this.state.columns}
-            dataSource={interfaces.data}
-            onChange={this.handleTableChange}
-            pagination={{ ...this.state.pagination, ...interfaces.pageParam }}
-            rowKey={(record => record.interfaceId)}
-            rowSelection={{...this.state.rowSelection, selectedRowKeys:this.state.selectedRowKeys}}
+        <Button
+          onClick={this.sumbit}
+          style={{ display: this.state.selectedRows.length > 0 ? 'block' : 'none' }}
+          type="primary"
+        >提交审批
+        </Button>
+        <Table
+          columns={this.state.columns}
+          dataSource={interfaces.data}
+          onChange={this.handleTableChange}
+          pagination={{ ...this.state.pagination, ...interfaces.pageParam }}
+          rowKey={(record => record.interfaceId)}
+          rowSelection={{...this.state.rowSelection, selectedRowKeys:this.state.selectedRowKeys}}
         />
       </div>
     )

@@ -27,8 +27,8 @@ class RightPanel extends Component {
 
   // 右侧面板切换
   toggleCollapse(){
-    let {isCollapse}=this.state;
-    let style=this.contentRef.current.style;
+    const {isCollapse}=this.state;
+    const style=this.contentRef.current.style;
     if (isCollapse) {
       style.right='0'
       this.setState({isCollapse:!isCollapse});
@@ -43,39 +43,48 @@ class RightPanel extends Component {
     const {isCollapse}=this.state;
 
     return (
-      <div className={styles['ant-collapse-content']}
-          ref={this.contentRef}
+      <div
+        className={styles['ant-collapse-content']}
+        ref={this.contentRef}
       >
-        <span className={styles['collapse-btn']}
-            onClick={this.toggleCollapse}
+        <span
+          className={styles['collapse-btn']}
+          onClick={this.toggleCollapse}
         >
-          <span style={{transform:'scale(1,3)'}}
-              className={'span'}
-          >{isCollapse?'＜':'＞'}</span>
+          <span
+            style={{transform:'scale(1,3)'}}
+            className="span"
+          >{isCollapse?'＜':'＞'}
+          </span>
         </span>
-        <Collapse onChange={callback}
-            style={{margin:'0 0 0 30px'}}
-            defaultActiveKey={'1'}
+        <Collapse
+          onChange={callback}
+          style={{margin:'0 0 0 30px'}}
+          defaultActiveKey="1"
         >
-          <Panel header="数据总览"
-              key="1"
-              className={styles['data-all']}
+          <Panel
+            header="数据总览"
+            key="1"
+            className={styles['data-all']}
           >
             <WeekChart />
             <WeekLine />
           </Panel>
-          <Panel header="实有人口"
-              key="2"
+          <Panel
+            header="实有人口"
+            key="2"
           >
             <People />
           </Panel>
-          <Panel header="实有房屋"
-              key="3"
+          <Panel
+            header="实有房屋"
+            key="3"
           >
             <p>待开发</p>
           </Panel>
-          <Panel header="实有单位"
-              key="4"
+          <Panel
+            header="实有单位"
+            key="4"
           >
             <p>待开发</p>
           </Panel>

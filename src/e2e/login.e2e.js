@@ -13,7 +13,7 @@ describe('Login', () => {
       headless:false,
       slowMo:50,
       // devtools:true,
-      args: ['--no-sandbox']
+      args: ['--no-sandbox'],
     });
     // browser = await puppeteer.launch({ args: ['--no-sandbox'] });
   });
@@ -24,19 +24,19 @@ describe('Login', () => {
     await page.evaluate(() => window.localStorage.setItem('authority', 'guest'));
   });
 
-  /*afterEach(() => {
+  /* afterEach(() => {
     if (!page.close)return;
     return page.close()
-  });*/
+  }); */
 
   it('登录失败测试', async () => {
-    /*const userName= await page.$('#userName', {
+    /* const userName= await page.$('#userName', {
       timeout: 2000
     });
     await userName.click();
-    await page.type('admin', {delay:100});*/
+    await page.type('admin', {delay:100}); */
     await page.waitForSelector('#userName', {
-      timeout: 1000
+      timeout: 1000,
     });
     await page.type('#userName', 'admin55');
     await page.type('#passWord', 'admin55',{delay:10});
@@ -46,7 +46,7 @@ describe('Login', () => {
 
   it('登录成功测试', async () => {
     await page.waitForSelector('#userName', {
-      timeout: 1000
+      timeout: 1000,
     });
     await page.type('#userName', 'admin');
     await page.type('#passWord', 'admin');

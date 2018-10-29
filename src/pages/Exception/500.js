@@ -5,10 +5,10 @@ import Exception from '@/components/Exception';
 
 const Exception500 = () => (
   <Exception
-      backText={formatMessage({ id: 'app.exception.back' })}
-      desc={formatMessage({ id: 'app.exception.description.500' })}
-      linkElement={Link}
-      type="500"
+    backText={formatMessage({ id: 'app.exception.back' })}
+    desc={formatMessage({ id: 'app.exception.description.500' })}
+    linkElement={Link}
+    type="500"
   />
 );
 

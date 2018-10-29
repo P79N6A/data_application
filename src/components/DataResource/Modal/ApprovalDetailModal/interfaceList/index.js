@@ -6,32 +6,33 @@ const columns = [
   {
     title:'序号',
     dataIndex:'serial',
-    key:'serial'
+    key:'serial',
   },
   {
   title: '接口名',
   dataIndex: 'interfaceName',
-  key: 'interfaceName'
+  key: 'interfaceName',
 }, {
   title: '接口描述',
   dataIndex: 'interfaceDesc',
-  key: 'interfaceDesc'
+  key: 'interfaceDesc',
 }, {
   title: '请求类型',
   dataIndex: 'serviceMethodType',
-  key: 'serviceMethodType'
+  key: 'serviceMethodType',
 }]
 const InterfaceList = (props) => {
   let {interfaceInfos=[]} = props;
   interfaceInfos=addColumnKey(interfaceInfos);
   return(
-      <Table bordered
-          className="interfaceInfos"
-          columns={columns}
-          dataSource={interfaceInfos}
-          pagination={false}
-          size="small"
-      />
+    <Table
+      bordered
+      className="interfaceInfos"
+      columns={columns}
+      dataSource={interfaceInfos}
+      pagination={false}
+      size="small"
+    />
   )
 }
 export default InterfaceList

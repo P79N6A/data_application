@@ -1,6 +1,7 @@
 
 const puppeteer = require('puppeteer');
-let waitLoad={ waitUntil: 'domcontentloaded' }
+
+const waitLoad={ waitUntil: 'domcontentloaded' }
 function timeout(delay) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -13,8 +14,8 @@ function timeout(delay) {
   })
 }
 
-let mainFun=async () => {
-  let browser = await puppeteer.launch({
+const mainFun=async () => {
+  const browser = await puppeteer.launch({
     executablePath:'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
     headless:false,
     slowMo:50,
@@ -29,7 +30,7 @@ let mainFun=async () => {
   await page.goto('http://localhost:8000/user/login', { waitUntil: 'domcontentloaded' });
   await page.evaluate(() => window.localStorage.setItem('authority', 'guest'));
   await page.waitForSelector('#userName', {
-    timeout: 1000
+    timeout: 1000,
   });
   await page.type('#userName', 'admin');
   await page.type('#passWord', 'admin');
@@ -41,7 +42,7 @@ let mainFun=async () => {
   const tr= await page.evaluate(() => {
     console.log('in ==== page')
 
-    let tb=document.getElementsByTagName('tbody')[0].childNodes;
+    const tb=document.getElementsByTagName('tbody')[0].childNodes;
     console.log(tb);
     console.log(Array.from(tb));
     return 'out====page'

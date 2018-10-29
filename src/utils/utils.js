@@ -45,7 +45,7 @@ export function getTimeDistance(type) {
 
     return [
       moment(`${year}-${fixedZero(month + 1)}-01 00:00:00`),
-      moment(moment(`${nextYear}-${fixedZero(nextMonth + 1)}-01 00:00:00`).valueOf() - 1000)
+      moment(moment(`${nextYear}-${fixedZero(nextMonth + 1)}-01 00:00:00`).valueOf() - 1000),
     ];
   }
 
@@ -126,7 +126,7 @@ export function getRoutes(path, routerData) {
       exact,
       ...routerData[`${path}${item}`],
       key: `${path}${item}`,
-      path: `${path}${item}`
+      path: `${path}${item}`,
     };
   });
   return renderRoutes;
@@ -162,13 +162,13 @@ export function formatWan(val) {
       <span>
         {result}
         <span
-            styles={{
+          styles={{
             position: 'relative',
             top: -2,
             fontSize: 14,
             fontStyle: 'normal',
             lineHeight: 20,
-            marginLeft: 2
+            marginLeft: 2,
           }}
         >
           万
@@ -239,7 +239,7 @@ export function dateFormat(timestamp, formats) {
         d: day,
         H: hour,
         i: minite,
-        s: second
+        s: second,
       }[matches]),
   );
 }
@@ -257,7 +257,7 @@ export function getCookie(name) {
 // 表格数据添加序号字段
 export function addColumnKey(columns) {
   return columns.map((v,i)=>{
-    v['serial']=++i;
+    v.serial=++i;
     return v;
   });
 }
@@ -266,11 +266,11 @@ export function store(option='',param) {
   if (!window.localStorage){
     return console.log('不支持localStorage')
   }
-  let t=typeof param;
+  const t=typeof param;
   switch (option) {
     case 'save':
       if (t==='object'){
-        for (let k in param) {
+        for (const k in param) {
           window.localStorage.setItem(k,JSON.stringify(param[k]))
         }
       }
@@ -290,16 +290,16 @@ export function setRes(res) {
     order_rule: pageParam.orderRule,
     page_index: pageParam.pageIndex,
     page_size: pageParam.pageSize,
-    total: pageParam.total
+    total: pageParam.total,
   }
   return {data, page_param}
 }
 // 处理接口数据
 export function modelResponse(response) {
-  let sendMsg =  {
+  const sendMsg =  {
       isSuccess: false,
       msg: '',
-      res: {}
+      res: {},
   };
   if (response && (response.code !== OK_CODE)) {
       sendMsg.isSuccess = false;

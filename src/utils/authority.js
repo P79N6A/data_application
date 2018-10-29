@@ -1,13 +1,13 @@
-//从本地存储获取用户信息
-let defaultAuth=['wan', 'community'];
+// 从本地存储获取用户信息
+const defaultAuth=['wan', 'community'];
 
 export function getAuthority(str) {
   // return localStorage.getItem('antd-pro-authority') || ['admin', 'user'];
   const authorityString =
     typeof str === 'undefined' ? localStorage.getItem('authority') : str;
-  let path=localStorage.getItem('path');
+  const path=localStorage.getItem('path');
   // 默认目录路由是data
-  let pathAuthority=typeof path === 'undefined' ? 'data': path;
+  const pathAuthority=typeof path === 'undefined' ? 'data': path;
   // authorityString could be admin, "admin", ["admin"]
   let authority;
   try {

@@ -1,7 +1,7 @@
 import React, { PureComponent, Fragment } from 'react';
 import { Table, Alert } from 'antd';
-import styles from './index.less';
 import PropTypes from 'prop-types';
+import styles from './index.less';
 
 function initTotalList(columns) {
   const totalList = [];
@@ -21,7 +21,7 @@ class StandardTable extends PureComponent {
 
     this.state = {
       selectedRowKeys: [],
-      needTotalList
+      needTotalList,
     };
   }
 
@@ -31,7 +31,7 @@ class StandardTable extends PureComponent {
       const needTotalList = initTotalList(nextProps.columns);
       return {
         selectedRowKeys: [],
-        needTotalList
+        needTotalList,
       };
     }
     return null;
@@ -41,7 +41,7 @@ class StandardTable extends PureComponent {
     let { needTotalList } = this.state;
     needTotalList = needTotalList.map(item => ({
       ...item,
-      total: selectedRows.reduce((sum, val) => sum + parseFloat(val[item.dataIndex], 10), 0)
+      total: selectedRows.reduce((sum, val) => sum + parseFloat(val[item.dataIndex], 10), 0),
     }));
     const { onSelectRow } = this.props;
     if (onSelectRow) {
@@ -67,22 +67,22 @@ class StandardTable extends PureComponent {
 
   render() {
     const { selectedRowKeys, needTotalList } = this.state;
-    let {
+    const {
       data: { data = [], pageParam = {} },
       loading,
       columns,
       rowKey,
       showSizeChanger,
       size='middle',
-      paginationSet={}
+      paginationSet={},
     } = this.props;
     // 分页参数
     const paginationProps = {
-      showSizeChanger: showSizeChanger,
+      showSizeChanger,
       showQuickJumper: true,
       hideOnSinglePage:true,
       ...pageParam,
-      ...paginationSet
+      ...paginationSet,
     };
 
 
@@ -91,20 +91,21 @@ class StandardTable extends PureComponent {
       onChange: this.handleRowSelectChange,
       // 选择框默认属性配置
       getCheckboxProps: record => ({
-        disabled: record.disabled
-      })
+        disabled: record.disabled,
+      }),
     };
 
     return (
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-              message={
+            message={
               <Fragment>
                 已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项&nbsp;&nbsp;
                 {needTotalList.map(item => (
-                  <span key={item.dataIndex}
-                      style={{ marginLeft: 8 }}
+                  <span
+                    key={item.dataIndex}
+                    style={{ marginLeft: 8 }}
                   >
                     {item.title}
                     总计&nbsp;
@@ -113,27 +114,28 @@ class StandardTable extends PureComponent {
                     </span>
                   </span>
                 ))}
-                <a onClick={this.cleanSelectedKeys}
-                    style={{ marginLeft: 24 }}
+                <a
+                  onClick={this.cleanSelectedKeys}
+                  style={{ marginLeft: 24 }}
                 >
                   清空
                 </a>
               </Fragment>
             }
-              showIcon
-              type="info"
+            showIcon
+            type="info"
           />
         </div>
         <Table
-            columns={columns}
-            dataSource={data}
+          columns={columns}
+          dataSource={data}
           // loading={loading}
           //   expandedRowRender={this.showTableInfo}
-            onChange={this.handleTableChange}
-            pagination={paginationProps}
-            rowKey={rowKey || 'key'}
-            rowSelection={rowSelection}
-            size={size}
+          onChange={this.handleTableChange}
+          pagination={paginationProps}
+          rowKey={rowKey || 'key'}
+          rowSelection={rowSelection}
+          size={size}
         />
       </div>
     );
@@ -145,7 +147,7 @@ StandardTable.propTypes = {
   list: PropTypes.array,
   pagination: PropTypes.object,
   columns: PropTypes.array,
-  loading: PropTypes.object
+  loading: PropTypes.object,
 };
 
 export default StandardTable;

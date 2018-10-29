@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+
 class Clean extends PureComponent{
   render() {
     return (

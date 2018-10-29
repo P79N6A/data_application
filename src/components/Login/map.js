@@ -6,66 +6,70 @@ export default {
   UserName: {
     props: {
       size: 'large',
-      prefix: <Icon className={styles.prefixIcon}
-          type="user"
-              />,
-      placeholder: 'admin'
+      prefix: <Icon
+        className={styles.prefixIcon}
+        type="user"
+      />,
+      placeholder: 'admin',
     },
     rules: [
       {
         required: true,
-        message: 'Please enter username!'
-      }
-    ]
+        message: 'Please enter username!',
+      },
+    ],
   },
   PassWord: {
     props: {
       size: 'large',
-      prefix: <Icon className={styles.prefixIcon}
-          type="lock"
-              />,
+      prefix: <Icon
+        className={styles.prefixIcon}
+        type="lock"
+      />,
       type: 'passWord',
-      placeholder: '888888'
+      placeholder: '888888',
     },
     rules: [
       {
         required: true,
-        message: 'Please enter password!'
-      }
-    ]
+        message: 'Please enter password!',
+      },
+    ],
   },
   Mobile: {
     props: {
       size: 'large',
-      prefix: <Icon className={styles.prefixIcon}
-          type="mobile"
-              />,
-      placeholder: 'mobile number'
+      prefix: <Icon
+        className={styles.prefixIcon}
+        type="mobile"
+      />,
+      placeholder: 'mobile number',
     },
     rules: [
       {
         required: true,
-        message: 'Please enter mobile number!'
+        message: 'Please enter mobile number!',
       },
       {
         pattern: /^1\d{10}$/,
-        message: 'Wrong mobile number format!'
-      }
-    ]
+        message: 'Wrong mobile number format!',
+      },
+    ],
   },
   Captcha: {
     props: {
       size: 'large',
-      prefix: <Icon className={styles.prefixIcon}
-          type="mail"
-              />,
-      placeholder: 'captcha'
+      prefix: <Icon
+        className={styles.prefixIcon}
+        type="mail"
+      />,
+      placeholder: 'captcha',
     },
     rules: [
       {
         required: true,
-        message: 'Please enter Captcha!'
-      }
-    ]
-  }
+        message: 'Please enter Captcha!',
+      },
+    ],
+  },
 };

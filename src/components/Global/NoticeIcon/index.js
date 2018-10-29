@@ -17,9 +17,9 @@ export default class NoticeIcon extends PureComponent {
     loading: false,
     locale: {
       emptyText: '暂无数据',
-      clear: '清空'
+      clear: '清空',
     },
-    emptyImage: 'https://gw.alipayobjects.com/zos/rmsportal/wAhyIChODzsoKIOBHcBk.svg'
+    emptyImage: 'https://gw.alipayobjects.com/zos/rmsportal/wAhyIChODzsoKIOBHcBk.svg',
   };
 
   onItemClick = (item, tabProps) => {
@@ -43,26 +43,29 @@ export default class NoticeIcon extends PureComponent {
           ? `${child.props.title} (${child.props.list.length})`
           : child.props.title;
       return (
-        <TabPane key={child.props.title}
-            tab={title}
+        <TabPane
+          key={child.props.title}
+          tab={title}
         >
           <List
-              {...child.props}
-              data={child.props.list}
-              locale={locale}
-              onClear={() => onClear(child.props.title)}
-              onClick={item => this.onItemClick(item, child.props)}
-              title={child.props.title}
+            {...child.props}
+            data={child.props.list}
+            locale={locale}
+            onClear={() => onClear(child.props.title)}
+            onClick={item => this.onItemClick(item, child.props)}
+            title={child.props.title}
           />
         </TabPane>
       );
     });
     return (
-      <Spin delay={0}
-          spinning={loading}
+      <Spin
+        delay={0}
+        spinning={loading}
       >
-        <Tabs className={styles.tabs}
-            onChange={this.onTabChange}
+        <Tabs
+          className={styles.tabs}
+          onChange={this.onTabChange}
         >
           {panes}
         </Tabs>
@@ -74,14 +77,18 @@ export default class NoticeIcon extends PureComponent {
     const { className, count, popupAlign, popupVisible, onPopupVisibleChange, bell } = this.props;
     const noticeButtonClass = classNames(className, styles.noticeButton);
     const notificationBox = this.getNotificationBox();
-    const NoticeBellIcon = bell || <Icon className={styles.icon}
-        type="bell"
-                                   />;
+    const NoticeBellIcon = bell || (
+    <Icon
+      className={styles.icon}
+      type="bell"
+    />
+);
     const trigger = (
       <span className={noticeButtonClass}>
-        <Badge className={styles.badge}
-            count={count}
-            style={{ boxShadow: 'none' }}
+        <Badge
+          className={styles.badge}
+          count={count}
+          style={{ boxShadow: 'none' }}
         >
           {NoticeBellIcon}
         </Badge>
@@ -96,14 +103,14 @@ export default class NoticeIcon extends PureComponent {
     }
     return (
       <Popover
-          arrowPointAtCenter
-          content={notificationBox}
-          onVisibleChange={onPopupVisibleChange}
-          placement="bottomRight"
-          popupAlign={popupAlign}
-          popupClassName={styles.popover}
+        arrowPointAtCenter
+        content={notificationBox}
+        onVisibleChange={onPopupVisibleChange}
+        placement="bottomRight"
+        popupAlign={popupAlign}
+        popupClassName={styles.popover}
           // trigger="click"
-          {...popoverProps}
+        {...popoverProps}
       >
         {trigger}
       </Popover>

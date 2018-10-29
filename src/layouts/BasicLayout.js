@@ -13,10 +13,10 @@ import { formatMessage } from 'umi/locale';
 import SiderMenu from '@/components/Global/SiderMenu';
 import Authorized from '@/utils/Authorized';
 import SettingDrawer from '@/components/Global/SettingDrawer';
+import Redirect from 'umi/redirect';
 import logo from '../assets/logo.png';
 import Footer from './Footer';
 import Header from './Header';
-import Redirect from 'umi/redirect';
 import Context from './MenuContext';
 import Exception403 from '../pages/Exception/403';
 
@@ -24,7 +24,7 @@ const { Content } = Layout;
 
 // 将路由转换为侧边菜单
 function formatter(data, parentPath = '', parentAuthority, parentName) {
-  let res = data.map(item => {
+  const res = data.map(item => {
     let locale = 'menu';
     if (parentName && item.name) {
       locale = `${parentName}.${item.name}`;
@@ -36,7 +36,7 @@ function formatter(data, parentPath = '', parentAuthority, parentName) {
     const result = {
       ...item,
       locale,
-      authority: item.authority || parentAuthority
+      authority: item.authority || parentAuthority,
     };
     if (item.routes) {
       const children = formatter(item.routes, `${parentPath}${item.path}/`, item.authority, locale);
@@ -54,27 +54,27 @@ function formatter(data, parentPath = '', parentAuthority, parentName) {
 
 const query = {
   'screen-xs': {
-    maxWidth: 575
+    maxWidth: 575,
   },
   'screen-sm': {
     minWidth: 576,
-    maxWidth: 767
+    maxWidth: 767,
   },
   'screen-md': {
     minWidth: 768,
-    maxWidth: 991
+    maxWidth: 991,
   },
   'screen-lg': {
     minWidth: 992,
-    maxWidth: 1199
+    maxWidth: 1199,
   },
   'screen-xl': {
     minWidth: 1200,
-    maxWidth: 1599
+    maxWidth: 1599,
   },
   'screen-xxl': {
-    minWidth: 1600
-  }
+    minWidth: 1600,
+  },
 };
 
 class BasicLayout extends React.PureComponent {
@@ -90,32 +90,32 @@ class BasicLayout extends React.PureComponent {
     rendering: true,
     isMobile: false,
     err: false,
-    errState: {}
+    errState: {},
   };
 
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
-      type: 'user/fetchCurrent'
+      type: 'user/fetchCurrent',
     });
     dispatch({
-      type: 'setting/getSetting'
+      type: 'setting/getSetting',
     });
 
     dispatch({
-      type:'global/getCatalog'
+      type:'global/getCatalog',
     });
     // 下次渲染时改变，提高性能
     this.renderRef = requestAnimationFrame(() => {
       this.setState({
-        rendering: false
+        rendering: false,
       });
     });
     this.enquireHandler = enquireScreen(mobile => {
       const { isMobile } = this.state;
       if (isMobile !== mobile) {
         this.setState({
-          isMobile: mobile
+          isMobile: mobile,
         });
       }
     });
@@ -132,9 +132,10 @@ class BasicLayout extends React.PureComponent {
       this.handleMenuCollapse(false);
     }
   }
+
   componentDidCatch(err, info) {
     // console.log('+++++++++++++++++++++++++++++++++++++++++++++');
-    this.setState({ err: true, errState: { err: err, info: info } });
+    this.setState({ err: true, errState: { err, info } });
   }
 
   componentWillUnmount() {
@@ -146,13 +147,13 @@ class BasicLayout extends React.PureComponent {
     const { location } = this.props;
     return {
       location,
-      breadcrumbNameMap: this.breadcrumbNameMap
+      breadcrumbNameMap: this.breadcrumbNameMap,
     };
   }
 
   getMenuData() {
     const {
-      route: { routes }
+      route: { routes },
     } = this.props;
 
     return formatter(routes);
@@ -192,7 +193,7 @@ class BasicLayout extends React.PureComponent {
     }
     const message = formatMessage({
       id: currRouterData.locale || currRouterData.name,
-      defaultMessage: currRouterData.name
+      defaultMessage: currRouterData.name,
     });
     return `${message} - 紫光华智`;
   };
@@ -202,7 +203,7 @@ class BasicLayout extends React.PureComponent {
     const { fixSiderbar, collapsed, layout } = this.props;
     if (fixSiderbar && layout !== 'topmenu' && !isMobile) {
       return {
-        paddingLeft: collapsed ? '80px' : '256px'
+        paddingLeft: collapsed ? '80px' : '256px',
       };
     }
     return null;
@@ -212,7 +213,7 @@ class BasicLayout extends React.PureComponent {
     const { fixedHeader } = this.props;
     return {
       margin: '10px 10px 0',
-      paddingTop: fixedHeader ? 54 : 0
+      paddingTop: fixedHeader ? 54 : 0,
     };
   };
 
@@ -221,7 +222,7 @@ class BasicLayout extends React.PureComponent {
     const { dispatch } = this.props;
     dispatch({
       type: 'global/changeLayoutCollapsed',
-      payload: collapsed
+      payload: collapsed,
     });
   };
 
@@ -238,7 +239,7 @@ class BasicLayout extends React.PureComponent {
       navTheme,
       layout: PropsLayout,
       children,
-      location: { pathname }
+      location: { pathname },
     } = this.props;
     const { isMobile } = this.state;
     const isTop = PropsLayout === 'topmenu';
@@ -247,44 +248,45 @@ class BasicLayout extends React.PureComponent {
     const layout = (
       <Layout>
         <Header
-            handleMenuCollapse={this.handleMenuCollapse}
-            isMobile={isMobile}
-            logo={logo}
-            menuData={menuData}
-            {...this.props}
-            style={{width:'100%'}}
+          handleMenuCollapse={this.handleMenuCollapse}
+          isMobile={isMobile}
+          logo={logo}
+          menuData={menuData}
+          {...this.props}
+          style={{width:'100%'}}
         />
         <Layout
-            style={{
+          style={{
             ...this.getLayoutStyle(),
-            minHeight: '100vh'
+            minHeight: '100vh',
           }}
         >
           {isTop && !isMobile ? null : (
             <SiderMenu
-                Authorized={Authorized}
-                isMobile={isMobile}
-                logo={logo}
-                menuData={menuData}
-                onCollapse={this.handleMenuCollapse}
-                theme={navTheme}
-                {...this.props}
+              Authorized={Authorized}
+              isMobile={isMobile}
+              logo={logo}
+              menuData={menuData}
+              onCollapse={this.handleMenuCollapse}
+              theme={navTheme}
+              {...this.props}
             />
           )}
           <Content style={this.getContentStyle()}>
-            <Authorized authority={routerConfig.authority}
-                noMatch={<Exception403/>}
+            <Authorized
+              authority={routerConfig.authority}
+              noMatch={<Exception403 />}
             >
               {children}
             </Authorized>
           </Content>
-          {/*<Footer/>*/}
+          {/* <Footer/> */}
         </Layout>
       </Layout>
     );
 
     if (this.state.err) {
-      return <Redirect to={'/exception/404'}/>;
+      return <Redirect to="/exception/404" />;
     }
     return (
       <React.Fragment>
@@ -306,5 +308,5 @@ class BasicLayout extends React.PureComponent {
 export default connect(({ global, setting }) => ({
   collapsed: global.collapsed,
   layout: setting.layout,
-  ...setting
+  ...setting,
 }))(BasicLayout);

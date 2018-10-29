@@ -6,7 +6,7 @@ export async function query() {
 }
 
 export async function login(params) {
-  let res = request(`/register/user/login?userName=${params.userName}&passWord=${params.passWord}`);
+  const res = request(`/register/user/login?userName=${params.userName}&passWord=${params.passWord}`);
   return res;
 }
 

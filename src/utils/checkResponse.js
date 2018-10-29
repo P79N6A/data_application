@@ -1,14 +1,14 @@
 import { message } from 'antd';
 
 function checkResponse(response, callback, sucTips = '操作成功') {
-  let msg=response.data.message;
-  let code=response.data.code;
+  const msg=response.data.message;
+  const code=response.data.code;
 
-  let sendMsg = {
+  const sendMsg = {
     isSuccess: true,
     msg: '',
     res: {},
-    code:code
+    code,
   };
 
 

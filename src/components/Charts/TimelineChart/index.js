@@ -15,16 +15,16 @@ class TimelineChart extends React.Component {
       padding = [60, 20, 40, 40],
       titleMap = {
         y1: 'y1',
-        y2: 'y2'
+        y2: 'y2',
       },
       borderWidth = 2,
       data = [
         {
           x: 0,
           y1: 0,
-          y2: 0
-        }
-      ]
+          y2: 0,
+        },
+      ],
     } = this.props;
 
     data.sort((a, b) => a.x - b.x);
@@ -40,8 +40,8 @@ class TimelineChart extends React.Component {
     const ds = new DataSet({
       state: {
         start: data[0].x,
-        end: data[data.length - 1].x
-      }
+        end: data[data.length - 1].x,
+      },
     });
 
     const dv = ds.createView();
@@ -51,7 +51,7 @@ class TimelineChart extends React.Component {
         callback: obj => {
           const date = obj.x;
           return date <= ds.state.end && date >= ds.state.start;
-        }
+        },
       })
       .transform({
         type: 'map',
@@ -60,43 +60,43 @@ class TimelineChart extends React.Component {
           newRow[titleMap.y1] = row.y1;
           newRow[titleMap.y2] = row.y2;
           return newRow;
-        }
+        },
       })
       .transform({
         type: 'fold',
         fields: [titleMap.y1, titleMap.y2], // 展开字段集
         key: 'key', // key字段
-        value: 'value' // value字段
+        value: 'value', // value字段
       });
 
     const timeScale = {
       type: 'time',
       tickInterval: 60 * 60 * 1000,
       mask: 'HH:mm',
-      range: [0, 1]
+      range: [0, 1],
     };
 
     const cols = {
       x: timeScale,
       value: {
         max,
-        min: 0
-      }
+        min: 0,
+      },
     };
 
     const SliderGen = () => (
       <Slider
-          padding={[0, padding[1] + 20, 0, padding[3]]}
-          width="auto"
-          height={26}
-          xAxis="x"
-          yAxis="y1"
-          scales={{ x: timeScale }}
-          data={data}
-          start={ds.state.start}
-          end={ds.state.end}
-          backgroundChart={{ type: 'line' }}
-          onChange={({ startValue, endValue }) => {
+        padding={[0, padding[1] + 20, 0, padding[3]]}
+        width="auto"
+        height={26}
+        xAxis="x"
+        yAxis="y1"
+        scales={{ x: timeScale }}
+        data={data}
+        start={ds.state.start}
+        end={ds.state.end}
+        backgroundChart={{ type: 'line' }}
+        onChange={({ startValue, endValue }) => {
           ds.setState('start', startValue);
           ds.setState('end', endValue);
         }}
@@ -104,26 +104,30 @@ class TimelineChart extends React.Component {
     );
 
     return (
-      <div className={styles.timelineChart}
-          style={{ height: height + 30 }}
+      <div
+        className={styles.timelineChart}
+        style={{ height: height + 30 }}
       >
         <div>
           {title && <h4>{title}</h4>}
-          <Chart data={dv}
-              forceFit
-              height={height}
-              padding={padding}
-              scale={cols}
+          <Chart
+            data={dv}
+            forceFit
+            height={height}
+            padding={padding}
+            scale={cols}
           >
             <Axis name="x" />
             <Tooltip />
-            <Legend name="key"
-                position="top"
+            <Legend
+              name="key"
+              position="top"
             />
-            <Geom color="key"
-                position="x*value"
-                size={borderWidth}
-                type="line"
+            <Geom
+              color="key"
+              position="x*value"
+              size={borderWidth}
+              type="line"
             />
           </Chart>
           <div style={{ marginRight: -20 }}>

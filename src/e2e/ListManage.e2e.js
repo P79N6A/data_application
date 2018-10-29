@@ -1,7 +1,8 @@
 import puppeteer from 'puppeteer';
+
 const delay=[{delay:0},{delay:100},{delay:200}];
 const url='http://localhost:8000/resource/manage';
-let waitLoad={ waitUntil: 'domcontentloaded' }
+const waitLoad={ waitUntil: 'domcontentloaded' }
 
 describe('api列表管理页', () => {
   let browser;
@@ -13,7 +14,7 @@ describe('api列表管理页', () => {
       headless:false,
       slowMo:50,
       // devtools:true,
-      args: ['--no-sandbox']
+      args: ['--no-sandbox'],
     });
     // browser = await puppeteer.launch({ args: ['--no-sandbox'] });
   });
@@ -28,7 +29,7 @@ describe('api列表管理页', () => {
     await page.goto('http://localhost:8000/user/login', { waitUntil: 'domcontentloaded' });
     await page.evaluate(() => window.localStorage.setItem('authority', 'guest'));
     await page.waitForSelector('#userName', {
-      timeout: 1000
+      timeout: 1000,
     });
     await page.type('#userName', 'admin');
     await page.type('#passWord', 'admin');

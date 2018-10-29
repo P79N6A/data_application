@@ -11,39 +11,43 @@ class MonitorApi extends React.Component {
   render() {
     return (
       <div>
-        <Row gutter={10}
-            style={{ height: 600 }}
+        <Row
+          gutter={10}
+          style={{ height: 600 }}
         >
           <Col
-              span={16}
-              style={{ height: '100%' }}
+            span={16}
+            style={{ height: '100%' }}
           >
-            <Card bordered={false}
-                className={styles['antd-card-color']}
-                title="服务访问情况"
+            <Card
+              bordered={false}
+              className={styles['antd-card-color']}
+              title="服务访问情况"
               // style={{ height: '100%' }}
             >
               <LineHZ />
             </Card>
           </Col>
-          <Col span={8}
-              style={{ height: '100%' }}
+          <Col
+            span={8}
+            style={{ height: '100%' }}
           >
-            <Card bordered={false}
-                className={styles['antd-card-color']}
-                style={{ marginBottom: 10, height: 300 }}
-                title="服务类型"
+            <Card
+              bordered={false}
+              className={styles['antd-card-color']}
+              style={{ marginBottom: 10, height: 300 }}
+              title="服务类型"
             >
-              <BarHZ/>
+              <BarHZ />
             </Card>
             <Card
               // bodyStyle={{ textAlign: 'center' }}
               // bordered={false}
-                className={classnames(styles['card-c'])}
-                style={{ height: 290, padding:0 }}
-                title="服务稳定性"
+              className={classnames(styles['card-c'])}
+              style={{ height: 290, padding:0 }}
+              title="服务稳定性"
             >
-              <Gauge/>
+              <Gauge />
 
             </Card>
           </Col>

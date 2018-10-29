@@ -7,32 +7,33 @@ const { Footer } = Layout;
 const FooterView = () => (
   <Footer style={{ padding: 0 }}>
     <GlobalFooter
-        copyright={
+      copyright={
         <Fragment>
-          Copyright <Icon type="copyright"/> 2018 紫光华智智慧社区
+          Copyright <Icon type="copyright" /> 2018 紫光华智智慧社区
         </Fragment>
       }
-        links={[
+      links={[
         {
           key: '首页',
           title: '首页',
           href: '/',
-          blankTarget: true
+          blankTarget: true,
         },
         {
           key: 'github',
-          title: <img alt="logo"
-              src={logo}
-                 />,
+          title: <img
+            alt="logo"
+            src={logo}
+          />,
           href: 'http://www.cqga.gov.cn/',
-          blankTarget: true
+          blankTarget: true,
         },
         {
           key: '紫光华智',
           title: '紫光华智',
           href: 'http://www.unigroup.com.cn/',
-          blankTarget: true
-        }
+          blankTarget: true,
+        },
       ]}
     />
   </Footer>

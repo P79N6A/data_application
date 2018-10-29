@@ -2,33 +2,39 @@ import React, { Component } from 'react';
 import { Tabs } from 'antd'
 import Apply from './Apply'
 import Interface from './Interface'
+
 const TabPane = Tabs.TabPane;
 class Approval extends Component {
   state = {
-    activeKey: '1'
+    activeKey: '1',
   }
+
   callback = (key) => {
     this.setState({
-      activeKey: key
+      activeKey: key,
     })
   }
+
   render() {
     return (
       <div style={{padding: '24px 32px'}}>
-        <Tabs onChange={this.callback}
-            type="card"
+        <Tabs
+          onChange={this.callback}
+          type="card"
         >
-          <TabPane key="1"
-              tab="已提交申请"
+          <TabPane
+            key="1"
+            tab="已提交申请"
           >
-          {this.state.activeKey==='1'?<Apply/>:<div> </div>}
+            {this.state.activeKey==='1'?<Apply />:<div />}
             {/* <Apply></Apply> */}
           </TabPane>
-          <TabPane key="2"
-              tab="申请服务"
+          <TabPane
+            key="2"
+            tab="申请服务"
           >
             {/* <Interface></Interface> */}
-            {this.state.activeKey==='2'?<Interface/>:<div> </div>}
+            {this.state.activeKey==='2'?<Interface />:<div />}
           </TabPane>
         </Tabs>
       </div>

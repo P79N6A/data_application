@@ -1,30 +1,33 @@
 import React, { Component } from 'react';
 import { Form, Row, Col, Button, Select, Input, DatePicker } from 'antd';
 import styles from './index.less';
+
 const Option = Select.Option;
 const FormItem = Form.Item;
 class Search extends Component {
   constructor(props) {
     super(props);
     this.state={
-      values: {}
+      values: {},
     }
     this.handleSearch = this.handleSearch.bind(this);
   }
+
   handleSearch(e) {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         this.setState({
-          values: {...values}
+          values: {...values},
         })
       }
     });
   }
+
   render() {
     const { getFieldDecorator } = this.props.form;
     const config = {
-      rules: [{ type: 'object'}]
+      rules: [{ type: 'object'}],
     }
     return (
       <div>
@@ -82,13 +85,14 @@ class Search extends Component {
           </Row> */}
           <Row>
             <Col span={2}>
-                <Button htmlType="submit"
-                    onClick={this.add}
-                    type="primary"
-                >
+              <Button
+                htmlType="submit"
+                onClick={this.add}
+                type="primary"
+              >
                   新增
-                </Button>
-              </Col>
+              </Button>
+            </Col>
           </Row>
         </Form>
       </div>

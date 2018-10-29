@@ -33,12 +33,12 @@ class EditableRow extends PureComponent {
         const { form, index, rowIndex, ...props } = this.props;
 
         return (
-            <EditableContext.Provider value={form}>
-                <tr
-                    {...props}
-                    className={className(rowIndex % 2 == 1 && styles['editable-row-even'], `editable-row editable-row-${props["data-row-key"]}`)}
-                />
-            </EditableContext.Provider>
+          <EditableContext.Provider value={form}>
+            <tr
+              {...props}
+              className={className(rowIndex % 2 == 1 && styles['editable-row-even'], `editable-row editable-row-${props["data-row-key"]}`)}
+            />
+          </EditableContext.Provider>
         );
     }
 }
@@ -67,8 +67,8 @@ export class EditableCell extends PureComponent {
             size: "small",
             style: {
                 width: inputExtend.width || 180,
-                display: "block"
-            }
+                display: "block",
+            },
         };
 
         let InputView = null;
@@ -77,30 +77,32 @@ export class EditableCell extends PureComponent {
                 InputView = <InputNumber {...commonProps} />;
                 break;
             case "selete":
-                InputView = <Select
+                InputView = (
+                  <Select
                     {...commonProps}
                     dropdownMatchSelectWidth={false}
                     getPopupContainer={() => document.querySelector(`[td-name="${tdName}"]`)}
-                >
+                  >
                     {
                         inputExtend.optionsArr && inputExtend.optionsArr.map((item) => {
                             return (
-                                <Select.Option 
-                                    key={item.value} 
-                                    value={item.value}
-                                >
-                                    {
+                              <Select.Option 
+                                key={item.value} 
+                                value={item.value}
+                              >
+                                {
                                         item.render 
                                         ?
                                         item.render(item)
                                         :
                                         item.value
                                     }
-                                </Select.Option>
+                              </Select.Option>
                             );
                         })
                     }
-                </Select>;
+                  </Select>
+);
                 break;
             default:
                 InputView = <Input {...commonProps} />;
@@ -125,27 +127,27 @@ export class EditableCell extends PureComponent {
         const tdName = `td-${trID}-${dataIndex}`;
 
         return (
-            <EditableContext.Consumer>
-                {
+          <EditableContext.Consumer>
+            {
                     (form) => {
                         const { getFieldDecorator } = form;
                         return (
-                        <td
+                          <td
                             {...(editing ? {
-                                "td-name": tdName
+                                "td-name": tdName,
                             } : {})}
                             style={{...(restProps.className == "ant-table-selection-column" ? {
-                                textAlign: "center"
+                                textAlign: "center",
                             } : {
-                                textAlign: align
+                                textAlign: align,
                             })}}
-                        >
+                          >
                             {
                                 editing 
                                 ? 
                                 (
-                                    <Form.Item style={{ margin: 0, width: "auto" }}>
-                                        {
+                                  <Form.Item style={{ margin: 0, width: "auto" }}>
+                                    {
                                             getFieldDecorator(dataIndex, {
                                                 /**
                                                  * [{
@@ -153,20 +155,20 @@ export class EditableCell extends PureComponent {
                                                  *   message: `${title}不能为空!`,
                                                  * }]
                                                  */
-                                                rules: moreRules ? moreRules : [],
-                                                initialValue: record[dataIndex]
+                                                rules: moreRules || [],
+                                                initialValue: record[dataIndex],
                                             })(this.getInput(tdName))
                                         }
-                                    </Form.Item>
+                                  </Form.Item>
                                 ) 
                                 : 
                                 restProps.children
                             }
-                        </td>
+                          </td>
                         );
                     }
                 }
-            </EditableContext.Consumer>
+          </EditableContext.Consumer>
         );
     }
 }

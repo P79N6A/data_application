@@ -10,10 +10,10 @@ const GlobalFooter = ({ className, links, copyright }) => {
         <div className={styles.links}>
           {links.map(link => (
             <a
-                href={link.href}
-                key={link.key}
-                target={link.blankTarget ? '_blank' : '_self'}
-                title={link.key}
+              href={link.href}
+              key={link.key}
+              target={link.blankTarget ? '_blank' : '_self'}
+              title={link.key}
             >
               {link.title}
             </a>

@@ -14,8 +14,8 @@ export default {
         'pageIndex': 1,
         'pageSize': 10,
         'orderFiled': 'last_update',
-        'orderRule': 'desc'
-      }
+        'orderRule': 'desc',
+      },
     },
 
     defaultParam:{
@@ -27,8 +27,8 @@ export default {
         'interfaceName':null,
         'serviceMethodType': null,
         'beginDate': null,
-        'endDate': null
-      }
+        'endDate': null,
+      },
     },
 
     searchParam:{body:{}},
@@ -38,8 +38,8 @@ export default {
       'pageIndex': 1,
       'pageSize': 10,
       'orderFiled': 'last_update',
-      'orderRule': 'desc'
-    }
+      'orderRule': 'desc',
+    },
   },
 
 
@@ -76,13 +76,13 @@ export default {
           payload: dataResource
         });
       }
-    },*/
+    }, */
 
     * remove({ payload, callback }, { call, put }) {
       const response = yield call(removeRule, payload);
       yield put({
         type: 'save',
-        payload: response
+        payload: response,
       });
       if (callback) callback();
     },
@@ -90,16 +90,16 @@ export default {
     * saveApi({ payload, callback }, { call}) {
       // payload.status = 2;
 
-      payload['paramInfoReqDTOS'].forEach((v)=>{
+      payload.paramInfoReqDTOS.forEach((v)=>{
         Reflect.deleteProperty(v,'key');
       });
 
-      let res=yield call(addApi, payload);
+      const res=yield call(addApi, payload);
       checkResponse(res,callback,'添加成功')
     },
 
     * updateApiStatus({ payload, callback }, { call, put, select }) {
-      let res=yield call(updateApiStatus,payload);
+      const res=yield call(updateApiStatus,payload);
       checkResponse(res,callback,payload.option==='1'?'启用成功':'停用成功')
     },
 
@@ -109,26 +109,26 @@ export default {
       setTimeout(callback,100);
       while (true){
         // 监听列表
-        let watch=yield take(['getApiList','saveApi','updateApiStatus', 'updatePageParam', 'updateParam']);
+        const watch=yield take(['getApiList','saveApi','updateApiStatus', 'updatePageParam', 'updateParam']);
         // 获取请求参数
-        let [defaultParam, searchParam, pageParam]=yield select(({ListManage})=> ([ListManage.defaultParam, ListManage.searchParam, ListManage.pageParam]));
-        let option=Object.assign(defaultParam,searchParam);
+        const [defaultParam, searchParam, pageParam]=yield select(({ListManage})=> ([ListManage.defaultParam, ListManage.searchParam, ListManage.pageParam]));
+        const option=Object.assign(defaultParam,searchParam);
         option.body.pageParam=pageParam;
 
         // 带延时处理的请求
         for (let i=1; i<=3; i++) {
-          let {res, timeOut} = yield race({
+          const {res, timeOut} = yield race({
             res: call(apiListJava, option),
-            timeOut: call(delay, 4000)
+            timeOut: call(delay, 4000),
           });
 
           // let res=yield call(apiListJava,option);
           if (res) {
-            let { data: { data } } = res;
+            const { data: { data } } = res;
             if (checkResponse(res, watch, '更新成功')) {
               yield put({
                 type: 'save',
-                payload: data
+                payload: data,
               });
             }
             break;
@@ -141,46 +141,46 @@ export default {
           }
         }
       }
-    }
+    },
 
-    /**testE( {payload}, { call, watcher, take }) {
+    /** testE( {payload}, { call, watcher, take }) {
       for (let i=1; i<3;i++){
         let as=yield take(['getApiList', 'userLogin'])
         console.log('======-==============='+i,take.toString(),as)
       }
       yield console.log('take end')
-    }*/
+    } */
   },
 
   reducers: {
     save(state, action) {
       return {
         ...state,
-        data: action.payload
+        data: action.payload,
       };
     },
 
     updatePageParam(state, {pageParam}){
       return {
         ...state,
-        pageParam:pageParam
+        pageParam,
       }
     },
 
     updateParam(state,{payload}){
-      let newState=Object.assign({},state,);
+      const newState=Object.assign({},state,);
       Object.assign(newState.searchParam,{body:{...payload}});
       Object.assign(newState.pageParam,{pageIndex:1});
       return {
-        ...newState
+        ...newState,
       }
     },
 
     getApiList(state) {
       return state;
-    }
+    },
   },
 
   subscriptions:{
-  }
+  },
 };

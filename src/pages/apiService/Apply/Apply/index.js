@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'dva';
 import ApprovalSearch from './ApplySearch';
 import Table from '@/components/Common/Table/1.0'
 import ApprovalDetailModal from '@/components/DataResource/Modal/ApprovalDetailModal'
 import dateFormat from '@/utils/dateFormat';
 import {applyList} from '@/services/apply'
-import { connect } from 'dva';
 import './index.less';
+
 const APPLYTYPE = ['接口发布', '接口使用']
 const STATUS = ['待审批', '已审批', '驳回']
 class Apply extends Component {
@@ -19,7 +20,7 @@ class Apply extends Component {
           key: 'applyType',
           render: (text) => (
             <span>{APPLYTYPE[text]}</span>
-          )
+          ),
         },
         {
           title: '接口状态',
@@ -27,12 +28,12 @@ class Apply extends Component {
           key: 'status',
           render: (text) => (
             <span>{STATUS[text]}</span>
-          )
+          ),
         },
         {
           title: '申请人',
           dataIndex: 'applyByName',
-          key: 'applyByName'
+          key: 'applyByName',
         },
         {
           title: '申请时间',
@@ -40,12 +41,12 @@ class Apply extends Component {
           key: 'applyDate',
           render: (text) => (
             <span>{dateFormat(text)}</span>
-          )
+          ),
         },
         {
           title: '申请描述',
           dataIndex: 'applyDesc',
-          key: 'applyDesc'
+          key: 'applyDesc',
         },{
           title: '操作',
           key: 'action',
@@ -55,50 +56,53 @@ class Apply extends Component {
                 <a onClick={this.openInfo.bind(this, record)}>详情</a>
               </div>
             )
-          }
-        }
+          },
+        },
       ],
       modal:{
         modalTitle:'详情',
         modalVisible:false,
-        modalContent:{}
-      }
+        modalContent:{},
+      },
     }
   }
+
   openInfo(record) {
     this.setState({
       modal:{
         modalVisible: true,
         modalTitle: record.interfaceName,
-        modalContent: {...record}
-      }
+        modalContent: {...record},
+      },
     })
   }
+
   handleCancel = () => {
     this.setState({
       modal:{
-        modalVisible:false
-      }
+        modalVisible:false,
+      },
     });
   }
+
   render() {
-    let {modal={}}=this.state;
+    const {modal={}}=this.state;
     return (
       <div>
         <ApprovalDetailModal
-            {...modal}
-            handleModalCancel={this.handleCancel}
-            handleModalOk={this.handleModalOk}
-        ></ApprovalDetailModal>
+          {...modal}
+          handleModalCancel={this.handleCancel}
+          handleModalOk={this.handleModalOk}
+        />
         <Table 
-            antdTableProps={{
-              rowSelection: null
+          antdTableProps={{
+              rowSelection: null,
             }}
-            columnsArr={this.state.columns}
-            getFn={applyList}
-            hasSearch={false}
-            HeaderExtend={ApprovalSearch}
-            searchExtendParam={{applyType: '1', status: '0'}}
+          columnsArr={this.state.columns}
+          getFn={applyList}
+          hasSearch={false}
+          HeaderExtend={ApprovalSearch}
+          searchExtendParam={{applyType: '1', status: '0'}}
         />
       </div>
     );
@@ -106,5 +110,5 @@ class Apply extends Component {
 }
 
 export default connect(({apply}) => ({
-  apply
+  apply,
 }))(Apply);

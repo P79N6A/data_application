@@ -20,7 +20,7 @@ export const getBreadcrumb = (breadcrumbNameMap, url) => {
 
 export default class PageHeader extends PureComponent {
   state = {
-    breadcrumb: null
+    breadcrumb: null,
   };
 
   componentDidMount() {
@@ -51,14 +51,14 @@ export default class PageHeader extends PureComponent {
       routes,
       params,
       routerLocation: location,
-      breadcrumbNameMap
+      breadcrumbNameMap,
     };
   };
 
   getBreadcrumbDom = () => {
     const breadcrumb = this.conversionBreadcrumbList();
     this.setState({
-      breadcrumb
+      breadcrumb,
     });
   };
 
@@ -66,8 +66,9 @@ export default class PageHeader extends PureComponent {
   conversionFromProps = () => {
     const { breadcrumbList, breadcrumbSeparator, itemRender, linkElement = 'a' } = this.props;
     return (
-      <Breadcrumb className={styles.breadcrumb}
-          separator={breadcrumbSeparator}
+      <Breadcrumb
+        className={styles.breadcrumb}
+        separator={breadcrumbSeparator}
       >
         {breadcrumbList.map(item => {
           const title = itemRender ? itemRender(item) : item.title;
@@ -77,7 +78,7 @@ export default class PageHeader extends PureComponent {
                 ? createElement(
                   linkElement,
                   {
-                    [linkElement === 'a' ? 'href' : 'to']: item.href
+                    [linkElement === 'a' ? 'href' : 'to']: item.href,
                   },
                   title,
                 )
@@ -117,15 +118,16 @@ export default class PageHeader extends PureComponent {
         {createElement(
           linkElement,
           {
-            [linkElement === 'a' ? 'href' : 'to']: '/'
+            [linkElement === 'a' ? 'href' : 'to']: '/',
           },
           home || 'Home',
         )}
       </Breadcrumb.Item>,
     );
     return (
-      <Breadcrumb className={styles.breadcrumb}
-          separator={breadcrumbSeparator}
+      <Breadcrumb
+        className={styles.breadcrumb}
+        separator={breadcrumbSeparator}
       >
         {extraBreadcrumbItems}
       </Breadcrumb>
@@ -147,11 +149,11 @@ export default class PageHeader extends PureComponent {
     if (routes && params) {
       return (
         <Breadcrumb
-            className={styles.breadcrumb}
-            itemRender={this.itemRender}
-            params={params}
-            routes={routes.filter(route => route.breadcrumbName)}
-            separator={breadcrumbSeparator}
+          className={styles.breadcrumb}
+          itemRender={this.itemRender}
+          params={params}
+          routes={routes.filter(route => route.breadcrumbName)}
+          separator={breadcrumbSeparator}
         />
       );
     }
@@ -173,7 +175,7 @@ export default class PageHeader extends PureComponent {
         linkElement,
         {
           href: paths.join('/') || '/',
-          to: paths.join('/') || '/'
+          to: paths.join('/') || '/',
         },
         route.breadcrumbName,
       )
@@ -184,7 +186,7 @@ export default class PageHeader extends PureComponent {
     const {
       className,
       tabActiveKey,
-      tabDefaultActiveKey
+      tabDefaultActiveKey,
     } = this.props;
     const { breadcrumb } = this.state;
 
@@ -198,7 +200,7 @@ export default class PageHeader extends PureComponent {
     }
     return (
       <span className={clsString}>
-            {breadcrumb}
+        {breadcrumb}
       </span>
     );
   }

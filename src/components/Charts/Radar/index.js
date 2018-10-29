@@ -9,7 +9,7 @@ export default
 @autoHeight()
 class Radar extends Component {
   state = {
-    legendData: []
+    legendData: [],
   };
 
   componentDidMount() {
@@ -41,14 +41,14 @@ class Radar extends Component {
         name: origins[0].name,
         color: item[0].color,
         checked: true,
-        value: origins.reduce((p, n) => p + n.value, 0)
+        value: origins.reduce((p, n) => p + n.value, 0),
       };
 
       return result;
     });
 
     this.setState({
-      legendData
+      legendData,
     });
   };
 
@@ -71,7 +71,7 @@ class Radar extends Component {
     }
 
     this.setState({
-      legendData
+      legendData,
     });
   };
 
@@ -84,7 +84,7 @@ class Radar extends Component {
       '#F04864',
       '#13C2C2',
       '#fa8c16',
-      '#a0d911'
+      '#a0d911',
     ];
 
     const {
@@ -96,7 +96,7 @@ class Radar extends Component {
       tickCount = 4,
       padding = [35, 30, 16, 30],
       animate = true,
-      colors = defaultColors
+      colors = defaultColors,
     } = this.props;
 
     const { legendData } = this.state;
@@ -104,75 +104,77 @@ class Radar extends Component {
     const scale = {
       value: {
         min: 0,
-        tickCount
-      }
+        tickCount,
+      },
     };
 
     const chartHeight = height - (hasLegend ? 80 : 22);
 
     return (
-      <div className={styles.radar}
-          style={{ height }}
+      <div
+        className={styles.radar}
+        style={{ height }}
       >
         {title && <h4>{title}</h4>}
         <Chart
-            animate={animate}
-            data={data}
-            forceFit={forceFit}
-            height={chartHeight}
-            onGetG2Instance={this.getG2Instance}
-            padding={padding}
-            scale={scale}
+          animate={animate}
+          data={data}
+          forceFit={forceFit}
+          height={chartHeight}
+          onGetG2Instance={this.getG2Instance}
+          padding={padding}
+          scale={scale}
         >
           <Tooltip />
           <Coord type="polar" />
           <Axis
-              grid={{
+            grid={{
               lineStyle: {
-                lineDash: null
+                lineDash: null,
               },
-              hideFirstLine: false
+              hideFirstLine: false,
             }}
-              line={null}
-              name="label"
-              tickLine={null}
+            line={null}
+            name="label"
+            tickLine={null}
           />
           <Axis
-              grid={{
+            grid={{
               type: 'polygon',
               lineStyle: {
-                lineDash: null
-              }
+                lineDash: null,
+              },
             }}
-              name="value"
-          />
-          <Geom color={['name', colors]}
-              position="label*value"
-              size={1}
-              type="line"
+            name="value"
           />
           <Geom
-              color={['name', colors]}
-              position="label*value"
-              shape="circle"
-              size={3}
-              type="point"
+            color={['name', colors]}
+            position="label*value"
+            size={1}
+            type="line"
+          />
+          <Geom
+            color={['name', colors]}
+            position="label*value"
+            shape="circle"
+            size={3}
+            type="point"
           />
         </Chart>
         {hasLegend && (
           <Row className={styles.legend}>
             {legendData.map((item, i) => (
               <Col
-                  key={item.name}
-                  onClick={() => this.handleLegendClick(item, i)}
-                  span={24 / legendData.length}
+                key={item.name}
+                onClick={() => this.handleLegendClick(item, i)}
+                span={24 / legendData.length}
               >
                 <div className={styles.legendItem}>
                   <p>
                     <span
-                        className={styles.dot}
-                        style={{
-                        backgroundColor: !item.checked ? '#aaa' : item.color
+                      className={styles.dot}
+                      style={{
+                        backgroundColor: !item.checked ? '#aaa' : item.color,
                       }}
                     />
                     <span>{item.name}</span>

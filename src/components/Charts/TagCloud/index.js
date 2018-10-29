@@ -15,7 +15,7 @@ const imgUrl = 'https://gw.alipayobjects.com/zos/rmsportal/gWyeGLCdFFRavBGIDzWk.
 @autoHeight()
 class TagCloud extends Component {
   state = {
-    dv: null
+    dv: null,
   };
 
   componentDidMount() {
@@ -61,7 +61,7 @@ class TagCloud extends Component {
           textAlign: 'center',
           fontFamily: cfg.origin._origin.font,
           fill: cfg.color,
-          textBaseline: 'Alphabetic'
+          textBaseline: 'Alphabetic',
         },
         cfg.style
       );
@@ -74,10 +74,10 @@ class TagCloud extends Component {
         return container.addShape('text', {
           attrs: Object.assign(attrs, {
             x: cfg.x,
-            y: cfg.y
-          })
+            y: cfg.y,
+          }),
         });
-      }
+      },
     });
   };
 
@@ -112,7 +112,7 @@ class TagCloud extends Component {
         fontSize(d) {
           // eslint-disable-next-line
           return Math.pow((d.value - min) / (max - min), 2) * (70 - 20) + 20;
-        }
+        },
       });
 
       if (this.isUnmount) {
@@ -122,7 +122,7 @@ class TagCloud extends Component {
       this.setState({
         dv,
         w,
-        h
+        h,
       });
     };
 
@@ -143,26 +143,27 @@ class TagCloud extends Component {
 
     return (
       <div
-          className={classNames(styles.tagCloud, className)}
-          ref={this.saveRootRef}
-          style={{ width: '100%', height }}
+        className={classNames(styles.tagCloud, className)}
+        ref={this.saveRootRef}
+        style={{ width: '100%', height }}
       >
         {dv && (
           <Chart
-              data={dv}
-              height={h}
-              padding={0}
-              scale={{
+            data={dv}
+            height={h}
+            padding={0}
+            scale={{
               x: { nice: false },
-              y: { nice: false }
+              y: { nice: false },
             }}
-              width={w}
+            width={w}
           >
             <Coord reflect="y" />
-            <Geom color="text"
-                position="x*y"
-                shape="cloud"
-                type="point"
+            <Geom
+              color="text"
+              position="x*y"
+              shape="cloud"
+              type="point"
             />
           </Chart>
         )}

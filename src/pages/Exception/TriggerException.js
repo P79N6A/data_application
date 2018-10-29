@@ -4,23 +4,23 @@ import { connect } from 'dva';
 import styles from './style.less';
 
 @connect(state => ({
-  isloading: state.error.isloading
+  isloading: state.error.isloading,
 }))
 class TriggerException extends PureComponent {
   state = {
-    isloading: false
+    isloading: false,
   };
 
   triggerError = code => {
     this.setState({
-      isloading: true
+      isloading: true,
     });
     const { dispatch } = this.props;
     dispatch({
       type: 'error/query',
       payload: {
-        code
-      }
+        code,
+      },
     });
   };
 
@@ -28,26 +28,31 @@ class TriggerException extends PureComponent {
     const { isloading } = this.state;
     return (
       <Card>
-        <Spin spinning={isloading}
-            wrapperClassName={styles.trigger}
+        <Spin
+          spinning={isloading}
+          wrapperClassName={styles.trigger}
         >
-          <Button onClick={() => this.triggerError(401)}
-              type="danger"
+          <Button
+            onClick={() => this.triggerError(401)}
+            type="danger"
           >
             触发401
           </Button>
-          <Button onClick={() => this.triggerError(403)}
-              type="danger"
+          <Button
+            onClick={() => this.triggerError(403)}
+            type="danger"
           >
             触发403
           </Button>
-          <Button onClick={() => this.triggerError(500)}
-              type="danger"
+          <Button
+            onClick={() => this.triggerError(500)}
+            type="danger"
           >
             触发500
           </Button>
-          <Button onClick={() => this.triggerError(404)}
-              type="danger"
+          <Button
+            onClick={() => this.triggerError(404)}
+            type="danger"
           >
             触发404
           </Button>

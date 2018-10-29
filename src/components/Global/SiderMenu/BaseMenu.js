@@ -3,15 +3,15 @@ import { Menu, Icon } from 'antd';
 import Link from 'umi/link';
 import { formatMessage } from 'umi/locale';
 import pathToRegexp from 'path-to-regexp';
+import PropTypes from 'prop-types';
 import { urlToList } from '../../_utils/pathTools';
 import styles from './index.less';
-import PropTypes from 'prop-types';
 
 const { SubMenu } = Menu;
 
-let pathMenu={
+const pathMenu={
   data:['api','data','application','result','exception', 'dataprocess','catalog', 'audit'],
-  community:['community']
+  community:['community'],
 }
 
 // Allow menu.js config icon as string or ReactNode
@@ -24,10 +24,13 @@ const getIcon = icon => {
     return <React.Fragment />
   }
   if (typeof icon === 'string' && icon.indexOf('http') === 0) {
-    return <img alt="icon"
+    return (
+      <img
+        alt="icon"
         className={styles.icon}
         src={icon}
-           />;
+      />
+);
   }
   if (typeof icon === 'string') {
     return <Icon type={icon} />;
@@ -69,7 +72,7 @@ export default class BaseMenu extends PureComponent {
     if (!menusData) {
       return [];
     }
-    let {location}=this.props;
+    const {location}=this.props;
     return menusData
       .filter(item => item.name && !item.hideInMenu)
       .map(item => {
@@ -79,7 +82,7 @@ export default class BaseMenu extends PureComponent {
       })
       .filter(item =>  {
         if (!item) {return false}
-        let path=pathToRegexp.parse(location.pathname)[0].split('/').filter(i=>i)[0];
+        const path=pathToRegexp.parse(location.pathname)[0].split('/').filter(i=>i)[0];
 
         if (pathMenu.community.includes(path)){
           return item.key.includes(path)
@@ -93,7 +96,7 @@ export default class BaseMenu extends PureComponent {
   // 选中菜单
   getSelectedMenuKeys = () => {
     const {
-      location: { pathname }
+      location: { pathname },
     } = this.props;
     return urlToList(pathname).map(itemPath => getMenuMatches(this.flatMenuKeys, itemPath).pop());
   };
@@ -107,8 +110,8 @@ export default class BaseMenu extends PureComponent {
       const name = formatMessage({ id: item.locale });
       return (
         <SubMenu
-            key={item.path}
-            title={
+          key={item.path}
+          title={
             item.icon ? (
               <span>
                 {getIcon(item.icon)}
@@ -139,8 +142,9 @@ export default class BaseMenu extends PureComponent {
     // Is it a http link
     if (/^https?:\/\//.test(itemPath)) {
       return (
-        <a href={itemPath}
-            target={target}
+        <a
+          href={itemPath}
+          target={target}
         >
           {icon}
           <span>{name}</span>
@@ -150,16 +154,16 @@ export default class BaseMenu extends PureComponent {
     const { location, isMobile, onCollapse } = this.props;
     return (
       <Link
-          onClick={
+        onClick={
           isMobile
             ? () => {
                 onCollapse(true);
               }
             : undefined
         }
-          replace={itemPath === location.pathname}
-          target={target}
-          to={itemPath}
+        replace={itemPath === location.pathname}
+        target={target}
+        to={itemPath}
       >
         {icon}
         <span>{name}</span>
@@ -187,7 +191,7 @@ export default class BaseMenu extends PureComponent {
 
   render() {
     const { openKeys, theme, mode, handleOpenChange, style, menuData, location } = this.props;
-    //无匹配时使用默认值
+    // 无匹配时使用默认值
     let selectedKeys = this.getSelectedMenuKeys();
     if (!selectedKeys.length && openKeys) {
       selectedKeys = [openKeys[openKeys.length - 1]];
@@ -195,19 +199,19 @@ export default class BaseMenu extends PureComponent {
     let props = {};
     if (openKeys) {
       props = {
-        openKeys
+        openKeys,
       };
     }
     return (
       <Menu
-          className={mode === 'horizontal' ? 'top-nav-menu' : ''}
-          key="Menu"
-          mode={mode}
-          onOpenChange={handleOpenChange}
-          selectedKeys={selectedKeys}
-          style={style}
-          theme={theme}
-          {...props}
+        className={mode === 'horizontal' ? 'top-nav-menu' : ''}
+        key="Menu"
+        mode={mode}
+        onOpenChange={handleOpenChange}
+        selectedKeys={selectedKeys}
+        style={style}
+        theme={theme}
+        {...props}
       >
         {this.getNavMenuItems(menuData, location)}
       </Menu>
@@ -225,5 +229,5 @@ BaseMenu.propTypes = {
   menuData:PropTypes.array,
   location:PropTypes.shape({
     pathname:PropTypes.string,
-  })
+  }),
 };

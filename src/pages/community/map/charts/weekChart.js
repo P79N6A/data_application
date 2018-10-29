@@ -7,18 +7,18 @@ import styles from './weekChart.less';
 
 class WeekChart extends Component {
   componentDidMount() {
-    let myChart = echarts.init(document.getElementById('weekChart'));
+    const myChart = echarts.init(document.getElementById('weekChart'));
 
-    let option = {
+    const option = {
       title: {
-        text: '一周感知数据总量：4500'
+        text: '一周感知数据总量：4500',
       },
       xAxis: {
         type: 'category',
-        data: ['一栋', '二栋', '三栋', '四栋', '五栋', '六栋', '七栋', '八栋']
+        data: ['一栋', '二栋', '三栋', '四栋', '五栋', '六栋', '七栋', '八栋'],
       },
       yAxis: {
-        type: 'value'
+        type: 'value',
       },
       series: [{
         data: [800, 200, 500, 800, 700, 300, 600, 500],
@@ -30,9 +30,9 @@ class WeekChart extends Component {
               [
                 {offset: 0, color: '#00f'},
                 {offset: 0.5, color: '#188df0'},
-                {offset: 1, color: '#188df0'}
+                {offset: 1, color: '#188df0'},
               ]
-            )
+            ),
           },
           emphasis: {
             color: new echarts.graphic.LinearGradient(
@@ -40,12 +40,12 @@ class WeekChart extends Component {
               [
                 {offset: 0, color: '#2378f7'},
                 {offset: 0.7, color: '#2378f7'},
-                {offset: 1, color: '#83bff6'}
+                {offset: 1, color: '#83bff6'},
               ]
-            )
-          }
-        }
-      }]
+            ),
+          },
+        },
+      }],
     };
     myChart.setOption(option)
 
@@ -53,10 +53,11 @@ class WeekChart extends Component {
 
   render() {
     return (
-      <div id="weekChart"
-          className={styles.weekChart}
-          style={{ width: '100%', height: '250px' }}
-      > </div>
+      <div
+        id="weekChart"
+        className={styles.weekChart}
+        style={{ width: '100%', height: '250px' }}
+      />
     );
   }
 }

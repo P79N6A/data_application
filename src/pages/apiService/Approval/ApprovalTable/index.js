@@ -4,6 +4,7 @@ import dateFormat from '@/utils/dateFormat';
 import ApprovalDetailModal from '@/components/DataResource/Modal/ApprovalDetailModal'
 
 import PropTypes from 'prop-types'
+
 const APPLYTYPE = ['接口发布', '接口使用']
 const STATUS = ['待审批', '已审批', '驳回']
 class ApprovalTable extends Component {
@@ -18,7 +19,7 @@ class ApprovalTable extends Component {
           key: 'applyType',
           render: (text) => (
             <span>{APPLYTYPE[text]}</span>
-          )
+          ),
         },
         {
           title: '接口状态',
@@ -26,12 +27,12 @@ class ApprovalTable extends Component {
           key: 'status',
           render: (text) => (
             <span>{STATUS[text]}</span>
-          )
+          ),
         },
         {
           title: '申请人',
           dataIndex: 'applyByName',
-          key: 'applyByName'
+          key: 'applyByName',
         },
         {
           title: '申请时间',
@@ -39,12 +40,12 @@ class ApprovalTable extends Component {
           key: 'applyDate',
           render: (text) => (
             <span>{dateFormat(text)}</span>
-          )
+          ),
         },
         {
           title: '申请描述',
           dataIndex: 'applyDesc',
-          key: 'applyDesc'
+          key: 'applyDesc',
         },
         {
           title: '操作',
@@ -55,13 +56,15 @@ class ApprovalTable extends Component {
               case '0' :
                 return (
                   <div>
-                    <Popconfirm onConfirm={this.dispose.bind(this, record, '同意')}
-                        title="确定是否同意"
+                    <Popconfirm
+                      onConfirm={this.dispose.bind(this, record, '同意')}
+                      title="确定是否同意"
                     >
                       <a>同意</a>&nbsp;&nbsp;
                     </Popconfirm>
-                    <Popconfirm onConfirm={this.dispose.bind(this, record, '拒绝')}
-                        title="确定是否拒绝"
+                    <Popconfirm
+                      onConfirm={this.dispose.bind(this, record, '拒绝')}
+                      title="确定是否拒绝"
                     >
                       <a>拒绝</a>&nbsp;&nbsp;
                     </Popconfirm>
@@ -81,8 +84,8 @@ class ApprovalTable extends Component {
                   </div>
                 )
             }
-          }
-        }
+          },
+        },
       ],
       pagination: {
         total: 0,
@@ -90,14 +93,14 @@ class ApprovalTable extends Component {
         pageSize: 10,
         showQuickJumper: true,
         onChange: (pageIndex, pageSize) => {
-          let pageParam = {
+          const pageParam = {
             pageIndex,
             pageSize,
             orderFiled: 'approve_date',
-            orderRule: 'desc'
+            orderRule: 'desc',
           }
           this.props.search({pageParam})
-        }
+        },
       },
       visible: false,
       interfaceInfos: [],
@@ -105,54 +108,60 @@ class ApprovalTable extends Component {
       modal:{
         modalTitle:'详情',
         modalVisible:false,
-        modalContent:{}
-      }
+        modalContent:{},
+      },
     };
   }
+
   // 同意或者聚聚
   dispose(info, res) {
-    let {applyId} = info
-    let opts = {
+    const {applyId} = info
+    const opts = {
       applyId,
       approveType: res === '同意' ? '0' : '1',
-      approveDesc: res
+      approveDesc: res,
     }
     this.props.operation(opts)
   }
+
   openInfo(record) {
-    let {modalVisible}=this.state.modal;
+    const {modalVisible}=this.state.modal;
     this.setState({
       modal:{
         modalVisible: !modalVisible,
         modalTitle: record.interfaceName,
-        modalContent: {...record}
-      }
+        modalContent: {...record},
+      },
     })
   }
+
   handleCancel = () => {
     this.setState({
       modal:{
-        modalVisible:false
-      }
+        modalVisible:false,
+      },
     });
   };
+
   handleModalOk=()=>{
 
   }
+
   render() {
-    let {modal={}}=this.state;
-    let { approval } = this.props;
+    const {modal={}}=this.state;
+    const { approval } = this.props;
     return (
       <div>
-        <Table columns={this.state.columns}
-            dataSource={approval.data}
-            pagination={{...this.state.pagination, ...approval.pageParam}}
-            size="middle"
+        <Table
+          columns={this.state.columns}
+          dataSource={approval.data}
+          pagination={{...this.state.pagination, ...approval.pageParam}}
+          size="middle"
         />
         <ApprovalDetailModal
-            {...modal}
-            handleModalCancel={this.handleCancel}
-            handleModalOk={this.handleModalOk}
+          {...modal}
+          handleModalCancel={this.handleCancel}
+          handleModalOk={this.handleModalOk}
         />
       </div>
     )
@@ -162,7 +171,7 @@ class ApprovalTable extends Component {
 ApprovalTable.propTypes = {
   approval: PropTypes.object.isRequired,
   operation: PropTypes.func.isRequired,
-  search: PropTypes.func.isRequired
+  search: PropTypes.func.isRequired,
 }
 
 export default ApprovalTable
