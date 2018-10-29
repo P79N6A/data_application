@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import BMap from 'BMap'
 import styles from './index.less';
 import RightPanel from './Panel';
+import house from '@/assets/house.jpg';
 
 class Map extends Component {
 
@@ -36,19 +37,33 @@ class Map extends Component {
     function showInfo(x,y,info){
       let opts = {
         width : 200,     // 信息窗口宽度
-        height: 50,     // 信息窗口高度
+        height: 150,     // 信息窗口高度
         title : '康庄c区'  // 信息窗口标题
-      }
-      let infoWindow = new BMap.InfoWindow(`${info}, 暂无信息`, opts);  // 创建信息窗口对象
-      map.openInfoWindow(infoWindow, new BMap.Point(x,y));
+      };
+      let sContent =
+        `<p style="color:blue; position:absolute">${info}:暂无信息</p>
+        <img style='float:right;margin:4px' class='imgDemo' src=${house} width='100' height='100' title='天安门'/>`
+
+      return  new BMap.InfoWindow(sContent, opts);  // 创建信息窗口对象
+      // map.openInfoWindow(infoWindow, new BMap.Point(x,y));
     }
     function addMark(x, y, info){
       let point1 = new BMap.Point(x, y);
       let marker = new BMap.Marker(point1);        // 创建标注
+      let infoWindow=showInfo(x,y,info);
       marker.addEventListener('click', function(e){
+        map.openInfoWindow(infoWindow, new BMap.Point(x,y));
+        let img=Array.from(document.getElementsByClassName('imgDemo'))[0];
+        if (img){
+          img.onload=function() {
+            infoWindow.redraw()
+          }
+        }
+
         showInfo(x,y,info)
       });
       map.addOverlay(marker);
+
     }
 
     addMark(106.489954,29.644639, '一栋');
@@ -59,7 +74,7 @@ class Map extends Component {
     addMark(106.488499,29.646338, '六栋');
     addMark(106.489258,29.647025, '八栋');
 
-    var polyline = new BMap.Polyline([
+    let polyLine = new BMap.Polyline([
         new BMap.Point(106.490493,29.64367),
         new BMap.Point(106.486334,29.643803),
         new BMap.Point(106.487668,29.6485),
@@ -72,7 +87,13 @@ class Map extends Component {
       ],
       {strokeColor:"blue", strokeWeight:6, strokeOpacity:0.5}
     );
-    map.addOverlay(polyline);
+    map.addOverlay(polyLine);
+
+
+
+        /*.onload = function (){
+        ;   //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
+      }*/
 
   }
   render() {

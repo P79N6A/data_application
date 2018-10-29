@@ -8,7 +8,8 @@ export default {
   state: {
     collapsed: false,
     notices: [],
-    catalog:[]
+    catalog:[],
+    currentApp:'data'
   },
 
   effects: {
@@ -65,6 +66,14 @@ export default {
         collapsed: payload
       };
     },
+
+    changeCurrentApp(state,{payload}){
+      return {
+        ...state,
+        currentApp: payload.currentApp
+      }
+    },
+
     saveNotices(state, { payload }) {
       return {
         ...state,

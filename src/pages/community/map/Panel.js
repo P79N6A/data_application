@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Collapse } from 'antd';
 import styles from './Panel.less';
+import WeekChart from './charts/weekChart';
+import WeekLine from './charts/weekLine';
+import People from './panels/people';
 
 const Panel = Collapse.Panel;
 
@@ -21,7 +24,8 @@ class RightPanel extends Component {
     this.contentRef=React.createRef();
     this.state={isCollapse:false}
   }
-  
+
+  // 右侧面板切换
   toggleCollapse(){
     let {isCollapse}=this.state;
     let style=this.contentRef.current.style;
@@ -29,7 +33,7 @@ class RightPanel extends Component {
       style.right='0'
       this.setState({isCollapse:!isCollapse});
     }else{
-      style.right='-360px'
+      style.right='-370px'
       this.setState({isCollapse:!isCollapse});
     }
   }
@@ -42,32 +46,46 @@ class RightPanel extends Component {
       <div className={styles['ant-collapse-content']}
           ref={this.contentRef}
       >
-        <span className={styles['collapse-btn']} onClick={this.toggleCollapse} >
-          <span className={'span'}>{isCollapse?'>>':'<<'}</span>
-        </span>
-        <Collapse onChange={callback}
-            style={{margin:'0 0 0 40px'}}
+        <span className={styles['collapse-btn']}
+            onClick={this.toggleCollapse}
         >
-          <Panel header="This is panel header 1"
+          <span style={{transform:'scale(1,3)'}}
+              className={'span'}
+          >{isCollapse?'＞':'＜'}</span>
+        </span>
+        {/*<WeekChart />*/}
+        <Collapse onChange={callback}
+            style={{margin:'0 0 0 30px'}}
+            defaultActiveKey={'1'}
+        >
+          <Panel header="数据总览"
               key="1"
+              className={styles['data-all']}
           >
-            <Collapse defaultActiveKey="1">
+            {/*<Collapse defaultActiveKey="1">
               <Panel header="This is panel nest panel"
                   key="1"
               >
                 <p>{text}</p>
               </Panel>
-            </Collapse>
+            </Collapse>*/}
+            <WeekChart />
+            <WeekLine />
           </Panel>
-          <Panel header="This is panel header 2"
+          <Panel header="实有人口"
               key="2"
           >
-            <p>{text}</p>
+            <People />
           </Panel>
-          <Panel header="This is panel header 3"
+          <Panel header="实有房屋"
               key="3"
           >
-            <p>{text}</p>
+            <p>待开发</p>
+          </Panel>
+          <Panel header="实有单位"
+              key="4"
+          >
+            <p>待开发</p>
           </Panel>
         </Collapse>
       </div>
