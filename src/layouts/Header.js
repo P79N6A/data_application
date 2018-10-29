@@ -166,6 +166,7 @@ function map({ user, global, setting, loading }) {
     collapsed: global.collapsed,
     fetchingNotices: loading.effects['global/fetchNotices'],
     notices: global.notices,
+    currentApp:global.currentApp,
     setting
   }
 }

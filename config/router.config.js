@@ -213,7 +213,7 @@ export default [
       },
       /*=================社区应用===============*/
       {name: 'community',
-        icon: 'check-circle-o',
+        icon: 'global',
         path: '/community',
         routes: [
           {

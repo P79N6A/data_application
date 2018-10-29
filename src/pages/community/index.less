@@ -1,39 +1,53 @@
 
 .person{
     display: flex;
-    padding: 40px 0px 0px;
-    position: relative;
+    justify-content: space-between;
     :global{
         .ant-tabs-top{
             margin: 0 15px;
         }
     }
 }
-.personMegDiv{
-    width: 25%;
-    min-width: 300px;
-    padding: 20px;
-    background-color: #fff;
+.homeMeg{
+    
+    margin: 0 20px 20px 20px;
+    :global{
+        .ant-card-body{
+            display: flex;
+        }
+        .ant-card-body>div:nth-child(1){
+            width: 30%;
+        }
+        .ant-card-body>div:nth-child(2){
+            width: 70%;
+        }
+
+    }
 }
-.personMegDiv>div{
+
+.personDiv>div{
     width: 100%;
 }
-.personMegDiv label{
-    width: 70px;
+.homeMeg label,
+.personDiv label{
+    width: 85px;
     display: inline-block;
     color: #434646;
     line-height: 40px;
     text-align: right;
+    font-weight: bold;
 }
-.personMegDiv span{
+.homeMeg span,
+.personDiv span{
     display: inline-flex;
-    width: calc(~'100% - 70px');
+    width: calc(~'100% - 85px');
     padding-left: 10px;
     color: #434646;
 }
 .personImg{
     text-align: center;
 }
+.homeMeg img,
 .personImg img{
     width: 150px;
     height: 150px;
@@ -49,4 +63,28 @@
 .carImg{
     width: 100%;
     height: 150px;
+}
+.megTabs{
+    background-color: #fff;
+    width: calc(~'100% - 600px');
+    :global{
+        .ant-tabs-nav{
+            padding: 7px 0;
+        }
+    }
+}
+.carMeg{
+    margin: 10px 0;
+}
+.carMeg label{
+    width: 50px;
+    display: inline-block;
+    text-align: left;
+    line-height: 30px;
+    color: #434646;
+}
+.carMeg span{
+    width: calc(~'100% - 50px');
+    display: inline-flex;
+    color: #434646;
 }
