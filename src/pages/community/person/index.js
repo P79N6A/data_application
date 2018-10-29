@@ -1,9 +1,11 @@
 import React, {Component} from 'react'
 import { Card, Tabs, Tag,  Icon } from 'antd';
 import styles from '../index.less'
-import carbg1 from './assets/car1.jpg'
-import carbg2 from './assets/car2.jpg'
-import userImg from './assets/user.png'
+import carbg1 from '../../../assets/car1.jpg'
+import carbg2 from '../../../assets/car2.jpg'
+import userImg from '../../../assets/user.png'
+import homeImg from '../../../assets/home.png'
+import comnp from '../../../assets/company.png'
 
 const TabPane = Tabs.TabPane;
 
@@ -80,12 +82,12 @@ class Person extends Component{
                  </Card>
 
                 {/* 信息选项卡 */}
-                <Tabs defaultActiveKey="2" className={styles.megTabs}>
+                <Tabs defaultActiveKey="1" className={styles.megTabs}>
                     <TabPane tab={<span><Icon type="home" />住房信息</span>} key="1">
-                        <Card className = {styles.carMeg}>
+                        <Card className = {styles.homeMeg}>
                             {/* 左边的房屋图像 */}
                             <div>
-                                <img src={userImg}></img>
+                                <img src={homeImg}></img>
                             </div>
                             {/* 右边的信息展示 */}
                             <div>
@@ -94,6 +96,39 @@ class Person extends Component{
                                 <p><label>楼栋号：</label><span>2栋5单元</span></p>
                                 <p><label>房间号：</label><span>2-4</span></p>
                                 <p><label>房屋地址：</label><span>云南省临沧市临翔区启山小区2栋5单元2-4</span></p>                                
+                            </div>
+
+                        </Card>
+                        <Card className = {styles.homeMeg}>
+                            {/* 左边的房屋图像 */}
+                            <div>
+                                <img src={homeImg}></img>
+                            </div>
+                            {/* 右边的信息展示 */}
+                            <div>
+                                <p><label>户主姓名：</label><span>王立军、梅兰</span></p>
+                                <p><label>小区：</label><span>御景江山</span></p>
+                                <p><label>楼栋号：</label><span>2单元</span></p>
+                                <p><label>房间号：</label><span>11-5</span></p>
+                                <p><label>房屋地址：</label><span>云南省临沧市御景江山2单元11-5</span></p>                                
+                            </div>
+
+                        </Card>
+                    </TabPane>
+                    <TabPane tab={<span><Icon type="bank" />单位信息</span>} key="7">
+                    <Card className = {styles.homeMeg}>
+                            {/* 左边的房屋图像 */}
+                            <div>
+                                <img src={comnp}></img>
+                            </div>
+                            {/* 右边的信息展示 */}
+                            <div>
+                                <p><label>全称：</label><span>临沧市山水管理有限公司</span></p>
+                                <p><label>归属：</label><span>个人</span></p>
+                                <p><label>法人代表：</label><span>王玉凤</span></p>
+                                <p><label>联系方式：</label><span>单位前台</span></p>
+                                <p><label>联系电话：</label><span>236-2659846</span></p> 
+                                <p><label>具体地址：</label><span>云南省临沧市哲学路114号</span></p>                                 
                             </div>
 
                         </Card>
@@ -113,9 +148,7 @@ class Person extends Component{
                     {/* <TabPane tab={<span><Icon type="file-text" />MAC记录</span>} key="6">
                     敬请期待
                     </TabPane> */}
-                    <TabPane tab={<span><Icon type="bank" />单位信息</span>} key="7">
-                    警情期待
-                    </TabPane>
+                    
                     {/* <TabPane tab={<span><Icon type="exception" />门禁记录</span>} key="8">
                     Tab 2
                     </TabPane> */}
