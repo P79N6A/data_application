@@ -239,17 +239,17 @@ export default [
           {
             path: '/community/monitor',
             name: 'monitor',
-            icon: 'global',
+            icon: 'eye',
             component: './community/monitor',
             routes:[
               {
                 path: '/community/monitor/current',
-                name: 'monitor/current',
+                name: 'current',
                 component: './community/monitor/current',
               },
               {
                 path: '/community/monitor/track',
-                name: 'monitor/track',
+                name: 'track',
                 component: './community/monitor/track',
               },
             ]

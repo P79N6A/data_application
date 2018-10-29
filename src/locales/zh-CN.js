@@ -42,6 +42,8 @@ export default {
   'menu.community.event': '事件管理',
   'menu.community.analyze': '监控分析',
   'menu.community.monitor': '监控',
+  'menu.community.monitor.track': '轨迹',
+  'menu.community.monitor.current': '实时监控',
   'menu.community.person': '一人一档',
   'menu.profile': '详情页',
   'menu.profile.basic': '基础详情页',

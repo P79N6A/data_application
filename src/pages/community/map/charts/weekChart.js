@@ -3,6 +3,7 @@ import echarts from 'echarts/lib/echarts';
 import 'echarts/lib/chart/bar';
 import 'echarts/lib/component/tooltip';
 import 'echarts/lib/component/title';
+import styles from './weekChart.less';
 
 class WeekChart extends Component {
   componentDidMount() {
@@ -10,7 +11,7 @@ class WeekChart extends Component {
 
     let option = {
       title: {
-        text: '一周感知数据总量：4500',
+        text: '一周感知数据总量：4500'
       },
       xAxis: {
         type: 'category',
@@ -43,7 +44,7 @@ class WeekChart extends Component {
               ]
             )
           }
-        },
+        }
       }]
     };
     myChart.setOption(option)
@@ -53,6 +54,7 @@ class WeekChart extends Component {
   render() {
     return (
       <div id="weekChart"
+          className={styles.weekChart}
           style={{ width: '100%', height: '250px' }}
       > </div>
     );
