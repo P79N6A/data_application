@@ -10,8 +10,15 @@
 
 ## 帮助
 - react学习建议
+  - 本项目经过中间工具的高度整合，省略了大量实现细节，不利于新人学习，现列出以下工具细节
+  - js基础以及web技术参考: [MDN](https://developer.mozilla.org/zh-CN/)
   - es6基础 : [es6入门-阮一峰](http://es6.ruanyifeng.com/#docs/let)
-  - 2
+  - react入门 [react中文文档](https://react.docschina.org/) / [官方文档](https://reactjs.org/)
+  - react状态管理: redux入门 [中文文档](https://www.redux.org.cn/)
+  - redux-saga redux异步解决方案 [API参考](https://redux-saga-in-chinese.js.org/docs/api/index.html)
+  - dvajs 本项目采用的状态管理方案，整合以上两个工具 [官方文档](https://dvajs.com/)
+  - react-router 前端路由解决方案 [官方文档](http://react-guide.github.io/react-router-cn/docs/API.html)
+  - umijs 插件自动化配置 [配置详情](https://umijs.org/zh/)
 - umi配置参考https://umijs.org/zh/config/#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE
 
 ## 特性
