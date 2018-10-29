@@ -51,7 +51,7 @@ class RightPanel extends Component {
         >
           <span style={{transform:'scale(1,3)'}}
               className={'span'}
-          >{isCollapse?'＞':'＜'}</span>
+          >{isCollapse?'＜':'＞'}</span>
         </span>
         {/*<WeekChart />*/}
         <Collapse onChange={callback}

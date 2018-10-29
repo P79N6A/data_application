@@ -40,9 +40,16 @@ class Map extends Component {
         height: 150,     // 信息窗口高度
         title : '康庄c区'  // 信息窗口标题
       };
-      let sContent =
-        `<p style="color:blue; position:absolute">${info}:暂无信息</p>
-        <img style='float:right;margin:4px' class='imgDemo' src=${house} width='100' height='100' title='天安门'/>`
+      let sContent = `
+<div style="color:blue; position:absolute">
+    <p style="color:blue">${info}:  25层</p>
+    <p style="color:blue">住户:  895户</p>
+    <p style="color:blue">人口:  2855人</p>
+    <p style="color:blue">本周治安事件:  3起</p>
+</div>
+
+<img style='float:right;margin:4px' class='imgDemo' src=${house} width='100' height='100' title='天安门'/>
+`
 
       return  new BMap.InfoWindow(sContent, opts);  // 创建信息窗口对象
       // map.openInfoWindow(infoWindow, new BMap.Point(x,y));
