@@ -333,7 +333,7 @@ class TableList extends PureComponent {
                   htmlType={'button'}
                   type="primary"
               >
-                <Link to="/resource/manage/publish">发布接口</Link>
+                <Link to="/api/manage/publish">发布接口</Link>
               </Button>
               {selectedRows.length > 0 && (
                 <span>

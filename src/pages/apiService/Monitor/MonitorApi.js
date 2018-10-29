@@ -20,7 +20,7 @@ class MonitorApi extends React.Component {
           >
             <Card bordered={false}
                 className={styles['antd-card-color']}
-                title="接口访问情况"
+                title="服务访问情况"
               // style={{ height: '100%' }}
             >
               <LineHZ />
@@ -32,7 +32,7 @@ class MonitorApi extends React.Component {
             <Card bordered={false}
                 className={styles['antd-card-color']}
                 style={{ marginBottom: 10, height: 300 }}
-                title="接口服务类型"
+                title="服务类型"
             >
               <BarHZ/>
             </Card>

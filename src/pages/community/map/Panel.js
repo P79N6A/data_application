@@ -53,7 +53,6 @@ class RightPanel extends Component {
               className={'span'}
           >{isCollapse?'＜':'＞'}</span>
         </span>
-        {/*<WeekChart />*/}
         <Collapse onChange={callback}
             style={{margin:'0 0 0 30px'}}
             defaultActiveKey={'1'}
@@ -62,13 +61,6 @@ class RightPanel extends Component {
               key="1"
               className={styles['data-all']}
           >
-            {/*<Collapse defaultActiveKey="1">
-              <Panel header="This is panel nest panel"
-                  key="1"
-              >
-                <p>{text}</p>
-              </Panel>
-            </Collapse>*/}
             <WeekChart />
             <WeekLine />
           </Panel>

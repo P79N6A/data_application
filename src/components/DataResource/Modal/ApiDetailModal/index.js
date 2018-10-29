@@ -20,7 +20,7 @@ class ApiDetailModal extends Component {
     paramInfoResDTOS=addColumnKey(paramInfoResDTOS);
 
     const data = [
-      `服务编号：${modalContent.intefaceId}`,
+      `服务编号：${modalContent.interfaceId}`,
       `服务名：${modalContent.serviceName}`,
       `服务分类：${modalContent.catalogName}`,
       `服务路径：${modalContent.servicePath}`,
