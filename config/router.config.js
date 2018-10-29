@@ -225,7 +225,35 @@ export default [
             path: '/community/person',
             name: 'person',
             component: './community/person'
-          }
+          },
+          {
+            path: '/community/event',
+            name: 'event',
+            component: './community/event'
+          },
+          {
+            path: '/community/analyze',
+            name: 'analyze',
+            component: './community/analyze'
+          },
+          {
+            path: '/community/monitor',
+            name: 'monitor',
+            icon: 'global',
+            component: './community/monitor',
+            routes:[
+              {
+                path: '/community/monitor/current',
+                name: 'monitor/current',
+                component: './community/monitor/current',
+              },
+              {
+                path: '/community/monitor/track',
+                name: 'monitor/track',
+                component: './community/monitor/track',
+              },
+            ]
+          },
         ],
         authority: ['admin']
       },
