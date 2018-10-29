@@ -77,12 +77,12 @@ class RightPanel extends Component {
           <Panel header="实有房屋"
               key="3"
           >
-            <p>{text}</p>
+            <p>待开发</p>
           </Panel>
           <Panel header="实有单位"
               key="4"
           >
-            <p>{text}</p>
+            <p>待开发</p>
           </Panel>
         </Collapse>
       </div>
