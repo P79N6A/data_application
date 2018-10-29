@@ -25,6 +25,7 @@ class RightPanel extends Component {
     this.state={isCollapse:false}
   }
 
+  // 右侧面板切换
   toggleCollapse(){
     let {isCollapse}=this.state;
     let style=this.contentRef.current.style;
@@ -32,7 +33,7 @@ class RightPanel extends Component {
       style.right='0'
       this.setState({isCollapse:!isCollapse});
     }else{
-      style.right='-360px'
+      style.right='-370px'
       this.setState({isCollapse:!isCollapse});
     }
   }
@@ -48,7 +49,9 @@ class RightPanel extends Component {
         <span className={styles['collapse-btn']}
             onClick={this.toggleCollapse}
         >
-          <span className={'span'}>{isCollapse?'>>':'<<'}</span>
+          <span style={{transform:'scale(1,3)'}}
+              className={'span'}
+          >{isCollapse?'＞':'＜'}</span>
         </span>
         {/*<WeekChart />*/}
         <Collapse onChange={callback}
