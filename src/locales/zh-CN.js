@@ -12,7 +12,7 @@ export default {
   'menu.api.echart': '图表',
   'menu.data': '数据采集',
   'menu.data.manage': '数据资源管理',
-  'menu.data.main': '新建采集任务',
+  'menu.data.main': '采集任务',
   'menu.data.list': '爬虫',
   'menu.data.mission': '总览',
   'menu.data.file': '文件类采集',
