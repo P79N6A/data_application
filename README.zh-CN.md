@@ -10,7 +10,7 @@
 
 ## 帮助
 - react学习建议
-  - 1
+  - es6基础 : [es6入门-阮一峰](http://es6.ruanyifeng.com/#docs/let)
   - 2
 - umi配置参考https://umijs.org/zh/config/#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE
 
