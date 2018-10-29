@@ -31,7 +31,7 @@ class Person extends Component{
                         <ul>
                             <li>
                                 <label>姓名：</label>
-                                <span>王立军</span>
+                                <span style={{position:'relative'}}>蔡某某<Tag color="#2db7f5" style={{position:'absolute',right:'0px'}}>户籍人员</Tag></span>
                             </li>
                             <li>
                                 <label>性别：</label>
