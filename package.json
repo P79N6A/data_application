@@ -89,9 +89,7 @@
     "umi": "^2.0.1",
     "umi-plugin-react": "^1.0.1"
   },
-  "optionalDependencies": {
-    "puppeteer": "^1.6.0"
-  },
+  "optionalDependencies": {},
   "lint-staged": {
     "**/*.{js,jsx,less}": [
       "prettier --write",
