@@ -54,9 +54,9 @@
 
 ## 使用
 
-$ npm install
-$ npm start         # 访问 http://localhost:8000
-npm run test     执行测试
+- $ npm install
+- $ npm start         # 访问 http://localhost:8000
+- $ npm run test     执行测试
 ```
 
 ## 支持环境
