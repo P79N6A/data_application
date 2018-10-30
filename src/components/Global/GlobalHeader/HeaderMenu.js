@@ -26,16 +26,34 @@ class HeaderMenu extends Component {
     return (
       <span className={styles['header-menu']}>
         <Link
-          onClick={()=>this.changePathAuth('data')}
-          className={!currentApp || currentApp==='data' ?styles['active-link']:''}
+          onClick={()=>this.changePathAuth('api')}
+          className={!currentApp || currentApp==='api' ?styles['active-link']:''}
           to="/api"
-        > 数据平台
+        > 服务管理
         </Link>
         <Link
-          onClick={()=>this.changePathAuth('community')}
-          className={currentApp==='community'?styles['active-link']:''}
-          to="/community"
-        >社区平台
+          onClick={()=>this.changePathAuth('data')}
+          className={currentApp==='data'?styles['active-link']:''}
+          to="/data"
+        >数据采集
+        </Link>
+        <Link
+          onClick={()=>this.changePathAuth('application')}
+          className={currentApp==='application'?styles['active-link']:''}
+          to="/application"
+        >数据应用
+        </Link>
+        <Link
+          onClick={()=>this.changePathAuth('catalog')}
+          className={currentApp==='catalog'?styles['active-link']:''}
+          to="/catalog"
+        >资源管理
+        </Link>
+        <Link
+          onClick={()=>this.changePathAuth('audit')}
+          className={currentApp==='audit'?styles['active-link']:''}
+          to="/audit"
+        >运维统计
         </Link>
       </span>
     );

@@ -41,7 +41,7 @@ export default class TopNavHeader extends PureComponent {
                   alt="logo"
                   src={logo}
                 />
-                <h1>紫光华智top</h1>
+                <h1>大数据管控平台</h1>
               </Link>
             </div>
             <div

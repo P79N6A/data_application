@@ -27,7 +27,7 @@ export default {
   'menu.dataprocess': '数据处理',
   'menu.dataprocess.clean': '数据清洗',
   'menu.dataprocess.integration': '数据整合',
-  'menu.catalog': '资源目录',
+  'menu.catalog': '资管管理',
   'menu.catalog.manage': '目录管理',
   'menu.catalog.datamanage': '数据资源管理',
   'menu.catalog.catalog': '资源目录管理',

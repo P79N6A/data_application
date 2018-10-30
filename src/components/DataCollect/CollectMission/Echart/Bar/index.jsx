@@ -16,6 +16,7 @@ class Bar extends PureComponent{
         tooltip: {},
         title: {
           text: '区域采集量',
+          subtext: '单位: (万)',
         },
         color: ['#3398DB'],
         xAxis: {

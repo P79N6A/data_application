@@ -47,7 +47,7 @@ export default class GlobalHeader extends PureComponent {
             <img alt="logo"
                  src={logo}
             />
-            <h1>精准社会服务平台</h1>
+            <h1>大数据管控平台</h1>
           </Link>
           <Icon
             className={styles.trigger}

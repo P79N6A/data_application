@@ -10,8 +10,12 @@ import styles from './index.less';
 const { SubMenu } = Menu;
 
 const pathMenu={
-  data:['api','data','application','result','exception', 'dataprocess','catalog', 'audit'],
+  data:['data'],
   community:['community'],
+  api:['api'],
+  catalog:['catalog'],
+  audit:['audit'],
+  application:['application'],
 }
 
 // Allow menu.js config icon as string or ReactNode
@@ -84,10 +88,11 @@ export default class BaseMenu extends PureComponent {
         if (!item) {return false}
         const path=pathToRegexp.parse(location.pathname)[0].split('/').filter(i=>i)[0];
 
-        if (pathMenu.community.includes(path)){
-          return item.key.includes(path)
-        }else if (pathMenu.data.includes(path)){
-          return pathMenu.data.some((v) =>item.key.includes(v) )
+        for (let k in pathMenu){
+          let menu=pathMenu[k];
+          if (menu.includes(path)){
+            return menu.some((v) =>item.key.includes(v))
+          }
         }
         return false;
       });

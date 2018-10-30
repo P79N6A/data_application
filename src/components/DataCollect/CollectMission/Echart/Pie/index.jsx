@@ -15,6 +15,7 @@ class Pie extends PureComponent{
     myChart.setOption({
       title : {
           text: '采集来源',
+          subtext: '单位: (万)',
           x:'center',
       },
       tooltip : {
