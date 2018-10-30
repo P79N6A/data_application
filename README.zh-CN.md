@@ -22,6 +22,7 @@
   - dvajs 本项目采用的状态管理方案，整合以上两个工具 [官方文档](https://dvajs.com/)
   - react-router 前端路由解决方案 [官方文档](http://react-guide.github.io/react-router-cn/docs/API.html)
   - umijs 插件自动化配置 [配置详情](https://umijs.org/zh/)
+  - 补充开源js教程: [gitBook](https://github.com/EbookFoundation/free-programming-books/blob/master/free-programming-books-zh.md#user-content-javascript)
 
 ## 特性
 
