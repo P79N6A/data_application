@@ -1,7 +1,7 @@
 {
-  "name": "ant-design-pro",
+  "name": "react-data-api-system",
   "version": "2.0.0",
-  "description": "An out-of-box UI solution for enterprise applications",
+  "description": "大数据管控平台",
   "private": true,
   "scripts": {
     "presite": "npm run generate-mock && cd functions && npm install",
