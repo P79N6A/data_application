@@ -10,6 +10,7 @@
 - app.js为打包上线运行的node文件入口
 - models可以配置为全局/页面级，推荐配置为页面级，方便迁移
 - 推荐在render函数第一行从props取值，方便写propsType约束
+- 关于代码风格 有兴趣可以参考 [Google JavaScript Style Guide](http://bq69.com/blog/articles/script/868/google-javascript-style-guide.html) | [JSON风格指南] (https://github.com/darcyliu/google-styleguide/blob/master/JSONStyleGuide.md)
 
 ## 帮助
   - 本项目经过中间工具的高度整合，省略了大量实现细节，不利于新人学习，现列出以下工具细节
