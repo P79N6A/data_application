@@ -17,6 +17,7 @@
   - es6基础 : [es6入门-阮一峰](http://es6.ruanyifeng.com/#docs/let)
   - react入门 [react中文文档](https://react.docschina.org/) / [官方文档](https://reactjs.org/)
   - react状态管理: redux入门 [中文文档](https://www.redux.org.cn/)
+  - 综合一点的教程: [react小书](http://huziketang.mangojuice.top/books/react/)
   - redux-saga redux异步解决方案 [API参考](https://redux-saga-in-chinese.js.org/docs/api/index.html)
   - dvajs 本项目采用的状态管理方案，整合以上两个工具 [官方文档](https://dvajs.com/)
   - react-router 前端路由解决方案 [官方文档](http://react-guide.github.io/react-router-cn/docs/API.html)

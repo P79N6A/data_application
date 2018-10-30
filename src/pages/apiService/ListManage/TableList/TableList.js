@@ -105,6 +105,9 @@ class TableList extends PureComponent {
         dispatch({type:'ListManage/getApiList' })
       },
     })
+    dispatch({
+      type:'ListManage/watchSave'
+    })
   }
 
   columns = [

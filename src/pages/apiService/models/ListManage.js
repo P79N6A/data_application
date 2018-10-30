@@ -98,18 +98,28 @@ export default {
       checkResponse(res,callback,'添加成功')
     },
 
-    * updateApiStatus({ payload, callback }, { call, put, select }) {
+    * updateApiStatus({ payload, callback }, { call, take, put }) {
       const res=yield call(updateApiStatus,payload);
-      checkResponse(res,callback,payload.option==='1'?'启用成功':'停用成功')
+      try {
+        checkResponse(res,callback,payload.option==='1'?'启用成功':'停用成功')
+      }catch (e) {
+        console.log(e.message)
+      }finally {
+        debugger;
+        yield put('getApiList')
+        debugger;
+      }
     },
+
 
     // 监听并触发更新api列表
     * watchAndUpdateApiList({callback},{call, put, take, select, race }){
       // 初始化表格数据
-      setTimeout(callback,100);
+      yield setTimeout(callback,100);
       while (true){
         // 监听列表
-        const watch=yield take(['getApiList','saveApi','updateApiStatus', 'updatePageParam', 'updateParam']);
+        const watch=yield take(['getApiList','saveApi','updateApiStatusDone', 'updatePageParam', 'updateParam']);
+        debugger;
         // 获取请求参数
         const [defaultParam, searchParam, pageParam]=yield select(({ListManage})=> ([ListManage.defaultParam, ListManage.searchParam, ListManage.pageParam]));
         const option=Object.assign(defaultParam,searchParam);
