@@ -1,8 +1,8 @@
 import React, { PureComponent } from "react";
 import { Layout, Icon, Menu } from "antd";
 import { Link } from "dva/router";
-import iconfont from "@/styles/iconfont.css";
-import className from 'classnames';
+// import iconfont from "@/styles/iconfont.css";
+// import className from 'classnames';
 import zhCN from '@/locales/zh-CN'
 // import iconfont from "@iconfont";
 import styles from "./index.less";
@@ -94,7 +94,7 @@ class LeftList extends PureComponent {
                   return (
                     <Menu.Item key={item.path}>
                       <Link key={item.path} to={item.path}>
-                        <i className={className(styles['menu-icon'], iconfont.iconfont, iconfont['icon-ditujiankong'])} />
+                        {/* <i className={className(styles['menu-icon'], iconfont.iconfont, iconfont['icon-ditujiankong'])} /> */}
                         <span className={styles['menu-label']}>{zhCN[ `menu.${item.name}`]}</span>
                       </Link>
                     </Menu.Item>
