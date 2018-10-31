@@ -55,6 +55,12 @@ class HeaderMenu extends Component {
           to="/audit"
         >运维统计
         </Link>
+        <Link
+          onClick={()=>this.changePathAuth('task')}
+          className={currentApp==='task'?styles['active-link']:''}
+          to="/task"
+        >任务调度
+        </Link>
       </span>
     );
   }
