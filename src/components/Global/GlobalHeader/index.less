@@ -1,10 +1,11 @@
 @import '../../../../node_modules/antd/lib/style/themes/default.less';
 
-@nav-header-height: 64px;
+@nav-header-height: 70px;
 @pro-header-hover-bg: rgba(0, 0, 0, 0.025);
+@logo-padding-left:30px;
 
 .header {
-  height: 54px;
+  height: @nav-header-height;
   padding: 0 12px 0 0;
   background: #333434;
   //box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
@@ -12,9 +13,10 @@
 }
 .logo {
   height: @nav-header-height;
+  width: 400px;
   position: relative;
   line-height: @nav-header-height;
-  padding-left: (@menu-collapsed-width - 32px) / 2;
+  padding-left: @logo-padding-left;
   transition: all 0.3s;
   background: #333434;
   overflow: hidden;
@@ -67,6 +69,7 @@ i.trigger {
   height: 100%;
   overflow: hidden;
   color: #fff;
+
   .action {
     color: #fff;
     cursor: pointer;
@@ -81,6 +84,7 @@ i.trigger {
     &:hover {
       background: @pro-header-hover-bg;
     }
+
     :global(&.ant-popover-open) {
       color: #fff;
       background: @pro-header-hover-bg;
@@ -94,6 +98,17 @@ i.trigger {
     }
   }
   .account {
+    margin-left:10px ;
+    &:before {
+      content: '';
+      display: inline-block;
+      width: 1px;
+      height: 50px;
+      position: absolute;
+      background: #555;
+      top: 11px;
+      left: 50px;
+    }
     .avatar {
       margin: 20px 8px 20px 0;
       color: #fff;
