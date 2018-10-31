@@ -23,44 +23,24 @@ class HeaderMenu extends Component {
 
   render() {
     const {currentApp}=this.props;
+    const menus=[
+      {name:'资源管理', path:'catalog'},
+      {name:'服务管理', path:'api'},
+      {name:'数据采集', path:'data'},
+      {name:'数据应用', path:'application'},
+      {name:'运维统计', path:'audit'},
+      {name:'任务调度', path:'task'},
+      ]
     return (
       <span className={styles['header-menu']}>
-        <Link
-          onClick={()=>this.changePathAuth('api')}
-          className={!currentApp || currentApp==='api' ?styles['active-link']:''}
-          to="/api"
-        > 服务管理
-        </Link>
-        <Link
-          onClick={()=>this.changePathAuth('data')}
-          className={currentApp==='data'?styles['active-link']:''}
-          to="/data"
-        >数据采集
-        </Link>
-        <Link
-          onClick={()=>this.changePathAuth('application')}
-          className={currentApp==='application'?styles['active-link']:''}
-          to="/application"
-        >数据应用
-        </Link>
-        <Link
-          onClick={()=>this.changePathAuth('catalog')}
-          className={currentApp==='catalog'?styles['active-link']:''}
-          to="/catalog"
-        >资源管理
-        </Link>
-        <Link
-          onClick={()=>this.changePathAuth('audit')}
-          className={currentApp==='audit'?styles['active-link']:''}
-          to="/audit"
-        >运维统计
-        </Link>
-        <Link
-          onClick={()=>this.changePathAuth('task')}
-          className={currentApp==='task'?styles['active-link']:''}
-          to="/task"
-        >任务调度
-        </Link>
+        {menus.map(menu=>(
+          <Link
+            onClick={()=>this.changePathAuth(menu.path)}
+            className={!currentApp || currentApp===menu.path ?styles['active-link']:''}
+            to={`/${menu.path}`}
+          > {menu.name}
+          </Link>
+        ))}
       </span>
     );
   }

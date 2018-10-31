@@ -1,8 +1,8 @@
 import puppeteer from 'puppeteer';
-
 const delay=[{delay:0},{delay:100},{delay:200}];
 const url='http://localhost:8000/resource/manage';
 const waitLoad={ waitUntil: 'domcontentloaded' }
+
 
 describe('api列表管理页', () => {
   let browser;

@@ -214,7 +214,8 @@ class BasicLayout extends React.PureComponent {
     const { fixedHeader } = this.props;
     return {
       margin: '10px 10px 0',
-      paddingTop: fixedHeader ? 54 : 0,
+      paddingTop: fixedHeader ? 60 : 0,
+      overflowY: 'scroll'
     };
   };
 
@@ -289,7 +290,7 @@ class BasicLayout extends React.PureComponent {
     return (
       <React.Fragment>
         <DocumentTitle title={this.getPageTitle(pathname)}>
-          <ContainerQuery query={query}>
+          <ContainerQuery style={{overflow:'hidden'}} query={query}>
             {params => (
               <Context.Provider value={this.getContext()}>
                 <div className={classNames(params)}>{layout}</div>
@@ -297,7 +298,7 @@ class BasicLayout extends React.PureComponent {
             )}
           </ContainerQuery>
         </DocumentTitle>
-        {this.renderSettingDrawer()}
+        {/*{this.renderSettingDrawer()}*/}
       </React.Fragment>
     );
   }
