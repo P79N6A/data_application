@@ -1,21 +1,15 @@
 import React, { PureComponent } from 'react';
 import { Breadcrumb, Button, Col, Input, Row} from 'antd';
 
+import style from '../Task.less';
+
 class Header extends PureComponent {
 
-  render() {
-    const Item = Breadcrumb.Item;
+  _renderHeadFn= (props) => {
+    const {Search, Add} = props;
     return (
-        <Row gutter={24} style={{marginBottom:24,marginTop:10}}>
-          <Col span={14}>
-          <Breadcrumb >
-            <Item>
-              <strong>
-                {this.props.title || ""}
-              </strong>
-            </Item>
-          </Breadcrumb>
-          </Col>
+      <>
+        {Search && (
           <Col span={6}>
             <Input.Search
               placeholder="input search text"
@@ -23,10 +17,33 @@ class Header extends PureComponent {
               enterButton
             />
           </Col>
+        )}
+        {Add && (
           <Col span={4}>
             <Button type="success">+添加</Button>
           </Col>
+        )}
+      </>
+    )
+  };
+
+  render() {
+    const Item = Breadcrumb.Item;
+    return (
+      <div className={style.header}>
+        <Row gutter={24}  >
+          <Col span={14}>
+          <Breadcrumb >
+            <Item>
+              <strong className={style.title} >
+                {this.props.title || ""}
+              </strong>
+            </Item>
+          </Breadcrumb>
+          </Col>
+          {this._renderHeadFn(this.props)}
         </Row>
+      </div>
     );
   }
 }
