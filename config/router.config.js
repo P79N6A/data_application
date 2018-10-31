@@ -8,7 +8,7 @@ export default [
       { path: '/user/login', component: './User/Login' },
       { path: '/user/register', component: './User/Register' },
       { path: '/user/register-result', component: './User/RegisterResult' },
-    ]
+    ],
   },
   // 应用路由
   {
@@ -28,7 +28,8 @@ export default [
       { path: '/catalog', redirect: '/catalog/manage' },
       { path: '/application', redirect: '/application/main' },
       { path: '/community', redirect: '/community/map' },
-      /*=================接口服务===============*/
+      { path: '/task', redirect: '/task/project' },
+      /*= ================接口服务=============== */
           {
             path: '/api/monitor',
             name: 'api.monitor',
@@ -59,7 +60,7 @@ export default [
           {
             path: '/api/approval',
             name: 'api.approval',
-            component: './apiService/approval'
+            component: './apiService/approval',
           },
           {
             path: '/api/apply',
@@ -70,9 +71,9 @@ export default [
             path: '/api/echart',
             hideInMenu: true,
             name: 'echart',
-            component: './testComponent'
+            component: './testComponent',
           },
-      /*=================数据资源===============*/
+      /*= ================数据资源=============== */
           {
             path: '/data/mission',
             name: 'data.mission',
@@ -98,7 +99,7 @@ export default [
             name: 'data.manage',
             component: './dataResource/Manage',
           },
-      /*=================数据应用===============*/
+      /*= ================数据应用=============== */
           {
             path: '/application/main',
             name: 'application.main',
@@ -119,7 +120,7 @@ export default [
             // 数据清理
             path: '/process/clean',
             name: 'process.clean',
-            component: './DataProcess/Clean'
+            component: './DataProcess/Clean',
           },
 
       // 资源目录
@@ -128,19 +129,19 @@ export default [
             // 目录管理
             path: '/catalog/manage',
             name: 'catalog.manage',
-            component: './dataCatalog/Manage'
+            component: './dataCatalog/Manage',
           },
           {
             // 资源目录管理
             path: '/catalog/catalog',
             name: 'catalog',
-            component: './dataCatalog/Catalog'
+            component: './dataCatalog/Catalog',
           },
           {
             // 数据资源管理
             path: '/catalog/manage',
             name: 'catalog.manage',
-            component: './dataCatalog/DataManage'
+            component: './dataCatalog/DataManage',
           },
 
       // 运维统计
@@ -148,38 +149,64 @@ export default [
             // 数据监控
             name: 'audit.dmonitor',
             path: '/audit/dmonitor',
-            component: './dataAudit/DataMonitor'
+            component: './dataAudit/DataMonitor',
           },
           {
             // 系统监控
             name: 'audit.ymonitor',
             path: '/audit/ymonitor',
-            component: './dataAudit/SysMonitor'
+            component: './dataAudit/SysMonitor',
           },
           {
             // 数据统计
             name: 'audit.statis',
             path: '/audit/statis',
-            component: './dataAudit/Statis'
+            component: './dataAudit/Statis',
           },
           {
             // 审计管理
             name: 'audit.amanage',
             path: '/audit/amanage',
-            component: './dataAudit/AuditManage'
+            component: './dataAudit/AuditManage',
           },
-      /*=================社区应用===============*/
+
+      // 任务调度
+      {
+        // 项目管理
+        name: 'task.project',
+        path: '/task/project',
+        component: './taskScheduling/TaskProject',
+      },
+      {
+        // 调度计划
+        name: 'task.schedule',
+        path: '/task/schedule',
+        component: './taskScheduling/TaskSchedule',
+      },
+      {
+        // 历史日志
+        name: 'task.history',
+        path: '/task/history',
+        component: './taskScheduling/TaskHistory',
+      },
+      {
+        // 数据源管理
+        name: 'task.ebdata',
+        path: '/task/ebdata',
+        component: './taskScheduling/TaskEbdata',
+      },
+      /*= ================社区应用=============== */
       {
         path: '/community/map',
         name: 'map',
         component: './community/map',
-        icon:'security-scan'
+        icon:'security-scan',
       },
       {
         path: '/community/person',
         name: 'person',
         component: './community/person',
-        icon:'user'
+        icon:'user',
       },
       {
         path: '/community/event',
@@ -201,8 +228,8 @@ export default [
             path: '/community/event/message',
             name: 'message',
             component: './community/event/message',
-          }
-        ]
+          },
+        ],
       },
       {
         path: '/community/analyze',
@@ -219,8 +246,8 @@ export default [
             path: '/community/analyze/traffic',
             name: 'traffic',
             component: './community/analyze/traffic',
-          }
-        ]
+          },
+        ],
       },
       {
         path: '/community/monitor',
@@ -238,9 +265,9 @@ export default [
             name: 'track',
             component: './community/monitor/track',
           },
-        ]
+        ],
       },
 
-    ]
-  }
+    ],
+  },
 ];
