@@ -119,7 +119,6 @@ export default {
       while (true){
         // 监听列表
         const watch=yield take(['getApiList','saveApi','updateApiStatusDone', 'updatePageParam', 'updateParam']);
-        debugger;
         // 获取请求参数
         const [defaultParam, searchParam, pageParam]=yield select(({ListManage})=> ([ListManage.defaultParam, ListManage.searchParam, ListManage.pageParam]));
         const option=Object.assign(defaultParam,searchParam);

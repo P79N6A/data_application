@@ -106,7 +106,7 @@ export default class GlobalHeaderRight extends PureComponent {
     }
     return (
       <div className={className}>
-        <HeaderSearch
+        {/*<HeaderSearch
           className={`${styles.action} ${styles.search}`}
           dataSource={['搜索提示一', '搜索提示二', '搜索提示三']}
           onPressEnter={value => {
@@ -116,7 +116,7 @@ export default class GlobalHeaderRight extends PureComponent {
             console.log('input', value); // eslint-disable-line
           }}
           placeholder="站内搜索"
-        />
+        />*/}
         <NoticeIcon
           className={styles.action}
           count={currentUser.notifyCount}
@@ -162,18 +162,6 @@ export default class GlobalHeaderRight extends PureComponent {
         ) : (
           <Spin size="small" />
         )}
-        {/* <Button
-            ghost={theme === 'dark'}
-            onClick={() => {
-            this.changLang();
-          }}
-            size="small"
-            style={{
-            margin: '0 8px'
-          }}
-        >
-          <FormattedMessage id="navbar.lang" />
-        </Button> */}
       </div>
     );
   }
