@@ -139,8 +139,8 @@ export default [
           },
           {
             // 数据资源管理
-            path: '/catalog/manage',
-            name: 'catalog.manage',
+            path: '/catalog/datamanage',
+            name: 'catalog.datamanage',
             component: './dataCatalog/DataManage',
           },
 

@@ -1,15 +1,11 @@
-import React, { PureComponent } from 'react'
-import { Layout } from 'antd';
-const { Sider } = Layout;
-class LeftSider extends PureComponent {
-  render() {
-    return(
-      <Sider>        
-        <div>
-          测试
-        </div>
-      </Sider>
-    )
-  }   
+import React from 'react'
+import LeftList from './LeftList'
+
+const LeftSider = (props) => {
+  return(     
+    <div>
+      <LeftList {...props} />
+    </div>
+  )
 }
 export default LeftSider
