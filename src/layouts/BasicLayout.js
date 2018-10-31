@@ -11,6 +11,7 @@ import pathToRegexp from 'path-to-regexp';
 import { enquireScreen, unenquireScreen } from 'enquire-js';
 import { formatMessage } from 'umi/locale';
 import SiderMenu from '@/components/Global/SiderMenu';
+import LeftSider from './LeftSider'
 import Authorized from '@/utils/Authorized';
 import SettingDrawer from '@/components/Global/SettingDrawer';
 import Redirect from 'umi/redirect';
@@ -198,16 +199,16 @@ class BasicLayout extends React.PureComponent {
     return `${message} - 紫光华智`;
   };
 
-  getLayoutStyle = () => {
-    const { isMobile } = this.state;
-    const { fixSiderbar, collapsed, layout } = this.props;
-    if (fixSiderbar && layout !== 'topmenu' && !isMobile) {
-      return {
-        paddingLeft: collapsed ? '80px' : '256px',
-      };
-    }
-    return null;
-  };
+  // getLayoutStyle = () => {
+  //   const { isMobile } = this.state;
+  //   const { fixSiderbar, collapsed, layout } = this.props;
+  //   if (fixSiderbar && layout !== 'topmenu' && !isMobile) {
+  //     return {
+  //       paddingLeft: collapsed ? '80px' : '256px',
+  //     };
+  //   }
+  //   return null;
+  // };
 
   getContentStyle = () => {
     const { fixedHeader } = this.props;
@@ -246,7 +247,7 @@ class BasicLayout extends React.PureComponent {
     const menuData = this.getMenuData();
     const routerConfig = this.matchParamsPath(pathname);
     const layout = (
-      <Layout>
+      <Layout style={{width:'100%', height: '100%'}}>
         <Header
           handleMenuCollapse={this.handleMenuCollapse}
           isMobile={isMobile}
@@ -256,13 +257,10 @@ class BasicLayout extends React.PureComponent {
           style={{width:'100%'}}
         />
         <Layout
-          style={{
-            ...this.getLayoutStyle(),
-            minHeight: '100vh',
-          }}
+          style={{flexDirection: 'row'}}
         >
           {isTop && !isMobile ? null : (
-            <SiderMenu
+            <LeftSider
               Authorized={Authorized}
               isMobile={isMobile}
               logo={logo}
@@ -272,7 +270,7 @@ class BasicLayout extends React.PureComponent {
               {...this.props}
             />
           )}
-          <Content style={this.getContentStyle()}>
+          <Content>
             <Authorized
               authority={routerConfig.authority}
               noMatch={<Exception403 />}
