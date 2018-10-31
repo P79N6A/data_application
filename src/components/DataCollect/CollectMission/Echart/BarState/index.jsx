@@ -7,15 +7,15 @@ import  'echarts/lib/chart/pie';
 import 'echarts/lib/component/tooltip';
 import 'echarts/lib/component/title';
 
-class Pie extends PureComponent{
+class BarState extends PureComponent{
   componentDidMount() {
     setTimeout(() => {
-        const myChart = echarts.init(document.getElementById('bar-bar'));
+        const myChart = echarts.init(document.getElementById('BarState'));
         // 基于准备好的dom，初始化echarts实例
         // 绘制图表
         myChart.setOption({
           title : {
-              text: '采集来源',
+              text: '任务状态',
               x:'center',
           },
           tooltip : {
@@ -25,20 +25,19 @@ class Pie extends PureComponent{
           legend: {
               orient: 'vertical',
               left: 'left',
-              data: ['公安','学校','医院','园区','社区'],
+              data: ['成功','等待调度','失败','正在运行'],
           },
           series : [
               {
-                  name: '来源',
+                  name: '任务状态',
                   type: 'pie',
                   radius : '55%',
                   center: ['50%', '60%'],
                   data:[
-                      {value:19335, name:'公安'},
-                      {value:13310, name:'学校'},
-                      {value:16234, name:'医院'},
-                      {value:13135, name:'园区'},
-                      {value:15480, name:'社区'},
+                      {value:19335, name:'成功'},
+                      {value:9310, name:'等待调度'},
+                      {value:1620, name:'失败'},
+                      {value:8300, name:'正在运行'},
                   ],
                   itemStyle: {
                       normal: {
@@ -62,9 +61,9 @@ class Pie extends PureComponent{
     render() {
       return(
         <div style={{width: '100%', height: '100%'}}>
-          <div id="bar-bar" style={{width: '100%', height: '100%'}} />
+          <div id="BarState" style={{width: '100%', height: '100%'}} />
         </div>
       )
     }
 }
-export default Pie
+export default BarState

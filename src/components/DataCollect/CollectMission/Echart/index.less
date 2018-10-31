@@ -2,7 +2,12 @@
     display: flex;
     width: 100%;
     height: 100%;
-    .left,.right{
+    .left{
+        width: 50%;
+        height: 100%;
+        display: flex;
+    }
+    .right{
         width: 50%;
         height: 100%;
         display: flex;
@@ -10,6 +15,13 @@
     .right{
         flex-direction: column;
         .r-top,.r-bottom{
+            width: 100%;
+            height: 50%;
+        }
+    }
+    .left{
+        flex-direction: column;
+        .l-top,.l-bottom{
             width: 100%;
             height: 50%;
         }

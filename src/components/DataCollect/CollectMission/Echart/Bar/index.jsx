@@ -16,18 +16,17 @@ class Bar extends PureComponent{
       myChart.setOption({
           tooltip: {},
           title: {
-            text: '区域采集量',
-            subtext: '单位: (万)',
+            text: '来源top5',
           },
           color: ['#3398DB'],
-          xAxis: {
-              data: ['渝中区', '江北区', '南岸区', '沙坪坝区', '九龙坡区', '北碚区', '巴南区'],
+          yAxis: {
+              data: ['旅游', '购物', '餐饮', '出行', '快递'],
           },
-          yAxis: {},
+          xAxis: {},
           series: [{
               name: '采集量',
               type: 'bar',
-              data: [166963, 124563,183456,134721,153478,112457,198742],
+              data: [14696, 15456,16345,16472,18347],
           }],
       });
     })

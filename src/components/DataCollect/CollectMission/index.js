@@ -16,9 +16,9 @@ class CollectMission extends Component {
   render() {
     return (
       <div className={styles.fr}>
-        <div className={styles.orgTree}>
+        {/* <div className={styles.orgTree}>
           <Tree treeData={treeData} />
-        </div>
+        </div> */}
         <div className={styles.contentTable}>
           <Echart />
         </div>
