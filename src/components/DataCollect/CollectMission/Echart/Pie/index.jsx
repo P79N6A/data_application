@@ -41,6 +41,12 @@ class Pie extends PureComponent{
                   {value:1548, name:'社区'},
               ],
               itemStyle: {
+                  normal: {
+                      label: {
+                          position: 'inner',
+                          formatter: '{b}: {c} ({d}%)'
+                      }
+                  },
                   emphasis: {
                       shadowBlur: 10,
                       shadowOffsetX: 0,
