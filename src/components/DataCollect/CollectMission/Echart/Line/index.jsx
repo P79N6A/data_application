@@ -9,25 +9,27 @@ import 'echarts/lib/component/title';
 
 class Line extends PureComponent{
   componentDidMount() {
-    // 基于准备好的dom，初始化echarts实例
-    const myChart = echarts.init(document.getElementById('line-line'));
-    // 绘制图表
-    myChart.setOption({
-        tooltip: {},
-        title: {
-          text: '数据量',
-          subtext: '单位: (万)',
-        },
-        xAxis: {
-            data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
-        },
-        yAxis: {},
-        series: [{
-            name: '采集量',
-            type: 'line',
-            data: [166963, 124563,183456,153478,112457,198742, 134721],
-        }],
-    });
+    setTimeout(() => {
+      // 基于准备好的dom，初始化echarts实例
+      const myChart = echarts.init(document.getElementById('line-line'));
+      // 绘制图表
+      myChart.setOption({
+          tooltip: {},
+          title: {
+            text: '数据量',
+            subtext: '单位: (万)',
+          },
+          xAxis: {
+              data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+          },
+          yAxis: {},
+          series: [{
+              name: '采集量',
+              type: 'line',
+              data: [166963, 124563,183456,153478,112457,198742, 134721],
+          }],
+      });
+    })
   }
 
     render() {

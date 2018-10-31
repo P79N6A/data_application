@@ -9,26 +9,28 @@ import 'echarts/lib/component/title';
 
 class Bar extends PureComponent{
   componentDidMount() {
-    // 基于准备好的dom，初始化echarts实例
-    const myChart = echarts.init(document.getElementById('pie-pie'));
-    // 绘制图表
-    myChart.setOption({
-        tooltip: {},
-        title: {
-          text: '区域采集量',
-          subtext: '单位: (万)',
-        },
-        color: ['#3398DB'],
-        xAxis: {
-            data: ['渝中区', '江北区', '南岸区', '沙坪坝区', '九龙坡区', '北碚区', '巴南区'],
-        },
-        yAxis: {},
-        series: [{
-            name: '采集量',
-            type: 'bar',
-            data: [166963, 124563,183456,134721,153478,112457,198742],
-        }],
-    });
+    setTimeout(() => {
+      // 基于准备好的dom，初始化echarts实例
+      const myChart = echarts.init(document.getElementById('pie-pie'));
+      // 绘制图表
+      myChart.setOption({
+          tooltip: {},
+          title: {
+            text: '区域采集量',
+            subtext: '单位: (万)',
+          },
+          color: ['#3398DB'],
+          xAxis: {
+              data: ['渝中区', '江北区', '南岸区', '沙坪坝区', '九龙坡区', '北碚区', '巴南区'],
+          },
+          yAxis: {},
+          series: [{
+              name: '采集量',
+              type: 'bar',
+              data: [166963, 124563,183456,134721,153478,112457,198742],
+          }],
+      });
+    })
   }
 
     render() {
