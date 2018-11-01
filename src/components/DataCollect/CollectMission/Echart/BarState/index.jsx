@@ -18,8 +18,8 @@ class BarState extends PureComponent{
               text: '任务状态',
               x:'left',
               textStyle: {
-                color: '#ec1c24'
-              }
+                color: '#ec1c24',
+              },
           },
           tooltip : {
               trigger: 'item',
