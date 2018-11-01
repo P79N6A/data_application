@@ -17,7 +17,7 @@ class MonitorApi extends React.Component {
       style:{
         // border:'1px solid #f00',
       },
-      headStyle:{color:'#f00', border:'1px solid #E0E0E0'},
+      headStyle:{color:'#f00', border:'1px solid #E0E0E0', fontWeight:800, fontSize:18},
       bodyStyle:{border:'1px solid #E0E0E0' ,padding:'0 5px'},
     }
     return (
@@ -34,7 +34,7 @@ class MonitorApi extends React.Component {
               <Card
                 {...cardStyle}
                 className={styles['antd-card-color']}
-                title="最近一周服务使用趋势"
+                title="最近一周接口使用趋势"
                 // style={{ height: '100%' }}
               >
                 <LineHZ />
@@ -67,7 +67,7 @@ class MonitorApi extends React.Component {
               {...cardStyle}
               className={styles['antd-card-color']}
               style={{ marginBottom: '0', height: 350 }}
-              title="热门服务TOP5"
+              title="本周热门接口服务TOP5"
             >
               <BarHZ />
             </Card>
