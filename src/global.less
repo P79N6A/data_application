@@ -1,8 +1,21 @@
 //base.less
 :global .ant-layout-content {
-  margin:10px 0 0 0 !important;
+  margin: 10px 0 0 0 !important;
 }
-#root{
+
+:global .ant-btn-primary {
+  color: #fff;
+  background-color: #ec1c24;
+  border-color: #ec1c24;
+}
+
+:global .ant-btn-primary:hover {
+  color: #fff;
+  background-color: #ff1e27;
+  border-color: #ff1e27;
+}
+
+#root {
   overflow-y: hidden;
 }
 
@@ -98,19 +111,15 @@ table {
 //   margin-bottom: 5px
 // }
 
-
-
-
-
-
-@fixed-top-menu-height:64px;
+@fixed-top-menu-height: 64px;
 
 html,
 body,
 #root {
   height: 100%;
 }
-.screen-xxl{
+
+.screen-xxl {
   height: 100%;
   width: 100%;
 }
