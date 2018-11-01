@@ -42,35 +42,53 @@ class Bar extends PureComponent {
       const data2 = [{ name: '车辆出入', value: 3041 }, { name: '老师信息', value: 4500 }, { name: '车辆出入', value: 4100 }, { name: '车辆出入', value: 4302 }]
       const data3 = [{ name: '到访记录', value: 2041 }, { name: '车辆出入', value: 4410 }, { name: '人员登记', value: 4100 }, { name: '人员登记', value: 4302 }, { name: '刑侦', value: 9602 }]
       const data4 = [{ name: '监控信息', value: 6141 }, { name: '人员登记', value: 4300 }, { name: '人员出入', value: 4100 }, { name: '人员出入', value: 4302 }]
-      const data5 = [{ name: '治安信息', value: 4341 }, { name: '采购信息', value: 4670 }, { name: '患者信息', value: 4100 }, { name: '设施登记', value: 4302 }, { name: '消防', value: 6302 }]
+      const data5 = [
+        { name: '治安信息', value: 4341 },
+        { name: '采购信息', value: 4670 },
+        { name: '患者信息', value: 4100 },
+        { name: '设施登记', value: 4302 },
+        {
+          name: '消防', value: 6302,
+          itemStyle: {
+            normal: {
+              color: 'pink',
+            },
+          },
+        }]
       const option = {
         tooltip: {
           trigger: 'axis',
           axisPointer: {            // 坐标轴指示器，坐标轴触发有效
             type: 'shadow',      // 默认为直线，可选为：'line' | 'shadow'
           },
-          formatter: function (params) {
+          formatter(params) {
             return params.reduce((prev, { data: { name, value } }) => `${prev}${name}: ${value} <br/>`, '');
-          }
+          },
+        },
+        legend: {
+          orient: 'vertical',
+          left: 'left',
+          top: '50',
+          data: ['技侦', '刑侦', '消防'],
         },
         title: {
           text: '来源top5',
           textStyle: {
-            color: '#ec1c24'
-          }
+            color: '#ec1c24',
+          },
         },
         grid: {
           left: '3%',
           right: '4%',
           bottom: '3%',
-          containLabel: true
+          containLabel: true,
         },
         xAxis: {
-          type: 'value'
+          type: 'value',
         },
         yAxis: {
           type: 'category',
-          data: ['社区', '学校', '医院', '园区', '公安']
+          data: ['社区', '学校', '医院', '园区', '公安'],
         },
         series: [
           {
@@ -80,10 +98,10 @@ class Bar extends PureComponent {
             label: {
               normal: {
                 show: true,
-                position: 'insideRight'
-              }
+                position: 'insideRight',
+              },
             },
-            data: data1
+            data: data1,
           },
           {
             name: '学校',
@@ -92,10 +110,10 @@ class Bar extends PureComponent {
             label: {
               normal: {
                 show: true,
-                position: 'insideRight'
-              }
+                position: 'insideRight',
+              },
             },
-            data: data2
+            data: data2,
           },
           {
             name: '医院',
@@ -104,10 +122,10 @@ class Bar extends PureComponent {
             label: {
               normal: {
                 show: true,
-                position: 'insideRight'
-              }
+                position: 'insideRight',
+              },
             },
-            data: data3
+            data: data3,
           },
           {
             name: '园区',
@@ -116,10 +134,10 @@ class Bar extends PureComponent {
             label: {
               normal: {
                 show: true,
-                position: 'insideRight'
-              }
+                position: 'insideRight',
+              },
             },
-            data: data4
+            data: data4,
           },
           {
             name: '社区',
@@ -128,13 +146,12 @@ class Bar extends PureComponent {
             label: {
               normal: {
                 show: true,
-                position: 'insideRight'
-              }
+                position: 'insideRight',
+              },
             },
-            data: data5
-          }
-
-        ]
+            data: data5,
+          },
+        ],
       };
       myChart.setOption(option)
     })

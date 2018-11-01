@@ -23,8 +23,8 @@ class Line extends PureComponent {
           // left: 'center',
           text: '来源趋势图',
           textStyle: {
-            color: '#ec1c24'
-          }
+            color: '#ec1c24',
+          },
         },
         legend: {
           data:['公安','社区','学校','园区','医院'],
