@@ -32,7 +32,14 @@ class Guage extends Component {
           name: '访问指标',
           type: 'gauge',
           detail: {formatter:'{value}%'},
-          data: [{value: 50, name: '稳定性: 优'}],
+          data: [{value: 80, name: '稳定性: 优'}],
+          title : {
+            // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+            fontWeight: 'bolder',
+            fontSize: 16,
+            fontStyle: 'italic',
+            offsetCenter:[-5, 0],
+          },
         },
       ],
     };
