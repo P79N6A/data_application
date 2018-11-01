@@ -24,13 +24,13 @@ class HeaderMenu extends Component {
   render() {
     const {currentApp}=this.props;
     const menus=[
-      {name:'资源管理', path:'catalog'},
-      {name:'服务管理', path:'api'},
-      {name:'数据采集', path:'data'},
-      {name:'数据应用', path:'application'},
-      {name:'运维统计', path:'audit'},
-      {name:'任务调度', path:'task'},
-      ]
+        {name:'资源管理', path:'catalog'},
+        {name:'数据采集', path:'data'},
+        {name:'数据应用', path:'application'},
+        {name:'数据服务', path:'api'},
+        {name:'运维统计', path:'audit'},
+        {name:'任务调度', path:'task'},
+    ];
     return (
       <span className={styles['header-menu']}>
         {menus.map(menu=>(
