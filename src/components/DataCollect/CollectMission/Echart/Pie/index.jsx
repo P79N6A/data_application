@@ -17,6 +17,9 @@ class Pie extends PureComponent{
           title : {
               text: '采集来源',
               x:'center',
+              textStyle: {
+                color: '#ec1c24'
+              }
           },
           tooltip : {
               trigger: 'item',

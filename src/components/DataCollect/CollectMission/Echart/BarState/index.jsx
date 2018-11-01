@@ -17,6 +17,9 @@ class BarState extends PureComponent{
           title : {
               text: '任务状态',
               x:'center',
+              textStyle: {
+                color: '#ec1c24'
+              }
           },
           tooltip : {
               trigger: 'item',
@@ -31,8 +34,7 @@ class BarState extends PureComponent{
               {
                   name: '任务状态',
                   type: 'pie',
-                  radius : '55%',
-                  center: ['50%', '60%'],
+                  radius: ['30%', '70%'],
                   data:[
                       {value:19335, name:'成功'},
                       {value:9310, name:'等待调度'},
