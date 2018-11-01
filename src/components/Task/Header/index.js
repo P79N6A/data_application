@@ -6,7 +6,7 @@ import style from '../Task.less';
 class Header extends PureComponent {
 
   _renderHeadFn= (props) => {
-    const {Search, Add} = props;
+    const {Search, Add, Adv} = props;
     return (
       <>
         {Search && (
@@ -21,6 +21,11 @@ class Header extends PureComponent {
         {Add && (
           <Col span={4}>
             <Button type="success">+添加</Button>
+          </Col>
+        )}
+        {Adv && (
+          <Col span={4}>
+            <Button type="primary">高级搜索</Button>
           </Col>
         )}
       </>
