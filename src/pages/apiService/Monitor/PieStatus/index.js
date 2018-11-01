@@ -26,14 +26,14 @@ class PieStatus extends PureComponent{
         },
         series : [
           {
-            name: '访问来源',
+            name: '接口状态',
             type: 'pie',
-            radius : '55%',
+            radius : '70%',
             center: ['50%', '60%'],
             data:[
-              {value:335, name:'使用中'},
-              {value:310, name:'已停用'},
-              {value:234, name:'审批中'},
+              {value:435, name:'使用中'},
+              {value:50, name:'已停用'},
+              {value:134, name:'审批中'},
               {value:135, name:'未发布'},
             ],
             itemStyle: {
@@ -41,6 +41,12 @@ class PieStatus extends PureComponent{
                 shadowBlur: 10,
                 shadowOffsetX: 0,
                 shadowColor: 'rgba(0, 0, 0, 0.5)',
+              },
+            },
+            label: {
+              normal: {
+                position: 'inner',
+                formatter: "{b} : {d}%",
               },
             },
           },

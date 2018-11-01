@@ -14,6 +14,11 @@ class MonitorApi extends React.Component {
     const cardStyle={
       bordered:true,
       hoverable:true,
+      style:{
+        // border:'1px solid #f00',
+      },
+      headStyle:{color:'#f00', border:'1px solid #E0E0E0'},
+      bodyStyle:{border:'1px solid #E0E0E0' ,padding:'0 5px'},
     }
     return (
       <div>
@@ -30,7 +35,6 @@ class MonitorApi extends React.Component {
                 {...cardStyle}
                 className={styles['antd-card-color']}
                 title="最近一周服务使用趋势"
-                bodyStyle={{padding:'0 10px', position:'relative', top:'-20px'}}
                 // style={{ height: '100%' }}
               >
                 <LineHZ />
@@ -41,7 +45,6 @@ class MonitorApi extends React.Component {
                 {...cardStyle}
                 className={styles['antd-card-color']}
                 title="接口状态分布"
-                bodyStyle={{padding:'0 10px'}}
                 style={{ float:'left' , padding:'0', width:'50%'}}
               >
                 <PieStatus />
@@ -50,7 +53,6 @@ class MonitorApi extends React.Component {
                 {...cardStyle}
                 className={styles['antd-card-color']}
                 title="接口使用者分布"
-                bodyStyle={{padding:'0 10px'}}
                 style={{ float:'right' , padding:'0 ', width:'50%'}}
               >
                 <PieUser />
@@ -62,11 +64,9 @@ class MonitorApi extends React.Component {
             style={{ height: '100%' }}
           >
             <Card
-              hoverable
-              bordered={true}
+              {...cardStyle}
               className={styles['antd-card-color']}
               style={{ marginBottom: '0', height: 350 }}
-              bodyStyle={{padding:'0 10px'}}
               title="热门服务TOP5"
             >
               <BarHZ />
@@ -76,7 +76,7 @@ class MonitorApi extends React.Component {
               {...cardStyle}
               className={classnames(styles['card-c'])}
               style={{ height: 308, padding:0 }}
-              title="服务稳定性"
+              title="最近一小时访问成功率"
             >
               <Gauge />
 
