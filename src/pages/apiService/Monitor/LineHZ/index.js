@@ -12,7 +12,15 @@ class BarHZ extends Component {
     const { xAxis, yAxis } = this.props;
 
     myChart.setOption({
-      // title: { text: '接口使用情况' },
+      title: {
+        text: '一周使用次数总计 : 291, 058 次',
+        textStyle:{
+          color:'#f00',
+          fontWeight:'normal',
+          fontSize:18,
+        },
+        left:'30%',
+      },
       tooltip: {
         trigger: 'axis',
       },
@@ -61,6 +69,6 @@ for (let i = 6; i >=0; i-=1) {
 
 BarHZ.defaultProps = {
   xAxis: currentWeek,
-  yAxis: [50860, 36800, 36000, 41000, 35610, 30200, 60220],
+  yAxis: [50860, 36862, 36050, 41256, 35610, 30200, 60220],
 };
 export default BarHZ;
