@@ -32,7 +32,7 @@ class Guage extends Component {
           name: '访问指标',
           type: 'gauge',
           detail: {formatter:'{value}%'},
-          data: [{value: 50, name: '成功访问'}],
+          data: [{value: 50, name: '稳定性: 优'}],
         },
       ],
     };
@@ -53,7 +53,7 @@ class Guage extends Component {
       <div
         id="monitorGua"
         ref={this.chartRef}
-        style={{height:300}}
+        style={{height:250}}
       />
     );
   }
