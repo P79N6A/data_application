@@ -2,11 +2,16 @@
   position: absolute;
   top: 0;
   right: 400px;
+  display: flex;
+  height: 100%;
+  align-items: center;
+
   a{
     font-size: 18px;
     color: #fff;
-    margin: 0 20px 0 0;
-    padding: 5px 10px;
+    //margin: 0 20px 0 0;
+    //padding: 5px 10px;
+    padding: 0 20px;
     border-radius: 4px;
     text-decoration: none;
     transition: all .3s;
@@ -16,10 +21,22 @@
     background-color: #242424;
     text-decoration: none;
     color:#ec1c24;
+
   }
 }
 
 .active-link{
   background-color: #242424;
   color:#ec1c24 !important;
+  border-bottom: 3px solid #ec1c24;
+}
+
+.dropLi{
+  :global{
+    .ant-dropdown-menu-item{
+      text-align: left;
+      width: 150px;
+      padding: 10px 12px;
+    }
+  }
 }

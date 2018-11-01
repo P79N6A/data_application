@@ -312,3 +312,12 @@ export function modelResponse(response) {
 
   return sendMsg;
 }
+
+// 获取最近日期
+export function getCurrentDate(d) {
+  const daytime=1000*3600*24
+  const current=new Date(Date.now()-daytime*d)
+  const month=current.getMonth()+1;
+  const day=current.getDate();
+  return `${month}月${day}日`
+}
