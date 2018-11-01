@@ -16,7 +16,7 @@ class Pie extends PureComponent{
         myChart.setOption({
           title : {
               text: '采集来源',
-              x:'center',
+              x:'left',
               textStyle: {
                 color: '#ec1c24'
               }
@@ -28,6 +28,7 @@ class Pie extends PureComponent{
           legend: {
               orient: 'vertical',
               left: 'left',
+              top: '50',
               data: ['公安','学校','医院','园区','社区'],
           },
           series : [

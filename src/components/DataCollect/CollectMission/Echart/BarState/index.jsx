@@ -16,7 +16,7 @@ class BarState extends PureComponent{
         myChart.setOption({
           title : {
               text: '任务状态',
-              x:'center',
+              x:'left',
               textStyle: {
                 color: '#ec1c24'
               }
@@ -28,6 +28,7 @@ class BarState extends PureComponent{
           legend: {
               orient: 'vertical',
               left: 'left',
+              top: 50,
               data: ['成功','等待调度','失败','正在运行'],
           },
           series : [
