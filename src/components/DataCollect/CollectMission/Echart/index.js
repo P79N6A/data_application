@@ -14,7 +14,7 @@ class Echart extends Component {
               <Pie />
           </div>
           <div className={styles['l-bottom']}>
-            <BarState />
+            <Line />
           </div>
         </div>
         <div className={styles['right']}>
@@ -22,7 +22,7 @@ class Echart extends Component {
             <Bar />
           </div>
           <div className={styles['r-bottom']}>
-            <Line />
+            <BarState />
           </div>
         </div>
       </div>
