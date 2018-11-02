@@ -19,7 +19,12 @@ class Header extends PureComponent {
         )}
         {Add && (
           <Col span={1}>
-            <Button type="primary">添加</Button>
+            <Button
+              type="primary"
+              onClick={Add.show}
+            >
+              添加
+            </Button>
           </Col>
         )}
         {Adv && (
