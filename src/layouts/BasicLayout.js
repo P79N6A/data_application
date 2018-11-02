@@ -271,7 +271,7 @@ class BasicLayout extends React.PureComponent {
               {...this.props}
             />
           )}
-          <Content>
+          <Content style={{height: '740px', overflow: 'scroll'}}>
             <Authorized
               authority={routerConfig.authority}
               noMatch={<Exception403 />}
@@ -279,7 +279,6 @@ class BasicLayout extends React.PureComponent {
               {children}
             </Authorized>
           </Content>
-          {/* <Footer/> */}
         </Layout>
       </Layout>
     );
@@ -290,7 +289,7 @@ class BasicLayout extends React.PureComponent {
     return (
       <React.Fragment>
         <DocumentTitle title={this.getPageTitle(pathname)}>
-          <ContainerQuery style={{overflow:'hidden'}} query={query}>
+          <ContainerQuery query={query}>
             {params => (
               <Context.Provider value={this.getContext()}>
                 <div className={classNames(params)}>{layout}</div>

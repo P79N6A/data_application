@@ -19,7 +19,7 @@ class MonitorApi extends React.Component {
       },
       headStyle:{color:'#f00', border:'1px solid #E0E0E0', fontWeight:800, fontSize:18},
       bodyStyle:{border:'1px solid #E0E0E0' ,padding:'0 5px'},
-    }
+    };
     return (
       <div>
         <Row
