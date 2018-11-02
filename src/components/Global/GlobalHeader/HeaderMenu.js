@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import styles from './HeaderMenu.less';
 import {store} from '@/utils/utils';
 import { reloadAuthorized } from '@/utils/Authorized';
+import style from '../../../styles/iconfont.css';
 
 class HeaderMenu extends Component {
   constructor(props) {
@@ -24,26 +25,26 @@ class HeaderMenu extends Component {
   render() {
     const {currentApp}=this.props;
     const menus=[
-      {name:'资源管理', path:'catalog'},
-      {name:'服务管理', path:'api'},
-      {name:'数据采集', path:'data'},
-      {name:'数据应用', path:'application'},
+      {name:'资源管理', path:'catalog',icon:'icon-web-icon-'},
+      {name:'服务管理', path:'api',icon:'icon-anquanfuwuguanli'},
+      {name:'数据采集', path:'data',icon:'icon-zhongguohangtiantubiaoheji-weizhuanlunkuo-'},
+      {name:'数据应用', path:'application',icon:'icon-yingyong'},
       // {name:'运维统计', path:'audit'},
       // {name:'任务调度', path:'task'},
       ]
 
     const menuitem = [
-      {name:'运维统计', path:'audit'},
-      {name:'任务调度', path:'task'},
+      {name:'运维统计', path:'audit',icon:'icon-tongji'},
+      {name:'任务调度', path:'task',icon:'icon-renwutiaodu'},
     ]
 
     const menudrop = (
       <Menu>
         {menuitem.map(menu=>(
-          <Menu.Item>
+          <Menu.Item className={!currentApp || currentApp===menu.path ?styles['active-link']+" "+styles.dropLi:styles.dropLi}>
+            <i className={style.iconfont + " " +style[menu.icon] }></i>
             <Link
               onClick={()=>this.changePathAuth(menu.path)}
-              className={!currentApp || currentApp===menu.path ?styles['active-link']:''}
               to={`/${menu.path}`}
             > {menu.name}
             </Link>
@@ -53,15 +54,19 @@ class HeaderMenu extends Component {
     );
     return (
       <span className={styles['header-menu']}>
+      
         {menus.map(menu=>(
+          
           <Link
             onClick={()=>this.changePathAuth(menu.path)}
             className={!currentApp || currentApp===menu.path ?styles['active-link']:''}
             to={`/${menu.path}`}
-          > {menu.name}
+          > 
+          <i className={styles.titleIcon + " " + style.iconfont + " " +style[menu.icon] }></i>
+          {menu.name}
           </Link>
         ))}
-        <Dropdown overlay={menudrop } className={styles.dropLi}>
+        <Dropdown overlay={menudrop } >
           <a className="ant-dropdown-link" href="#">
             更多
           </a>
