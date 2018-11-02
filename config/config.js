@@ -1,5 +1,4 @@
 // https://umijs.org/config/
-
 import os from 'os';
 import pageRoutes from './router.config';
 import webpackplugin from './plugin.config';
@@ -128,7 +127,7 @@ export default {
     config.resolve.alias.set('src',  path.resolve(__dirname, '../src'));
     // 删除进度条插件
     // config.plugins.delete('progress');
-  }
+  },
 };
 
 

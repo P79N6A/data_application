@@ -2,6 +2,7 @@ import { apiList, removeRule, addApi, apiListJava, updateApiStatus, testS } from
 import { message } from 'antd';
 import { checkResponse } from '../../../utils/checkResponse';
 import {delay} from 'redux-saga'
+import {timeout} from '../../../utils/utils';
 
 export default {
   namespace: 'ListManage',
@@ -105,9 +106,7 @@ export default {
       }catch (e) {
         console.log(e.message)
       }finally {
-        debugger;
-        yield put('getApiList')
-        debugger;
+        callback();
       }
     },
 
@@ -173,6 +172,11 @@ export default {
       return {
         ...state,
         pageParam,
+      }
+    },
+    updateApiStatusDone(state){
+      return {
+        ...state
       }
     },
 

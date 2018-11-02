@@ -321,3 +321,16 @@ export function getCurrentDate(d) {
   const day=current.getDate();
   return `${month}月${day}日`
 }
+
+// 延迟
+export function timeout(delay) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      try {
+        resolve(1)
+      } catch (e) {
+        reject(0)
+      }
+    }, delay)
+  })
+}
