@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import {Card, Col, Collapse, Row, Tabs } from 'antd';
+import {Button, Card, Col, Collapse, Row, Tabs } from 'antd';
 import {withRouter, Link} from 'dva/router';
 
 import Header from '../Header';
@@ -10,8 +10,8 @@ const TabPane = Tabs.TabPane;
 
 class Project extends PureComponent {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       personData: [
           {
@@ -104,19 +104,16 @@ class Project extends PureComponent {
     };
     const customPanelStyle = {
       paddingBottom: 24,
-      overflow: 'hidden',
     };
 
     return (
       <Row type="flex" justify="start">
-        <Col span={2}>
-
-        </Col>
+        <Col span={2} />
         <Col span={20}>
           <Collapse bordered={false} style={customStyle}>
             {preData.map((item, index) => {
               const data = {project:item.title};
-              const path = {pathname:"/task/project/",query:data};
+              const path = {pathname:"/task/project",query:data};
               return (
                 <Panel header={item.title} key={index} style={customPanelStyle}>
                   <Card
@@ -136,13 +133,19 @@ class Project extends PureComponent {
 
   _renderContent = (param) => {
     const count = Object.keys(param).length;
-    const projectName = param["project"];
-    console.log(count);
+    const projectName = count ? param["project"] : "";
+
     if( count ) {
       return (
         <>
           <Header title={projectName} Remove Upload Download/>
-          123456
+          <Button
+            onClick={() => {
+              this.props.history.goBack();
+            }}
+          >
+            返回
+          </Button>
         </>
       )
     }
@@ -174,7 +177,7 @@ class Project extends PureComponent {
   };
 
   render() {
-    //console.log(this.props);
+    console.log(this.props);
     return this._renderContent(this.props.location.query);
   }
 }

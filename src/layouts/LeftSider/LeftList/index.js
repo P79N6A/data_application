@@ -60,7 +60,7 @@ class LeftList extends PureComponent {
         const { location , menuData} = this.props;
         const {pathname} = location
         const routes = this.fetRouter(pathname, menuData)
-        console.log(routes)
+        // console.log(pathname)
         const { collapsed } = this.state;
         return (
           <Sider
