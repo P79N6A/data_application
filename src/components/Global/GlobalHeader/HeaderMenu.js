@@ -41,11 +41,10 @@ class HeaderMenu extends Component {
     const menudrop = (
       <Menu>
         {menuitem.map(menu=>(
-          <Menu.Item className={styles.dropLi}>
+          <Menu.Item className={!currentApp || currentApp===menu.path ?styles['active-link']+" "+styles.dropLi:styles.dropLi}>
             <i className={style.iconfont + " " +style[menu.icon] }></i>
             <Link
               onClick={()=>this.changePathAuth(menu.path)}
-              className={!currentApp || currentApp===menu.path ?styles['active-link']:''}
               to={`/${menu.path}`}
             > {menu.name}
             </Link>
