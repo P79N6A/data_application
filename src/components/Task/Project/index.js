@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
-import {Button, Card, Col, Collapse, Row, Tabs } from 'antd';
+import {Button, Card, Col, Collapse, Modal, Row, Tabs } from 'antd';
 import {withRouter, Link} from 'dva/router';
 
 import Header from '../Header';
+import Addproject from './AddProject';
 import style from './index.less';
 
 const Panel = Collapse.Panel;
@@ -90,12 +91,30 @@ class Project extends PureComponent {
             title: '任务3',
             value: '吃饺子',
           }
-        ]
+        ],
+      visible:false
     };
   }
 
   _handleCallback = (key) => {
     console.log(key);
+  };
+
+  _handleFormUpdate = (child) => {
+    console.log(child);
+    this.addModal = child;
+  };
+
+  show = () => {
+    this.setState({visible:true})
+  };
+
+  close = () => {
+    this.setState({visible:false})
+  };
+
+  update = (data) => {
+    data && this.state.personData.push(data);
   };
 
   _renderProjectData = (preData) => {
@@ -111,7 +130,7 @@ class Project extends PureComponent {
         <Col span={2} />
         <Col span={20}>
           <Collapse bordered={false} style={customStyle}>
-            {preData.map((item, index) => {
+            {preData && preData.map((item, index) => {
               const data = {project:item.title};
               const path = {pathname:"/task/project",query:data};
               return (
@@ -153,7 +172,7 @@ class Project extends PureComponent {
     else {
       return (
         <>
-          <Header title="项目管理" Search Add/>
+          <Header title="项目管理" Search Add={this} />
           <div>
             <Tabs
               defaultActiveKey="person"
@@ -176,9 +195,33 @@ class Project extends PureComponent {
     }
   };
 
+
   render() {
-    console.log(this.props);
-    return this._renderContent(this.props.location.query);
+    return (
+      <div>
+        {this._renderContent(this.props.location.query)}
+        <div>
+          <Modal
+            title="新建项目"
+            destroyOnClose={true}
+            okText="添加"
+            cancelText="取消"
+            onOk={() => {
+              this.addModal && this.addModal.handleSubmit();
+            }}
+            onCancel={this.close}
+            visible={this.state.visible}
+          >
+            <Addproject
+              onCancel={this.close}
+              personData={this.state.personData}
+              update={this.update}
+              onRef={this._handleFormUpdate}
+            />
+          </Modal>
+        </div>
+      </div>
+      )
   }
 }
 
