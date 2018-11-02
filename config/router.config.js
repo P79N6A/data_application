@@ -126,12 +126,6 @@ export default [
       // 资源目录
 
           {
-            // 目录管理
-            path: '/catalog/manage',
-            name: 'catalog.manage',
-            component: './dataCatalog/Manage',
-          },
-          {
             // 资源目录管理
             path: '/catalog/catalog',
             name: 'catalog',

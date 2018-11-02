@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ApprovalSearch from './ApprovalSearch';
-import Table from '@/components/Common/Table/1.0'
+import Table from 'src/components/Common/Table/1.0'
 import dateFormat from '@/utils/dateFormat';
 import {approvalList} from '@/services/approval'
 import ApprovalDetailModal from '@/components/DataResource/Modal/ApprovalDetailModal'
