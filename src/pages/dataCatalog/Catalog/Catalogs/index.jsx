@@ -37,6 +37,11 @@ class Catalogs extends PureComponent{
     })
   }
 
+  // 鼠标移动到元素显示删除按钮
+  onMouseOver = () => {
+    console.log(1111)
+  }
+
   render() {
     const {catalog} = this.props
     const {modal={}}=this.state;
@@ -46,9 +51,9 @@ class Catalogs extends PureComponent{
           {...modal}
           handleModalCancel={this.handleCancel}
         />
-        <div style={{width: '100%', height: '100%'}}>
+        <div className={style.wrapper} style={{width: '100%', height: '100%'}} onFocus={this.onMouseOver} onMouseOver={this.onMouseOver}>
           <div className={style.container}>
-            <img src={catalog.image} className={style.image} />
+            <img src={catalog.image} className={style.image} alt='主题' />
             <h1>{catalog.name}</h1>
             <div className={style.items}>
               <span>创建时间</span>
@@ -64,6 +69,9 @@ class Catalogs extends PureComponent{
             </div>
             <div className={style['cat-buton']}>
               <Button type="primary" onClick={this.detail}>详情</Button>
+            </div>
+            <div className={style.close}>
+              x
             </div>
           </div>
         </div>

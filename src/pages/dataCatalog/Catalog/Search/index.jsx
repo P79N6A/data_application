@@ -2,30 +2,27 @@ import React, { Component } from 'react';
 import { Form, Row, Col, Button, Select, Input, DatePicker } from 'antd';
 import styles from './index.less';
 
-const Option = Select.Option;
+const { Option } = Select;
 const FormItem = Form.Item;
 class Search extends Component {
   constructor(props) {
     super(props);
-    this.state={
-      values: {},
-    }
     this.handleSearch = this.handleSearch.bind(this);
   }
 
   handleSearch(e) {
     e.preventDefault();
+    // eslint-disable-next-line react/destructuring-assignment
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        this.setState({
-          values: {...values},
-        })
+        console.log(values)
       }
     });
   }
 
   render() {
-    const { getFieldDecorator } = this.props.form;
+    // eslint-disable-next-line react/destructuring-assignment
+    const { getFieldDecorator} = this.props.form;
     const config = {
       rules: [{ type: 'object'}],
     }

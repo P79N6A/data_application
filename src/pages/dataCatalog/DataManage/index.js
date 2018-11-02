@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react'
 import Table from '@/components/Common/Table/1.0'
-import {Popconfirm} from 'antd'
+import Modal from '@/components/Common/Modal'
 import Search from './Search'
+import Detail from './Detail'
+
 
 const datas = [
   {
@@ -37,7 +39,7 @@ const datas = [
 ]
 const column = [
   {
-    title: '数据表明',
+    title: '数据表名',
     dataIndex: 'name',
     key: 'name',
   },
@@ -56,27 +58,53 @@ const column = [
     dataIndex: 'desc',
     key: 'desc',
   },
-  {
-    title: '操作',
-    key: 'action',
-    render: () => {
-      return (
-        <span>
-          <a>详情</a>&nbsp;&nbsp;
-          <Popconfirm
-            onConfirm={() =>{console.log('删除')}}
-            title="确定是否删除"
-          >
-            <a>删除</a>
-          </Popconfirm>
-        </span>
-      )
-    },
-  },
 ]
 
 class DataManage extends PureComponent{
-  // 获取数据
+  constructor(props) {
+    super(props)
+    this.state = {
+      modal: {
+        modalVisible: false,
+        modalTitle: '详情',
+      },
+      actions: {
+        title: '操作',
+        key: 'action',
+        render: (text, record) => {
+          return (
+            <span>
+              <a onClick={this.detail.bind(this, record)}>详情</a>&nbsp;&nbsp;
+            </span>
+          )
+        },
+      },
+    }
+  }
+
+  // 展开详情
+  detail = (record) => {
+    const {name} = record
+    this.setState({
+      modal: {
+        modalVisible: true,
+        modalTitle: name,
+        children: <Detail record={record} />,
+        width: '800px',
+      },
+    })
+  }
+
+  // 关闭弹框
+  handleModalCancel = () => {
+    this.setState({
+      modal: {
+        modalVisible: false,
+      },
+    })
+  }
+
+  // 模拟获取数据获取数据
   _fetchdData = () => {
     return new Promise((resolve) => {
       resolve({
@@ -92,15 +120,18 @@ class DataManage extends PureComponent{
   }
 
   render() {
+    const { modal, actions } = this.state
     return (
       <div style={{paddingLeft: '20px'}}>
         <Table
           antdTableProps={{rowSelection:false}}
           HeaderExtend={Search}
+          // eslint-disable-next-line no-underscore-dangle
           getFn={() => this._fetchdData()}
-          columnsArr={column}
+          columnsArr={[...column, actions]}
           hasSearch={false}
         />
+        <Modal {...modal} handleModalCancel={this.handleModalCancel} />
       </div>
     )
   }

@@ -3,7 +3,6 @@ import { Pagination } from 'antd';
 import Catalogs from './Catalogs'
 import style from './index.less'
 import Search from './Search'
-import TreeComponent from '@/components/Common/Tree'
 
 const datas = [
   {
@@ -77,17 +76,15 @@ const pagination = {
 class Catalog extends PureComponent{
   render() {
     return (
+      // eslint-disable-next-line react/jsx-filename-extension
       <div className={style.container}>
-        <div className={style.tree}>
-          <TreeComponent />
-        </div>
         <div className={style.lists}>
           <div className={style.search}><Search /></div>
           <div className={style.items}>
             {
-              datas.map((item, index) => {
+              datas.map((item) => {
                 return (
-                  <div key={index} className={style.item}>
+                  <div key={item.name} className={style.item}>
                     <Catalogs catalog={item} />
                   </div>
                 )
