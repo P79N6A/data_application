@@ -2,6 +2,7 @@ import { apiList, removeRule, addApi, apiListJava, updateApiStatus, testS } from
 import { message } from 'antd';
 import { checkResponse } from '../../../utils/checkResponse';
 import {delay} from 'redux-saga'
+import {timeout} from '../../../utils/utils';
 
 export default {
   namespace: 'ListManage',
@@ -105,7 +106,7 @@ export default {
       }catch (e) {
         console.log(e.message)
       }finally {
-        yield put('getApiList')
+        callback();
       }
     },
 
@@ -117,6 +118,10 @@ export default {
       while (true){
         // 监听列表
         const watch=yield take(['getApiList','saveApi','updateApiStatusDone', 'updatePageParam', 'updateParam']);
+        if (watch.type.includes('updateApiStatus')){
+          Promise.try(updateApiStatus).then()
+          yield timeout(100)
+        }
         // 获取请求参数
         const [defaultParam, searchParam, pageParam]=yield select(({ListManage})=> ([ListManage.defaultParam, ListManage.searchParam, ListManage.pageParam]));
         const option=Object.assign(defaultParam,searchParam);
