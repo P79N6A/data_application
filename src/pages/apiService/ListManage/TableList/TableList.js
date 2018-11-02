@@ -227,6 +227,11 @@ class TableList extends PureComponent {
     dispatch({
       type: 'ListManage/updateApiStatus',
       payload: { option, interfaceId:props.interfaceId },
+      callback:()=>{
+        dispatch({
+          type:'ListManage/updateApiStatusDone',
+        })
+      },
     });
   }
 
