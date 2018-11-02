@@ -105,9 +105,7 @@ export default {
       }catch (e) {
         console.log(e.message)
       }finally {
-        debugger;
         yield put('getApiList')
-        debugger;
       }
     },
 

@@ -3,8 +3,14 @@ import os from 'os';
 import pageRoutes from './router.config';
 import webpackplugin from './plugin.config';
 import defaultSettings from '../src/defaultSettings';
+const Config = require('webpack-chain');
+
+const config = new Config();
+
+
 
 export default {
+
   //插件配置
   // add for transfer to umi
   plugins: [
@@ -116,6 +122,10 @@ export default {
   // 浏览器兼容
   targets: {
     ie: 11,
+  },
+  chainWebpack:(configs, { webpack })=> {
+    configs.resolve.alias.set('a', 'path/to/a');
+    configs.output.path('/dist2')
   },
 };
 

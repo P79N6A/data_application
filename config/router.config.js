@@ -39,6 +39,7 @@ export default [
           {
             path: '/api/monitorApi',
             name: 'api.monitorApi',
+            exact:false,
             component: './apiService/Monitor/MonitorApi',
           },
           // {
