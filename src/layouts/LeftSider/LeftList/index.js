@@ -32,7 +32,7 @@ class LeftList extends PureComponent {
         const trigger = document.getElementById("j-left-trigger");
         const { collapsed } = this.state
         const left = collapsed ? 79 : 179;
-        console.log("left", left);
+        // console.log("left", left);
         if (need) { trigger.style.left = `${left  }px` };
         window.onscroll = function () {
             // 滚动条滚动时，trigger变化,兼容IE9
@@ -60,7 +60,7 @@ class LeftList extends PureComponent {
         const { location , menuData} = this.props;
         const {pathname} = location
         const routes = this.fetRouter(pathname, menuData)
-        console.log(routes)
+        // console.log(pathname)
         const { collapsed } = this.state;
         return (
           <Sider

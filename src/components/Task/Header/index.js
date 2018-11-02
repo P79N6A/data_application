@@ -6,26 +6,40 @@ import style from '../Task.less';
 class Header extends PureComponent {
 
   _renderHeadFn= (props) => {
-    const {Search, Add, Adv} = props;
+    const {Search, Add, Adv, Remove, Upload, Download} = props;
     return (
       <>
         {Search && (
-          <Col span={6}>
+          <Col span={4}>
             <Input.Search
-              placeholder="input search text"
               onSearch={value => console.log(value)}
               enterButton
             />
           </Col>
         )}
         {Add && (
-          <Col span={4}>
+          <Col span={1}>
             <Button type="primary">添加</Button>
           </Col>
         )}
         {Adv && (
-          <Col span={4}>
+          <Col span={1}>
             <Button type="primary">高级搜索</Button>
+          </Col>
+        )}
+        {Remove && (
+          <Col span={2}>
+            <Button type="danger">删除</Button>
+          </Col>
+        )}
+        {Upload && (
+          <Col span={2}>
+            <Button type="primary">上传</Button>
+          </Col>
+        )}
+        {Download && (
+          <Col span={2}>
+            <Button type="primary">下载</Button>
           </Col>
         )}
       </>
@@ -36,8 +50,8 @@ class Header extends PureComponent {
     const Item = Breadcrumb.Item;
     return (
       <div className={style.header}>
-        <Row gutter={24}  >
-          <Col span={14}>
+        <Row gutter={12}>
+          <Col span={18}>
           <Breadcrumb >
             <Item>
               <strong className={style.title} >
