@@ -6,6 +6,7 @@ import { Link } from "dva/router";
 import zhCN from '@/locales/zh-CN'
 // import iconfont from "@iconfont";
 import styles from "./index.less";
+import iconf from '../../../styles/iconfont.css'
 
 const { Sider } = Layout;
 
@@ -32,7 +33,7 @@ class LeftList extends PureComponent {
         const trigger = document.getElementById("j-left-trigger");
         const { collapsed } = this.state
         const left = collapsed ? 79 : 179;
-        console.log("left", left);
+        // console.log("left", left);
         if (need) { trigger.style.left = `${left  }px` };
         window.onscroll = function () {
             // 滚动条滚动时，trigger变化,兼容IE9
@@ -60,7 +61,7 @@ class LeftList extends PureComponent {
         const { location , menuData} = this.props;
         const {pathname} = location
         const routes = this.fetRouter(pathname, menuData)
-        console.log(routes)
+        // console.log(pathname)
         const { collapsed } = this.state;
         return (
           <Sider
@@ -90,11 +91,12 @@ class LeftList extends PureComponent {
             >
 
               {routes.map((item) => {
+                console.log("item is",item);
                 if (zhCN[ `menu.${item.name}`]) {
                   return (
                     <Menu.Item key={item.path}>
                       <Link key={item.path} to={item.path}>
-                        {/* <i className={className(styles['menu-icon'], iconfont.iconfont, iconfont['icon-ditujiankong'])} /> */}
+                        <i className={styles.titleIcon + " " + iconf.iconfont + " " + iconf[item.icon] }></i>
                         <span className={styles['menu-label']}>{zhCN[ `menu.${item.name}`]}</span>
                       </Link>
                     </Menu.Item>

@@ -21,6 +21,7 @@
     background-color: #242424;
     text-decoration: none;
     color:#ec1c24;
+    border-bottom: 3px solid #ec1c24;
 
   }
 }
@@ -30,13 +31,22 @@
   color:#ec1c24 !important;
   border-bottom: 3px solid #ec1c24;
 }
+.active-link>a{
+  color:#ec1c24 !important;
+}
 
 .dropLi{
-  :global{
-    .ant-dropdown-menu-item{
-      text-align: left;
-      width: 150px;
-      padding: 10px 12px;
-    }
-  }
+  width: 150px;
+  display: flex;
+  padding: 10px 12px;
+ 
 }
+.dropLi>i{
+  padding: 0 5px;
+}
+.titleIcon{
+  font-size: 18px!important;
+  padding: 0 5px;
+}
+
+

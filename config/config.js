@@ -3,15 +3,11 @@ import os from 'os';
 import pageRoutes from './router.config';
 import webpackplugin from './plugin.config';
 import defaultSettings from '../src/defaultSettings';
-const Config = require('webpack-chain');
 
-const config = new Config();
-
-
+const path = require("path")
 
 export default {
-
-  //插件配置
+  // 插件配置
   // add for transfer to umi
   plugins: [
     [
@@ -36,11 +32,11 @@ export default {
                 include: ['dva', 'dva/router', 'dva/saga', 'dva/fetch'],
                 exclude: ['@babel/runtime'],
               },
-            hardSource: true
+            hardSource: true,
             }
-          : {})
-      }
-    ]
+          : {}),
+      },
+    ],
   ],
   // 环境变量
   define: {
@@ -55,7 +51,7 @@ export default {
   },
   externals: {
     '@antv/data-set': 'DataSet',
-    'BMap':'BMap'
+    'BMap':'BMap',
   },
   ignoreMomentLocale: true,
   lessLoaderOptions: {
@@ -81,7 +77,7 @@ export default {
         return `antd-pro${arr.join('-')}-${localName}`.replace(/--/g, '-');
       }
       return localName;
-    }
+    },
   },
 
   manifest: {
@@ -95,15 +91,18 @@ export default {
         src: '/favicon.png',
         sizes: '48x48',
         type: 'image/png',
-      }
-    ]
+      },
+    ],
   },
 
   chainWebpack: webpackplugin,
   cssnano: {
     mergeRules: false,
   },
-
+  // // 配置别名
+  // alias: {
+  //   'src': path.resolve(__dirname, '../src'),
+  // },
   // 配置接口代理
   'proxy': {
     '/apizza': {
@@ -117,15 +116,17 @@ export default {
       'pathRewrite': { '^/api': '' },
     },
   },
-  //构建输出目录
+  // 构建输出目录
   outputPath: './dist',
   // 浏览器兼容
   targets: {
     ie: 11,
   },
-  chainWebpack:(configs, { webpack })=> {
-    configs.resolve.alias.set('a', 'path/to/a');
-    configs.output.path('/dist2')
+  chainWebpack: (config, { webpack }) => {
+    // 设置 alias
+    config.resolve.alias.set('src',  path.resolve(__dirname, '../src'));
+    // 删除进度条插件
+    // config.plugins.delete('progress');
   },
 };
 
