@@ -170,6 +170,7 @@ export default [
         name: 'task.project',
         path: '/task/project',
         component: './taskScheduling/TaskProject',
+        exact:false
       },
       {
         // 调度计划

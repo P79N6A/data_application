@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
-import { Col, Collapse, Row, Tabs } from 'antd';
+import {Card, Col, Collapse, Row, Tabs } from 'antd';
+import {withRouter, Link} from 'dva/router';
 
 import Header from '../Header';
 import style from './index.less';
@@ -12,23 +13,84 @@ class Project extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      data: [
-        {
-          type: 'person',
-          title: '任务1',
-          value: '上刀山下火海',
-        },
-        {
-          type: 'person',
-          title: '任务2',
-          value: '吃饺子',
-        },
-        {
-          type: 'person',
-          title: '任务3',
-          value: '玩勺子',
-        },
-      ],
+      personData: [
+          {
+            title: '任务1',
+            value: '上刀山下火海',
+          },
+          {
+            title: '任务2',
+            value: '吃饺子',
+          },
+          {
+            title: '任务3',
+            value: '吃饺子',
+          },
+          {
+            title: '任务3',
+            value: '吃饺子',
+          },
+          {
+            title: '任务3',
+            value: '吃饺子',
+          },
+          {
+            title: '任务3',
+            value: '吃饺子',
+          }
+        ],
+      groupData: [
+          {
+            title: '任务4',
+            value: '上刀山下火海',
+          },
+          {
+            title: '任务5',
+            value: '吃饺子',
+          },
+          {
+            title: '任务6',
+            value: '吃饺子',
+          }
+        ],
+      allData:[
+          {
+            title: '任务4',
+            value: '上刀山下火海',
+          },
+          {
+            title: '任务5',
+            value: '吃饺子',
+          },
+          {
+            title: '任务6',
+            value: '吃饺子',
+          },
+          {
+            title: '任务1',
+            value: '上刀山下火海',
+          },
+          {
+            title: '任务2',
+            value: '吃饺子',
+          },
+          {
+            title: '任务3',
+            value: '吃饺子',
+          },
+          {
+            title: '任务3',
+            value: '吃饺子',
+          },
+          {
+            title: '任务3',
+            value: '吃饺子',
+          },
+          {
+            title: '任务3',
+            value: '吃饺子',
+          }
+        ]
     };
   }
 
@@ -36,12 +98,11 @@ class Project extends PureComponent {
     console.log(key);
   };
 
-  _renderContent = (data) => {
+  _renderProjectData = (preData) => {
     const customStyle = {
       width: '90%',
     };
     const customPanelStyle = {
-      background: '#f7f7f7',
       paddingBottom: 24,
       overflow: 'hidden',
     };
@@ -51,12 +112,19 @@ class Project extends PureComponent {
         <Col span={2}>
 
         </Col>
-        <Col span={10}>
+        <Col span={20}>
           <Collapse bordered={false} style={customStyle}>
-            {data.map((item, index) => {
+            {preData.map((item, index) => {
+              const data = {project:item.title};
+              const path = {pathname:"/task/project/",query:data};
               return (
                 <Panel header={item.title} key={index} style={customPanelStyle}>
-                  {item.value}
+                  <Card
+                    title={item.title}
+                    extra={<Link to={path}>More</Link>}
+                  >
+                    <p>{item.value}</p>
+                  </Card>
                 </Panel>
               );
             })}
@@ -66,33 +134,49 @@ class Project extends PureComponent {
     );
   };
 
-  render() {
-    return (
-      <>
-        <Header title="项目管理" Search Add/>
-        <div>
-          <Tabs
-            defaultActiveKey="person"
-            onChange={this._handleCallback}
-            tabPosition="left"
-          >
-            <TabPane tab="个人" key="person">
-              {this._renderContent(this.state.data)}
-            </TabPane>
-            <TabPane tab="工作组" key="group">
-              工作组
-            </TabPane>
-            <TabPane tab="所有" key="all">
-              所有
-            </TabPane>
-          </Tabs>
-          <div>
+  _renderContent = (param) => {
+    const count = Object.keys(param).length;
+    const projectName = param["project"];
+    console.log(count);
+    if( count ) {
+      return (
+        <>
+          <Header title={projectName} Remove Upload Download/>
+          123456
+        </>
+      )
+    }
 
+    else {
+      return (
+        <>
+          <Header title="项目管理" Search Add/>
+          <div>
+            <Tabs
+              defaultActiveKey="person"
+              onChange={this._handleCallback}
+              tabPosition="left"
+            >
+              <TabPane tab="个人" key="person">
+                {this._renderProjectData(this.state.personData)}
+              </TabPane>
+              <TabPane tab="工作组" key="group">
+                {this._renderProjectData(this.state.groupData)}
+              </TabPane>
+              <TabPane tab="所有" key="all">
+                {this._renderProjectData(this.state.allData)}
+              </TabPane>
+            </Tabs>
           </div>
-        </div>
-      </>
-    );
+        </>
+      )
+    }
+  };
+
+  render() {
+    //console.log(this.props);
+    return this._renderContent(this.props.location.query);
   }
 }
 
-export default Project;
+export default withRouter(Project);
