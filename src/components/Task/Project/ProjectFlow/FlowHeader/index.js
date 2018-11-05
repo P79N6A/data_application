@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Button, Col, Row } from 'antd';
-
+import {connect} from 'dva';
 
 const buttonStyle={
   marginLeft:"5px"
@@ -13,6 +13,19 @@ class FlowHeader extends PureComponent {
 
   handleButton = (e) => {
     e.stopPropagation();
+
+  };
+
+  componentDidMount() {
+    this.props.onRef && this.props.onRef(this);
+  }
+
+  handleVisible= (e) => {
+    e.stopPropagation();
+    this.props.dispatch({
+      type:'project/showModal'
+    });
+    console.log(this.props);
   };
 
   render() {
@@ -23,7 +36,7 @@ class FlowHeader extends PureComponent {
             <strong>{this.props.title || 'null'}</strong>
           </Col>
           <Col >
-            <Button onClick={this.handleButton} size='small' style={buttonStyle}>执行流程</Button>
+            <Button onClick={this.handleVisible} size='small' style={buttonStyle}>执行流程</Button>
             <Button onClick={this.handleButton} size='small' style={buttonStyle}>执行情况</Button>
             <Button onClick={this.handleButton} size='small' style={buttonStyle}>流程概要</Button>
           </Col>
@@ -33,4 +46,9 @@ class FlowHeader extends PureComponent {
   }
 }
 
-export default FlowHeader;
+function mapStateToProps({ project }) {
+  return project;
+}
+
+export default connect(mapStateToProps)(FlowHeader);
+

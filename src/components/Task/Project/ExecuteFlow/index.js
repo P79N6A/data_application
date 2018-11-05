@@ -1,5 +1,7 @@
 import { Modal, Menu, Divider, Radio,Input  } from 'antd';
 import React, { Component } from 'react';
+import {connect} from 'dva';
+
 import styles from './index.less'
 
 const { TextArea } = Input;
@@ -21,10 +23,10 @@ const menuList = [
         key: 'paraSetting',
         tab: '参数设置',
     }];
-  
+
   const contentList = {
     proView: <p>正在完善</p>,
-    netSetting: 
+    netSetting:
         <div>
             {/* 通知设置头部 */}
             <div>
@@ -50,7 +52,7 @@ const menuList = [
     failOption: <p>正在完善</p>,
     agreeSetting: <p>正在完善</p>,
     paraSetting: <p>正在完善</p>,
-  };  
+  };
 
 
 class ExecuteFlow extends Component {
@@ -61,10 +63,16 @@ class ExecuteFlow extends Component {
             tab:'流程试图'
         };
     }
-    
+
     onMenuChange = (key, type) => {
         this.setState({ [type]: key.key });
       }
+
+    _handleCancel= ()=>{
+      this.props.dispatch({
+        type:'project/hideModal'
+      })
+    };
 
     render() {
         return (
@@ -72,11 +80,12 @@ class ExecuteFlow extends Component {
             <Modal
             title="Execute Flow"
             style={{ top: 50, width:'80%'}}
-            visible={true}
+            visible={this.props.executeFlowVisible}
             className = {styles.menubody}
             defaultSelectedKeys={['1']}
+            onCancel={this._handleCancel}
             >
-            
+
             <Menu
                 className={styles.menuList}
                 activeTabKey={this.state.key}
@@ -94,10 +103,14 @@ class ExecuteFlow extends Component {
                 {contentList[this.state.key]}
             </div>
 
-            </Modal>    
+            </Modal>
         </div>
         );
     }
 }
 
-export default ExecuteFlow;
+function mapStateToProps({project}){
+  return project;
+}
+
+export default connect(mapStateToProps)(ExecuteFlow);

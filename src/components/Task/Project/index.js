@@ -4,6 +4,7 @@ import { Link, withRouter } from 'dva/router';
 import { connect } from 'dva/index';
 
 import AddProject from './AddProject';
+import ExecuteFlow from './ExecuteFlow';
 import Header from '../Header';
 import ProjectFlow from './ProjectFlow';
 import ProjectLog from './ProjectLog';
@@ -155,6 +156,7 @@ class Project extends PureComponent {
                   </div>
                 </Col>
               </Row>
+              <ExecuteFlow/>
             </div>
           </>
         );

@@ -5,6 +5,7 @@ export default {
 
   state: {
     projectData: [],
+    executeFlowVisible:false
   },
 
   effects: {
@@ -24,6 +25,15 @@ export default {
         projectData:action.data,
       };
     },
-
+    showModal(){
+      return {
+        executeFlowVisible:true
+      }
+    },
+    hideModal(){
+      return {
+        executeFlowVisible:false
+      }
+    }
   }
 };

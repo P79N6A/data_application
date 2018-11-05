@@ -24,7 +24,7 @@ class ProjectFlow extends PureComponent {
           {
             data.map((item) => {
               return (
-                <Panel header={<FlowHeader title={item}/>} key={item} style={customStyle}>
+                <Panel header={<FlowHeader title={item} />} key={item} style={customStyle}>
                   <p>{item}</p>
                 </Panel>
               );
