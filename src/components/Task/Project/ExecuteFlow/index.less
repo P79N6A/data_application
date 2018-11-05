@@ -1,0 +1,35 @@
+.menuList{
+    width: 33.3%;
+    border: none;
+    padding: 0 15px;
+    :global{
+        .ant-menu-item{
+            color: #428bca;
+        }
+        .ant-menu-item-active{
+            background-color: #afcbf5;
+            border-radius: 10px;
+        }
+        .ant-menu-item-selected{
+            background-color: #428bca!important;
+            color: #fff;
+            border-radius: 10px;
+        }
+    }
+    
+}
+.menuList+div p{
+    color: #333333;
+    margin: 10px 0;
+}
+.menubody{  
+    width: 80%!important;
+    :global{
+        .ant-modal-body{
+            display: flex;
+        }
+    }
+}
+.contTitle{
+    font-size: 18px;
+}
