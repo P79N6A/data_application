@@ -3,8 +3,10 @@ import { Button, Card, Col, Collapse, Divider, Modal, Row, Tabs } from 'antd';
 import { Link, withRouter } from 'dva/router';
 import { connect } from 'dva/index';
 
-import Header from '../Header';
 import AddProject from './AddProject';
+import Header from '../Header';
+import ProjectFlow from './ProjectFlow';
+import ProjectLog from './ProjectLog';
 import style from "./index.less";
 
 const Panel = Collapse.Panel;
@@ -124,10 +126,10 @@ class Project extends PureComponent {
                     type="card"
                   >
                     <TabPane tab="流程" key="flow">
-
+                      <ProjectFlow />
                     </TabPane>
                     <TabPane tab="项目日志" key="log">
-
+                      <ProjectLog />
                     </TabPane>
                   </Tabs>
                 </Col>
