@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react';
-import { Button, Card, Col, Collapse, Modal, Row, Tabs } from 'antd';
+import { Button, Card, Col, Collapse, Divider, Modal, Row, Tabs } from 'antd';
 import { Link, withRouter } from 'dva/router';
 import { connect } from 'dva/index';
 
 import Header from '../Header';
 import AddProject from './AddProject';
+import style from "./index.less";
 
 const Panel = Collapse.Panel;
 const TabPane = Tabs.TabPane;
@@ -114,13 +115,45 @@ class Project extends PureComponent {
         return (
           <>
             <Header title={projectName} Remove Upload Download/>
-            <Button
-              onClick={() => {
-                this.props.history.goBack();
-              }}
-            >
-              返回
-            </Button>
+            <div>
+              <Row gutter={12}>
+                <Col span={18}>
+                  <Tabs
+                    defaultActiveKey="flow"
+                    onChange={this._handleCallback}
+                    type="card"
+                  >
+                    <TabPane tab="流程" key="flow">
+
+                    </TabPane>
+                    <TabPane tab="项目日志" key="log">
+
+                    </TabPane>
+                  </Tabs>
+                </Col>
+                <Col span={6}>
+                  <div className={style.projectDetail}>
+                    <h2><strong>{projectName}</strong></h2>
+                    <p>1234</p>
+                    <Divider/>
+                    <p><strong>创建时间:</strong> 2018-10-18</p>
+                    <p><strong>修改时间:</strong> 2018-10-18</p>
+                    <p><strong>修改人:</strong> 周队长</p>
+                    <Divider/>
+                    <p><strong>项目管理人:</strong> 2018-10-18</p>
+                  </div>
+                </Col>
+              </Row>
+            </div>
+            <div className='fr'>
+              <Button
+                onClick={() => {
+                  this.props.history.goBack();
+                }}
+              >
+                返回
+              </Button>
+            </div>
           </>
         );
       }
