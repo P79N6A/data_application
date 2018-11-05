@@ -4,7 +4,7 @@ import Header from '../Header';
 import Table from "@/components/Common/Table/1.0";
 import Search from "../Search";
 
-class Ebdata extends PureComponent {
+class ETLdata extends PureComponent {
   constructor() {
     super();
     this.state={
@@ -93,4 +93,4 @@ class Ebdata extends PureComponent {
   }
 }
 
-export default Ebdata;
+export default ETLdata;
