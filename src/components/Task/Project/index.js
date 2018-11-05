@@ -30,7 +30,6 @@ class Project extends PureComponent {
   };
 
   _handleFormUpdate = (child) => {
-    console.log(child);
     this.addModal = child;
   };
 
@@ -136,25 +135,25 @@ class Project extends PureComponent {
                 <Col span={6}>
                   <div className={style.projectDetail}>
                     <h2><strong>{projectName}</strong></h2>
-                    <p>1234</p>
+                    <p>{projectName}</p>
                     <Divider/>
                     <p><strong>创建时间:</strong> 2018-10-18</p>
                     <p><strong>修改时间:</strong> 2018-10-18</p>
                     <p><strong>修改人:</strong> 周队长</p>
                     <Divider/>
                     <p><strong>项目管理人:</strong> 2018-10-18</p>
+                    <div className='fr'>
+                      <Button style={{margin:"20px 20px"}}
+                        onClick={() => {
+                          this.props.history.goBack();
+                        }}
+                      >
+                        返回
+                      </Button>
+                    </div>
                   </div>
                 </Col>
               </Row>
-            </div>
-            <div className='fr'>
-              <Button
-                onClick={() => {
-                  this.props.history.goBack();
-                }}
-              >
-                返回
-              </Button>
             </div>
           </>
         );
