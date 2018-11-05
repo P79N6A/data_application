@@ -62,6 +62,7 @@ class Project extends PureComponent {
   _renderProjectData = (preData) => {
     const customStyle = {
       width: '90%',
+      borderRadius:"15px"
     };
     const customPanelStyle = {
       paddingBottom: 24,
@@ -71,7 +72,7 @@ class Project extends PureComponent {
         <Row type="flex" justify="start">
           <Col span={2}/>
           <Col span={20}>
-            <Collapse bordered={false} style={customStyle}>
+            <Collapse  style={customStyle}>
               {preData && preData.map((item, index) => {
                 const data = { project: item.title };
                 const path = { pathname: '/task/project', query: data };
@@ -79,7 +80,7 @@ class Project extends PureComponent {
                   <Panel header={item.title} key={index} style={customPanelStyle}>
                     <Card
                       title={item.title}
-                      extra={<Link to={path}>More</Link>}
+                      extra={<Link to={path}>更多</Link>}
                     >
                       <p>{item.value}</p>
                     </Card>

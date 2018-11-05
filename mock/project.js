@@ -2,40 +2,28 @@ import Mock from 'mockjs';
 
 let projectArr = [
   {
-    title: '任务4',
-    value: '上刀山下火海',
+    title: '项目4',
+    value: '上刀山下火海'
   },
   {
-    title: '任务5',
-    value: '吃饺子',
+    title: '项目5',
+    value: '包饺子'
   },
   {
-    title: '任务6',
-    value: '吃饺子',
+    title: '项目6',
+    value: '打游戏'
   },
   {
-    title: '任务1',
-    value: '上刀山下火海',
+    title: '项目1',
+    value: '开火锅店'
   },
   {
-    title: '任务2',
-    value: '吃饺子',
+    title: '项目2',
+    value: '启动扫黄打非'
   },
   {
-    title: '任务3',
-    value: '吃饺子',
-  },
-  {
-    title: '任务7',
-    value: '吃饺子',
-  },
-  {
-    title: '任务8',
-    value: '吃饺子',
-  },
-  {
-    title: '任务9',
-    value: '吃饺子',
+    title: '项目3',
+    value: '修电脑'
   }
 ];
 
