@@ -1,17 +1,17 @@
 import React, {PureComponent} from 'react';
 
-import Ebdata from '@/components/Task/Ebdata';
+import ETLdata from '@/components/Task/ETLdata';
 import style from "../Task.less";
 
-class TaskEbdata extends PureComponent {
+class TaskETLdata extends PureComponent {
 
   render() {
     return (
       <div className={style.taskWrapper}>
-        <Ebdata />
+        <ETLdata />
       </div>
     )
   }
 }
 
-export default TaskEbdata;
+export default TaskETLdata;
