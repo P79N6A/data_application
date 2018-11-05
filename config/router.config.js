@@ -226,7 +226,7 @@ export default [
         // 资源目录
         path: '/catalog/catalog',
         name: 'catalog.catalog',
-        component: './dataCatalog/Catalog',
+        component: './dataCatalog/Catalog/index.js',
       },
       {
         // 资源管理
@@ -259,21 +259,6 @@ export default [
         path: '/audit/amanage',
         component: './dataAudit/AuditManage',
       },
-
-          {
-            // 资源目录管理
-            path: '/catalog/catalog',
-            name: 'catalog',
-            icon: 'icon-web-icon-',
-            component: './dataCatalog/Catalog',
-          },
-          {
-            // 数据资源管理
-            path: '/catalog/datamanage',
-            icon: 'icon-jichushujuguanli',
-            name: 'catalog.datamanage',
-            component: './dataCatalog/DataManage',
-          },
 
       // 运维统计
           {
