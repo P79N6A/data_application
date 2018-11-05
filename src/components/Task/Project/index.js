@@ -1,10 +1,13 @@
 import React, { PureComponent } from 'react';
-import { Button, Card, Col, Collapse, Modal, Row, Tabs } from 'antd';
+import { Button, Card, Col, Collapse, Divider, Modal, Row, Tabs } from 'antd';
 import { Link, withRouter } from 'dva/router';
 import { connect } from 'dva/index';
 
-import Header from '../Header';
 import AddProject from './AddProject';
+import Header from '../Header';
+import ProjectFlow from './ProjectFlow';
+import ProjectLog from './ProjectLog';
+import style from "./index.less";
 
 const Panel = Collapse.Panel;
 const TabPane = Tabs.TabPane;
@@ -27,7 +30,6 @@ class Project extends PureComponent {
   };
 
   _handleFormUpdate = (child) => {
-    console.log(child);
     this.addModal = child;
   };
 
@@ -114,13 +116,45 @@ class Project extends PureComponent {
         return (
           <>
             <Header title={projectName} Remove Upload Download/>
-            <Button
-              onClick={() => {
-                this.props.history.goBack();
-              }}
-            >
-              返回
-            </Button>
+            <div>
+              <Row gutter={12}>
+                <Col span={18}>
+                  <Tabs
+                    defaultActiveKey="flow"
+                    onChange={this._handleCallback}
+                    type="card"
+                  >
+                    <TabPane tab="流程" key="flow">
+                      <ProjectFlow />
+                    </TabPane>
+                    <TabPane tab="项目日志" key="log">
+                      <ProjectLog />
+                    </TabPane>
+                  </Tabs>
+                </Col>
+                <Col span={6}>
+                  <div className={style.projectDetail}>
+                    <h2><strong>{projectName}</strong></h2>
+                    <p>{projectName}</p>
+                    <Divider/>
+                    <p><strong>创建时间:</strong> 2018-10-18</p>
+                    <p><strong>修改时间:</strong> 2018-10-18</p>
+                    <p><strong>修改人:</strong> 周队长</p>
+                    <Divider/>
+                    <p><strong>项目管理人:</strong> 2018-10-18</p>
+                    <div className='fr'>
+                      <Button style={{margin:"20px 20px"}}
+                        onClick={() => {
+                          this.props.history.goBack();
+                        }}
+                      >
+                        返回
+                      </Button>
+                    </div>
+                  </div>
+                </Col>
+              </Row>
+            </div>
           </>
         );
       }

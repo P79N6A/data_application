@@ -20,6 +20,9 @@ class Pie extends PureComponent{
               textStyle: {
                 color: '#ec1c24',
               },
+            //   labelLine: {
+            //       show: true
+            //   }
           },
           tooltip : {
               trigger: 'item',
