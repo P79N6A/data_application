@@ -29,50 +29,6 @@ export default [
       { path: '/application', redirect: '/application/main' },
       { path: '/community', redirect: '/community/map' },
       { path: '/task', redirect: '/task/project' },
-      /*= ================接口服务=============== */
-      {
-        path: '/api/monitor',
-        name: 'api.monitor',
-        hideInMenu: true,
-        component: './apiService/Monitor',
-      },
-      {
-        path: '/api/monitorApi',
-        name: 'api.monitorApi',
-        component: './apiService/Monitor/MonitorApi',
-      },
-      // {
-      //   path: '/api/apply',
-      //   name: 'monitorApi',
-      //   hideInMenu: true,
-      //   component: './apiService/Apply',
-      // },
-      {
-        path: '/api/manage/publish',
-        name: 'api.publish',
-        component: './apiService/Publish/AdvancedForm.js',
-      },
-      {
-        path: '/api/manage',
-        name: 'api.manage',
-        component: './apiService/ListManage',
-      },
-      {
-        path: '/api/approval',
-        name: 'api.approval',
-        component: './apiService/approval',
-      },
-      {
-        path: '/api/apply',
-        name: 'api.apply',
-        component: './apiService/Apply',
-      },
-      {
-        path: '/api/echart',
-        hideInMenu: true,
-        name: 'echart',
-        component: './testComponent',
-      },
       /*= ================数据资源=============== */
       {
         path: '/data/mission',
@@ -115,104 +71,101 @@ export default [
         name: 'application.analyze',
         component: './dataApplication/PyAnalyze',
       },
-          {
-            path: '/api/monitor',
-            name: 'api.monitor',
-            hideInMenu:true,
-            icon: 'icon-tongji',
-            component: './apiService/Monitor',
-          },
-          {
-            path: '/api/monitorApi',
-            name: 'api.monitorApi',
-            icon: 'icon-erji-ziyuanzonglan',
-            component: './apiService/Monitor/MonitorApi',
-          },
-          // {
-          //   path: '/api/apply',
-          //   name: 'monitorApi',
-          //   hideInMenu: true,
-          //   component: './apiService/Apply',
-          // },
-          {
-            path: '/api/manage/publish',
-            name: 'api.publish',
-            icon:'icon-api',
-            component: './apiService/Publish/AdvancedForm.js',
-          },
-          {
-            path: '/api/manage',
-            name: 'api.manage',
-            icon: 'icon-wulumuqishigongandashujuguanlipingtai-ico-1',
-            component: './apiService/ListManage',
-          },
-          {
-            path: '/api/approval',
-            name: 'api.approval',
-            icon: 'icon-shenpi',
-            component: './apiService/approval',
-          },
-          {
-            path: '/api/apply',
-            name: 'api.apply',
-            icon: 'icon-shenqing',
-            component: './apiService/Apply',
-          },
-          {
-            path: '/api/echart',
-            hideInMenu: true,
-            name: 'echart',
-            component: './testComponent',
-          },
+      /*= ================接口服务=============== */
+      {
+        path: '/api/monitor',
+        name: 'api.monitor',
+        hideInMenu: true,
+        icon: 'icon-tongji',
+        component: './apiService/Monitor',
+      },
+      {
+        path: '/api/monitorApi',
+        name: 'api.monitorApi',
+        icon: 'icon-erji-ziyuanzonglan',
+        component: './apiService/Monitor/MonitorApi',
+      },
+
+
+      {
+        path: '/api/manage/publish',
+        name: 'api.publish',
+        icon: 'icon-api',
+        component: './apiService/Publish/AdvancedForm.js',
+      },
+      {
+        path: '/api/manage',
+        name: 'api.manage',
+        icon: 'icon-wulumuqishigongandashujuguanlipingtai-ico-1',
+        component: './apiService/ListManage',
+      },
+      {
+        path: '/api/approval',
+        name: 'api.approval',
+        icon: 'icon-shenpi',
+        component: './apiService/approval',
+      },
+      {
+        path: '/api/apply',
+        name: 'api.apply',
+        icon: 'icon-shenqing',
+        component: './apiService/Apply',
+      },
+      {
+        path: '/api/echart',
+        hideInMenu: true,
+        name: 'echart',
+        component: './testComponent',
+      },
       /*= ================数据资源=============== */
-          {
-            path: '/data/mission',
-            name: 'data.mission',
-            icon: 'icon-zonglan',
-            component: './dataResource/CollectMission',
-          },
-          {
-            path: '/data/main',
-            name: 'data.main',
-            icon: 'icon-zhongguohangtiantubiaoheji-weizhuanlunkuo-',
-            component: './dataResource/CollectMain',
-          },
-          {
-            path: '/data/file',
-            name: 'data.file',
-            icon: 'icon-dabaocaiji',
-            component: './dataResource/CollectFile',
-          },
-          {
-            path: '/data/list',
-            name: 'data.list',
-            icon: 'icon-haofangtuo400iconfontkaobeilianjie',
-            component: './dataResource/CollectList',
-          },
-          {
-            path: '/data/manage',
-            name: 'data.manage',
-            icon: 'icon-guanli',
-            component: './dataResource/Manage',
-          },
+      {
+        path: '/data/mission',
+        name: 'data.mission',
+        icon: 'icon-zonglan',
+        component: './dataResource/CollectMission',
+      },
+      {
+        path: '/data/main',
+        name: 'data.main',
+        icon: 'icon-zhongguohangtiantubiaoheji-weizhuanlunkuo-',
+        component: './dataResource/CollectMain',
+      },
+      {
+        path: '/data/file',
+        name: 'data.file',
+        icon: 'icon-dabaocaiji',
+        component: './dataResource/CollectFile',
+      },
+      {
+        path: '/data/list',
+        name: 'data.list',
+        icon: 'icon-haofangtuo400iconfontkaobeilianjie',
+        component: './dataResource/CollectList',
+      },
+      {
+        path: '/data/manage',
+        name: 'data.manage',
+        icon: 'icon-guanli',
+        component: './dataResource/Manage',
+      },
       /*= ================数据应用=============== */
-          {
-            path: '/application/main',
-            name: 'application.main',
-            icon: 'icon-shujudongtai',
-            component: './dataApplication/PyMain',
-          },
-          {
-            path: '/application/result',
-            name: 'application.result',
-            component: './dataApplication/PyResult',
-          },
-          {
-            path: '/application/analyze',
-            name: 'application.analyze',
-            icon: 'icon-shujufenxixianxing',
-            component: './dataApplication/PyAnalyze',
-          },
+      {
+        path: '/application/main',
+        name: 'application.main',
+        icon: 'icon-shujudongtai',
+        component: './dataApplication/PyMain',
+      },
+      {
+        path: '/application/result',
+        name: 'application.result',
+        component: './dataApplication/PyResult',
+      },
+      {
+        path: '/application/analyze',
+        name: 'application.analyze',
+        icon: 'icon-shujufenxixianxing',
+        component: './dataApplication/PyAnalyze',
+      },
       // 数据处理
       {
         // 数据清理
@@ -261,34 +214,34 @@ export default [
       },
 
       // 运维统计
-          {
-            // 数据监控
-            name: 'audit.dmonitor',
-            path: '/audit/dmonitor',
-            icon: 'icon-wulumuqishigongandashujuguanlipingtai-ico-',
-            component: './dataAudit/DataMonitor',
-          },
-          {
-            // 系统监控
-            name: 'audit.ymonitor',
-            path: '/audit/ymonitor',
-            icon: 'icon-pingtaixitongjiankong',
-            component: './dataAudit/SysMonitor',
-          },
-          {
-            // 数据统计
-            name: 'audit.statis',
-            path: '/audit/statis',
-            icon: 'icon-shujutongji',
-            component: './dataAudit/Statis',
-          },
-          {
-            // 审计管理
-            name: 'audit.amanage',
-            path: '/audit/amanage',
-            icon: 'icon-shenjiguanli',
-            component: './dataAudit/AuditManage',
-          },
+      {
+        // 数据监控
+        name: 'audit.dmonitor',
+        path: '/audit/dmonitor',
+        icon: 'icon-wulumuqishigongandashujuguanlipingtai-ico-',
+        component: './dataAudit/DataMonitor',
+      },
+      {
+        // 系统监控
+        name: 'audit.ymonitor',
+        path: '/audit/ymonitor',
+        icon: 'icon-pingtaixitongjiankong',
+        component: './dataAudit/SysMonitor',
+      },
+      {
+        // 数据统计
+        name: 'audit.statis',
+        path: '/audit/statis',
+        icon: 'icon-shujutongji',
+        component: './dataAudit/Statis',
+      },
+      {
+        // 审计管理
+        name: 'audit.amanage',
+        path: '/audit/amanage',
+        icon: 'icon-shenjiguanli',
+        component: './dataAudit/AuditManage',
+      },
 
       // 任务调度
       {
