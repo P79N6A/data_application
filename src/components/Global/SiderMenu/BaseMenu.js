@@ -89,8 +89,8 @@ export default class BaseMenu extends PureComponent {
         if (!item) {return false}
         const path=pathToRegexp.parse(location.pathname)[0].split('/').filter(i=>i)[0];
 
-        for (let k in pathMenu){
-          let menu=pathMenu[k];
+        for (const k in pathMenu){
+          const menu=pathMenu[k];
           if (menu.includes(path)){
             return menu.some((v) =>item.key.includes(v))
           }

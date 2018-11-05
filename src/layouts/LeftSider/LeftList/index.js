@@ -47,7 +47,7 @@ class LeftList extends PureComponent {
       const paths = pathname.split('/')[1]
       const arr = []
       menuData.forEach(item => {
-        if(item.path) {
+        if(item.path && ! item.hideInMenu) {
           const path = item.path.split('/')[1]
           if(paths === path){
             arr.push(item)

@@ -16,7 +16,6 @@ import Authorized from '@/utils/Authorized';
 import SettingDrawer from '@/components/Global/SettingDrawer';
 import Redirect from 'umi/redirect';
 import logo from '../assets/logo.png';
-import Footer from './Footer';
 import Header from './Header';
 import Context from './MenuContext';
 import Exception403 from '../pages/Exception/403';

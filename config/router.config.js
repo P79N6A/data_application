@@ -52,6 +52,7 @@ export default [
       {
         path: '/api/manage/publish',
         name: 'api.publish',
+        hideInMenu:true,
         icon: 'icon-api',
         component: './apiService/Publish/AdvancedForm.js',
       },
@@ -70,7 +71,6 @@ export default [
       {
         path: '/api/apply',
         name: 'api.apply',
-        hideInMenu:true,
         icon: 'icon-shenqing',
         component: './apiService/Apply',
       },
