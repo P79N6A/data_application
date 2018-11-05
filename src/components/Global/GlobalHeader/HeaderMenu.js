@@ -11,7 +11,6 @@ class HeaderMenu extends Component {
   constructor(props) {
     super(props);
     this.changePathAuth = this.changePathAuth.bind(this);
-    this.state={activePath:'data'}
   }
 
   // 切换路由菜单
@@ -41,8 +40,8 @@ class HeaderMenu extends Component {
     const menudrop = (
       <Menu>
         {menuitem.map(menu=>(
-          <Menu.Item className={!currentApp || currentApp===menu.path ?styles['active-link']+" "+styles.dropLi:styles.dropLi}>
-            <i className={style.iconfont + " " +style[menu.icon] }></i>
+          <Menu.Item className={!currentApp || currentApp===menu.path ?`${styles['active-link']} ${styles.dropLi}`:styles.dropLi}>
+            <i className={`${style.iconfont  } ${ style[menu.icon]}`} />
             <Link
               onClick={()=>this.changePathAuth(menu.path)}
               to={`/${menu.path}`}
@@ -62,11 +61,11 @@ class HeaderMenu extends Component {
             className={!currentApp || currentApp===menu.path ?styles['active-link']:''}
             to={`/${menu.path}`}
           > 
-          <i className={styles.titleIcon + " " + style.iconfont + " " +style[menu.icon] }></i>
-          {menu.name}
+            <i className={`${styles.titleIcon  } ${  style.iconfont  } ${ style[menu.icon]}`} />
+            {menu.name}
           </Link>
         ))}
-        <Dropdown overlay={menudrop } >
+        <Dropdown overlay={menudrop}>
           <a className="ant-dropdown-link" href="#">
             更多
           </a>

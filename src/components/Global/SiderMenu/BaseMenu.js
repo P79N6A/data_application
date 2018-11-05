@@ -16,7 +16,7 @@ const pathMenu={
   catalog:['catalog'],
   audit:['audit'],
   application:['application'],
-  task:['task']
+  task:['task'],
 }
 
 // Allow menu.js config icon as string or ReactNode

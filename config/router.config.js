@@ -70,6 +70,7 @@ export default [
       {
         path: '/api/apply',
         name: 'api.apply',
+        hideInMenu:true,
         icon: 'icon-shenqing',
         component: './apiService/Apply',
       },
@@ -209,78 +210,6 @@ export default [
         path: '/task/ebdata',
         icon: 'icon--shujuyuan',
         component: './taskScheduling/TaskEbdata',
-      },
-      /*= ================社区应用=============== */
-      {
-        path: '/community/map',
-        name: 'map',
-        component: './community/map',
-        icon: 'security-scan',
-      },
-      {
-        path: '/community/person',
-        name: 'person',
-        component: './community/person',
-        icon: 'user',
-      },
-      {
-        path: '/community/event',
-        name: 'event',
-        component: './community/event',
-        icon: 'save',
-        routes: [
-          {
-            path: '/community/event/report',
-            name: 'report',
-            component: './community/event/report',
-          },
-          {
-            path: '/community/event/check',
-            name: 'check',
-            component: './community/event/check',
-          },
-          {
-            path: '/community/event/message',
-            name: 'message',
-            component: './community/event/message',
-          },
-        ],
-      },
-      {
-        path: '/community/analyze',
-        name: 'analyze',
-        component: './community/analyze',
-        icon: 'sync',
-        routes: [
-          {
-            path: '/community/analyze/alarm',
-            name: 'alarm',
-            component: './community/analyze/alarm',
-          },
-          {
-            path: '/community/analyze/traffic',
-            name: 'traffic',
-            component: './community/analyze/traffic',
-          },
-        ],
-      },
-      {
-        path: '/community/monitor',
-        name: 'monitor',
-        icon: 'eye',
-        component: './community/monitor',
-        routes: [
-          {
-            path: '/community/monitor/current',
-            name: 'current',
-            component: './community/monitor/current',
-          },
-          {
-            path: '/community/monitor/track',
-            name: 'track',
-            component: './community/monitor/track',
-          },
-        ],
       },
 
     ],
