@@ -149,7 +149,8 @@ class ExecuteFlow extends Component {
         super(props);
         this.state = {
             key: 'proView',
-            tab: '流程试图'
+            tab: '流程试图',
+            visible: false,
         };
     }
 
@@ -157,11 +158,19 @@ class ExecuteFlow extends Component {
         this.setState({ [type]: key.key });
     }
 
-    _handleCancel = () => {
-        this.props.dispatch({
-            type: 'project/hideModal'
-        })
-    };
+    // _handleCancel = () => {
+    //     this.props.dispatch({
+    //         type: 'project/hideModal'
+    //     })
+    // };
+
+    _handleCancel = () =>{
+        this.setState({ visible : false });
+    }
+
+    showModal = () =>{
+        this.setState({ visible : true});
+    }
 
     render() {
         return (
@@ -172,6 +181,8 @@ class ExecuteFlow extends Component {
                     visible={this.props.executeFlowVisible}
                     className={styles.menubody}
                     defaultSelectedKeys={['1']}
+                    okText = "执行"
+                    cancelText = "取消"
                     onCancel={this._handleCancel}
                 >
 
