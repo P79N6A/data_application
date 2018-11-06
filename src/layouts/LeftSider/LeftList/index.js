@@ -91,7 +91,7 @@ class LeftList extends PureComponent {
             >
 
               {routes.map((item) => {
-                console.log("item is",item);
+                // console.log("item is",item);
                 if (zhCN[ `menu.${item.name}`]) {
                   return (
                     <Menu.Item key={item.path}>

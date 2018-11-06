@@ -206,10 +206,10 @@ export default [
       },
       {
         // 数据源管理
-        name: 'task.ebdata',
-        path: '/task/ebdata',
+        name: 'task.etldata',
+        path: '/task/etldata',
         icon: 'icon--shujuyuan',
-        component: './taskScheduling/TaskEbdata',
+        component: './taskScheduling/TaskETLdata',
       },
 
     ],

@@ -38,7 +38,7 @@ export default {
   'menu.task.project':'项目管理',
   'menu.task.schedule':'调度计划',
   'menu.task.history':'历史日志',
-  'menu.task.ebdata':'数据源管理',
+  'menu.task.etldata':'数据源管理',
   'menu.profile.datamanage': '详情页',
   'menu': '社区应用',
   'menu.map': '一标三实',

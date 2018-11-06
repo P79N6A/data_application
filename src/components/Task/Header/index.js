@@ -1,9 +1,15 @@
 import React, { PureComponent } from 'react';
-import { Breadcrumb, Button, Col, Input, Row} from 'antd';
+import { Breadcrumb, Button, Col, Input, Row, Popconfirm} from 'antd';
 
 import style from '../Task.less';
 
 class Header extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state={
+      searchValue:""
+    }
+  }
 
   _renderHeadFn= (props) => {
     const {Search, Add, Adv, Remove, Upload, Download} = props;
@@ -12,7 +18,7 @@ class Header extends PureComponent {
         {Search && (
           <Col span={4}>
             <Input.Search
-              onSearch={value => console.log(value)}
+              onSearch={value => Search(value)}
               enterButton
             />
           </Col>
@@ -34,7 +40,12 @@ class Header extends PureComponent {
         )}
         {Remove && (
           <Col span={2}>
+            <Popconfirm
+              title="你确定要删除吗？"
+              onConfirm={()=>Remove(this.props.title)}
+            >
             <Button type="danger">删除</Button>
+            </Popconfirm>
           </Col>
         )}
         {Upload && (
