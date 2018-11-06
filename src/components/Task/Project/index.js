@@ -49,8 +49,7 @@ class Project extends PureComponent {
   getData = () => {
     this.setState({loading:true});
     this.props.dispatch({
-      type: 'project/getProjectData',
-      payload: {},
+      type: 'project/getProjectData'
     });
     this.timer = setTimeout(() => {
       this.setState({
@@ -61,7 +60,6 @@ class Project extends PureComponent {
   };
 
   showExcFlow = (e , id) => {
-    console.log(id);
     e.stopPropagation();
     this.execFlow && this.execFlow.show(id);
   };
@@ -121,6 +119,7 @@ class Project extends PureComponent {
     }
     else {
       if (count) {
+        const projectDetail=this.state.personData.find((item) => {return item.title === projectName});
         return (
           <>
             <Header title={projectName} Remove Upload Download/>
@@ -143,13 +142,12 @@ class Project extends PureComponent {
                 <Col span={6}>
                   <div className={style.projectDetail}>
                     <h2><strong>{projectName}</strong></h2>
-                    <p>{projectName}</p>
                     <Divider/>
-                    <p><strong>创建时间:</strong> 2018-10-18</p>
-                    <p><strong>修改时间:</strong> 2018-10-18</p>
-                    <p><strong>修改人:</strong> 周队长</p>
+                    <p><strong>创建时间:</strong> {projectDetail.create_time}</p>
+                    <p><strong>修改时间:</strong> {projectDetail.modify_time}</p>
+                    <p><strong>修改人:</strong> {projectDetail.modifier}</p>
                     <Divider/>
-                    <p><strong>项目管理人:</strong> 2018-10-18</p>
+                    <p><strong>项目管理人:</strong> {projectDetail.manager}</p>
                     <div className='fr'>
                       <Button style={{margin:"20px 20px"}}
                         onClick={() => {
