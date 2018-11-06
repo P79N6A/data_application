@@ -1,4 +1,4 @@
-import { addProject, getProjectList, getProjectLog } from '../services/project';
+import { addProject, deleteProject, getProjectList, getProjectLog } from '../services/project';
 
 function modelResponse(response) {
   const sendMsg = {
@@ -32,6 +32,7 @@ export default {
         type: 'save',
         data: response.data
       });
+      return modelResponse(response);
     },
 
     * getProjectLog({ payload, callback }, { call }) {
@@ -41,6 +42,11 @@ export default {
 
     * addProjectData({ payload, callback }, { call }) {
       const response = yield call(addProject, payload);
+      return modelResponse(response);
+    },
+
+    * deleteProjectData({ payload, callback }, { call }) {
+      const response = yield call(deleteProject, payload);
       return modelResponse(response);
     },
   },

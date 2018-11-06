@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Button, Card, Col, Collapse, Divider, Modal, Row, Tabs } from 'antd';
+import { Button, Card, Col, Collapse, Divider, message, Row, Tabs } from 'antd';
 import { Link, Redirect, withRouter } from 'dva/router';
 import { connect } from 'dva';
 
@@ -34,29 +34,47 @@ class Project extends PureComponent {
     this.setState({ loading: true });
     this.props.dispatch({
       type: 'project/getProjectData',
+    }).then((res) =>{
+      if(res.isSuccess){
+        this.setState({
+          personData: this.props.projectData,
+          loading: false,
+        });
+      }
     });
-    setTimeout(() => {
-      this.setState({
-        personData: this.props.projectData,
-        loading: false,
-      });
-    }, 1000 * .5);
   };
 
-  searchData = (value) => {
+  searchProject = (value) => {
     this.setState({ loading: true });
     this.props.dispatch({
       type: 'project/getProjectData',
       payload:{
         search:value
       }
+    }).then((res) =>{
+      if(res.isSuccess){
+        this.setState({
+          personData: this.props.projectData,
+          loading: false,
+        });
+      }
     });
-    setTimeout(() => {
-      this.setState({
-        personData: this.props.projectData,
-        loading: false,
-      });
-    }, 1000 * .5);
+  };
+
+  deleteProject = (title) => {
+    this.setState({ loading: true });
+    this.props.dispatch({
+      type: 'project/deleteProjectData',
+      payload:{
+        title:title
+      }
+    }).then((res) =>{
+      if(res.isSuccess){
+        this.getData();
+        message.success("删除成功");
+        this.props.history.push("/task/project");
+        }
+    });
   };
 
   showExcFlow = (e, id) => {
@@ -73,7 +91,6 @@ class Project extends PureComponent {
       paddingBottom: 24,
     };
     if (preData.length) {
-      console.log(preData.length);
       return (
         <Row type="flex" justify="start">
           <Col span={2}/>
@@ -121,7 +138,7 @@ class Project extends PureComponent {
       else {
         return (
           <>
-            <Header title={projectName} Remove Upload Download/>
+            <Header title={projectName} Remove={this.deleteProject} Upload Download/>
             <div>
               <Row gutter={12}>
                 <Col span={18}>
@@ -160,9 +177,12 @@ class Project extends PureComponent {
                   </div>
                 </Col>
               </Row>
-              <ExecuteFlow ref={ref => {
+              <ExecuteFlow
+                ref={ref => {
                 this.execFlow = ref;
-              }} title="test123"/>
+              }}
+                title="test123"
+              />
             </div>
           </>
         );
@@ -172,7 +192,7 @@ class Project extends PureComponent {
     else {
       return (
         <>
-          <Header title="项目管理" Search={this.searchData} Add={this.Add} />
+          <Header title="项目管理" Search={this.searchProject} Add={this.Add} />
           <div>
             <Tabs
               defaultActiveKey="person"

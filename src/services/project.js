@@ -23,5 +23,7 @@ export function addProject(params) {
 }
 
 export function deleteProject(params) {
-  return request(`/mock/project?${stringify(params)}`);
+  return request(`/mock/project?${stringify(params)}`,{
+    method:"DELETE"
+  });
 }

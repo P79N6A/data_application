@@ -105,6 +105,17 @@ export default {
     temp.title=req.body.title;
     temp.value=req.body.title;
     projectArr.push(temp);
-    res.json(req.body)
+    res.status(200).json(req.body);
+  },
+  'DELETE /mock/project':(req,res) => {
+    let index;
+    for(let i in projectArr) {
+      if(projectArr[i].title === req.query.title) {
+        index = i;
+        break;
+      }
+    }
+    projectArr.splice(index,1);
+    res.status(200).json(req.query.title)
   }
 }
