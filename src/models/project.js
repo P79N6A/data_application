@@ -1,4 +1,21 @@
-import { getProject } from '../services/project';
+import { getProjectList, getProjectLog } from '../services/project';
+
+function modelResponse(response) {
+  const sendMsg =  {
+    isSuccess: false,
+    msg: '',
+    res: {},
+  };
+  if (response && (response.statusText !== "OK")) {
+    sendMsg.isSuccess = false;
+    sendMsg.msg = response.message;
+  } else {
+    sendMsg.res = response.data;
+    sendMsg.isSuccess = true;
+    sendMsg.msg = '操作成功';
+  }
+  return sendMsg;
+}
 
 export default {
   namespace: 'project',
@@ -10,12 +27,16 @@ export default {
 
   effects: {
     * getProjectData({ payload, callback }, { call, put }) {
-      const res = yield call(getProject, payload);
+      const response = yield call(getProjectList, payload);
       yield put({
         type: 'save',
-        data: res.data,
+        data: response.data,
       });
     },
+    * getProjectLog({ payload, callback }, { call }) {
+      const response = yield call(getProjectLog, payload);
+      return modelResponse(response);
+    }
   },
 
   reducers: {

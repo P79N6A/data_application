@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Button, Card, Col, Collapse, Divider, Modal, Row, Tabs } from 'antd';
-import { Link, withRouter } from 'dva/router';
+import { Redirect,Link, withRouter } from 'dva/router';
 import { connect } from 'dva/index';
 
 import AddProject from './AddProject';
@@ -8,7 +8,7 @@ import ExecuteFlow from './ExecuteFlow';
 import Header from '../Header';
 import ProjectFlow from './ProjectFlow';
 import ProjectLog from './ProjectLog';
-import style from "./index.less";
+import style from './index.less';
 
 const Panel = Collapse.Panel;
 const TabPane = Tabs.TabPane;
@@ -22,7 +22,7 @@ class Project extends PureComponent {
       groupData: [],
       allData: [],
       visible: false,
-      loading: true
+      loading: true,
     };
   }
 
@@ -47,19 +47,19 @@ class Project extends PureComponent {
   };
 
   getData = () => {
-    this.setState({loading:true});
+    this.setState({ loading: true });
     this.props.dispatch({
-      type: 'project/getProjectData'
+      type: 'project/getProjectData',
     });
     this.timer = setTimeout(() => {
       this.setState({
-        personData:this.props.projectData,
-        loading:false
-      })
+        personData: this.props.projectData,
+        loading: false,
+      });
     }, 1000 * .5);
   };
 
-  showExcFlow = (e , id) => {
+  showExcFlow = (e, id) => {
     e.stopPropagation();
     this.execFlow && this.execFlow.show(id);
   };
@@ -67,17 +67,17 @@ class Project extends PureComponent {
   _renderProjectData = (preData) => {
     const customStyle = {
       width: '90%',
-      borderRadius:"15px"
+      borderRadius: '15px',
     };
     const customPanelStyle = {
       paddingBottom: 24,
     };
-    if(preData.length) {
+    if (preData.length) {
       return (
         <Row type="flex" justify="start">
           <Col span={2}/>
           <Col span={20}>
-            <Collapse  style={customStyle}>
+            <Collapse style={customStyle}>
               {preData && preData.map((item, index) => {
                 const data = { project: item.title };
                 const path = { pathname: '/task/project', query: data };
@@ -102,7 +102,7 @@ class Project extends PureComponent {
         <div>
           没有项目数据
         </div>
-      )
+      );
     }
   };
 
@@ -110,16 +110,14 @@ class Project extends PureComponent {
     const count = Object.keys(param).length;
     const projectName = count ? param['project'] : '';
 
-    if(this.state.loading) {
-      return(
-        <div>
-          <span style={{fontSize:'30'}}>Loding...</span>
-        </div>
-      )
-    }
-    else {
-      if (count) {
-        const projectDetail=this.state.personData.find((item) => {return item.title === projectName});
+    if (count && this.state.personData) {
+      const projectDetail = this.state.personData.find((item) => {
+        return item.title === projectName;
+      });
+      if(!projectDetail){
+        return( <Redirect to="/task/project"/>)
+      }
+      else {
         return (
           <>
             <Header title={projectName} Remove Upload Download/>
@@ -135,7 +133,7 @@ class Project extends PureComponent {
                       <ProjectFlow showExcFlow={this.showExcFlow}/>
                     </TabPane>
                     <TabPane tab="项目日志" key="log">
-                      <ProjectLog />
+                      <ProjectLog/>
                     </TabPane>
                   </Tabs>
                 </Col>
@@ -149,10 +147,10 @@ class Project extends PureComponent {
                     <Divider/>
                     <p><strong>项目管理人:</strong> {projectDetail.manager}</p>
                     <div className='fr'>
-                      <Button style={{margin:"20px 20px"}}
-                        onClick={() => {
-                          this.props.history.goBack();
-                        }}
+                      <Button style={{ margin: '20px 20px' }}
+                              onClick={() => {
+                                this.props.history.goBack();
+                              }}
                       >
                         返回
                       </Button>
@@ -160,36 +158,38 @@ class Project extends PureComponent {
                   </div>
                 </Col>
               </Row>
-              <ExecuteFlow ref={ref =>{this.execFlow=ref}} title="test123"/>
+              <ExecuteFlow ref={ref => {
+                this.execFlow = ref;
+              }} title="test123"/>
             </div>
           </>
         );
       }
+    }
 
-      else {
-        return (
-          <>
-            <Header title="项目管理" Search Add={this}/>
-            <div>
-              <Tabs
-                defaultActiveKey="person"
-                onChange={this._handleCallback}
-                tabPosition="left"
-              >
-                <TabPane tab="个人" key="person">
-                  {this._renderProjectData(this.state.personData)}
-                </TabPane>
-                <TabPane tab="工作组" key="group">
-                  {this._renderProjectData(this.state.groupData)}
-                </TabPane>
-                <TabPane tab="所有" key="all">
-                  {this._renderProjectData(this.state.allData)}
-                </TabPane>
-              </Tabs>
-            </div>
-          </>
-        );
-      }
+    else {
+      return (
+        <>
+          <Header title="项目管理" Search Add={this}/>
+          <div>
+            <Tabs
+              defaultActiveKey="person"
+              onChange={this._handleCallback}
+              tabPosition="left"
+            >
+              <TabPane tab="个人" key="person">
+                {this._renderProjectData(this.state.personData)}
+              </TabPane>
+              <TabPane tab="工作组" key="group">
+                {this._renderProjectData(this.state.groupData)}
+              </TabPane>
+              <TabPane tab="所有" key="all">
+                {this._renderProjectData(this.state.allData)}
+              </TabPane>
+            </Tabs>
+          </div>
+        </>
+      );
     }
   };
 

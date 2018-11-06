@@ -23,7 +23,6 @@ class BasicForm extends PureComponent {
   };
 
   componentDidMount() {
-    console.log(this.props.personData);
     this.props.onRef && this.props.onRef(this);
   }
 

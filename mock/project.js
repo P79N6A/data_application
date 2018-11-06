@@ -56,6 +56,16 @@ let projectArr = [
     manager: '周队长'
   }
 ];
+let data=[];
+for(let i=0;i<8;i++){
+  data.push({
+    key:i,
+    time:"2018-10-31 "+i+":00:00",
+    user:'老'+i,
+    type:i*i,
+    info:"random: "+i
+  })
+}
 
 export default {
   'GET /mock/project':(req,res) =>{
@@ -78,5 +88,8 @@ export default {
       res.status(200).json(projectArr);
     }
 
+  },
+  'GET /mock/project/log':(req,res) =>{
+    res.status(200).json({test:'1',data:data});
   }
 }

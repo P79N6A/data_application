@@ -13,7 +13,7 @@ class FlowHeader extends PureComponent {
 
   handleButton = (e) => {
     e.stopPropagation();
-
+    e.preventDefault();
   };
 
   componentDidMount() {
