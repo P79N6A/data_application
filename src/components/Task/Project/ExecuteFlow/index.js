@@ -75,8 +75,8 @@ class ExecuteFlow extends Component {
     return (
       <div>
         <Modal
-          title={this.props.title || "Execute Flow"}
-          style={{ top: 50, width: '80%' }}
+          title={"Execute Flow" + " " + this.props.title || "Execute Flow"}
+          style={{ top: 20, width: '80%' }}
           visible={this.state.visible}
           className={styles.menubody}
           defaultSelectedKeys={['1']}
