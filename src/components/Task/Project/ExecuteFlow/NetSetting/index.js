@@ -58,7 +58,7 @@ class NetSetting extends Component {
                 <p className={styles.contTitle}>故障通知</p>
                 <p>在作业首次出现错误或流程以失败结束时发送通知.</p>
                 <Divider />
-                <Form onSubmit = {this.handleSubmit}>
+                <Form className = {styles.formStyle} onSubmit = {this.handleSubmit}>
                     <FormItem>
                         {
                             getFieldDecorator('radio-button')(
