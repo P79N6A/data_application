@@ -43,43 +43,6 @@ class ProjectLog extends PureComponent {
     });
   };
 
-  getLogData = () => {
-    this.props.dispatch({
-      type: 'project/getProjectLog'
-    }).then((res) => {
-      if (res.isSuccess) {
-        this.setState({ logArr: res.data });
-        message.success(res.msg);
-      }
-      else {
-        message.error(res.msg);
-      }
-    })
-  };
-
-  // _handlePromise = () => {
-  //   let data=[];
-  //   for(let i=0;i<20;i++){
-  //     data.push({
-  //       key:i,
-  //       time:"2018-10-31 "+i+":00:00",
-  //       user:'老'+i,
-  //       type:i*i,
-  //       info:"random: "+i
-  //     })
-  //   }
-  //   return new Promise((resolve)=> {
-  //     setTimeout(() => {
-  //       resolve({
-  //         res:{
-  //           data:data,
-  //         },
-  //         isSuccess:true,
-  //       })
-  //     }, 1000 * 0.3);
-  //   });
-  // };
-
   _renderContent = (data) => {
     if (data) {
       return (

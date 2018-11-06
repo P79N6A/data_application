@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
-import { Col, Form, Input, Row } from 'antd';
+import { Col, Form, Input, message, Row, Modal } from 'antd';
+import { connect } from 'dva';
 
 const FormItem = Form.Item;
 const { TextArea } = Input;
@@ -13,11 +14,22 @@ class BasicForm extends PureComponent {
   handleSubmit = () => {
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        this.props.update({
-          ...values,
-          ...this.props.personData
+        this.props.dispatch({
+          type: 'project/addProjectData',
+          payload: {
+            ...values,
+          },
+        }).then((res) => {
+          if (res.isSuccess) {
+            this.props.getData();
+            this.props.onCancel();
+            message.success('操作成功');
+          }
+
+          else {
+            message.error('操作失败');
+          }
         });
-        this.props.onCancel();
       }
     });
   };
@@ -56,16 +68,46 @@ class BasicForm extends PureComponent {
 }
 
 class AddProject extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state={
+      visible:false
+    }
+  }
+
+  show = () => {
+    this.setState({ visible: true });
+  };
+
+  close = () => {
+    this.setState({ visible: false });
+  };
+
   render() {
     const WrappedRegistrationForm = Form.create()(BasicForm);
+    this.props.Add && this.props.Add(this);
     return (
-      <WrappedRegistrationForm
-        {...this.props}
-      />
+      <div>
+        <Modal
+          title={this.props.title || "新建项目"}
+          destroyOnClose={true}
+          okText="添加"
+          cancelText="取消"
+          onOk={() => {
+            this.addModal && this.addModal.handleSubmit();
+          }}
+          onCancel={this.close}
+          visible={this.state.visible}
+        >
+          <WrappedRegistrationForm
+            {...this.props}
+            onCancel={this.close}
+            onRef={ref => {this.addModal=ref}}
+          />
+        </Modal>
+      </div>
     );
   }
 }
 
-
-
-export default AddProject;
+export default connect()(AddProject);

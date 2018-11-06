@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Button, Card, Col, Collapse, Divider, Modal, Row, Tabs } from 'antd';
-import { Redirect,Link, withRouter } from 'dva/router';
-import { connect } from 'dva/index';
+import { Link, Redirect, withRouter } from 'dva/router';
+import { connect } from 'dva';
 
 import AddProject from './AddProject';
 import ExecuteFlow from './ExecuteFlow';
@@ -27,23 +27,7 @@ class Project extends PureComponent {
   }
 
   _handleCallback = (key) => {
-    console.log(key);
-  };
-
-  _handleFormUpdate = (child) => {
-    this.addModal = child;
-  };
-
-  show = () => {
-    this.setState({ visible: true });
-  };
-
-  close = () => {
-    this.setState({ visible: false });
-  };
-
-  update = (data) => {
-    data && this.state.personData.push(data);
+    // console.log(key);
   };
 
   getData = () => {
@@ -51,7 +35,23 @@ class Project extends PureComponent {
     this.props.dispatch({
       type: 'project/getProjectData',
     });
-    this.timer = setTimeout(() => {
+    setTimeout(() => {
+      this.setState({
+        personData: this.props.projectData,
+        loading: false,
+      });
+    }, 1000 * .5);
+  };
+
+  searchData = (value) => {
+    this.setState({ loading: true });
+    this.props.dispatch({
+      type: 'project/getProjectData',
+      payload:{
+        search:value
+      }
+    });
+    setTimeout(() => {
       this.setState({
         personData: this.props.projectData,
         loading: false,
@@ -73,21 +73,22 @@ class Project extends PureComponent {
       paddingBottom: 24,
     };
     if (preData.length) {
+      console.log(preData.length);
       return (
         <Row type="flex" justify="start">
           <Col span={2}/>
           <Col span={20}>
             <Collapse style={customStyle}>
               {preData && preData.map((item, index) => {
-                const data = { project: item.title };
+                const data = { project: item.title ? item.title : ""};
                 const path = { pathname: '/task/project', query: data };
                 return (
-                  <Panel header={item.title} key={index} style={customPanelStyle}>
+                  <Panel header={item.title ? item.title : ""} key={index} style={customPanelStyle}>
                     <Card
-                      title={item.title}
+                      title={item.title ? item.title : ""}
                       extra={<Link to={path}>更多</Link>}
                     >
-                      <p>{item.value}</p>
+                      <p>{item.value ? item.value : ""}</p>
                     </Card>
                   </Panel>
                 );
@@ -114,8 +115,8 @@ class Project extends PureComponent {
       const projectDetail = this.state.personData.find((item) => {
         return item.title === projectName;
       });
-      if(!projectDetail){
-        return( <Redirect to="/task/project"/>)
+      if (!projectDetail) {
+        return (<Redirect to="/task/project"/>);
       }
       else {
         return (
@@ -149,6 +150,7 @@ class Project extends PureComponent {
                     <div className='fr'>
                       <Button style={{ margin: '20px 20px' }}
                               onClick={() => {
+                                this.getData();
                                 this.props.history.goBack();
                               }}
                       >
@@ -170,7 +172,7 @@ class Project extends PureComponent {
     else {
       return (
         <>
-          <Header title="项目管理" Search Add={this}/>
+          <Header title="项目管理" Search={this.searchData} Add={this.Add} />
           <div>
             <Tabs
               defaultActiveKey="person"
@@ -197,33 +199,15 @@ class Project extends PureComponent {
     this.getData();
   }
 
-  componentWillUnmount() {
-    clearTimeout(this.timer);
-  }
-
   render() {
     return (
       <div>
         {this._renderContent(this.props.location.query)}
         <div>
-          <Modal
-            title="新建项目"
-            destroyOnClose={true}
-            okText="添加"
-            cancelText="取消"
-            onOk={() => {
-              this.addModal && this.addModal.handleSubmit();
-            }}
-            onCancel={this.close}
-            visible={this.state.visible}
-          >
-            <AddProject
-              onCancel={this.close}
-              personData={this.state.personData}
-              update={this.update}
-              onRef={this._handleFormUpdate}
-            />
-          </Modal>
+          <AddProject
+            getData={this.getData}
+            Add={ref =>{this.Add = ref}}
+          />
         </div>
       </div>
     );

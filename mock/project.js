@@ -56,33 +56,41 @@ let projectArr = [
     manager: '周队长'
   }
 ];
-let data=[];
-for(let i=0;i<8;i++){
-  data.push({
-    key:i,
-    time:"2018-10-31 "+i+":00:00",
-    user:'老'+i,
-    type:i*i,
-    info:"random: "+i
-  })
-}
+let data = Mock.mock({
+  'data|5-20':[{
+    'key|+1':1,
+    'time':'@datetime()',
+    'user':'@name',
+    'type|1':["添加用户","创建项目","开始任务","完成任务","错误"],
+    'info|1':["完成","失败"]
+  }]
+});
 
 export default {
   'GET /mock/project':(req,res) =>{
     let queryLength = Object.keys(req.query).length;
     //带有请求参数时发送某一个数据
     if(queryLength) {
-      let title = req.query.title;
       let index;
       let arr=[];
-      for(let i in projectArr) {
-        if(projectArr[i].title === title){
-          index = i;
-          break;
-        }
+      let search = req.query.search;
+      let title = req.query.title;
+      if(req.query.search===""){
+        res.status(200).json(projectArr);
       }
-      arr.push(projectArr[index]);
-      res.status(200).json(arr);
+      else {
+        for(let i in projectArr) {
+          if(projectArr[i].title === title || projectArr[i].title === search){
+            index = i;
+            break;
+          }
+        }
+        if(projectArr[index]){
+          arr.push(projectArr[index]);
+        }
+        console.log(search,arr);
+        res.status(200).json(arr);
+      }
     }
     else {
       res.status(200).json(projectArr);
@@ -90,6 +98,13 @@ export default {
 
   },
   'GET /mock/project/log':(req,res) =>{
-    res.status(200).json({test:'1',data:data});
+    res.status(200).json(data);
+  },
+  'POST /mock/project':(req,res) => {
+    let temp={};
+    temp.title=req.body.title;
+    temp.value=req.body.title;
+    projectArr.push(temp);
+    res.json(req.body)
   }
 }

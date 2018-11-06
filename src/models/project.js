@@ -1,12 +1,12 @@
-import { getProjectList, getProjectLog } from '../services/project';
+import { addProject, getProjectList, getProjectLog } from '../services/project';
 
 function modelResponse(response) {
-  const sendMsg =  {
+  const sendMsg = {
     isSuccess: false,
     msg: '',
     res: {},
   };
-  if (response && (response.statusText !== "OK")) {
+  if (response && (response.statusText !== 'OK')) {
     sendMsg.isSuccess = false;
     sendMsg.msg = response.message;
   } else {
@@ -22,7 +22,7 @@ export default {
 
   state: {
     projectData: [],
-    executeFlowVisible:false
+    executeFlowVisible: false,
   },
 
   effects: {
@@ -30,21 +30,27 @@ export default {
       const response = yield call(getProjectList, payload);
       yield put({
         type: 'save',
-        data: response.data,
+        data: response.data
       });
     },
+
     * getProjectLog({ payload, callback }, { call }) {
       const response = yield call(getProjectLog, payload);
       return modelResponse(response);
-    }
+    },
+
+    * addProjectData({ payload, callback }, { call }) {
+      const response = yield call(addProject, payload);
+      return modelResponse(response);
+    },
   },
 
   reducers: {
     save(state, action) {
       return {
         ...state,
-        projectData:action.data,
+        projectData: action.data,
       };
-    }
-  }
+    },
+  },
 };
