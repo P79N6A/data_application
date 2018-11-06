@@ -20,13 +20,7 @@ class FlowHeader extends PureComponent {
     this.props.onRef && this.props.onRef(this);
   }
 
-  handleVisible= (e) => {
-    e.stopPropagation();
-    this.props.dispatch({
-      type:'project/showModal'
-    });
-    console.log(this.props);
-  };
+
 
   render() {
     return (
@@ -36,7 +30,7 @@ class FlowHeader extends PureComponent {
             <strong>{this.props.title || 'null'}</strong>
           </Col>
           <Col >
-            <Button onClick={this.handleVisible} size='small' style={buttonStyle}>执行流程</Button>
+            <Button onClick={this.props.showExcFlow} size='small' style={buttonStyle}>执行流程</Button>
             <Button onClick={this.handleButton} size='small' style={buttonStyle}>执行情况</Button>
             <Button onClick={this.handleButton} size='small' style={buttonStyle}>流程概要</Button>
           </Col>

@@ -24,16 +24,6 @@ export default {
         ...state,
         projectData:action.data,
       };
-    },
-    showModal(){
-      return {
-        executeFlowVisible:true
-      }
-    },
-    hideModal(){
-      return {
-        executeFlowVisible:false
-      }
     }
   }
 };

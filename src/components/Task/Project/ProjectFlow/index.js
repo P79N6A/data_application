@@ -20,17 +20,19 @@ class ProjectFlow extends PureComponent {
   _renderContent = (data) => {
     if (data) {
       return (
+        <>
         <Collapse>
           {
             data.map((item) => {
               return (
-                <Panel header={<FlowHeader title={item} />} key={item} style={customStyle}>
+                <Panel header={<FlowHeader title={item} showExcFlow={(e)=>this.props.showExcFlow(e,item)} />} key={item} style={customStyle}>
                   <p>{item}</p>
                 </Panel>
               );
             })
           }
         </Collapse>
+        </>
       );
     }
     else {

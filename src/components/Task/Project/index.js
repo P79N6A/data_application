@@ -60,6 +60,12 @@ class Project extends PureComponent {
     }, 1000 * .5);
   };
 
+  showExcFlow = (e , id) => {
+    console.log(id);
+    e.stopPropagation();
+    this.execFlow && this.execFlow.show(id);
+  };
+
   _renderProjectData = (preData) => {
     const customStyle = {
       width: '90%',
@@ -127,7 +133,7 @@ class Project extends PureComponent {
                     type="card"
                   >
                     <TabPane tab="流程" key="flow">
-                      <ProjectFlow />
+                      <ProjectFlow showExcFlow={this.showExcFlow}/>
                     </TabPane>
                     <TabPane tab="项目日志" key="log">
                       <ProjectLog />
@@ -156,7 +162,7 @@ class Project extends PureComponent {
                   </div>
                 </Col>
               </Row>
-              <ExecuteFlow/>
+              <ExecuteFlow ref={ref =>{this.execFlow=ref}} title="test123"/>
             </div>
           </>
         );
